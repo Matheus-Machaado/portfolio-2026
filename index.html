@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Matheus Machado | Portfólio</title>
+		<meta name="description" content="Portfólio de Matheus Machado — Full Stack Developer. Projetos, experiência e contato." />
+		<meta name="author" content="Matheus Machado" />
+
+		<meta property="og:title" content="Matheus Machado | Portfólio" />
+		<meta property="og:description" content="Full Stack Developer. Projetos, experiência e contato." />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="assets/img/profile-photo.jpeg" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Matheus Machado | Portfólio" />
+		<meta name="twitter:description" content="Full Stack Developer. Projetos, experiência e contato." />
+		<meta name="twitter:image" content="assets/img/profile-photo.jpeg" />
+
+		<link rel="icon" href="assets/img/fav-icon.png" type="image/png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+		<link rel="stylesheet" href="styles/styles.css" />
+		<link rel="stylesheet" href="styles/project-detail.css" />
+	</head>
+
+	<body>
+		<canvas id="code-bg" class="code-bg" aria-hidden="true"></canvas>
+
+		<div id="intro-overlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Intro">
+			<div class="intro-container">
+				<div class="terminal-window">
+					<div class="terminal-header">
+						<div class="dot dot-red"></div>
+						<div class="dot dot-yellow"></div>
+						<div class="dot dot-green"></div>
+						<span class="terminal-title">matheus@portfolio ~</span>
+					</div>
+
+					<div class="terminal-body">
+						<div id="intro-lines" class="terminal-lines" aria-live="polite"></div>
+
+						<div id="intro-cursor" class="terminal-cursor-row">
+							<span class="terminal-prompt">&gt;</span>
+							<span class="terminal-cursor"></span>
+						</div>
+
+						<div id="intro-select" class="intro-select hidden">
+							<p class="intro-select-title text-muted">
+								&gt; Select your language / Selecione seu idioma:
+							</p>
+							<div class="intro-select-buttons">
+								<button id="intro-pt" class="btn-outline btn-outline-wide" type="button">
+									<span class="flag">🇧🇷</span>
+									<span>Português</span>
+								</button>
+								<button id="intro-en" class="btn-outline btn-outline-wide" type="button">
+									<span class="flag">🇺🇸</span>
+									<span>English</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<pre class="intro-code intro-code-left" aria-hidden="true">const developer = {
+	name: "Matheus Machado",
+	passion: "∞",
+};</pre>
+
+			<pre class="intro-code intro-code-right" aria-hidden="true">function createSolution() {
+	return innovation;
+}</pre>
+		</div>
+
+		<div id="site" class="site hidden">
+			<header class="navbar glass">
+				<div class="container nav-inner">
+					<a href="#home" class="logo" aria-label="Go to home">
+						<img src="assets/img/logo_portfolio.png" alt="Logo Matheus Machado" />
+					</a>
+
+					<nav class="nav-links" aria-label="Primary navigation">
+						<a class="nav-link" href="#home" data-i18n="nav.home"></a>
+						<a class="nav-link" href="#about" data-i18n="nav.about"></a>
+						<a class="nav-link" href="#projects" data-i18n="nav.projects"></a>
+						<a class="nav-link" href="#experience" data-i18n="nav.experience"></a>
+						<a class="nav-link" href="#education" data-i18n="nav.education"></a>
+						<a class="nav-link" href="#skills" data-i18n="nav.skills"></a>
+						<a class="nav-link" href="#contact" data-i18n="nav.contact"></a>
+					</nav>
+
+					<div class="nav-actions">
+						<button id="language-button" class="lang-button" type="button" aria-haspopup="dialog" aria-expanded="false">
+							PT
+						</button>
+
+						<button id="mobile-menu-button" class="mobile-menu-button" type="button" aria-label="Open menu">
+							<span class="icon" data-icon="menu" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
+			</header>
+
+			<div id="language-backdrop" class="language-backdrop hidden" aria-hidden="true"></div>
+
+			<div id="language-modal" class="language-modal hidden" role="dialog" aria-label="Language selector">
+				<div class="language-modal-inner">
+					<button id="lang-en" class="language-option" type="button">
+						<span class="lang-code">EN</span>
+						<span class="lang-name">Inglês</span>
+					</button>
+
+					<button id="language-close" class="language-close" type="button" aria-label="Close">
+						<span class="icon-inline" data-icon="x" aria-hidden="true"></span>
+					</button>
+
+					<button id="lang-pt" class="language-option" type="button">
+						<span class="lang-code">PT</span>
+						<span class="lang-name">Português</span>
+					</button>
+				</div>
+			</div>
+
+			<div id="mobile-menu" class="mobile-menu hidden" role="dialog" aria-modal="true" aria-label="Mobile menu">
+				<div class="mobile-menu-backdrop"></div>
+				<div class="mobile-menu-content">
+					<button id="mobile-menu-close" class="mobile-menu-close" type="button" aria-label="Close menu">
+						<span class="icon" data-icon="x" aria-hidden="true"></span>
+					</button>
+
+					<div class="mobile-logo" aria-hidden="true">
+						<span class="logo-big"><span class="logo-primary">M</span><span class="logo-foreground">M</span></span>
+					</div>
+
+					<nav class="mobile-nav" aria-label="Mobile navigation">
+						<a class="mobile-nav-link" href="#home" data-i18n="nav.home"></a>
+						<a class="mobile-nav-link" href="#about" data-i18n="nav.about"></a>
+						<a class="mobile-nav-link" href="#projects" data-i18n="nav.projects"></a>
+						<a class="mobile-nav-link" href="#experience" data-i18n="nav.experience"></a>
+						<a class="mobile-nav-link" href="#education" data-i18n="nav.education"></a>
+						<a class="mobile-nav-link" href="#skills" data-i18n="nav.skills"></a>
+						<a class="mobile-nav-link" href="#contact" data-i18n="nav.contact"></a>
+					</nav>
+
+					<button id="mobile-lang-button" class="mobile-lang-button" type="button">PT</button>
+
+					<div class="mobile-social">
+						<a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+							<span class="icon" data-icon="github" aria-hidden="true"></span>
+						</a>
+						<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+							<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
+						</a>
+					</div>
+
+					<p class="mobile-repo text-muted">
+						Veja também o <a href="#" class="text-primary">repositório</a> desse projeto
+					</p>
+				</div>
+			</div>
+
+			<div class="fixed-social" aria-label="Social links">
+				<a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+					<span class="icon" data-icon="github" aria-hidden="true"></span>
+				</a>
+				<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+					<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
+				</a>
+				<div class="fixed-social-line" aria-hidden="true"></div>
+			</div>
+
+			<div id="project-detail" class="pd2-overlay hidden" role="dialog" aria-modal="true" aria-label="Project details">
+				<button id="project-detail-close" class="pd2-close" type="button" aria-label="Close project details">
+					<span class="icon" data-icon="x" aria-hidden="true"></span>
+				</button>
+
+				<div class="pd2-layout" aria-label="Project detail layout">
+					<aside class="pd2-panel" aria-label="Project info">
+						<div class="pd2-panel-top">
+							<p id="pd-company" class="pd2-company font-mono"></p>
+							<h1 id="pd-title" class="pd2-title"></h1>
+
+							<div class="pd2-meta">
+								<span id="pd-type" class="pd2-type font-mono"></span>
+								<div id="pd-tags" class="pd2-tags" aria-label="Project tags"></div>
+							</div>
+						</div>
+
+						<div class="pd2-panel-scroll" aria-label="Project description">
+							<section class="pd2-copy">
+								<p class="pd2-copy-kicker font-mono text-muted" data-i18n="projects.description"></p>
+								<p id="pd-description" class="pd2-description"></p>
+							</section>
+						</div>
+
+						<div class="pd2-panel-bottom">
+							<div class="pd2-stack" aria-label="Stacks and tools">
+								<p class="pd2-stack-kicker font-mono text-muted" data-i18n="projects.stacksTools"></p>
+								<div id="pd-tech" class="pd2-stack-icons" aria-label="Project technologies"></div>
+							</div>
+
+								<div class="pd2-panel-actions" aria-label="Project links">
+									<a id="pd-live" class="pd2-live" href="#" target="_blank" rel="noopener noreferrer">
+										<span data-i18n="projects.seeMore"></span>
+										<span class="icon-inline" data-icon="externalLink" aria-hidden="true"></span>
+									</a>
+
+									<a id="pd-git" class="pd2-git" href="#" target="_blank" rel="noopener noreferrer">
+										<span>GitHub</span>
+										<span class="icon-inline" data-icon="github" aria-hidden="true"></span>
+									</a>
+								</div>
+						</div>
+					</aside>
+
+					<main class="pd2-content" aria-label="Project media">
+						<section id="pd-desktop-section" class="pd2-media hidden">
+							<header class="pd2-media-head">
+								<p class="pd2-kicker font-mono text-muted" data-i18n="projects.desktop"></p>
+							</header>
+
+							<div class="pd2-desktop-stage">
+								<figure class="pd2-device pd2-device-desktop">
+									<div class="pd2-device-chrome" aria-hidden="true">
+										<span class="pd2-dot pd2-dot-red"></span>
+										<span class="pd2-dot pd2-dot-yellow"></span>
+										<span class="pd2-dot pd2-dot-green"></span>
+									</div>
+									<img id="pd-desktop-main" class="pd2-device-img" src="" alt="" loading="lazy" decoding="async" />
+								</figure>
+
+								<div id="pd-desktop-thumbs" class="pd2-thumbs" aria-label="Desktop thumbnails"></div>
+							</div>
+						</section>
+
+						<section id="pd-mobile-section" class="pd2-media hidden">
+							<header class="pd2-media-head">
+								<p class="pd2-kicker font-mono text-muted" data-i18n="projects.mobile"></p>
+							</header>
+
+							<div id="pd-mobile-strip" class="pd2-mobile-strip" aria-label="Mobile screens"></div>
+						</section>
+					</main>
+				</div>
+			</div>
+
+			<main>
+				<section id="home" class="hero section hero-section">
+					<div class="container">
+						<div class="hero-grid">
+							<div class="hero-content reveal from-left">
+								<p class="hero-greeting text-primary font-mono" data-i18n="hero.greeting"></p>
+
+								<h1 class="hero-title">
+									<span class="text-gradient glow-text" data-i18n="hero.name"></span>
+								</h1>
+
+								<h2 class="hero-typing font-mono text-muted">
+									<span id="hero-typing-text"></span>
+									<span class="hero-cursor">|</span>
+								</h2>
+
+								<p class="hero-subtitle text-muted" data-i18n="hero.subtitle"></p>
+
+								<div class="hero-cta">
+									<a href="#contact" class="btn-primary cta-btn">
+										<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
+										<span data-i18n="hero.cta.contact"></span>
+									</a>
+
+									<button id="download-cv" class="btn-outline cta-btn" type="button">
+										<span class="icon-inline" data-icon="download" aria-hidden="true"></span>
+										<span data-i18n="hero.cta.cv"></span>
+									</button>
+								</div>
+							</div>
+
+							<div class="hero-photo reveal from-right" aria-label="Profile">
+								<div class="photo-wrap">
+									<div class="photo-glow" aria-hidden="true"></div>
+
+									<div class="photo-box">
+										<div class="rotating-border" aria-hidden="true"></div>
+
+										<div class="photo-inner glow-border pulse-glow">
+											<img src="assets/img/profile-photo.jpeg" alt="Matheus Machado" class="profile-img" />
+										</div>
+
+										<div class="float-tag float-tag-1 font-mono">&lt;React /&gt;</div>
+										<div class="float-tag float-tag-2 font-mono">Python</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="scroll-indicator" aria-hidden="true">
+							<div class="scroll-pill">
+								<div class="scroll-dot"></div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="about" class="section">
+					<div class="container">
+						<div class="section-head text-center reveal">
+							<span class="section-kicker text-primary font-mono">// <span data-i18n="about.subtitle"></span></span>
+							<h2 class="section-title">
+								<span class="text-gradient" data-i18n="about.title"></span>
+							</h2>
+						</div>
+
+						<div class="about-grid">
+							<div class="about-video reveal from-left">
+								<div class="video-placeholder">
+									<div class="play-button" aria-hidden="true">
+										<div class="play-triangle"></div>
+									</div>
+									<p class="text-muted small">Vídeo de apresentação</p>
+								</div>
+							</div>
+
+							<div class="about-content reveal from-right">
+								<p class="text-muted about-text" data-i18n="about.description"></p>
+
+								<div class="about-social">
+									<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-pill">
+										<span class="icon-inline" data-icon="github" aria-hidden="true"></span>
+										<span>GitHub</span>
+									</a>
+									<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-pill">
+										<span class="icon-inline" data-icon="linkedin" aria-hidden="true"></span>
+										<span>LinkedIn</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="projects" class="section">
+					<div class="container">
+						<div class="section-head reveal">
+							<span class="section-kicker text-primary font-mono">// <span data-i18n="projects.subtitle"></span></span>
+							<h2 class="section-title">
+								<span class="text-gradient" data-i18n="projects.title"></span>
+							</h2>
+							<p class="text-muted projects-desc">
+								Aqui você encontra todos os projetos em que já trabalhei, sejam pessoais ou aqueles realizados com vínculo empregatício.
+							</p>
+						</div>
+
+						<div class="projects-wrap">
+							<div class="projects-nav">
+								<button id="projects-prev" class="icon-btn" type="button" aria-label="Previous projects">
+									<span class="icon" data-icon="chevronLeft" aria-hidden="true"></span>
+								</button>
+								<button id="projects-next" class="icon-btn" type="button" aria-label="Next projects">
+									<span class="icon" data-icon="chevronRight" aria-hidden="true"></span>
+								</button>
+							</div>
+
+							<div id="projects-grid" class="projects-grid"></div>
+
+							<div class="projects-progress">
+								<div class="projects-progress-track">
+									<div id="projects-progress-bar" class="projects-progress-bar"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="experience" class="section">
+					<div class="container">
+						<div class="section-head reveal">
+							<span class="section-kicker text-primary font-mono">// <span data-i18n="experience.subtitle"></span></span>
+							<h2 class="section-title">
+								<span class="text-gradient" data-i18n="experience.title"></span>
+							</h2>
+							<p id="experience-lead" class="text-muted"></p>
+						</div>
+
+						<div class="timeline">
+							<div class="timeline-line" aria-hidden="true"></div>
+							<div id="experience-timeline" class="timeline-items"></div>
+						</div>
+					</div>
+				</section>
+
+				<section id="education" class="section">
+					<div class="container">
+						<div class="section-head reveal">
+							<span class="section-kicker text-primary font-mono">// <span data-i18n="education.subtitle"></span></span>
+							<h2 class="section-title">
+								<span class="text-gradient" data-i18n="education.title"></span>
+							</h2>
+							<p id="education-lead" class="text-muted"></p>
+						</div>
+
+						<div class="edu-tabs">
+							<button id="tab-academic" class="edu-tab active" type="button" data-i18n="education.academic"></button>
+							<button id="tab-courses" class="edu-tab" type="button" data-i18n="education.courses"></button>
+							<div id="edu-tab-indicator" class="edu-tab-indicator" aria-hidden="true"></div>
+						</div>
+
+						<div id="education-academic" class="edu-panel">
+							<div class="edu-cards">
+								<div class="card-dark edu-card reveal">
+									<div class="edu-card-top">
+										<div class="edu-card-left">
+											<h3 class="edu-inst" data-i18n="education.fiap.name"></h3>
+											<p class="edu-degree text-primary font-mono" data-i18n="education.fiap.degree"></p>
+											<p class="text-muted small" data-i18n="education.fiap.description"></p>
+										</div>
+										<div class="edu-card-right">
+											<p class="font-mono small text-muted" data-i18n="education.fiap.period"></p>
+											<span class="status-badge status-complete">
+												<span class="status-dot"></span>
+												<span data-i18n="education.fiap.status"></span>
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="card-dark edu-card reveal">
+									<div class="edu-card-top">
+										<div class="edu-card-left">
+											<h3 class="edu-inst" data-i18n="education.usp.name"></h3>
+											<p class="edu-degree text-primary font-mono" data-i18n="education.usp.degree"></p>
+											<p class="text-muted small" data-i18n="education.usp.description"></p>
+										</div>
+										<div class="edu-card-right">
+											<p class="font-mono small text-muted" data-i18n="education.usp.period"></p>
+											<span class="status-badge status-progress">
+												<span class="status-dot status-dot-pulse"></span>
+												<span data-i18n="education.usp.status"></span>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="education-courses" class="edu-panel hidden">
+							<div class="edu-filters">
+								<button class="filter-btn active" type="button" data-filter="all" data-i18n="education.filter.all"></button>
+								<button class="filter-btn" type="button" data-filter="frontend" data-i18n="education.filter.frontend"></button>
+								<button class="filter-btn" type="button" data-filter="backend" data-i18n="education.filter.backend"></button>
+								<button class="filter-btn" type="button" data-filter="design" data-i18n="education.filter.design"></button>
+								<button class="filter-btn" type="button" data-filter="sql" data-i18n="education.filter.sql"></button>
+								<button class="filter-btn" type="button" data-filter="others" data-i18n="education.filter.others"></button>
+							</div>
+
+							<div id="certificates-grid" class="cert-grid"></div>
+							<nav id="cert-pagination" class="cert-pagination hidden" aria-label="Certificates pagination"></nav>
+						</div>
+					</div>
+				</section>
+
+				<section id="skills" class="section section-alt">
+					<div class="container">
+						<div class="section-head text-center reveal">
+							<span class="section-kicker text-primary font-mono">// <span data-i18n="skills.subtitle"></span></span>
+							<h2 class="section-title">
+								<span class="text-gradient" data-i18n="skills.title"></span>
+							</h2>
+						</div>
+
+						<div class="skills-grid">
+							<div class="skill-card reveal">
+								<h3 class="skill-title text-primary" data-i18n="skills.frontend"></h3>
+								<div class="skill-tags">
+									<span class="skill-tag">JavaScript</span>
+									<span class="skill-tag">HTML5</span>
+									<span class="skill-tag">CSS3</span>
+									<span class="skill-tag">React</span>
+									<span class="skill-tag">Tailwind CSS</span>
+									<span class="skill-tag">Bootstrap</span>
+									<span class="skill-tag">Sass</span>
+								</div>
+							</div>
+
+							<div class="skill-card reveal">
+								<h3 class="skill-title text-primary" data-i18n="skills.backend"></h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Python</span>
+									<span class="skill-tag">SQL</span>
+									<span class="skill-tag">WordPress</span>
+									<span class="skill-tag">Web Scraping</span>
+									<span class="skill-tag">Automação</span>
+								</div>
+							</div>
+
+							<div class="skill-card reveal">
+								<h3 class="skill-title text-primary" data-i18n="skills.tools"></h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Git</span>
+									<span class="skill-tag">GitHub</span>
+									<span class="skill-tag">Figma</span>
+									<span class="skill-tag">VS Code</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="skills-code reveal">
+							<p class="font-mono small">
+								const stack = [ <span class="text-primary">JS</span>, <span class="text-primary">React</span>, <span class="text-primary">Python</span>, <span class="text-primary">SQL</span> ];
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<section id="contact" class="section section-contact">
+					<div class="container">
+						<div class="contact-box reveal">
+							<span class="section-kicker text-primary font-mono">// <span data-i18n="contact.subtitle"></span></span>
+							<h2 class="section-title contact-title">
+								<span class="text-gradient" data-i18n="contact.title"></span>
+							</h2>
+
+							<a href="mailto:contato@email.com" class="btn-primary contact-cta">
+								<span class="icon-inline" data-icon="send" aria-hidden="true"></span>
+								<span data-i18n="contact.cta"></span>
+							</a>
+
+							<div class="contact-social">
+								<a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="contact-social-btn">
+									<span class="icon" data-icon="github" aria-hidden="true"></span>
+								</a>
+								<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="contact-social-btn">
+									<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
+								</a>
+								<a href="mailto:contato@email.com" target="_blank" rel="noopener noreferrer" aria-label="Email" class="contact-social-btn">
+									<span class="icon" data-icon="mail" aria-hidden="true"></span>
+								</a>
+								<a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="contact-social-btn">
+									<span class="icon" data-icon="messageCircle" aria-hidden="true"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+
+			<footer class="footer">
+				<div class="container">
+					<div class="footer-row">
+						<p class="text-muted small font-mono">
+							© <span id="footer-year"></span> • Matheus Machado • <span data-i18n="footer.rights"></span>
+						</p>
+
+						<div class="footer-repo">
+							<p id="footer-repo-label" class="text-muted small" data-i18n="footer.repository"></p>
+							<a href="#" class="text-primary footer-repo-link font-mono small">GitHub</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<script src="scripts/script.js"></script>
+	</body>
+</html>

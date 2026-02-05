@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+	<rect width="800" height="600" fill="#0b1118"/>
+	<rect x="40" y="40" width="720" height="520" rx="24" fill="#0f172a" stroke="#00ffaa" stroke-opacity="0.35" stroke-width="4"/>
+	<g fill="#00ffaa" fill-opacity="0.85" font-family="JetBrains Mono, monospace" font-size="28">
+		<text x="80" y="140">Screenshot</text>
+		<text x="80" y="190">placeholder</text>
+	</g>
+	<g fill="#94a3b8" fill-opacity="0.85" font-family="JetBrains Mono, monospace" font-size="18">
+		<text x="80" y="250">Replace this file with your image</text>
+	</g>
+</svg>

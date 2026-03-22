@@ -92,6 +92,98 @@
 		});
 	}
 
+	const CONTACT_EMAIL = "matheus.machaado.dev@gmail.com";
+
+	const CV_FILES = {
+		pt: { url: "assets/curriculos/curriculo.pdf", filename: "Matheus_Machado_Curriculo_PT.pdf" },
+		en: { url: "assets/curriculos/curriculo_english.pdf", filename: "Matheus_Machado_Curriculo_EN.pdf" },
+	};
+
+	function triggerDownload(url, filename) {
+		if (!url) return;
+		const a = document.createElement("a");
+		a.href = url;
+		if (filename) a.download = filename;
+		a.target = "_blank";
+		a.rel = "noopener";
+		document.body.appendChild(a);
+		a.click();
+		a.remove();
+	}
+
+
+	let copyToastTimer = null;
+
+	function showCopyToast(message) {
+		const toast = document.getElementById("copy-toast");
+		const text = document.getElementById("copy-toast-text");
+		if (!toast || !text) return;
+
+		text.textContent = message;
+		toast.setAttribute("aria-hidden", "false");
+		toast.classList.add("show");
+
+		if (copyToastTimer) clearTimeout(copyToastTimer);
+		copyToastTimer = setTimeout(() => {
+			toast.classList.remove("show");
+			toast.setAttribute("aria-hidden", "true");
+		}, 2400);
+	}
+
+	async function copyTextToClipboard(text) {
+		try {
+			if (navigator.clipboard && navigator.clipboard.writeText) {
+				await navigator.clipboard.writeText(text);
+				return true;
+			}
+		} catch (e) {}
+
+		try {
+			const ta = document.createElement("textarea");
+			ta.value = text;
+			ta.setAttribute("readonly", "");
+			ta.style.position = "fixed";
+			ta.style.top = "-1000px";
+			ta.style.left = "-1000px";
+			document.body.appendChild(ta);
+			ta.select();
+			ta.setSelectionRange(0, ta.value.length);
+			const ok = document.execCommand("copy");
+			ta.remove();
+			return ok;
+		} catch (e) {}
+
+		return false;
+	}
+
+	function bindContactEmailCopy() {
+		const btnMain = document.getElementById("contact-copy-email");
+		const btnIcon = document.getElementById("contact-email-btn");
+
+		const handler = async (e) => {
+			if (e) e.preventDefault();
+			await copyTextToClipboard(CONTACT_EMAIL);
+			showCopyToast(t("contact.emailCopied").replace("{email}", CONTACT_EMAIL));
+		};
+
+		if (btnMain && !btnMain.dataset.bound) {
+			btnMain.dataset.bound = "1";
+			btnMain.addEventListener("click", handler);
+		}
+
+		if (btnIcon && !btnIcon.dataset.bound) {
+			btnIcon.dataset.bound = "1";
+			btnIcon.addEventListener("click", handler);
+			btnIcon.addEventListener("keydown", (ev) => {
+				if (ev.key === "Enter" || ev.key === " ") {
+					ev.preventDefault();
+					handler(ev);
+				}
+			});
+		}
+	}
+
+
 	const translations = {
 		pt: {
 			"nav.home": "Início",
@@ -102,6 +194,9 @@
 			"nav.skills": "Tecnologias",
 			"nav.contact": "Contato",
 
+			"language.english": "Inglês",
+			"language.portuguese": "Português",
+
 			"hero.greeting": "Olá, eu sou",
 			"hero.name": "Matheus Machado",
 			"hero.title": "Full Stack Developer",
@@ -111,16 +206,20 @@
 
 			"about.title": "Sobre Mim",
 			"about.subtitle": "Conheça minha trajetória profissional",
-			"about.description": "Desenvolvedor Full Stack com 2 anos de experiência no mercado. Apaixonado por criar soluções web inovadoras, automações inteligentes e sistemas de raspagem de dados. Busco constantemente aprimorar minhas habilidades e entregar projetos de alta qualidade.",
+			"about.description": "Sou Desenvolvedor Full Stack com 3+ anos de vivência em tecnologia (desde 2022), atuando do Front-end (React/JS) ao Back-end e Dados (Python/SQL) — com foco forte em automação, web scraping e construção de ferramentas internas que aceleram operações e reduzem trabalho manual.\n\nComecei minha jornada em 2022 como Jovem Aprendiz de TI na Totale Tecnologia, onde tive meu primeiro contato com o mundo corporativo e aprendi, na prática, o valor de ser proativo, colaborativo e sempre disposto a aprender.\nEm 2024, iniciei na Ridolfinvest como estagiário, mergulhando em Python, SQL, scraping e automações. Em dezembro/2024, fui promovido para Desenvolvedor Júnior, passando a atuar com responsabilidade ponta a ponta: front, back, banco e integrações.",
+
+			"about.video": "Vídeo de apresentação",
 
 			"skills.title": "Tecnologias",
 			"skills.subtitle": "Ferramentas e linguagens que domino",
 			"skills.frontend": "Frontend",
 			"skills.backend": "Backend & Dados",
 			"skills.tools": "Ferramentas",
+			"skills.automation": "Automação",
 
 			"projects.title": "Projetos",
 			"projects.subtitle": "Projetos pessoais e profissionais",
+			"projects.lead": "Aqui você encontra todos os projetos em que já trabalhei, sejam pessoais ou aqueles realizados com vínculo empregatício.",
 			"projects.seeMore": "Ver mais",
 			"projects.technologies": "Tecnologias",
 			"projects.description": "Descrição",
@@ -138,21 +237,22 @@
 			"experience.hideDetails": "Esconder detalhes",
 			"experience.technologies": "Tecnologias aprendidas",
 			"experience.present": "Presente",
+			"experience.companyLinkTitle": "Click para ser levado a pagina da empresa",
 
 			"education.title": "Educação",
 			"education.subtitle": "Formação acadêmica e especializações",
 			"education.academic": "Formação Acadêmica",
 			"education.courses": "Cursos e Certificados",
 			"education.fiap.name": "FIAP",
-			"education.fiap.degree": "Graduação em Tecnologia",
-			"education.fiap.description": "Formação focada em desenvolvimento de software, arquitetura de sistemas e boas práticas de programação.",
+			"education.fiap.degree": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+			"education.fiap.description": "Formação prática e voltada ao mercado, com projetos em Web, Banco de Dados, APIs REST, ORM (JPA/Hibernate), BI (Power BI), NoSQL (MongoDB), Cloud (Azure/AWS) e Mobile.",
 			"education.fiap.status": "Concluído",
-			"education.fiap.period": "2020 - 2022",
-			"education.usp.name": "USP",
-			"education.usp.degree": "Pós-Graduação",
-			"education.usp.description": "Especialização em tecnologias avançadas e metodologias de desenvolvimento.",
+			"education.fiap.period": "2022 - 2024",
+			"education.usp.name": "USP/ESALQ",
+			"education.usp.degree": "MBA em Engenharia de Software",
+			"education.usp.description": "Pós-graduação (EAD) com foco em fundamentos e práticas de Engenharia de Software, abrangendo arquitetura, qualidade, DevOps, métodos ágeis e aplicações modernas.",
 			"education.usp.status": "Em andamento",
-			"education.usp.period": "2024 - Presente",
+			"education.usp.period": "11/2025 - Presente",
 			"education.filter.all": "Todos",
 			"education.filter.frontend": "Front-end",
 			"education.filter.backend": "Back-end",
@@ -160,13 +260,19 @@
 			"education.filter.sql": "SQL",
 			"education.filter.others": "Outros",
 			"education.download": "Baixar certificado",
+			"education.downloadAll": "Baixar pacote",
 
 			"contact.title": "Contato",
 			"contact.subtitle": "Vamos conversar sobre seu próximo projeto",
 			"contact.cta": "Entre em contato",
+			"contact.emailCopyTitle": "Clique para copiar o e-mail",
+			"contact.emailCopied": "E-mail copiado: {email}",
 
 			"footer.rights": "Todos os direitos reservados",
 			"footer.repository": "Veja também o repositório desse projeto",
+			"mobile.repo.before": "Veja também o",
+			"mobile.repo.link": "repositório",
+			"mobile.repo.after": "desse projeto",
 		},
 
 		en: {
@@ -178,6 +284,9 @@
 			"nav.skills": "Technologies",
 			"nav.contact": "Contact",
 
+			"language.english": "English",
+			"language.portuguese": "Portuguese",
+
 			"hero.greeting": "Hello, I am",
 			"hero.name": "Matheus Machado",
 			"hero.title": "Full Stack Developer",
@@ -187,16 +296,20 @@
 
 			"about.title": "About Me",
 			"about.subtitle": "Learn about my professional journey",
-			"about.description": "Full Stack Developer with 2 years of market experience. Passionate about creating innovative web solutions, intelligent automations, and data scraping systems. I constantly seek to improve my skills and deliver high-quality projects.",
+			"about.description": "Full Stack Developer with 3+ years of experience in technology (since 2022), working across Front-end (React/JS) and Back-end/Data (Python/SQL) — with a strong focus on automation, web scraping, and building internal tools that speed up operations and reduce manual work.\n\nI started my journey in 2022 as an IT Apprentice at Totale Tecnologia, where I had my first exposure to the corporate environment and learned, in practice, the importance of being proactive, collaborative, and always willing to learn.\nIn 2024, I joined RidolfInvest as a development intern, diving into Python, SQL, scraping, and automation. In December/2024, I was promoted to Junior Developer, taking end-to-end responsibility: front-end, back-end, database, and integrations.",
+
+			"about.video": "Presentation video",
 
 			"skills.title": "Technologies",
 			"skills.subtitle": "Tools and languages I master",
 			"skills.frontend": "Frontend",
 			"skills.backend": "Backend & Data",
 			"skills.tools": "Tools",
+			"skills.automation": "Automation",
 
 			"projects.title": "Projects",
 			"projects.subtitle": "Personal and professional projects",
+			"projects.lead": "Here you can find all the projects I\u2019ve worked on, both personal and professional.",
 			"projects.seeMore": "See more",
 			"projects.technologies": "Technologies",
 			"projects.description": "Description",
@@ -214,21 +327,22 @@
 			"experience.hideDetails": "Hide details",
 			"experience.technologies": "Technologies learned",
 			"experience.present": "Present",
+			"experience.companyLinkTitle": "Click to be taken to the company page",
 
 			"education.title": "Education",
 			"education.subtitle": "Academic background and specializations",
 			"education.academic": "Academic Background",
 			"education.courses": "Courses & Certificates",
 			"education.fiap.name": "FIAP",
-			"education.fiap.degree": "Technology Degree",
-			"education.fiap.description": "Focused on software development, systems architecture, and programming best practices.",
+			"education.fiap.degree": "Technology Degree in Systems Analysis and Development",
+			"education.fiap.description": "Hands-on program with projects in Web, Databases, REST APIs, ORM (JPA/Hibernate), BI (Power BI), NoSQL (MongoDB), Cloud (Azure/AWS) and Mobile.",
 			"education.fiap.status": "Completed",
-			"education.fiap.period": "2020 - 2022",
-			"education.usp.name": "USP",
-			"education.usp.degree": "Post-Graduate",
-			"education.usp.description": "Specialization in advanced technologies and development methodologies.",
+			"education.fiap.period": "2022 - 2024",
+			"education.usp.name": "USP/ESALQ",
+			"education.usp.degree": "MBA in Software Engineering",
+			"education.usp.description": "Postgraduate (online) program focused on Software Engineering foundations and practices, covering architecture, quality, DevOps, agile methods, and modern applications.",
 			"education.usp.status": "In progress",
-			"education.usp.period": "2024 - Present",
+			"education.usp.period": "Nov/2025 - Present",
 			"education.filter.all": "All",
 			"education.filter.frontend": "Front-end",
 			"education.filter.backend": "Back-end",
@@ -236,20 +350,46 @@
 			"education.filter.sql": "SQL",
 			"education.filter.others": "Others",
 			"education.download": "Download certificate",
+			"education.downloadAll": "Download pack",
 
 			"contact.title": "Contact",
 			"contact.subtitle": "Let's talk about your next project",
 			"contact.cta": "Get in touch",
+			"contact.emailCopyTitle": "Click to copy the email",
+			"contact.emailCopied": "Email copied: {email}",
 
 			"footer.rights": "All rights reserved",
 			"footer.repository": "See the repository of this project",
+			"mobile.repo.before": "Also check the",
+			"mobile.repo.link": "repository",
+			"mobile.repo.after": "for this project",
 		},
 	};
 
 	let currentLanguage = "pt";
 
+	try {
+		const savedLang = localStorage.getItem("mm_portfolio_lang");
+		if (savedLang === "en" || savedLang === "pt") currentLanguage = savedLang;
+	} catch (e) {}
+
 	function t(key) {
 		return (translations[currentLanguage] && translations[currentLanguage][key]) || key;
+	}
+
+	function formatAboutDescription(text) {
+		if (!text) return "";
+
+		const expToken = currentLanguage === "pt" ? "3+ anos" : "3+ years";
+		const roleToken = currentLanguage === "pt" ? "Desenvolvedor Full Stack" : "Full Stack Developer";
+		let out = text;
+
+		out = out.replace(roleToken, `<strong class="about-strong about-strong--role">${roleToken}</strong>`);
+		out = out.replace(expToken, `<strong class="about-strong">${expToken}</strong>`);
+		out = out.replace(/React\/JS/g, '<strong class="about-strong">React/JS</strong>');
+		out = out.replace(/Python\/SQL/g, '<strong class="about-strong">Python/SQL</strong>');
+
+		return out;
 	}
 
 	function applyTranslations() {
@@ -257,6 +397,11 @@
 
 		document.querySelectorAll("[data-i18n]").forEach((el) => {
 			const key = el.getAttribute("data-i18n");
+			if (key === "about.description") {
+				el.innerHTML = formatAboutDescription(t(key));
+				return;
+			}
+
 			el.textContent = t(key);
 		});
 
@@ -277,19 +422,35 @@
 		if (expLead) {
 			expLead.textContent =
 				currentLanguage === "pt"
-					? "Conheça minha trajetória profissional, da atuação mais recente aos primeiros projetos."
-					: "Learn about my professional journey, from the most recent to the first projects.";
+					? "Atuação em tecnologia desde 2022, evoluindo de suporte/infra para desenvolvimento full stack e automações em produção."
+					: "Working in tech since 2022, evolving from IT support/infra to full stack development and production-grade automations.";
 		}
 
 		const eduLead = document.getElementById("education-lead");
 		if (eduLead) {
-			eduLead.textContent = currentLanguage === "pt" ? "Todas as minhas formações, cursos e certificados!" : "All my education, courses and certificates!";
+			eduLead.textContent = currentLanguage === "pt" ? "Formação acadêmica e especializações que sustentam minha base técnica e visão de engenharia de software." : "Academic background and specializations that support my technical foundation and software engineering mindset.";
 		}
+
+		const emailBtn = document.getElementById("contact-email-btn");
+		if (emailBtn) {
+			emailBtn.title = t("contact.emailCopyTitle");
+			emailBtn.setAttribute("aria-label", currentLanguage === "pt" ? "Copiar e-mail" : "Copy email");
+		}
+
+		const emailCta = document.getElementById("contact-copy-email");
+		if (emailCta) emailCta.title = t("contact.emailCopyTitle");
 	}
+
 
 	function setLanguage(lang) {
 		currentLanguage = lang === "en" ? "en" : "pt";
+
+		try {
+			localStorage.setItem("mm_portfolio_lang", currentLanguage);
+		} catch (e) {}
+
 		applyTranslations();
+		renderProjects();
 		renderExperiences();
 		renderCertificates();
 		updateEducationTabIndicator();
@@ -448,12 +609,29 @@
 		btnEn.addEventListener("click", () => finishIntro("en"));
 	}
 
-	function finishIntro(lang) {
+	function finishIntro(lang, instant) {
 		setLanguage(lang);
 
 		const intro = document.getElementById("intro-overlay");
 		const site = document.getElementById("site");
 		if (!intro || !site) return;
+
+		if (instant) {
+			intro.classList.add("hidden");
+			site.classList.remove("hidden");
+
+			injectIcons(document);
+
+			renderProjects();
+			renderExperiences();
+			renderCertificates();
+			updateEducationTabIndicator();
+
+			observeReveals(document);
+
+			startHeroTyping();
+			return;
+		}
 
 		intro.classList.add("fade-out");
 		setTimeout(() => {
@@ -621,6 +799,7 @@
 					closeLangModal();
 					closeMobileMenu();
 					closeProjectDetail();
+					closeCertModal();
 				}
 			});
 		} else {
@@ -628,6 +807,7 @@
 				if (e.key === "Escape") {
 					closeLangModal();
 					closeProjectDetail();
+					closeCertModal();
 				}
 			});
 		}
@@ -757,70 +937,42 @@
 		return TECH_ICON_MAP[normalized] || TECH_ICON_MAP[key] || null;
 	}
 
-	const projects = [
-		{
-			id: "1",
-			title: "Sistema de Gestão",
-			company: "Projeto Pessoal",
-			workType: "personal",
-			description: "Sistema completo de gestão empresarial com dashboard e relatórios.",
-			fullDescription: "Sistema completo de gestão empresarial desenvolvido com React e Node.js. Inclui dashboard interativo, gestão de clientes, controle financeiro e geração de relatórios automatizados.",
-			technologies: ["React", "Node.js", "PostgreSQL", "Tailwind"],
-			desktopImages: ["assets/img/placeholder.svg"],
-			mobileImages: [],
-			// liveUrl is optional (hide button when empty)
-			liveUrl: "https://example.com",
-			// repoUrl should always be present (GitHub button)
-			repoUrl: "https://github.com",
-			gradient: "linear-gradient(135deg, #06b6d4, #2563eb)",
-		},
-		{
-			id: "2",
-			title: "E-commerce Platform",
-			company: "Projeto Freelance",
-			workType: "freelance",
-			description: "Plataforma de e-commerce com pagamentos integrados.",
-			fullDescription: "Plataforma completa de e-commerce com catálogo de produtos, carrinho de compras, integração com gateways de pagamento e painel administrativo.",
-			technologies: ["React", "Stripe", "MongoDB", "Express"],
-			desktopImages: ["assets/img/placeholder.svg"],
-			mobileImages: [],
-			liveUrl: "",
-			repoUrl: "https://github.com",
-			gradient: "linear-gradient(135deg, #a855f7, #db2777)",
-		},
-		{
-			id: "3",
-			title: "Bot de Automação",
-			company: "Projeto Pessoal",
-			workType: "personal",
-			description: "Bot para automação de processos e raspagem de dados.",
-			fullDescription: "Bot desenvolvido em Python para automação de tarefas repetitivas e raspagem de dados de múltiplas fontes, com tratamento e armazenamento em banco de dados.",
-			technologies: ["Python", "Selenium", "BeautifulSoup", "SQL"],
-			desktopImages: [],
-			mobileImages: ["assets/img/placeholder.svg", "assets/img/placeholder.svg", "assets/img/placeholder.svg"],
-			liveUrl: "",
-			repoUrl: "https://github.com",
-			gradient: "linear-gradient(135deg, #22c55e, #0d9488)",
-		},
-		{
-			id: "4",
-			title: "Landing Page",
-			company: "Projeto Freelance",
-			workType: "freelance",
-			description: "Landing page responsiva e otimizada para conversão.",
-			fullDescription: "Landing page moderna e responsiva com animações suaves, otimizada para SEO e conversão, integrada com ferramentas de analytics.",
-			technologies: ["React", "Tailwind", "Framer Motion"],
-			desktopImages: ["assets/img/placeholder.svg"],
-			mobileImages: ["assets/img/placeholder.svg", "assets/img/placeholder.svg", "assets/img/placeholder.svg"],
-			liveUrl: "https://example.com",
-			repoUrl: "https://github.com",
-			gradient: "linear-gradient(135deg, #f97316, #dc2626)",
-		},
-	];
+	let projects = [];
+	let projectsLoaded = false;
+	let projectsLoadPromise = null;
+
+	function loadProjects() {
+		if (projectsLoadPromise) return projectsLoadPromise;
+
+		projectsLoadPromise = fetch("scripts/projetos.json", { cache: "no-store" })
+			.then((res) => res.json())
+			.then((data) => {
+				const arr = Array.isArray(data) ? data : data && Array.isArray(data.projects) ? data.projects : [];
+				projects = Array.isArray(arr) ? arr : [];
+				projectsLoaded = true;
+				return projects;
+			})
+			.catch((err) => {
+				console.warn("[projects] failed to load scripts/projetos.json", err);
+				projects = [];
+				projectsLoaded = true;
+				return projects;
+			});
+
+		return projectsLoadPromise;
+	}
+
+	function projectField(project, key) {
+		if (!project || !key) return "";
+		const primary = currentLanguage === "en" ? `${key}_en` : key;
+		const fallback = currentLanguage === "en" ? key : `${key}_en`;
+		return project[primary] || project[fallback] || "";
+	}
 
 	let projectsIndex = 0;
 
 	function getVisibleProjects() {
+		if (!projects.length) return [];
 		const visible = [];
 		for (let i = 0; i < 4; i++) {
 			const idx = (projectsIndex + i) % projects.length;
@@ -837,12 +989,41 @@
 
 		if (!grid || !bar || !prevBtn || !nextBtn) return;
 
+		if (!projectsLoaded) {
+			loadProjects().then(() => renderProjects());
+			return;
+		}
+
 		function render() {
 			grid.innerHTML = "";
 
+			const isMobileCards = window.matchMedia && window.matchMedia("(max-width: 767px)").matches;
+
+			if (!projects.length) {
+				bar.style.width = "0%";
+				return;
+			}
+
 			getVisibleProjects().forEach((p) => {
-				const card = document.createElement("div");
+				const title = projectField(p, "title") || p.title || "";
+				const company = projectField(p, "company") || p.company || "";
+				const description = projectField(p, "description") || p.description || "";
+
+				const detailHref = `projeto-detalhe.html?id=${encodeURIComponent(p.id)}`;
+
+				const card = document.createElement(isMobileCards ? "a" : "div");
 				card.className = "project-card";
+
+				if (isMobileCards) {
+					card.href = detailHref;
+					card.setAttribute("aria-label", `Open project details: ${title}`);
+					card.addEventListener("click", () => {
+						try {
+							sessionStorage.setItem("mm_skip_intro_once", "1");
+						} catch (e) {}
+					});
+				}
+
 				const liveBtn =
 					p.liveUrl && p.liveUrl !== "#"
 						? `
@@ -851,50 +1032,81 @@
 							</a>
 						`
 						: "";
-				card.innerHTML = `
-					<div class="project-media" style="background: ${p.gradient}">
-						<img src="${projectCover(p)}" alt="${p.title}" />
-						<div class="project-overlay">
-							${liveBtn}
-							<button type="button" data-project="${p.id}" aria-label="View details">
-								<span class="icon" data-icon="eye"></span>
-							</button>
+
+				card.innerHTML = isMobileCards
+					? `
+						<div class="project-media" style="background: ${p.gradient}">
+							<img src="${projectCover(p)}" alt="${escapeHtml(title)}" />
 						</div>
-					</div>
-					<div class="project-body">
-						<h3 class="project-title">${p.title}</h3>
-						<p class="project-company">${p.company}</p>
-						<p class="project-desc line-clamp-2">${p.description}</p>
-						<div class="project-tech">
-							${p.technologies.slice(0, 3).map((tech) => `<span class="tech-pill">${tech}</span>`).join("")}
+						<div class="project-body">
+							<h3 class="project-title">${escapeHtml(title)}</h3>
+							<p class="project-company">${escapeHtml(company)}</p>
+							<p class="project-desc line-clamp-2">${escapeHtml(description)}</p>
+							<div class="project-tech">
+								${(p.technologies || [])
+									.slice(0, 3)
+									.map((tech) => `<span class="tech-pill">${escapeHtml(tech)}</span>`)
+									.join("")}
+							</div>
 						</div>
-					</div>
-				`;
+					`
+					: `
+						<div class="project-media" style="background: ${p.gradient}">
+							<img src="${projectCover(p)}" alt="${escapeHtml(title)}" />
+							<div class="project-overlay">
+								${liveBtn}
+								<a href="${detailHref}" data-project-detail="1" aria-label="View details">
+									<span class="icon" data-icon="eye"></span>
+								</a>
+							</div>
+						</div>
+						<div class="project-body">
+							<h3 class="project-title">${escapeHtml(title)}</h3>
+							<p class="project-company">${escapeHtml(company)}</p>
+							<p class="project-desc line-clamp-2">${escapeHtml(description)}</p>
+							<div class="project-tech">
+								${(p.technologies || [])
+									.slice(0, 3)
+									.map((tech) => `<span class="tech-pill">${escapeHtml(tech)}</span>`)
+									.join("")}
+							</div>
+						</div>
+					`;
+
 				grid.appendChild(card);
 			});
 
 			injectIcons(grid);
 
-			grid.querySelectorAll("[data-project]").forEach((btn) => {
-				btn.addEventListener("click", () => {
-					const id = btn.getAttribute("data-project");
-					const project = projects.find((x) => x.id === id);
-					if (project) openProjectDetail(project);
+			grid.querySelectorAll('[data-project-detail="1"]').forEach((link) => {
+				if (link.dataset.bound) return;
+				link.dataset.bound = "1";
+				link.addEventListener("click", () => {
+					try {
+						sessionStorage.setItem("mm_skip_intro_once", "1");
+					} catch (e) {}
 				});
 			});
+
 
 			bar.style.width = `${((projectsIndex + 1) / projects.length) * 100}%`;
 		}
 
-		prevBtn.addEventListener("click", () => {
-			projectsIndex = (projectsIndex - 1 + projects.length) % projects.length;
-			render();
-		});
+		if (!prevBtn.dataset.bound) {
+			prevBtn.dataset.bound = "1";
+			prevBtn.addEventListener("click", () => {
+				projectsIndex = (projectsIndex - 1 + projects.length) % projects.length;
+				render();
+			});
+		}
 
-		nextBtn.addEventListener("click", () => {
-			projectsIndex = (projectsIndex + 1) % projects.length;
-			render();
-		});
+		if (!nextBtn.dataset.bound) {
+			nextBtn.dataset.bound = "1";
+			nextBtn.addEventListener("click", () => {
+				projectsIndex = (projectsIndex + 1) % projects.length;
+				render();
+			});
+		}
 
 		render();
 	}
@@ -1156,42 +1368,48 @@
 		return [
 			{
 				id: "1",
+				logo: "assets/img/logo_ridolfinvest.png",
+			companyUrl: "https://ridolfinvest.com.br/",
 				company: "RidolfInvest",
-				role: currentLanguage === "pt" ? "Desenvolvedor Júnior" : "Junior Developer",
-				startDate: "01/2025",
+				role: currentLanguage === "pt" ? "Desenvolvedor Full Stack Júnior" : "Junior Full Stack Developer",
+				startDate: "12/2024",
 				endDate: t("experience.present"),
 				duration: currentLanguage === "pt" ? "Atual" : "Current",
 				description:
 					currentLanguage === "pt"
-						? "Atuação como desenvolvedor full stack, trabalhando com desenvolvimento web, automações e raspagem de dados. Responsável por criar e manter aplicações utilizando tecnologias modernas."
-						: "Working as a full stack developer, handling web development, automations, and data scraping. Responsible for creating and maintaining applications using modern technologies.",
-				technologies: ["React", "Tailwind", "WordPress", "Python", "SQL", "JS", "Git"],
+						? "Atuação full stack em aplicações internas (Front + Back + SQL), com foco em produtividade operacional, padronização e redução de etapas manuais.<br/>• Evolução de uma plataforma interna que começou com automação de certidões e se tornou uma central de ferramentas para áreas internas (incluindo autenticação, sessão e fluxos completos).<br/>• Implementação de automações e raspagens em sites e sistemas complexos, integrando banco/CRM e tratando inconsistências e cenários de “não achados”.<br/>• Desenvolvimento de ferramenta de formulários automatizados com login, 2FA e sessão por usuário, reduzindo o tempo do fluxo (~15 min → ~5 min).<br/>• Criação/evolução de robôs e integrações com TRFs/TJs, incluindo leitura de valores em imagem (OCR) e rotinas de manutenção (cookies/tokens)."
+						: "Full stack work on internal applications (Front + Back + SQL), focused on operational productivity, standardization, and reducing manual steps.<br/>• Evolved an internal platform that started with certificate automation and became a centralized tools hub for internal teams (auth, sessions, end-to-end flows).<br/>• Built automations and scraping for complex websites/systems, integrating database/CRM and handling inconsistencies and “not found” scenarios.<br/>• Delivered an automated forms tool with login, 2FA and per-user sessions, reducing cycle time (~15 min → ~5 min).<br/>• Created/evolved bots and integrations with Brazilian courts (TRFs/TJs), including OCR-based value extraction and maintenance routines (cookies/tokens).",
+				technologies: ["React", "JavaScript", "Tailwind", "Python", "Flask", "MySQL", "Web Scraping", "Git", "GitHub", "WordPress"],
 			},
 			{
 				id: "2",
+				logo: "assets/img/logo_ridolfinvest.png",
+			companyUrl: "https://ridolfinvest.com.br/",
 				company: "RidolfInvest",
 				role: currentLanguage === "pt" ? "Estagiário de Desenvolvimento" : "Development Intern",
-				startDate: "03/2023",
+				startDate: "03/2024",
 				endDate: "12/2024",
-				duration: currentLanguage === "pt" ? "1 ano e 9 meses" : "1 year and 9 months",
+				duration: currentLanguage === "pt" ? "10 meses" : "10 months",
 				description:
 					currentLanguage === "pt"
-						? "Estágio focado em desenvolvimento web e aprendizado de novas tecnologias. Participação em projetos reais e desenvolvimento de habilidades técnicas e profissionais."
-						: "Internship focused on web development and learning new technologies. Participation in real projects and development of technical and professional skills.",
-				technologies: ["React", "Tailwind", "WordPress", "Python", "SQL", "JS", "Git"],
+						? "Entrada na empresa como estágio com foco em Python + SQL, aprendendo banco de dados e scraping na prática e aplicando rapidamente em entregas reais.<br/>• Desenvolvimento de automações operacionais e rotinas de integração (importações, consolidação e validação de dados) para reduzir retrabalho.<br/>• Apoio no desenvolvimento de soluções internas (formulários, certidões e ferramentas de apoio ao time), sempre com atenção a logs, erros e consistência."
+						: "Joined as a development intern with a focus on Python + SQL, learning databases and scraping hands-on and shipping real deliveries quickly.<br/>• Built operational automations and integration routines (imports, consolidation and data validation) to reduce rework.<br/>• Supported internal solutions (forms, certificates, team tools), with attention to logs, error handling and consistency.",
+				technologies: ["Python", "SQL", "JavaScript", "HTML", "CSS", "Web Scraping", "Git", "GitHub", "Bootstrap", "WordPress"],
 			},
 			{
 				id: "3",
+				logo: "assets/img/logo_totale.png",
+			companyUrl: "https://totaletecnologia.com.br/",
 				company: "Totale Tecnologia",
 				role: currentLanguage === "pt" ? "Jovem Aprendiz de TI" : "IT Apprentice",
-				startDate: "01/2022",
-				endDate: "12/2022",
-				duration: currentLanguage === "pt" ? "1 ano" : "1 year",
+				startDate: "2022",
+				endDate: "2024",
+				duration: currentLanguage === "pt" ? "2 anos" : "2 years",
 				description:
 					currentLanguage === "pt"
-						? "Primeira experiência profissional na área de TI. Aprendizado de fundamentos de programação e desenvolvimento web, com foco em HTML, CSS e JavaScript."
-						: "First professional experience in IT. Learning programming fundamentals and web development, focusing on HTML, CSS, and JavaScript.",
-				technologies: ["HTML", "CSS", "JavaScript"],
+						? "Primeira experiência profissional em TI, com atuação em suporte e rotina de infraestrutura.<br/>• Manutenção de hardware (diagnóstico, troca de componentes) e suporte a estações de trabalho.<br/>• Instalação e configuração de softwares, atualizações e padronização de ambientes.<br/>• Suporte básico a usuários, desenvolvendo comunicação, proatividade e colaboração no ambiente corporativo."
+						: "First professional experience in IT, working with support and infrastructure routines.<br/>• Hardware maintenance (diagnostics, component replacement) and workstation support.<br/>• Software installation/configuration, updates, and environment standardization.<br/>• User support, developing communication, proactivity, and collaboration in a corporate environment.",
+				technologies: ["Windows", "Hardware", "IT Support", "Networking", "Helpdesk"],
 			},
 		];
 	}
@@ -1220,7 +1438,17 @@
 				</div>
 
 				<div class="card-dark timeline-card" data-exp-card="${exp.id}">
-					<div class="logo-placeholder"><span>${exp.company.charAt(0)}</span></div>
+					<div class="logo-placeholder">
+						${
+							exp.logo
+								? exp.companyUrl
+								? `<a href="${exp.companyUrl}" target="_blank" rel="noopener noreferrer" title="${t("experience.companyLinkTitle")}">
+											<img src="${exp.logo}" alt="Logo ${exp.company}" loading="lazy" />
+										</a>`
+									: `<img src="${exp.logo}" alt="Logo ${exp.company}" loading="lazy" />`
+								: `<span>${exp.company.charAt(0)}</span>`
+						}
+					</div>
 
 					<h3 style="margin:0; font-size:1.25rem; font-weight:900;">${exp.company}</h3>
 					<p class="exp-role">${exp.role}</p>
@@ -1283,20 +1511,46 @@
 	let certPage = 1;
 
 	const certificates = [
-		{ id: "1", name: "React Fundamentals", category: "frontend", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "2", name: "Advanced CSS", category: "frontend", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "3", name: "Node.js Complete", category: "backend", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "4", name: "Python for Data", category: "backend", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "5", name: "Figma UI/UX", category: "design", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "6", name: "SQL Masterclass", category: "sql", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "7", name: "Git & GitHub", category: "others", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "8", name: "Data Structures", category: "backend", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "9", name: "TypeScript Essentials", category: "frontend", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "10", name: "Docker Basics", category: "others", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "11", name: "PostgreSQL Advanced", category: "sql", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "12", name: "UI Design Systems", category: "design", image: "assets/img/placeholder.svg", pdfUrl: "#" },
-		{ id: "13", name: "React Performance", category: "frontend", image: "assets/img/placeholder.svg", pdfUrl: "#" },
+			{ id: "1", name: "Bootstrap 5 - novos recursos e práticas recomendadas de HTML, CSS e JavaScript", category: "frontend", image: "assets/certificados/previews/01-bootstrap-5-novos-recursos-e-praticas-recomendadas-de-html-css-e-javascript.jpg", pdfUrl: "assets/certificados/pdfs/01-bootstrap-5-novos-recursos-e-praticas-recomendadas-de-html-css-e-javascript.pdf" },
+			{ id: "2", name: "Bootstrap5 - crie uma landing page responsiva", category: "frontend", image: "assets/certificados/previews/02-bootstrap5-crie-uma-landing-page-responsiva.jpg", pdfUrl: "assets/certificados/pdfs/02-bootstrap5-crie-uma-landing-page-responsiva.pdf" },
+			{ id: "3", name: "Excel - domine o editor de planilhas", category: "others", image: "assets/certificados/previews/03-excel-domine-o-editor-de-planilhas.jpg", pdfUrl: "assets/certificados/pdfs/03-excel-domine-o-editor-de-planilhas.pdf" },
+			{ id: "4", name: "Figma - componentes, auto layout e máscaras", category: "design", image: "assets/certificados/previews/04-figma-componentes-auto-layout-e-mascaras.jpg", pdfUrl: "assets/certificados/pdfs/04-figma-componentes-auto-layout-e-mascaras.pdf" },
+			{ id: "5", name: "Figma - conhecendo a ferramenta", category: "design", image: "assets/certificados/previews/05-figma-conhecendo-a-ferramenta.jpg", pdfUrl: "assets/certificados/pdfs/05-figma-conhecendo-a-ferramenta.pdf" },
+			{ id: "6", name: "Figma - conhecendo componentes da interface", category: "design", image: "assets/certificados/previews/06-figma-conhecendo-componentes-da-interface.jpg", pdfUrl: "assets/certificados/pdfs/06-figma-conhecendo-componentes-da-interface.pdf" },
+			{ id: "7", name: "Figma - construindo o layout do seu site mobile", category: "design", image: "assets/certificados/previews/07-figma-construindo-o-layout-do-seu-site-mobile.jpg", pdfUrl: "assets/certificados/pdfs/07-figma-construindo-o-layout-do-seu-site-mobile.pdf" },
+			{ id: "8", name: "Funções com Excel - operações matemáticas e filtros", category: "others", image: "assets/certificados/previews/08-funcoes-com-excel-operacoes-matematicas-e-filtros.jpg", pdfUrl: "assets/certificados/pdfs/08-funcoes-com-excel-operacoes-matematicas-e-filtros.pdf" },
+			{ id: "9", name: "Git e GitHub - compartilhando e colaborando em projetos", category: "others", image: "assets/certificados/previews/09-git-e-github-compartilhando-e-colaborando-em-projetos.jpg", pdfUrl: "assets/certificados/pdfs/09-git-e-github-compartilhando-e-colaborando-em-projetos.pdf" },
+			{ id: "10", name: "HTML e CS - responsividade com mobile-first", category: "frontend", image: "assets/certificados/previews/10-html-e-cs-responsividade-com-mobile-first.jpg", pdfUrl: "assets/certificados/pdfs/10-html-e-cs-responsividade-com-mobile-first.pdf" },
+			{ id: "11", name: "HTML e CSS - ambientes de desenvolvimento, estrutura de arquivos e tags", category: "frontend", image: "assets/certificados/previews/11-html-e-css-ambientes-de-desenvolvimento-estrutura-de-arquivos-e-tags.jpg", pdfUrl: "assets/certificados/pdfs/11-html-e-css-ambientes-de-desenvolvimento-estrutura-de-arquivos-e-tags.pdf" },
+			{ id: "12", name: "HTML e CSS - cabeçalho, footer e variáveis CSS", category: "frontend", image: "assets/certificados/previews/12-html-e-css-cabecalho-footer-e-variaveis-css.jpg", pdfUrl: "assets/certificados/pdfs/12-html-e-css-cabecalho-footer-e-variaveis-css.pdf" },
+			{ id: "13", name: "HTML e CSS - Classes, posicionamento e Flexbox", category: "frontend", image: "assets/certificados/previews/13-html-e-css-classes-posicionamento-e-flexbox.jpg", pdfUrl: "assets/certificados/pdfs/13-html-e-css-classes-posicionamento-e-flexbox.pdf" },
+			{ id: "14", name: "HTML e CSS - praticando HTML-CSS", category: "frontend", image: "assets/certificados/previews/14-html-e-css-praticando-html-css.jpg", pdfUrl: "assets/certificados/pdfs/14-html-e-css-praticando-html-css.pdf" },
+			{ id: "15", name: "HTML e CSS - trabalhando com responsividade e publicação de projetos", category: "frontend", image: "assets/certificados/previews/15-html-e-css-trabalhando-com-responsividade-e-publicacao-de-projetos.jpg", pdfUrl: "assets/certificados/pdfs/15-html-e-css-trabalhando-com-responsividade-e-publicacao-de-projetos.pdf" },
+			{ id: "16", name: "JavaScript - explorando a linguagem", category: "frontend", image: "assets/certificados/previews/16-javascript-explorando-a-linguagem.jpg", pdfUrl: "assets/certificados/pdfs/16-javascript-explorando-a-linguagem.pdf" },
+			{ id: "17", name: "JavaScript - manipulando elementos no DOM", category: "frontend", image: "assets/certificados/previews/17-javascript-manipulando-elementos-no-dom.jpg", pdfUrl: "assets/certificados/pdfs/17-javascript-manipulando-elementos-no-dom.pdf" },
+			{ id: "18", name: "JavaScript - validando formulários", category: "frontend", image: "assets/certificados/previews/18-javascript-validando-formularios.jpg", pdfUrl: "assets/certificados/pdfs/18-javascript-validando-formularios.pdf" },
+			{ id: "19", name: "JavaScript para Web - Crie páginas dinâmicas", category: "frontend", image: "assets/certificados/previews/19-javascript-para-web-crie-paginas-dinamicas.jpg", pdfUrl: "assets/certificados/pdfs/19-javascript-para-web-crie-paginas-dinamicas.pdf" },
+			{ id: "20", name: "Pensamento computacional - fundamentos da computação e lógica de programação", category: "others", image: "assets/certificados/previews/20-pensamento-computacional-fundamentos-da-computacao-e-logica-de-programacao.jpg", pdfUrl: "assets/certificados/pdfs/20-pensamento-computacional-fundamentos-da-computacao-e-logica-de-programacao.pdf" },
+			{ id: "21", name: "Power BI Desktop - construindo meu primeiro dashboard", category: "others", image: "assets/certificados/previews/21-power-bi-desktop-construindo-meu-primeiro-dashboard.jpg", pdfUrl: "assets/certificados/pdfs/21-power-bi-desktop-construindo-meu-primeiro-dashboard.pdf" },
+			{ id: "22", name: "Praticando Python - condicionais if, elif e else", category: "backend", image: "assets/certificados/previews/22-praticando-python-condicionais-if-elif-e-else.jpg", pdfUrl: "assets/certificados/pdfs/22-praticando-python-condicionais-if-elif-e-else.pdf" },
+			{ id: "23", name: "Praticando Python - funções", category: "backend", image: "assets/certificados/previews/23-praticando-python-funcoes.jpg", pdfUrl: "assets/certificados/pdfs/23-praticando-python-funcoes.pdf" },
+			{ id: "24", name: "Praticando Python - laços for e while", category: "backend", image: "assets/certificados/previews/24-praticando-python-lacos-for-e-while.jpg", pdfUrl: "assets/certificados/pdfs/24-praticando-python-lacos-for-e-while.pdf" },
+			{ id: "25", name: "Praticando Python - listas e tuplas", category: "backend", image: "assets/certificados/previews/25-praticando-python-listas-e-tuplas.jpg", pdfUrl: "assets/certificados/pdfs/25-praticando-python-listas-e-tuplas.pdf" },
+			{ id: "26", name: "Praticando Python - trabalhando com projetos", category: "backend", image: "assets/certificados/previews/26-praticando-python-trabalhando-com-projetos.jpg", pdfUrl: "assets/certificados/pdfs/26-praticando-python-trabalhando-com-projetos.pdf" },
+			{ id: "27", name: "Python - aplicando a Orientação a Objetos", category: "backend", image: "assets/certificados/previews/27-python-aplicando-a-orientacao-a-objetos.jpg", pdfUrl: "assets/certificados/pdfs/27-python-aplicando-a-orientacao-a-objetos.pdf" },
+			{ id: "28", name: "Python - crie a sua primeira aplicação", category: "backend", image: "assets/certificados/previews/28-python-crie-a-sua-primeira-aplicacao.jpg", pdfUrl: "assets/certificados/pdfs/28-python-crie-a-sua-primeira-aplicacao.pdf" },
+			{ id: "29", name: "React - desenvolvendo com JavaScript", category: "frontend", image: "assets/certificados/previews/29-react-desenvolvendo-com-javascript.jpg", pdfUrl: "assets/certificados/pdfs/29-react-desenvolvendo-com-javascript.pdf" },
 	];
+
+
+	function getCertName(cert) {
+		if (!cert) return "";
+		if (typeof cert.name === "string") return cert.name;
+		if (cert.name && typeof cert.name === "object") {
+			return cert.name[currentLanguage] || cert.name.pt || "";
+		}
+		return "";
+	}
 
 	function getCertColumns() {
 		if (window.matchMedia("(min-width: 1024px)").matches) return 4;
@@ -1447,7 +1701,61 @@
 		});
 	}
 
-	function renderCertificates() {
+	
+	const certModal = {
+		backdrop: null,
+		modal: null,
+		image: null,
+		title: null,
+		download: null,
+		close: null,
+	};
+
+	function cacheCertModalEls() {
+		certModal.backdrop = document.getElementById("cert-modal-backdrop");
+		certModal.modal = document.getElementById("cert-modal");
+		certModal.image = document.getElementById("cert-modal-image");
+		certModal.title = document.getElementById("cert-modal-title");
+		certModal.download = document.getElementById("cert-modal-download");
+		certModal.close = document.getElementById("cert-modal-close");
+
+		if (certModal.close && !certModal.close.dataset.bound) {
+			certModal.close.dataset.bound = "1";
+			certModal.close.addEventListener("click", closeCertModal);
+		}
+
+		if (certModal.backdrop && !certModal.backdrop.dataset.bound) {
+			certModal.backdrop.dataset.bound = "1";
+			certModal.backdrop.addEventListener("click", closeCertModal);
+		}
+	}
+
+	function openCertModal(cert) {
+		if (!certModal.modal) cacheCertModalEls();
+		if (!certModal.modal || !certModal.image || !certModal.download) return;
+
+		const certName = getCertName(cert);
+
+		if (certModal.title) certModal.title.textContent = certName;
+		certModal.image.src = cert.image;
+		certModal.image.alt = certName;
+
+		certModal.download.href = cert.pdfUrl || "#";
+		certModal.download.setAttribute("download", "");
+
+		if (certModal.backdrop) certModal.backdrop.classList.remove("hidden");
+		certModal.modal.classList.remove("hidden");
+		document.body.classList.add("no-scroll");
+	}
+
+	function closeCertModal() {
+		if (!certModal.modal) return;
+		certModal.modal.classList.add("hidden");
+		if (certModal.backdrop) certModal.backdrop.classList.add("hidden");
+		document.body.classList.remove("no-scroll");
+	}
+
+function renderCertificates() {
 		const grid = document.getElementById("certificates-grid");
 		if (!grid) return;
 
@@ -1460,22 +1768,43 @@
 		const start = (certPage - 1) * pageSize;
 		const pageItems = filtered.slice(start, start + pageSize);
 
+		const isMobileCards = window.matchMedia && window.matchMedia("(max-width: 767px)").matches;
+
 		grid.innerHTML = "";
 
 		pageItems.forEach((cert) => {
+			const certName = getCertName(cert);
 			const item = document.createElement("div");
 			item.className = "cert-item";
-			item.innerHTML = `
-				<img src="${cert.image}" alt="${cert.name}" />
-				<div class="cert-badge">${cert.category.toUpperCase()}</div>
-				<div class="cert-overlay">
-					<p>${cert.name}</p>
-					<a href="${cert.pdfUrl}" download class="cert-download">
-						<span class="icon-inline" data-icon="download"></span>
-						<span>${t("education.download")}</span>
-					</a>
-				</div>
-			`;
+
+			if (isMobileCards) {
+				item.setAttribute("role", "button");
+				item.tabIndex = 0;
+				item.innerHTML = `
+					<img src="${cert.image}" alt="${certName}" />
+					<div class="cert-badge">${cert.category.toUpperCase()}</div>
+				`;
+				item.addEventListener("click", () => openCertModal(cert));
+				item.addEventListener("keydown", (e) => {
+					if (e.key === "Enter" || e.key === " ") {
+						e.preventDefault();
+						openCertModal(cert);
+					}
+				});
+			} else {
+				item.innerHTML = `
+					<img src="${cert.image}" alt="${certName}" />
+					<div class="cert-badge">${cert.category.toUpperCase()}</div>
+					<div class="cert-overlay">
+						<p>${certName}</p>
+						<a href="${cert.pdfUrl}" download class="cert-download">
+							<span class="icon-inline" data-icon="download"></span>
+							<span>${cert.pdfUrl && cert.pdfUrl.endsWith(".rar") ? t("education.downloadAll") : t("education.download")}</span>
+						</a>
+					</div>
+				`;
+			}
+
 			grid.appendChild(item);
 		});
 
@@ -1489,6 +1818,15 @@
 		y.textContent = String(new Date().getFullYear());
 	}
 
+		function bindCvDownload() {
+			const btn = document.getElementById("download-cv");
+			if (!btn) return;
+			btn.addEventListener("click", () => {
+				const info = CV_FILES[currentLanguage] || CV_FILES.pt;
+				triggerDownload(info.url, info.filename);
+			});
+		}
+
 	function init() {
 		initCodeBackground();
 		injectIcons(document);
@@ -1496,11 +1834,61 @@
 		applyTranslations();
 		setFooterYear();
 		initNavbar();
+		bindCvDownload();
+		bindContactEmailCopy();
 		initEducation();
 		cacheProjectDetailEls();
-		startIntro();
+
+		let shouldSkipIntro = false;
+
+		try {
+			const url = new URL(window.location.href);
+			if (url.searchParams.get("skipIntro") === "1") shouldSkipIntro = true;
+		} catch (e) {}
+
+		try {
+			if (sessionStorage.getItem("mm_skip_intro_once") === "1") shouldSkipIntro = true;
+		} catch (e) {}
+
+		const ref = document.referrer || "";
+		if (ref.indexOf("projeto-detalhe.html") !== -1 || ref.indexOf("roteiro-detalhe.html") !== -1) shouldSkipIntro = true;
+
+		if (shouldSkipIntro) {
+			try {
+				sessionStorage.removeItem("mm_skip_intro_once");
+			} catch (e) {}
+
+			finishIntro(currentLanguage, true);
+
+			try {
+				const url = new URL(window.location.href);
+				if (url.searchParams.has("skipIntro")) {
+					url.searchParams.delete("skipIntro");
+					history.replaceState(null, "", url.pathname + url.search + url.hash);
+				}
+			} catch (e) {}
+
+			setTimeout(() => {
+				const section = document.getElementById("projects");
+				if (section) section.scrollIntoView({ behavior: "auto", block: "start" });
+			}, 0);
+		} else {
+			startIntro();
+		}
+
 		observeReveals(document);
+
+		try {
+			const mq = window.matchMedia("(max-width: 767px)");
+			const onMqChange = () => {
+				renderProjects();
+				renderCertificates();
+			};
+			if (mq && mq.addEventListener) mq.addEventListener("change", onMqChange);
+			else if (mq && mq.addListener) mq.addListener(onMqChange);
+		} catch (e) {}
 	}
+
 
 	if (document.readyState === "loading") {
 		document.addEventListener("DOMContentLoaded", init);

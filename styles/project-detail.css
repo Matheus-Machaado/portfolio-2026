@@ -16,6 +16,11 @@
 	overflow: hidden;
 }
 
+html,
+body {
+	overflow-x: hidden;
+}
+
 .pd2-overlay::before {
 	content: "";
 	position: absolute;
@@ -95,7 +100,7 @@
 
 .pd2-panel-top {
 	display: grid;
-	gap: 10px;
+	gap: 12px;
 }
 
 .pd2-company {
@@ -120,7 +125,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 10px;
+	gap: 12px;
 	margin-top: 6px;
 }
 
@@ -144,7 +149,7 @@
 .pd2-tags {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 10px;
+	gap: 12px;
 }
 
 .pd2-tag {
@@ -232,16 +237,43 @@
 	font-size: 0.98rem;
 }
 
+.pd2-desc-wrap {
+	position: relative;
+}
+
+.pd2-desc-toggle {
+	margin-top: 8px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: hsl(var(--primary));
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 800;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.pd2-desc-toggle:hover {
+	filter: brightness(1.06);
+}
+
+.pd2-desc-toggle:focus-visible {
+	outline: 2px solid hsl(var(--primary));
+	outline-offset: 4px;
+}
+
 .pd2-tech {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 10px;
+	gap: 12px;
 }
 
 .pd2-tech-pill {
 	display: inline-flex;
 	align-items: center;
-	gap: 10px;
+	gap: 12px;
 	padding: 10px 12px;
 	border-radius: 14px;
 	border: 1px solid hsl(var(--border));
@@ -278,7 +310,7 @@
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	gap: 10px;
+	gap: 12px;
 }
 
 .pd2-stack-kicker {
@@ -357,7 +389,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: 10px;
+	gap: 12px;
 	cursor: pointer;
 	border-radius: 14px;
 	padding: 12px 14px;
@@ -394,7 +426,7 @@
 .pd2-live {
 	display: inline-flex;
 	align-items: center;
-	gap: 10px;
+	gap: 12px;
 	cursor: pointer;
 	width: 100%;
 	border-radius: 14px;
@@ -422,7 +454,8 @@
 /* Right content */
 .pd2-content {
 	position: relative;
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 	padding: 88px 56px 56px;
 }
 
@@ -464,6 +497,195 @@
 	justify-items: start;
 }
 
+/* Desktop carousel */
+.pd2-desktop-strip {
+	display: flex;
+	gap: 18px;
+	align-items: flex-start;
+	overflow-x: hidden;
+	scroll-snap-type: none;
+	padding-bottom: 0;
+	overscroll-behavior-x: contain;
+	width: 100%;
+	max-width: 100%;
+}
+
+/* Shared carousel behavior */
+.pd2-carousel {
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE/Edge */
+}
+
+.pd2-carousel::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+
+/* Carousel shell (nav + dots) */
+
+.pd2-carousel-shell {
+	position: relative;
+	max-width: 100%;
+}
+
+.pd2-carousel-shell .pd2-carousel {
+	width: 100%;
+	max-width: 100%;
+}
+/* When not scrollable: lock horizontal movement completely */
+.pd2-carousel-shell:not(.is-scrollable) .pd2-carousel{
+	overflow-x: hidden;
+	scroll-snap-type: none;
+	touch-action: pan-y;
+}
+
+
+/* Enable horizontal scrolling only when the content overflows */
+.pd2-carousel-shell.is-scrollable .pd2-carousel {
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+}
+/* Scrollbar visible only when scrollable (no dots/arrows). */
+.pd2-carousel-shell.is-scrollable .pd2-carousel{
+	scrollbar-width: thin; /* Firefox */
+	scrollbar-color: hsl(var(--primary) / 0.45) transparent;
+}
+
+.pd2-carousel-shell.is-scrollable .pd2-carousel::-webkit-scrollbar{
+	height: 8px;
+}
+
+.pd2-carousel-shell.is-scrollable .pd2-carousel::-webkit-scrollbar-track{
+	background: transparent;
+}
+
+.pd2-carousel-shell.is-scrollable .pd2-carousel::-webkit-scrollbar-thumb{
+	background: hsl(var(--primary) / 0.35);
+	border-radius: 999px;
+}
+.pd2-carousel-shell.is-scrollable .pd2-carousel::-webkit-scrollbar-thumb:hover{
+	background: hsl(var(--primary) / 0.5);
+}
+
+
+.pd2-carousel-shell.is-scrollable::before,
+.pd2-carousel-shell.is-scrollable::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 70px;
+	pointer-events: none;
+	opacity: 0.9;
+	transition: opacity 0.2s ease;
+}
+
+.pd2-carousel-shell.is-scrollable::before {
+	left: 0;
+	background: linear-gradient(90deg, hsl(var(--background) / 0.95), transparent);
+}
+
+.pd2-carousel-shell.is-scrollable::after {
+	right: 0;
+	background: linear-gradient(270deg, hsl(var(--background) / 0.95), transparent);
+}
+
+.pd2-carousel-shell.at-start::before {
+	opacity: 0;
+}
+
+.pd2-carousel-shell.at-end::after {
+	opacity: 0;
+}
+
+.pd2-carousel-nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 8;
+	width: 44px;
+	height: 44px;
+	border-radius: 999px;
+	border: 1px solid hsl(var(--border));
+	background: hsl(var(--card) / 0.72);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.pd2-carousel-prev {
+	left: 12px;
+}
+
+.pd2-carousel-next {
+	right: 12px;
+}
+
+.pd2-carousel-nav:hover {
+	transform: translateY(-50%) translateY(-2px);
+	border-color: hsl(var(--primary) / 0.55);
+	background: hsl(var(--card) / 0.92);
+}
+
+.pd2-carousel-nav:disabled {
+	opacity: 0.35;
+	pointer-events: none;
+}
+
+.pd2-carousel-nav:focus-visible {
+	outline: 2px solid hsl(var(--primary));
+	outline-offset: 3px;
+}
+
+.pd2-carousel-dots {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	margin-top: 12px;
+}
+
+.pd2-carousel-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	border: 0;
+	padding: 0;
+	background: hsl(var(--border));
+	opacity: 0.7;
+	cursor: pointer;
+	transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.pd2-carousel-dot:hover {
+	opacity: 1;
+}
+
+.pd2-carousel-dot.is-active {
+	opacity: 1;
+	background: hsl(var(--primary));
+	transform: scale(1.25);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.pd2-carousel {
+		cursor: grab;
+	}
+
+	.pd2-carousel.is-dragging {
+		cursor: grabbing;
+		user-select: none;
+	}
+
+	.pd2-carousel.is-dragging img {
+		pointer-events: none;
+	}
+}
+
 /* Device frames */
 .pd2-device {
 	position: relative;
@@ -482,18 +704,42 @@
 }
 
 .pd2-device--desktop {
+	flex: 0 0 auto;
 	width: min(100%, 1060px);
-	aspect-ratio: 16 / 9;
 	border-radius: 18px;
-	display: grid;
-	grid-template-rows: 44px 1fr;
+	display: flex;
+	flex-direction: column;
+	scroll-snap-align: start;
+}
+
+.pd2-device__screen {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background: hsl(var(--secondary));
+	min-height: 0;
+}
+
+/* Mobile screen should fill the whole phone frame (no 16:9 crop) */
+.pd2-device--mobile .pd2-device__screen {
+	aspect-ratio: auto;
+	height: 100%;
+}
+
+.pd2-device__screen img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: contain;
+	background: hsl(var(--secondary));
 }
 
 .pd2-device__chrome {
 	display: flex;
 	align-items: center;
-	gap: 10px;
-	padding: 0 14px;
+	gap: 12px;
+	padding: 14px 22px;
+	min-height: 56px;
 	background: hsl(var(--card) / 0.7);
 	border-bottom: 1px solid hsl(var(--border));
 }
@@ -533,7 +779,7 @@
 
 .pd2-thumbs {
 	display: flex;
-	gap: 10px;
+	gap: 12px;
 	align-items: center;
 	overflow-x: auto;
 	padding-bottom: 6px;
@@ -587,20 +833,16 @@
 	display: flex;
 	gap: 18px;
 	align-items: flex-start;
-	overflow-x: auto;
-	scroll-snap-type: x mandatory;
-	padding-bottom: 10px;
+	overflow-x: hidden;
+	scroll-snap-type: none;
+	padding-bottom: 0;
+	overscroll-behavior-x: contain;
+	width: 100%;
+	max-width: 100%;
 }
 
 .pd2-mobile-strip::-webkit-scrollbar {
-	height: 10px;
-}
-
-.pd2-mobile-strip::-webkit-scrollbar-thumb {
-	background: hsl(var(--border));
-	border-radius: 999px;
-	border: 3px solid transparent;
-	background-clip: content-box;
+	height: 0;
 }
 
 .pd2-device--mobile {
@@ -628,34 +870,79 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+	.pd2-overlay {
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
 	.pd2-layout {
+		height: auto;
+		min-height: 100vh;
 		grid-template-columns: 1fr;
-		grid-template-rows: auto 1fr;
+		grid-template-rows: auto auto;
+		grid-template-areas:
+			"content"
+			"panel";
 	}
 
 	.pd2-panel {
+		grid-area: panel;
 		border-right: none;
-		border-bottom: 1px solid hsl(var(--border));
-		max-height: 46vh;
+		border-bottom: none;
+		border-top: 1px solid hsl(var(--border));
+		max-height: none;
 	}
 
 	.pd2-panel::after {
 		right: auto;
-		top: auto;
+		bottom: auto;
 		left: 0;
-		bottom: -1px;
+		top: -1px;
 		width: 100%;
 		height: 1px;
 		background: linear-gradient(90deg, hsl(var(--primary) / 0.65), hsl(180 100% 45% / 0.35), transparent);
 	}
 
+	.pd2-panel-scroll {
+		flex: 0 0 auto;
+		overflow: visible;
+		padding-right: 0;
+	}
+
 	.pd2-content {
-		padding: 24px 18px 24px;
+		grid-area: content;
+		overflow-y: visible;
+		overflow-x: hidden;
+		padding: 76px 18px 24px;
+	}
+
+	.pd2-desc-wrap.is-collapsed .pd2-description {
+		max-height: 9em;
+		overflow: hidden;
+	}
+
+	.pd2-desc-wrap.is-collapsed::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 3.4em;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0), hsl(var(--card) / 0.92));
+		pointer-events: none;
 	}
 
 	.pd2-device--desktop,
 	.pd2-thumbs {
 		max-width: 100%;
+	}
+
+	/* Avoid the "black block" over the background on mobile */
+	.pd2-carousel-shell.is-scrollable::before,
+	.pd2-carousel-shell.is-scrollable::after {
+		width: 0;
+		opacity: 0;
+		background: transparent;
 	}
 }
 

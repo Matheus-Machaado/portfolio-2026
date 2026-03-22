@@ -24,7 +24,6 @@
 		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 		<link rel="stylesheet" href="styles/styles.css" />
-		<link rel="stylesheet" href="styles/project-detail.css" />
 	</head>
 
 	<body>
@@ -112,7 +111,7 @@
 				<div class="language-modal-inner">
 					<button id="lang-en" class="language-option" type="button">
 						<span class="lang-code">EN</span>
-						<span class="lang-name">Inglês</span>
+						<span class="lang-name" data-i18n="language.english"></span>
 					</button>
 
 					<button id="language-close" class="language-close" type="button" aria-label="Close">
@@ -121,7 +120,7 @@
 
 					<button id="lang-pt" class="language-option" type="button">
 						<span class="lang-code">PT</span>
-						<span class="lang-name">Português</span>
+						<span class="lang-name" data-i18n="language.portuguese"></span>
 					</button>
 				</div>
 			</div>
@@ -134,7 +133,7 @@
 					</button>
 
 					<div class="mobile-logo" aria-hidden="true">
-						<span class="logo-big"><span class="logo-primary">M</span><span class="logo-foreground">M</span></span>
+						<img src="assets/img/logo_portfolio.png" alt="Logo Matheus Machado" />
 					</div>
 
 					<nav class="mobile-nav" aria-label="Mobile navigation">
@@ -150,104 +149,30 @@
 					<button id="mobile-lang-button" class="mobile-lang-button" type="button">PT</button>
 
 					<div class="mobile-social">
-						<a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+						<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
 							<span class="icon" data-icon="github" aria-hidden="true"></span>
 						</a>
-						<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+						<a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
 							<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
 						</a>
 					</div>
 
 					<p class="mobile-repo text-muted">
-						Veja também o <a href="#" class="text-primary">repositório</a> desse projeto
+						<span data-i18n="mobile.repo.before"></span> <a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" class="text-primary" data-i18n="mobile.repo.link"></a> <span data-i18n="mobile.repo.after"></span>
 					</p>
 				</div>
 			</div>
 
 			<div class="fixed-social" aria-label="Social links">
-				<a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+				<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
 					<span class="icon" data-icon="github" aria-hidden="true"></span>
 				</a>
-				<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+				<a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
 					<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
 				</a>
 				<div class="fixed-social-line" aria-hidden="true"></div>
 			</div>
 
-			<div id="project-detail" class="pd2-overlay hidden" role="dialog" aria-modal="true" aria-label="Project details">
-				<button id="project-detail-close" class="pd2-close" type="button" aria-label="Close project details">
-					<span class="icon" data-icon="x" aria-hidden="true"></span>
-				</button>
-
-				<div class="pd2-layout" aria-label="Project detail layout">
-					<aside class="pd2-panel" aria-label="Project info">
-						<div class="pd2-panel-top">
-							<p id="pd-company" class="pd2-company font-mono"></p>
-							<h1 id="pd-title" class="pd2-title"></h1>
-
-							<div class="pd2-meta">
-								<span id="pd-type" class="pd2-type font-mono"></span>
-								<div id="pd-tags" class="pd2-tags" aria-label="Project tags"></div>
-							</div>
-						</div>
-
-						<div class="pd2-panel-scroll" aria-label="Project description">
-							<section class="pd2-copy">
-								<p class="pd2-copy-kicker font-mono text-muted" data-i18n="projects.description"></p>
-								<p id="pd-description" class="pd2-description"></p>
-							</section>
-						</div>
-
-						<div class="pd2-panel-bottom">
-							<div class="pd2-stack" aria-label="Stacks and tools">
-								<p class="pd2-stack-kicker font-mono text-muted" data-i18n="projects.stacksTools"></p>
-								<div id="pd-tech" class="pd2-stack-icons" aria-label="Project technologies"></div>
-							</div>
-
-								<div class="pd2-panel-actions" aria-label="Project links">
-									<a id="pd-live" class="pd2-live" href="#" target="_blank" rel="noopener noreferrer">
-										<span data-i18n="projects.seeMore"></span>
-										<span class="icon-inline" data-icon="externalLink" aria-hidden="true"></span>
-									</a>
-
-									<a id="pd-git" class="pd2-git" href="#" target="_blank" rel="noopener noreferrer">
-										<span>GitHub</span>
-										<span class="icon-inline" data-icon="github" aria-hidden="true"></span>
-									</a>
-								</div>
-						</div>
-					</aside>
-
-					<main class="pd2-content" aria-label="Project media">
-						<section id="pd-desktop-section" class="pd2-media hidden">
-							<header class="pd2-media-head">
-								<p class="pd2-kicker font-mono text-muted" data-i18n="projects.desktop"></p>
-							</header>
-
-							<div class="pd2-desktop-stage">
-								<figure class="pd2-device pd2-device-desktop">
-									<div class="pd2-device-chrome" aria-hidden="true">
-										<span class="pd2-dot pd2-dot-red"></span>
-										<span class="pd2-dot pd2-dot-yellow"></span>
-										<span class="pd2-dot pd2-dot-green"></span>
-									</div>
-									<img id="pd-desktop-main" class="pd2-device-img" src="" alt="" loading="lazy" decoding="async" />
-								</figure>
-
-								<div id="pd-desktop-thumbs" class="pd2-thumbs" aria-label="Desktop thumbnails"></div>
-							</div>
-						</section>
-
-						<section id="pd-mobile-section" class="pd2-media hidden">
-							<header class="pd2-media-head">
-								<p class="pd2-kicker font-mono text-muted" data-i18n="projects.mobile"></p>
-							</header>
-
-							<div id="pd-mobile-strip" class="pd2-mobile-strip" aria-label="Mobile screens"></div>
-						</section>
-					</main>
-				</div>
-			</div>
 
 			<main>
 				<section id="home" class="hero section hero-section">
@@ -268,7 +193,7 @@
 								<p class="hero-subtitle text-muted" data-i18n="hero.subtitle"></p>
 
 								<div class="hero-cta">
-									<a href="#contact" class="btn-primary cta-btn">
+																		<a href="#contact" class="btn-primary cta-btn">
 										<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
 										<span data-i18n="hero.cta.contact"></span>
 									</a>
@@ -321,7 +246,7 @@
 									<div class="play-button" aria-hidden="true">
 										<div class="play-triangle"></div>
 									</div>
-									<p class="text-muted small">Vídeo de apresentação</p>
+									<p class="text-muted small" data-i18n="about.video"></p>
 								</div>
 							</div>
 
@@ -329,11 +254,11 @@
 								<p class="text-muted about-text" data-i18n="about.description"></p>
 
 								<div class="about-social">
-									<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-pill">
+									<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" class="social-pill">
 										<span class="icon-inline" data-icon="github" aria-hidden="true"></span>
 										<span>GitHub</span>
 									</a>
-									<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-pill">
+									<a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener noreferrer" class="social-pill">
 										<span class="icon-inline" data-icon="linkedin" aria-hidden="true"></span>
 										<span>LinkedIn</span>
 									</a>
@@ -350,9 +275,7 @@
 							<h2 class="section-title">
 								<span class="text-gradient" data-i18n="projects.title"></span>
 							</h2>
-							<p class="text-muted projects-desc">
-								Aqui você encontra todos os projetos em que já trabalhei, sejam pessoais ou aqueles realizados com vínculo empregatício.
-							</p>
+							<p class="text-muted projects-desc" data-i18n="projects.lead"></p>
 						</div>
 
 						<div class="projects-wrap">
@@ -493,7 +416,7 @@
 									<span class="skill-tag">SQL</span>
 									<span class="skill-tag">WordPress</span>
 									<span class="skill-tag">Web Scraping</span>
-									<span class="skill-tag">Automação</span>
+									<span class="skill-tag" data-i18n="skills.automation"></span>
 								</div>
 							</div>
 
@@ -524,22 +447,22 @@
 								<span class="text-gradient" data-i18n="contact.title"></span>
 							</h2>
 
-							<a href="mailto:contato@email.com" class="btn-primary contact-cta">
-								<span class="icon-inline" data-icon="send" aria-hidden="true"></span>
+														<button id="contact-copy-email" type="button" class="btn-primary contact-cta">
+								<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
 								<span data-i18n="contact.cta"></span>
-							</a>
+							</button>
 
-							<div class="contact-social">
-								<a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="contact-social-btn">
+														<div class="contact-social">
+								<button id="contact-email-btn" type="button" aria-label="Email" class="contact-social-btn">
+									<span class="icon" data-icon="mail" aria-hidden="true"></span>
+								</button>
+								<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="contact-social-btn">
 									<span class="icon" data-icon="github" aria-hidden="true"></span>
 								</a>
-								<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="contact-social-btn">
+								<a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="contact-social-btn">
 									<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
 								</a>
-								<a href="mailto:contato@email.com" target="_blank" rel="noopener noreferrer" aria-label="Email" class="contact-social-btn">
-									<span class="icon" data-icon="mail" aria-hidden="true"></span>
-								</a>
-								<a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="contact-social-btn">
+								<a href="https://wa.me/5511910254958?text=Ol%C3%A1%2C%20Matheus%2C%20vim%20pelo%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20servi%C3%A7o." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="contact-social-btn">
 									<span class="icon" data-icon="messageCircle" aria-hidden="true"></span>
 								</a>
 							</div>
@@ -557,13 +480,40 @@
 
 						<div class="footer-repo">
 							<p id="footer-repo-label" class="text-muted small" data-i18n="footer.repository"></p>
-							<a href="#" class="text-primary footer-repo-link font-mono small">GitHub</a>
+							<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" class="text-primary footer-repo-link font-mono small">GitHub</a>
 						</div>
 					</div>
 				</div>
 			</footer>
-		</div>
 
+			<div id="cert-modal-backdrop" class="cert-modal-backdrop hidden" aria-hidden="true"></div>
+
+			<div id="cert-modal" class="cert-modal hidden" role="dialog" aria-modal="true" aria-label="Certificate preview">
+				<div class="cert-modal-header">
+					<p id="cert-modal-title" class="cert-modal-title"></p>
+					<button id="cert-modal-close" class="cert-modal-close" type="button" aria-label="Close">
+						<span class="icon-inline" data-icon="x" aria-hidden="true"></span>
+					</button>
+				</div>
+
+				<div class="cert-modal-body">
+					<img id="cert-modal-image" src="" alt="" />
+				</div>
+
+				<div class="cert-modal-footer">
+					<a id="cert-modal-download" href="#" class="btn-primary cert-modal-download" download>
+						<span class="icon-inline" data-icon="download" aria-hidden="true"></span>
+						<span data-i18n="education.download"></span>
+					</a>
+				</div>
+			</div>
+
+			<div id="copy-toast" class="copy-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+				<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
+				<span id="copy-toast-text"></span>
+			</div>
+
+		</div>
 		<script src="scripts/script.js"></script>
 	</body>
 </html>

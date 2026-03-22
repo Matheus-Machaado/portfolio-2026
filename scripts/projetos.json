@@ -1,0 +1,107 @@
+[
+  {
+    "id": "1",
+    "title": "Sistema de Gestão",
+    "title_en": "Management System",
+    "company": "Projeto Pessoal",
+    "company_en": "Personal Project",
+    "workType": "personal",
+    "description": "Sistema completo de gestão empresarial com dashboard e relatórios.",
+    "description_en": "Complete business management system with dashboards and reports.",
+    "fullDescription": "Sistema completo de gestão empresarial desenvolvido com React e Node.js. Inclui dashboard interativo, gestão de clientes, controle financeiro e geração de relatórios automatizados.",
+    "fullDescription_en": "Complete business management system built with React and Node.js. Includes an interactive dashboard, customer management, financial control, and automated report generation.",
+    "technologies": [
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "Tailwind"
+    ],
+    "desktopImages": [
+      "assets/img/placeholder.svg"
+    ],
+    "mobileImages": [],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com/Matheus-Machaado",
+    "gradient": "linear-gradient(135deg, #06b6d4, #2563eb)"
+  },
+  {
+    "id": "2",
+    "title": "Plataforma de E-commerce",
+    "title_en": "E-commerce Platform",
+    "company": "Projeto Freelance",
+    "company_en": "Freelance Project",
+    "workType": "freelance",
+    "description": "Plataforma de e-commerce com pagamentos integrados.",
+    "description_en": "E-commerce platform with integrated payments.",
+    "fullDescription": "Plataforma completa de e-commerce com catálogo de produtos, carrinho de compras, integração com gateways de pagamento e painel administrativo.",
+    "fullDescription_en": "Full e-commerce platform with product catalog, shopping cart, payment gateway integrations, and an admin dashboard.",
+    "technologies": [
+      "React",
+      "Stripe",
+      "MongoDB",
+      "Express"
+    ],
+    "desktopImages": [
+      "assets/img/placeholder.svg"
+    ],
+    "mobileImages": [],
+    "liveUrl": "",
+    "repoUrl": "https://github.com/Matheus-Machaado",
+    "gradient": "linear-gradient(135deg, #a855f7, #db2777)"
+  },
+  {
+    "id": "3",
+    "title": "Bot de Automação",
+    "title_en": "Automation Bot",
+    "company": "Projeto Pessoal",
+    "company_en": "Personal Project",
+    "workType": "personal",
+    "description": "Bot para automação de processos e raspagem de dados.",
+    "description_en": "Bot for process automation and data scraping.",
+    "fullDescription": "Bot desenvolvido em Python para automação de tarefas repetitivas e raspagem de dados de múltiplas fontes, com tratamento e armazenamento em banco de dados.",
+    "fullDescription_en": "Python bot built to automate repetitive tasks and scrape data from multiple sources, with processing and database storage.",
+    "technologies": [
+      "Python",
+      "Selenium",
+      "BeautifulSoup",
+      "SQL"
+    ],
+    "desktopImages": [],
+    "mobileImages": [
+      "assets/img/placeholder.svg",
+      "assets/img/placeholder.svg",
+      "assets/img/placeholder.svg"
+    ],
+    "liveUrl": "",
+    "repoUrl": "https://github.com/Matheus-Machaado",
+    "gradient": "linear-gradient(135deg, #22c55e, #0d9488)"
+  },
+  {
+    "id": "4",
+    "title": "Landing Page",
+    "title_en": "Landing Page",
+    "company": "Projeto Freelance",
+    "company_en": "Freelance Project",
+    "workType": "freelance",
+    "description": "Landing page responsiva e otimizada para conversão.",
+    "description_en": "Responsive landing page optimized for conversion.",
+    "fullDescription": "Landing page moderna e responsiva com animações suaves, otimizada para SEO e conversão, integrada com ferramentas de analytics.",
+    "fullDescription_en": "Modern responsive landing page with smooth animations, optimized for SEO and conversion, integrated with analytics tools.",
+    "technologies": [
+      "React",
+      "Tailwind",
+      "Framer Motion"
+    ],
+    "desktopImages": [
+      "assets/img/placeholder.svg"
+    ],
+    "mobileImages": [
+      "assets/img/placeholder.svg",
+      "assets/img/placeholder.svg",
+      "assets/img/placeholder.svg"
+    ],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com/Matheus-Machaado",
+    "gradient": "linear-gradient(135deg, #f97316, #dc2626)"
+  }
+]

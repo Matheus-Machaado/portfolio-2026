@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Matheus Machado | Projeto</title>
+		<meta name="description" content="Detalhes do projeto — Matheus Machado." />
+		<meta name="author" content="Matheus Machado" />
+
+		<meta property="og:title" content="Matheus Machado | Projeto" />
+		<meta property="og:description" content="Detalhes do projeto — Matheus Machado." />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="assets/img/profile-photo.jpeg" />
+
+		<link rel="icon" href="assets/img/fav-icon.png" type="image/png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+		<link rel="stylesheet" href="styles/styles.css" />
+		<link rel="stylesheet" href="styles/project-detail.css" />
+	</head>
+
+	<body>
+		<div id="project-page" class="pd2-overlay" aria-label="Project details">
+			<a id="project-detail-back" class="pd2-close" href="index.html?skipIntro=1#projects" aria-label="Back to projects">
+				<span class="icon" data-icon="arrowLeft" aria-hidden="true"></span>
+			</a>
+
+			<div class="pd2-layout" aria-label="Project detail layout">
+				<aside class="pd2-panel" aria-label="Project info">
+					<div class="pd2-panel-top">
+						<p id="pd-company" class="pd2-company font-mono"></p>
+						<h1 id="pd-title" class="pd2-title"></h1>
+
+						<div class="pd2-meta">
+							<span id="pd-type" class="pd2-type font-mono"></span>
+							<div id="pd-tags" class="pd2-tags" aria-label="Project tags"></div>
+						</div>
+					</div>
+
+					<div class="pd2-panel-scroll" aria-label="Project description">
+						<section class="pd2-copy">
+							<p class="pd2-copy-kicker font-mono text-muted" data-i18n="projects.description"></p>
+							<div id="pd-desc-wrap" class="pd2-desc-wrap" aria-label="Project description text">
+								<p id="pd-description" class="pd2-description"></p>
+							</div>
+							<button id="pd-desc-toggle" class="pd2-desc-toggle font-mono hidden" type="button"></button>
+						</section>
+					</div>
+
+					<div class="pd2-panel-bottom">
+						<div class="pd2-stack" aria-label="Stacks and tools">
+							<p class="pd2-stack-kicker font-mono text-muted" data-i18n="projects.stacksTools"></p>
+							<div id="pd-tech" class="pd2-stack-icons" aria-label="Project technologies"></div>
+						</div>
+
+						<div class="pd2-panel-actions" aria-label="Project links">
+							<a id="pd-live" class="pd2-live" href="#" target="_blank" rel="noopener noreferrer">
+								<span data-i18n="projects.seeMore"></span>
+								<span class="icon-inline" data-icon="externalLink" aria-hidden="true"></span>
+							</a>
+
+							<a id="pd-git" class="pd2-git" href="#" target="_blank" rel="noopener noreferrer">
+								<span>GitHub</span>
+								<span class="icon-inline" data-icon="github" aria-hidden="true"></span>
+							</a>
+						</div>
+					</div>
+				</aside>
+
+				<main class="pd2-content" aria-label="Project media">
+					<section id="pd-desktop-section" class="pd2-media hidden">
+						<header class="pd2-media-head">
+							<p class="pd2-kicker font-mono text-muted" data-i18n="projects.desktop"></p>
+						</header>
+
+						<div class="pd2-carousel-shell" data-carousel="desktop" aria-label="Desktop carousel">
+							<div id="pd-desktop-strip" class="pd2-desktop-strip pd2-carousel" aria-label="Desktop screens"></div>
+						</div>
+					</section>
+
+					<section id="pd-mobile-section" class="pd2-media hidden">
+						<header class="pd2-media-head">
+							<p class="pd2-kicker font-mono text-muted" data-i18n="projects.mobile"></p>
+						</header>
+
+						<div class="pd2-carousel-shell" data-carousel="mobile" aria-label="Mobile carousel">
+							<div id="pd-mobile-strip" class="pd2-mobile-strip pd2-carousel" aria-label="Mobile screens"></div>
+						</div>
+					</section>
+				</main>
+			</div>
+		</div>
+
+		<script src="scripts/projeto-detalhe.js"></script>
+	</body>
+</html>

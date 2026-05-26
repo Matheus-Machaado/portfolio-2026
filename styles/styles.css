@@ -1416,6 +1416,55 @@ button {
 	transition: width 0.3s ease;
 }
 
+.projects-grid.projects-empty {
+	display: block;
+	grid-template-columns: none;
+	min-height: auto;
+}
+
+.projects-empty-state {
+	max-width: 640px;
+	margin: 12px auto 0;
+	padding: 56px 32px;
+	text-align: center;
+	border: 1px dashed hsl(var(--primary) / 0.35);
+	border-radius: 18px;
+	background:
+		radial-gradient(420px circle at 50% 0%, hsl(var(--primary) / 0.08), transparent 60%),
+		hsl(var(--card) / 0.4);
+	box-shadow: 0 0 0 1px hsl(var(--primary) / 0.05) inset;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+}
+
+.projects-empty-kicker {
+	font-size: 0.85rem;
+	letter-spacing: 0.04em;
+	text-transform: lowercase;
+}
+
+.projects-empty-title {
+	margin: 4px 0 0;
+	font-weight: 800;
+	font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+	color: hsl(var(--foreground));
+}
+
+.projects-empty-lead {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.55;
+	max-width: 480px;
+}
+
+@media (max-width: 560px) {
+	.projects-empty-state {
+		padding: 40px 22px;
+	}
+}
+
 .project-detail {
 	position: fixed;
 	inset: 0;

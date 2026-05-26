@@ -220,6 +220,9 @@
 			"projects.title": "Projetos",
 			"projects.subtitle": "Projetos pessoais e profissionais",
 			"projects.lead": "Aqui você encontra todos os projetos em que já trabalhei, sejam pessoais ou aqueles realizados com vínculo empregatício.",
+			"projects.emptyKicker": "in progress",
+			"projects.emptyTitle": "Em breve — atualizando portfólio",
+			"projects.emptyLead": "Estou organizando os projetos para apresentar aqui da forma certa, com cases reais, prints e contexto. Volte em breve.",
 			"projects.seeMore": "Ver mais",
 			"projects.technologies": "Tecnologias",
 			"projects.description": "Descrição",
@@ -310,6 +313,9 @@
 			"projects.title": "Projects",
 			"projects.subtitle": "Personal and professional projects",
 			"projects.lead": "Here you can find all the projects I\u2019ve worked on, both personal and professional.",
+			"projects.emptyKicker": "in progress",
+			"projects.emptyTitle": "Coming soon \u2014 updating portfolio",
+			"projects.emptyLead": "I\u2019m organizing my projects to showcase them properly here, with real case studies, screenshots, and context. Check back soon.",
 			"projects.seeMore": "See more",
 			"projects.technologies": "Technologies",
 			"projects.description": "Description",
@@ -999,10 +1005,28 @@
 
 			const isMobileCards = window.matchMedia && window.matchMedia("(max-width: 767px)").matches;
 
+			const wrap = grid.closest(".projects-wrap");
+			const navEl = wrap ? wrap.querySelector(".projects-nav") : null;
+			const progressEl = wrap ? wrap.querySelector(".projects-progress") : null;
+
 			if (!projects.length) {
 				bar.style.width = "0%";
+				if (navEl) navEl.classList.add("hidden");
+				if (progressEl) progressEl.classList.add("hidden");
+				grid.classList.add("projects-empty");
+				grid.innerHTML = `
+					<div class="projects-empty-state">
+						<span class="projects-empty-kicker font-mono text-primary">// ${t("projects.emptyKicker")}</span>
+						<p class="projects-empty-title">${t("projects.emptyTitle")}</p>
+						<p class="projects-empty-lead text-muted">${t("projects.emptyLead")}</p>
+					</div>
+				`;
 				return;
 			}
+
+			if (navEl) navEl.classList.remove("hidden");
+			if (progressEl) progressEl.classList.remove("hidden");
+			grid.classList.remove("projects-empty");
 
 			getVisibleProjects().forEach((p) => {
 				const title = projectField(p, "title") || p.title || "";

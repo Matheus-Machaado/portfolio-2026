@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://matheus-machado-dev.com.br/sitemap.xml

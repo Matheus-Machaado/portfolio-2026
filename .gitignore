@@ -1,0 +1,35 @@
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+npm-debug.log*
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Build artifacts (caso evolua pra build no futuro)
+/dist/
+/build/
+/out/
+.cache/
+
+# Logs
+*.log
+logs/
+
+# Netlify local
+.netlify/

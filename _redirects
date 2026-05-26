@@ -1,0 +1,7 @@
+# Force HTTPS + canonical (sem www)
+http://matheus-machado-dev.com.br/* https://matheus-machado-dev.com.br/:splat 301!
+http://www.matheus-machado-dev.com.br/* https://matheus-machado-dev.com.br/:splat 301!
+https://www.matheus-machado-dev.com.br/* https://matheus-machado-dev.com.br/:splat 301!
+
+# Pretty URL para detalhes de projeto
+/projeto/:id /projeto-detalhe.html?id=:id 200

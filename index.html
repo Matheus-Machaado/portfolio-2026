@@ -4,29 +4,30 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<title>Matheus Machado | Portfólio</title>
-		<meta name="description" content="Portfólio de Matheus Machado — Full Stack Developer. Projetos, experiência e contato." />
+		<title>Matheus Machado | Soluções sob medida</title>
+		<meta name="description" content="Matheus Machado, desenvolvedor full stack. Sistemas sob medida, feitos a partir do problema real do seu negócio: gestão, WhatsApp com IA, sites e pagamentos." />
 		<meta name="author" content="Matheus Machado" />
 
 		<link rel="canonical" href="https://matheus-machado-dev.com.br/" />
 
-		<meta property="og:title" content="Matheus Machado | Portfólio" />
-		<meta property="og:description" content="Full Stack Developer. Projetos, experiência e contato." />
+		<meta property="og:title" content="Matheus Machado | Soluções sob medida" />
+		<meta property="og:description" content="Sistemas sob medida, feitos a partir do problema real do seu negócio." />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://matheus-machado-dev.com.br/" />
 		<meta property="og:image" content="https://matheus-machado-dev.com.br/assets/og/og-image.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="Matheus Machado — Full Stack Developer" />
+		<meta property="og:image:alt" content="Matheus Machado, soluções sob medida" />
 		<meta property="og:locale" content="pt_BR" />
 		<meta property="og:locale:alternate" content="en_US" />
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Matheus Machado | Portfólio" />
-		<meta name="twitter:description" content="Full Stack Developer. Projetos, experiência e contato." />
+		<meta name="twitter:title" content="Matheus Machado | Soluções sob medida" />
+		<meta name="twitter:description" content="Sistemas sob medida, feitos a partir do problema real do seu negócio." />
 		<meta name="twitter:image" content="https://matheus-machado-dev.com.br/assets/og/og-image.png" />
 
-		<link rel="icon" href="assets/img/fav-icon.png" type="image/png" />
+		<link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="assets/img/fav-icon.png" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -102,16 +103,16 @@
 			<header class="navbar glass">
 				<div class="container nav-inner">
 					<a href="#home" class="logo" aria-label="Go to home">
-						<img src="assets/img/logo_portfolio.png" alt="Logo Matheus Machado" />
+						<img src="assets/img/logo-mm.svg" alt="Matheus Machado" width="136" height="44" />
 					</a>
 
 					<nav class="nav-links" aria-label="Primary navigation">
 						<a class="nav-link" href="#home" data-i18n="nav.home"></a>
 						<a class="nav-link" href="#about" data-i18n="nav.about"></a>
+						<a class="nav-link" href="#case" data-i18n="nav.case"></a>
+						<a class="nav-link" href="#services" data-i18n="nav.services"></a>
 						<a class="nav-link" href="#projects" data-i18n="nav.projects"></a>
 						<a class="nav-link" href="#experience" data-i18n="nav.experience"></a>
-						<a class="nav-link" href="#education" data-i18n="nav.education"></a>
-						<a class="nav-link" href="#skills" data-i18n="nav.skills"></a>
 						<a class="nav-link" href="#contact" data-i18n="nav.contact"></a>
 					</nav>
 
@@ -155,16 +156,16 @@
 					</button>
 
 					<div class="mobile-logo" aria-hidden="true">
-						<img src="assets/img/logo_portfolio.png" alt="Logo Matheus Machado" />
+						<img src="assets/img/logo-mm.svg" alt="Matheus Machado" width="136" height="44" />
 					</div>
 
 					<nav class="mobile-nav" aria-label="Mobile navigation">
 						<a class="mobile-nav-link" href="#home" data-i18n="nav.home"></a>
 						<a class="mobile-nav-link" href="#about" data-i18n="nav.about"></a>
+						<a class="mobile-nav-link" href="#case" data-i18n="nav.case"></a>
+						<a class="mobile-nav-link" href="#services" data-i18n="nav.services"></a>
 						<a class="mobile-nav-link" href="#projects" data-i18n="nav.projects"></a>
 						<a class="mobile-nav-link" href="#experience" data-i18n="nav.experience"></a>
-						<a class="mobile-nav-link" href="#education" data-i18n="nav.education"></a>
-						<a class="mobile-nav-link" href="#skills" data-i18n="nav.skills"></a>
 						<a class="mobile-nav-link" href="#contact" data-i18n="nav.contact"></a>
 					</nav>
 
@@ -212,35 +213,44 @@
 									<span class="hero-cursor">|</span>
 								</h2>
 
-								<p class="hero-subtitle text-muted" data-i18n="hero.subtitle"></p>
+								<p class="hero-subtitle" data-i18n="hero.subtitle"></p>
+								<p class="hero-support text-muted" data-i18n="hero.support"></p>
 
 								<div class="hero-cta">
-																		<a href="#contact" class="btn-primary cta-btn">
-										<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
+									<a href="https://wa.me/5511910254958" target="_blank" rel="noopener noreferrer" class="btn-primary cta-btn" data-wa-link>
+										<span class="icon-inline" data-icon="messageCircle" aria-hidden="true"></span>
 										<span data-i18n="hero.cta.contact"></span>
 									</a>
 
-									<button id="download-cv" class="btn-outline cta-btn" type="button">
+									<a href="#case" class="btn-outline cta-btn">
+										<span class="icon-inline" data-icon="play" aria-hidden="true"></span>
+										<span data-i18n="hero.cta.case"></span>
+									</a>
+
+									<button id="download-cv" class="btn-ghost cta-btn" type="button">
 										<span class="icon-inline" data-icon="download" aria-hidden="true"></span>
 										<span data-i18n="hero.cta.cv"></span>
 									</button>
 								</div>
+
+								<dl class="hero-proof">
+									<div><dt class="font-mono" data-i18n="hero.proof1.label"></dt><dd class="text-gradient">4</dd></div>
+									<div><dt class="font-mono" data-i18n="hero.proof2.label"></dt><dd class="text-gradient">24h</dd></div>
+									<div><dt class="font-mono" data-i18n="hero.proof3.label"></dt><dd class="text-gradient">2022</dd></div>
+								</dl>
 							</div>
 
-							<div class="hero-photo reveal from-right" aria-label="Profile">
-								<div class="photo-wrap">
-									<div class="photo-glow" aria-hidden="true"></div>
-
-									<div class="photo-box">
-										<div class="rotating-border" aria-hidden="true"></div>
-
-										<div class="photo-inner glow-border pulse-glow">
-											<img src="assets/img/profile-photo.jpeg" alt="Matheus Machado" class="profile-img" />
-										</div>
-
-										<div class="float-tag float-tag-1 font-mono">&lt;React /&gt;</div>
-										<div class="float-tag float-tag-2 font-mono">Python</div>
+							<div class="hero-photo reveal from-right" aria-label="Matheus Machado">
+								<div class="portrait">
+									<div class="portrait-glow" aria-hidden="true"></div>
+									<div class="portrait-ring" aria-hidden="true"></div>
+									<div class="portrait-disc" aria-hidden="true"></div>
+									<div class="portrait-clip">
+										<img src="assets/img/hero-perfil.webp" alt="Matheus Machado" class="portrait-img" width="760" height="895" fetchpriority="high" />
 									</div>
+									<div class="float-tag float-tag-1 font-mono">&lt;SobMedida /&gt;</div>
+									<div class="float-tag float-tag-2 font-mono">WhatsApp + IA</div>
+									<div class="float-tag float-tag-3 font-mono">Next.js</div>
 								</div>
 							</div>
 						</div>
@@ -263,16 +273,18 @@
 						</div>
 
 						<div class="about-grid">
-							<div class="about-video reveal from-left">
-								<div class="video-placeholder">
-									<div class="play-button" aria-hidden="true">
-										<div class="play-triangle"></div>
-									</div>
-									<p class="text-muted small" data-i18n="about.video"></p>
+							<div class="about-photo reveal from-left">
+								<div class="about-photo-frame">
+									<img src="assets/img/sobre-frente.webp" alt="Matheus Machado" width="760" height="1105" loading="lazy" />
+								</div>
+								<div class="about-photo-tag font-mono">
+									<span class="status-dot status-dot-pulse"></span>
+									<span data-i18n="about.available"></span>
 								</div>
 							</div>
 
 							<div class="about-content reveal from-right">
+								<p class="about-lead" data-i18n="about.lead"></p>
 								<p class="text-muted about-text" data-i18n="about.description"></p>
 
 								<div class="about-social">
@@ -284,8 +296,106 @@
 										<span class="icon-inline" data-icon="linkedin" aria-hidden="true"></span>
 										<span>LinkedIn</span>
 									</a>
+									<a href="https://wa.me/5511910254958" target="_blank" rel="noopener noreferrer" class="social-pill" data-wa-link>
+										<span class="icon-inline" data-icon="messageCircle" aria-hidden="true"></span>
+										<span>WhatsApp</span>
+									</a>
 								</div>
 							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="case" class="section section-alt">
+					<div class="container">
+						<div class="section-head reveal">
+							<span class="section-kicker text-primary font-mono">// <span data-i18n="case.kicker"></span></span>
+							<h2 class="section-title">
+								<span class="text-gradient" data-i18n="case.title"></span>
+							</h2>
+							<p class="text-muted case-lead" data-i18n="case.lead"></p>
+						</div>
+
+						<div class="case-film reveal">
+							<button id="case-play" class="case-film-btn" type="button">
+								<img src="assets/img/projetos/abdous/landing-desktop.webp" alt="" class="case-film-poster" loading="lazy" />
+								<span class="case-film-shade" aria-hidden="true"></span>
+								<span class="case-film-play" aria-hidden="true"><span class="play-triangle"></span></span>
+								<span class="case-film-info">
+									<span class="case-film-kicker font-mono">// documentário</span>
+									<span class="case-film-title" data-i18n="case.watch"></span>
+									<span class="case-film-meta font-mono" data-i18n="case.watchMeta"></span>
+								</span>
+							</button>
+						</div>
+
+						<div class="case-stats">
+							<div class="case-stat card-dark reveal"><span class="case-stat-value text-gradient">6</span><span class="case-stat-label" data-i18n="case.stat1"></span></div>
+							<div class="case-stat card-dark reveal"><span class="case-stat-value text-gradient">411</span><span class="case-stat-label" data-i18n="case.stat2"></span></div>
+							<div class="case-stat card-dark reveal"><span class="case-stat-value text-gradient">24h</span><span class="case-stat-label" data-i18n="case.stat3"></span></div>
+							<div class="case-stat card-dark reveal"><span class="case-stat-value text-gradient">15+</span><span class="case-stat-label" data-i18n="case.stat4"></span></div>
+						</div>
+
+						<div class="case-body">
+							<div class="case-built reveal from-left">
+								<h3 class="case-built-title" data-i18n="case.built"></h3>
+								<ul class="case-list">
+									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c1"></span></li>
+									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c2"></span></li>
+									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c3"></span></li>
+									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c4"></span></li>
+									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c5"></span></li>
+									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c6"></span></li>
+									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c7"></span></li>
+								</ul>
+								<div class="project-tech case-tech">
+									<span class="tech-pill">Next.js</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Fastify</span><span class="tech-pill">Prisma</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">IA</span>
+								</div>
+								<div class="case-links">
+									<a href="https://abdousbarber.com.br" target="_blank" rel="noopener noreferrer" class="btn-outline cta-btn">
+										<span class="icon-inline" data-icon="externalLink" aria-hidden="true"></span>
+										<span>abdousbarber.com.br</span>
+									</a>
+									<a href="projeto-detalhe.html?id=abdous-barber" class="case-more text-primary font-mono" data-i18n="case.more"></a>
+								</div>
+							</div>
+
+							<div class="case-phones reveal from-right" aria-label="Telas do sistema da Abdou's Barber">
+								<figure class="phone phone-1"><img src="assets/img/projetos/abdous/cel-dashboard.webp" alt="Dashboard do dono" loading="lazy" /></figure>
+								<figure class="phone phone-2"><img src="assets/img/projetos/abdous/cel-fila-cliente.webp" alt="Fila de espera do cliente" loading="lazy" /></figure>
+								<figure class="phone phone-3"><img src="assets/img/projetos/abdous/cel-agenda.webp" alt="Agenda do dia" loading="lazy" /></figure>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="services" class="section">
+					<div class="container">
+						<div class="section-head text-center reveal">
+							<span class="section-kicker text-primary font-mono">// <span data-i18n="services.kicker"></span></span>
+							<h2 class="section-title">
+								<span class="text-gradient" data-i18n="services.title"></span>
+							</h2>
+							<p class="text-muted services-lead" data-i18n="services.lead"></p>
+						</div>
+
+						<div class="services-grid">
+							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="calendar" aria-hidden="true"></span><h3 data-i18n="services.t1"></h3><p class="text-muted" data-i18n="services.p1"></p></article>
+							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="messageCircle" aria-hidden="true"></span><h3 data-i18n="services.t2"></h3><p class="text-muted" data-i18n="services.p2"></p></article>
+							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="monitor" aria-hidden="true"></span><h3 data-i18n="services.t3"></h3><p class="text-muted" data-i18n="services.p3"></p></article>
+							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="creditCard" aria-hidden="true"></span><h3 data-i18n="services.t4"></h3><p class="text-muted" data-i18n="services.p4"></p></article>
+							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="smartphone" aria-hidden="true"></span><h3 data-i18n="services.t5"></h3><p class="text-muted" data-i18n="services.p5"></p></article>
+							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="cpu" aria-hidden="true"></span><h3 data-i18n="services.t6"></h3><p class="text-muted" data-i18n="services.p6"></p></article>
+						</div>
+
+						<div class="process">
+							<h3 class="process-title font-mono text-primary">// <span data-i18n="process.title"></span></h3>
+							<ol class="process-steps">
+								<li class="reveal"><span class="process-n font-mono">01</span><h4 data-i18n="process.t1"></h4><p class="text-muted" data-i18n="process.p1"></p></li>
+								<li class="reveal"><span class="process-n font-mono">02</span><h4 data-i18n="process.t2"></h4><p class="text-muted" data-i18n="process.p2"></p></li>
+								<li class="reveal"><span class="process-n font-mono">03</span><h4 data-i18n="process.t3"></h4><p class="text-muted" data-i18n="process.p3"></p></li>
+								<li class="reveal"><span class="process-n font-mono">04</span><h4 data-i18n="process.t4"></h4><p class="text-muted" data-i18n="process.p4"></p></li>
+							</ol>
 						</div>
 					</div>
 				</section>
@@ -421,41 +531,59 @@
 							<div class="skill-card reveal">
 								<h3 class="skill-title text-primary" data-i18n="skills.frontend"></h3>
 								<div class="skill-tags">
+									<span class="skill-tag">React</span>
+									<span class="skill-tag">Next.js</span>
+									<span class="skill-tag">TypeScript</span>
 									<span class="skill-tag">JavaScript</span>
+									<span class="skill-tag">Astro</span>
+									<span class="skill-tag">Tailwind CSS</span>
 									<span class="skill-tag">HTML5</span>
 									<span class="skill-tag">CSS3</span>
-									<span class="skill-tag">React</span>
-									<span class="skill-tag">Tailwind CSS</span>
-									<span class="skill-tag">Bootstrap</span>
-									<span class="skill-tag">Sass</span>
 								</div>
 							</div>
 
 							<div class="skill-card reveal">
 								<h3 class="skill-title text-primary" data-i18n="skills.backend"></h3>
 								<div class="skill-tags">
+									<span class="skill-tag">Node.js</span>
+									<span class="skill-tag">Fastify</span>
 									<span class="skill-tag">Python</span>
+									<span class="skill-tag">Prisma</span>
+									<span class="skill-tag">PostgreSQL</span>
 									<span class="skill-tag">SQL</span>
-									<span class="skill-tag">WordPress</span>
-									<span class="skill-tag">Web Scraping</span>
-									<span class="skill-tag" data-i18n="skills.automation"></span>
+									<span class="skill-tag">WebSocket</span>
+									<span class="skill-tag">APIs REST</span>
 								</div>
 							</div>
 
 							<div class="skill-card reveal">
-								<h3 class="skill-title text-primary" data-i18n="skills.tools"></h3>
+								<h3 class="skill-title text-primary" data-i18n="skills.integrations"></h3>
 								<div class="skill-tags">
+									<span class="skill-tag">WhatsApp</span>
+									<span class="skill-tag">IA generativa</span>
+									<span class="skill-tag">Mercado Pago</span>
+									<span class="skill-tag">PagBank</span>
+									<span class="skill-tag">Web Scraping</span>
+									<span class="skill-tag">OCR</span>
+								</div>
+							</div>
+
+							<div class="skill-card reveal">
+								<h3 class="skill-title text-primary" data-i18n="skills.infra"></h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Docker</span>
+									<span class="skill-tag">Coolify</span>
+									<span class="skill-tag">VPS</span>
+									<span class="skill-tag">Netlify</span>
 									<span class="skill-tag">Git</span>
-									<span class="skill-tag">GitHub</span>
 									<span class="skill-tag">Figma</span>
-									<span class="skill-tag">VS Code</span>
 								</div>
 							</div>
 						</div>
 
 						<div class="skills-code reveal">
 							<p class="font-mono small">
-								const stack = [ <span class="text-primary">JS</span>, <span class="text-primary">React</span>, <span class="text-primary">Python</span>, <span class="text-primary">SQL</span> ];
+								const stack = [ <span class="text-primary">Next.js</span>, <span class="text-primary">Node</span>, <span class="text-primary">Python</span>, <span class="text-primary">PostgreSQL</span>, <span class="text-primary">IA</span> ];
 							</p>
 						</div>
 					</div>
@@ -469,12 +597,20 @@
 								<span class="text-gradient" data-i18n="contact.title"></span>
 							</h2>
 
-														<button id="contact-copy-email" type="button" class="btn-primary contact-cta">
-								<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
-								<span data-i18n="contact.cta"></span>
-							</button>
+<p class="contact-lead text-muted" data-i18n="contact.lead"></p>
 
-														<div class="contact-social">
+							<div class="contact-actions">
+								<a href="https://wa.me/5511910254958" target="_blank" rel="noopener noreferrer" class="btn-primary contact-cta" data-wa-link>
+									<span class="icon-inline" data-icon="messageCircle" aria-hidden="true"></span>
+									<span data-i18n="contact.cta"></span>
+								</a>
+								<button id="contact-copy-email" type="button" class="btn-outline contact-cta">
+									<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
+									<span data-i18n="contact.copyEmail"></span>
+								</button>
+							</div>
+
+							<div class="contact-social">
 								<button id="contact-email-btn" type="button" aria-label="Email" class="contact-social-btn">
 									<span class="icon" data-icon="mail" aria-hidden="true"></span>
 								</button>

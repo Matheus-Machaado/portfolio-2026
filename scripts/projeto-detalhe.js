@@ -70,7 +70,7 @@
 			"projects.stacksTools": "STACKS & TOOLS:",
 			"projects.backToProjects": "Voltar aos projetos",
 			"projects.type.personal": "Pessoal",
-			"projects.type.freelance": "Freelancer",
+			"projects.type.freelance": "Cliente",
 			"projects.type.professional": "Profissional",
 		},
 		en: {
@@ -87,7 +87,7 @@
 			"projects.stacksTools": "STACKS & TOOLS:",
 			"projects.backToProjects": "Back to projects",
 			"projects.type.personal": "Personal",
-			"projects.type.freelance": "Freelance",
+			"projects.type.freelance": "Client",
 			"projects.type.professional": "Professional",
 		},
 	};

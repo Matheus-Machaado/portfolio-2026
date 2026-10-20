@@ -7,7 +7,7 @@
 		<meta name="description" content="Página não encontrada — Portfólio de Matheus Machado." />
 		<meta name="robots" content="noindex" />
 
-		<link rel="icon" href="assets/img/fav-icon.png" type="image/png" />
+		<link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -196,13 +196,13 @@
 				var t = 0;
 				function draw() {
 					t += 0.016;
-					ctx.fillStyle = "hsl(220, 20%, 4%)";
+					ctx.fillStyle = "hsl(24, 28%, 5%)";
 					ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 					stars.forEach(function (s) {
 						var twinkle = Math.sin(t * 0.6 + s.twinklePhase) * 0.3 + 0.7;
 						ctx.beginPath();
 						ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-						ctx.fillStyle = "rgba(150, 200, 180, " + s.opacity * twinkle + ")";
+						ctx.fillStyle = "rgba(235, 210, 175, " + s.opacity * twinkle + ")";
 						ctx.fill();
 					});
 					requestAnimationFrame(draw);

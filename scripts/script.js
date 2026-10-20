@@ -55,6 +55,32 @@
 			<path d="m22 2-7 20-4-9-9-4Z"></path>
 			<path d="M22 2 11 13"></path>
 		`,
+		play: `
+			<path d="M7 4.5v15l12-7.5z" />
+		`,
+		check: `
+			<path d="M5 12.5l4.5 4.5L19 7.5" />
+		`,
+		calendar: `
+			<rect x="3" y="4.5" width="18" height="16" rx="3" />
+			<path d="M3 9.5h18M8 2.5v4M16 2.5v4M7.5 13.5h3M7.5 17h6" />
+		`,
+		monitor: `
+			<rect x="2.5" y="4" width="19" height="13" rx="2.5" />
+			<path d="M8 21h8M12 17v4M6.5 8.5h6M6.5 11.5h9" />
+		`,
+		creditCard: `
+			<rect x="2.5" y="5" width="19" height="14" rx="3" />
+			<path d="M2.5 10h19M6.5 15h4" />
+		`,
+		smartphone: `
+			<rect x="6.5" y="2.5" width="11" height="19" rx="3" />
+			<path d="M10.5 18.5h3" />
+		`,
+		cpu: `
+			<rect x="6" y="6" width="12" height="12" rx="2" />
+			<path d="M9.5 9.5h5v5h-5zM9 2.5v3.5M15 2.5v3.5M9 18v3.5M15 18v3.5M2.5 9h3.5M2.5 15h3.5M18 9h3.5M18 15h3.5" />
+		`,
 		messageCircle: `
 			<path d="m21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"></path>
 		`,
@@ -200,13 +226,13 @@
 			"hero.greeting": "Olá, eu sou",
 			"hero.name": "Matheus Machado",
 			"hero.title": "Full Stack Developer",
-			"hero.subtitle": "Especialista em desenvolvimento web, automações e raspagem de dados. Transformo ideias em soluções digitais eficientes.",
-			"hero.cta.contact": "Entrar em contato",
-			"hero.cta.cv": "Baixar Currículo",
+			"hero.subtitle": "Sistemas sob medida, feitos a partir do problema real do seu negócio.",
+			"hero.cta.contact": "Falar no WhatsApp",
+			"hero.cta.cv": "Currículo",
 
 			"about.title": "Sobre Mim",
-			"about.subtitle": "Conheça minha trajetória profissional",
-			"about.description": "Sou Desenvolvedor Full Stack com 3+ anos de vivência em tecnologia (desde 2022), atuando do Front-end (React/JS) ao Back-end e Dados (Python/SQL) — com foco forte em automação, web scraping e construção de ferramentas internas que aceleram operações e reduzem trabalho manual.\n\nComecei minha jornada em 2022 como Jovem Aprendiz de TI na Totale Tecnologia, onde tive meu primeiro contato com o mundo corporativo e aprendi, na prática, o valor de ser proativo, colaborativo e sempre disposto a aprender.\nEm 2024, iniciei na Ridolfinvest como estagiário, mergulhando em Python, SQL, scraping e automações. Em dezembro/2024, fui promovido para Desenvolvedor Júnior, passando a atuar com responsabilidade ponta a ponta: front, back, banco e integrações.",
+			"about.subtitle": "Dev, mas não só isso",
+			"about.description": "Antes de escrever uma linha, eu vou até a operação, vejo a correria de perto e entendo o que realmente trava o negócio. Depois construo exatamente isso: agenda que o cliente marca sozinho, mensagem respondida de madrugada, caixa que fecha sem caderninho.\n\nComecei na TI em 2022 como Jovem Aprendiz na Totale Tecnologia. Em 2024 entrei na Ridolfinvest como estagiário e em nove meses virei Desenvolvedor Full Stack, cuidando de front, back, banco de dados, robôs e integrações.\n\nHoje faço MBA em Engenharia de Software na USP e, junto com o meu squad, construo sistemas para negócios reais. Do primeiro papo com o dono até o sistema no ar.",
 
 			"about.video": "Vídeo de apresentação",
 
@@ -218,8 +244,8 @@
 			"skills.automation": "Automação",
 
 			"projects.title": "Projetos",
-			"projects.subtitle": "Projetos pessoais e profissionais",
-			"projects.lead": "Aqui você encontra todos os projetos em que já trabalhei, sejam pessoais ou aqueles realizados com vínculo empregatício.",
+			"projects.subtitle": "Sistemas no ar, com clientes reais",
+			"projects.lead": "Cada um nasceu de um problema de verdade. Clique para ver as telas e os detalhes.",
 			"projects.emptyKicker": "in progress",
 			"projects.emptyTitle": "Em breve — atualizando portfólio",
 			"projects.emptyLead": "Estou organizando os projetos para apresentar aqui da forma certa, com cases reais, prints e contexto. Volte em breve.",
@@ -231,7 +257,7 @@
 			"projects.mobile": "Mobile",
 			"projects.stacksTools": "STACKS & TOOLS:",
 			"projects.type.personal": "Pessoal",
-			"projects.type.freelance": "Freelancer",
+			"projects.type.freelance": "Cliente",
 			"projects.type.professional": "Profissional",
 
 			"experience.title": "Experiência Profissional",
@@ -266,8 +292,8 @@
 			"education.downloadAll": "Baixar pacote",
 
 			"contact.title": "Contato",
-			"contact.subtitle": "Vamos conversar sobre seu próximo projeto",
-			"contact.cta": "Entre em contato",
+			"contact.subtitle": "Me conta o que tá travando o seu negócio",
+			"contact.cta": "Chamar no WhatsApp",
 			"contact.emailCopyTitle": "Clique para copiar o e-mail",
 			"contact.emailCopied": "E-mail copiado: {email}",
 
@@ -276,6 +302,61 @@
 			"mobile.repo.before": "Veja também o",
 			"mobile.repo.link": "repositório",
 			"mobile.repo.after": "desse projeto",
+			"nav.case": "Case",
+			"nav.services": "Serviços",
+			"hero.support": "Gestão, atendimento no WhatsApp com IA, sites e pagamentos. Eu entendo a operação, desenho a solução e coloco no ar.",
+			"hero.cta.case": "Ver o case",
+			"hero.proof1.label": "sistemas no ar",
+			"hero.proof2.label": "de IA no WhatsApp",
+			"hero.proof3.label": "em tecnologia desde",
+			"about.available": "Aceitando novos projetos",
+			"about.lead": "Sou dev. Mas não é código que eu vendo: é o seu negócio funcionando.",
+			"case.kicker": "Case em destaque",
+			"case.title": "Abdou's Barber",
+			"case.lead": "Uma barbearia de assinatura em Guarulhos perdia cliente na porta e no WhatsApp. Em seis meses construí o sistema inteiro e gravei o antes e o depois num documentário com o dono e clientes de verdade.",
+			"case.watch": "Assistir o documentário",
+			"case.watchMeta": "16 min, com legendas",
+			"case.stat1": "meses do primeiro papo ao sistema completo",
+			"case.stat2": "commits no projeto",
+			"case.stat3": "de atendimento no WhatsApp com IA",
+			"case.stat4": "telas entre painel do dono e área do cliente",
+			"case.built": "O que eu construí",
+			"case.c1": "Site com a história da marca, planos e trabalhos",
+			"case.c2": "Área do cliente com login, dependentes e histórico",
+			"case.c3": "Agenda por profissional com fila de espera automática",
+			"case.c4": "Bot de WhatsApp com IA que agenda, vende e cobra",
+			"case.c5": "Planos de assinatura com cobrança automática",
+			"case.c6": "Loja online com retirada no balcão",
+			"case.c7": "Comandas, caixa, financeiro, rankings e mapa de calor",
+			"case.more": "ver todas as telas",
+			"services.kicker": "O que eu construo",
+			"services.title": "Serviços",
+			"services.lead": "Cada projeto junta as peças que o negócio precisa. Às vezes é uma, quase sempre são várias conversando entre si.",
+			"services.t1": "Sistemas de gestão sob medida",
+			"services.p1": "Agenda, clientes, estoque, comandas, caixa e financeiro num painel só, no celular e no computador.",
+			"services.t2": "Atendimento no WhatsApp com IA",
+			"services.p2": "Um assistente que responde na hora, conhece cada cliente, agenda, vende, manda link de pagamento e avisa quando abre vaga.",
+			"services.t3": "Sites e landing pages",
+			"services.p3": "Páginas que contam a sua história e transformam visita em cliente. Rápidas, em vários idiomas e fáceis de achar no Google.",
+			"services.t4": "Pagamentos, planos e lojas",
+			"services.p4": "Pix, cartão, assinatura recorrente, comissão automática entre parceiros e loja com retirada no balcão.",
+			"services.t5": "Apps e marketplaces",
+			"services.p5": "Plataformas com vários lados, como cliente, loja e entregador, com pedido em tempo real, mapa e avisos no celular.",
+			"services.t6": "Automações e robôs",
+			"services.p6": "O que hoje alguém faz na mão, feito sozinho: consultas em sites, formulários, documentos, leitura de PDF e integrações.",
+			"process.title": "Como eu trabalho",
+			"process.t1": "Vou até você",
+			"process.p1": "Antes de qualquer orçamento eu quero ver a operação: o balcão, o WhatsApp, a planilha.",
+			"process.t2": "Desenho a solução",
+			"process.p2": "Te mostro telas e fluxo antes de programar. Você aprova o que faz sentido pro seu negócio.",
+			"process.t3": "Construo sob medida",
+			"process.p3": "Sistema feito com as suas regras: seus planos, seu jeito de cobrar, seus horários.",
+			"process.t4": "Coloco no ar e fico junto",
+			"process.p4": "Publico, treino a equipe e sigo acompanhando. Sistema bom evolui junto com a operação.",
+			"contact.copyEmail": "Copiar e-mail",
+			"contact.lead": "Quem responde sou eu. A primeira conversa é pra entender o problema, sem compromisso.",
+			"skills.integrations": "Integrações e IA",
+			"skills.infra": "Infra e ferramentas",
 		},
 
 		en: {
@@ -293,13 +374,13 @@
 			"hero.greeting": "Hello, I am",
 			"hero.name": "Matheus Machado",
 			"hero.title": "Full Stack Developer",
-			"hero.subtitle": "Specialist in web development, automation, and data scraping. I transform ideas into efficient digital solutions.",
-			"hero.cta.contact": "Get in touch",
-			"hero.cta.cv": "Download CV",
+			"hero.subtitle": "Custom-built systems, designed around the real problem your business has.",
+			"hero.cta.contact": "Message me on WhatsApp",
+			"hero.cta.cv": "Résumé",
 
 			"about.title": "About Me",
-			"about.subtitle": "Learn about my professional journey",
-			"about.description": "Full Stack Developer with 3+ years of experience in technology (since 2022), working across Front-end (React/JS) and Back-end/Data (Python/SQL) — with a strong focus on automation, web scraping, and building internal tools that speed up operations and reduce manual work.\n\nI started my journey in 2022 as an IT Apprentice at Totale Tecnologia, where I had my first exposure to the corporate environment and learned, in practice, the importance of being proactive, collaborative, and always willing to learn.\nIn 2024, I joined RidolfInvest as a development intern, diving into Python, SQL, scraping, and automation. In December/2024, I was promoted to Junior Developer, taking end-to-end responsibility: front-end, back-end, database, and integrations.",
+			"about.subtitle": "A developer, and more",
+			"about.description": "Before writing a line, I go to the operation, watch the rush up close and understand what is really holding the business back. Then I build exactly that: bookings clients make on their own, messages answered in the middle of the night, a register that closes without a paper notebook.\n\nI started in IT in 2022 as an apprentice at Totale Tecnologia. In 2024 I joined Ridolfinvest as an intern and nine months later I was a Full Stack Developer, handling front end, back end, databases, bots and integrations.\n\nToday I'm doing an MBA in Software Engineering at the University of São Paulo and, together with my squad, I build systems for real businesses. From the first chat with the owner to the system going live.",
 
 			"about.video": "Presentation video",
 
@@ -311,8 +392,8 @@
 			"skills.automation": "Automation",
 
 			"projects.title": "Projects",
-			"projects.subtitle": "Personal and professional projects",
-			"projects.lead": "Here you can find all the projects I\u2019ve worked on, both personal and professional.",
+			"projects.subtitle": "Systems live, with real clients",
+			"projects.lead": "Each one was born from a real problem. Click to see the screens and details.",
 			"projects.emptyKicker": "in progress",
 			"projects.emptyTitle": "Coming soon \u2014 updating portfolio",
 			"projects.emptyLead": "I\u2019m organizing my projects to showcase them properly here, with real case studies, screenshots, and context. Check back soon.",
@@ -324,7 +405,7 @@
 			"projects.mobile": "Mobile",
 			"projects.stacksTools": "STACKS & TOOLS:",
 			"projects.type.personal": "Personal",
-			"projects.type.freelance": "Freelance",
+			"projects.type.freelance": "Client",
 			"projects.type.professional": "Professional",
 
 			"experience.title": "Professional Experience",
@@ -359,8 +440,8 @@
 			"education.downloadAll": "Download pack",
 
 			"contact.title": "Contact",
-			"contact.subtitle": "Let's talk about your next project",
-			"contact.cta": "Get in touch",
+			"contact.subtitle": "Tell me what's holding your business back",
+			"contact.cta": "Message me on WhatsApp",
 			"contact.emailCopyTitle": "Click to copy the email",
 			"contact.emailCopied": "Email copied: {email}",
 
@@ -369,6 +450,61 @@
 			"mobile.repo.before": "Also check the",
 			"mobile.repo.link": "repository",
 			"mobile.repo.after": "for this project",
+			"nav.case": "Case",
+			"nav.services": "Services",
+			"hero.support": "Management, AI customer service on WhatsApp, websites and payments. I learn the operation, design the solution and ship it.",
+			"hero.cta.case": "See the case",
+			"hero.proof1.label": "systems live",
+			"hero.proof2.label": "of AI on WhatsApp",
+			"hero.proof3.label": "in tech since",
+			"about.available": "Open to new projects",
+			"about.lead": "I'm a developer. But code is not what I sell: I sell your business running smoothly.",
+			"case.kicker": "Featured case",
+			"case.title": "Abdou's Barber",
+			"case.lead": "A subscription barbershop near São Paulo was losing clients at the door and on WhatsApp. In six months I built the whole system and filmed the before and after in a documentary with the owner and real clients.",
+			"case.watch": "Watch the documentary",
+			"case.watchMeta": "16 min, Portuguese with subtitles",
+			"case.stat1": "months from first chat to complete system",
+			"case.stat2": "commits in the project",
+			"case.stat3": "of AI service on WhatsApp",
+			"case.stat4": "screens across owner and client apps",
+			"case.built": "What I built",
+			"case.c1": "Website with the brand story, plans and portfolio",
+			"case.c2": "Client area with login, dependents and history",
+			"case.c3": "Per-barber schedule with an automatic waiting list",
+			"case.c4": "AI WhatsApp bot that books, sells and charges",
+			"case.c5": "Subscription plans with automatic billing",
+			"case.c6": "Online store with in-store pickup",
+			"case.c7": "Tabs, register, finances, rankings and heat map",
+			"case.more": "see every screen",
+			"services.kicker": "What I build",
+			"services.title": "Services",
+			"services.lead": "Every project combines the pieces the business needs. Sometimes one, usually several working together.",
+			"services.t1": "Custom management systems",
+			"services.p1": "Schedule, clients, stock, tabs, register and finances in a single dashboard, on phone and desktop.",
+			"services.t2": "AI customer service on WhatsApp",
+			"services.p2": "An assistant that replies instantly, knows each client, books, sells, sends payment links and announces open slots.",
+			"services.t3": "Websites and landing pages",
+			"services.p3": "Pages that tell your story and turn visitors into clients. Fast, multilingual and easy to find on Google.",
+			"services.t4": "Payments, plans and stores",
+			"services.p4": "Pix, cards, recurring subscriptions, automatic partner commission and stores with in-store pickup.",
+			"services.t5": "Apps and marketplaces",
+			"services.p5": "Multi-sided platforms, like client, store and courier, with real-time orders, maps and phone notifications.",
+			"services.t6": "Automations and bots",
+			"services.p6": "What someone does by hand today, done on its own: website lookups, forms, documents, PDF reading and integrations.",
+			"process.title": "How I work",
+			"process.t1": "I come to you",
+			"process.p1": "Before any quote I want to see the operation: the counter, the WhatsApp, the spreadsheet.",
+			"process.t2": "I design the solution",
+			"process.p2": "I show you screens and the flow before coding. You approve what makes sense for your business.",
+			"process.t3": "I build it to measure",
+			"process.p3": "A system built on your rules: your plans, your way of charging, your hours.",
+			"process.t4": "I launch it and stay close",
+			"process.p4": "I publish it, train the team and keep following up. A good system evolves with the operation.",
+			"contact.copyEmail": "Copy email",
+			"contact.lead": "I answer personally. The first conversation is about understanding the problem, with no strings attached.",
+			"skills.integrations": "Integrations & AI",
+			"skills.infra": "Infra & tools",
 		},
 	};
 
@@ -428,8 +564,8 @@
 		if (expLead) {
 			expLead.textContent =
 				currentLanguage === "pt"
-					? "Atuação em tecnologia desde 2022, evoluindo de suporte/infra para desenvolvimento full stack e automações em produção."
-					: "Working in tech since 2022, evolving from IT support/infra to full stack development and production-grade automations.";
+					? "Em tecnologia desde 2022: do suporte de TI ao desenvolvimento full stack, e hoje construindo sistemas sob medida para negócios reais."
+					: "In tech since 2022: from IT support to full stack development, and now building custom systems for real businesses.";
 		}
 
 		const eduLead = document.getElementById("education-lead");
@@ -448,6 +584,57 @@
 	}
 
 
+
+	/* WhatsApp com mensagem pronta no idioma atual */
+	const WA_TEXT = {
+		pt: "Oi Matheus, vim pelo seu portfólio e quero conversar sobre o meu negócio.",
+		en: "Hi Matheus, I found your portfolio and would like to talk about my business.",
+	};
+	function updateWhatsAppLinks() {
+		const text = WA_TEXT[currentLanguage] || WA_TEXT.pt;
+		document.querySelectorAll("[data-wa-link]").forEach((a) => {
+			a.href = "https://wa.me/5511910254958?text=" + encodeURIComponent(text);
+		});
+	}
+
+	/* Documentário: YouTube (quando houver ID) ou arquivo local */
+	const DOC_YOUTUBE_ID = "";
+	const DOC_LOCAL = "assets/video/abdous-documentario-720p.mp4";
+	function openDocumentary() {
+		let modal = document.getElementById("doc-modal");
+		if (!modal) {
+			modal = document.createElement("div");
+			modal.id = "doc-modal";
+			modal.className = "doc-modal";
+			modal.setAttribute("role", "dialog");
+			modal.setAttribute("aria-modal", "true");
+			modal.innerHTML = '<div class="doc-modal-inner"><button type="button" class="doc-modal-close" aria-label="Fechar"><span class="icon" data-icon="x"></span></button><div class="doc-modal-video"></div></div>';
+			document.body.appendChild(modal);
+			injectIcons(modal);
+			const close = () => {
+				modal.classList.remove("open");
+				modal.querySelector(".doc-modal-video").innerHTML = "";
+				document.body.classList.remove("no-scroll");
+			};
+			modal.querySelector(".doc-modal-close").addEventListener("click", close);
+			modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
+			document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modal.classList.contains("open")) close(); });
+		}
+		const box = modal.querySelector(".doc-modal-video");
+		box.innerHTML = DOC_YOUTUBE_ID
+			? '<iframe src="https://www.youtube-nocookie.com/embed/' + DOC_YOUTUBE_ID + '?autoplay=1&rel=0" title="Documentário Abdou\'s Barber" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
+			: '<video src="' + DOC_LOCAL + '" controls autoplay playsinline></video>';
+		modal.classList.add("open");
+		document.body.classList.add("no-scroll");
+	}
+	function bindDocumentary() {
+		const btn = document.getElementById("case-play");
+		if (btn && !btn.dataset.bound) {
+			btn.dataset.bound = "1";
+			btn.addEventListener("click", openDocumentary);
+		}
+	}
+
 	function setLanguage(lang) {
 		currentLanguage = lang === "en" ? "en" : "pt";
 
@@ -456,6 +643,7 @@
 		} catch (e) {}
 
 		applyTranslations();
+		updateWhatsAppLinks();
 		renderProjects();
 		renderExperiences();
 		renderCertificates();
@@ -535,7 +723,7 @@
 		function draw() {
 			time += 0.016;
 
-			ctx.fillStyle = "hsl(210, 20%, 6%)";
+			ctx.fillStyle = "hsl(24, 28%, 5%)";
 			ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
 			stars.forEach((star) => {
@@ -543,19 +731,19 @@
 
 				ctx.beginPath();
 				ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-				ctx.fillStyle = `rgba(150, 200, 180, ${star.opacity * twinkle})`;
+				ctx.fillStyle = `rgba(235, 210, 175, ${star.opacity * twinkle})`;
 				ctx.fill();
 
 				if (star.size > 1.5) {
 					ctx.beginPath();
 					ctx.arc(star.x, star.y, star.size * 2, 0, Math.PI * 2);
-					ctx.fillStyle = `rgba(0, 230, 150, ${star.opacity * twinkle * 0.1})`;
+					ctx.fillStyle = `rgba(215, 164, 106, ${star.opacity * twinkle * 0.1})`;
 					ctx.fill();
 				}
 			});
 
 			codeSnippets.forEach((snippet) => {
-				ctx.fillStyle = `rgba(0, 230, 150, ${snippet.opacity})`;
+				ctx.fillStyle = `rgba(215, 164, 106, ${snippet.opacity})`;
 				ctx.font = `${snippet.size}px JetBrains Mono, monospace`;
 				ctx.fillText(snippet.text, snippet.x, snippet.y);
 
@@ -578,7 +766,7 @@
 		};
 	}
 
-	const terminalLines = ["> Initializing system...", "> Loading Matheus Machado...", "> Full Stack Developer detected", "> Welcome to the portfolio"];
+	const terminalLines = ["> Initializing system...", "> Loading Matheus Machado...", "> Custom solutions developer detected", "> Welcome"];
 
 	function startIntro() {
 		const linesWrap = document.getElementById("intro-lines");
@@ -831,13 +1019,14 @@
 		const target = document.getElementById("hero-typing-text");
 		if (!target) return;
 
-		const titles = ["Full Stack Developer", "Freelancer"];
+		const getTitles = () => (currentLanguage === "en" ? ["Full Stack Developer", "Custom-built systems", "AI on WhatsApp", "Websites and payments"] : ["Desenvolvedor Full Stack", "Sistemas sob medida", "WhatsApp com IA", "Sites e pagamentos"]);
 		let currentTitleIndex = 0;
 		let displayText = "";
 		let isDeleting = false;
 
 		function tick() {
-			const currentTitle = titles[currentTitleIndex];
+			const titles = getTitles();
+			const currentTitle = titles[currentTitleIndex % titles.length];
 			const typingSpeed = isDeleting ? 50 : 100;
 			const pauseTime = 2000;
 
@@ -1391,14 +1580,29 @@
 	function getExperiences() {
 		return [
 			{
+				id: "0",
+				logo: "assets/img/logo-autonomo.png",
+				companyUrl: "https://matheus-machado-dev.com.br/",
+				company: currentLanguage === "pt" ? "Autônomo" : "Self-employed",
+				role: currentLanguage === "pt" ? "Desenvolvedor de Soluções Sob Medida" : "Custom Solutions Developer",
+				startDate: "04/2026",
+				endDate: t("experience.present"),
+				duration: currentLanguage === "pt" ? "Atual" : "Current",
+				description:
+					currentLanguage === "pt"
+						? "Sistemas sob medida para negócios reais, do primeiro papo com o dono até o sistema no ar, junto com o meu squad.<br/>• Abdou's Barber: sistema completo para barbearia de assinatura, com agenda online, fila de espera, planos com cobrança automática, loja, financeiro e WhatsApp com IA 24h.<br/>• Tô na Porta: delivery de Lençóis (BA) com app do cliente, painel da loja e app do entregador, Pix e cartão pelo Mercado Pago com comissão automática.<br/>• Psy Trekking: site em quatro idiomas com reserva e painel financeiro dos guias, Lighthouse de 93 a 100.<br/>• Casa Cheia: lista de presentes em que o apartamento se enche a cada presente, com cenas geradas por IA."
+						: "Custom systems for real businesses, from the first chat with the owner to the system going live, together with my squad.<br/>• Abdou's Barber: complete system for a subscription barbershop, with online booking, waiting list, plans with automatic billing, store, finances and 24/7 AI on WhatsApp.<br/>• Tô na Porta: food delivery for Lençóis (Brazil) with client app, store dashboard and courier app, Pix and card via Mercado Pago with automatic commission.<br/>• Psy Trekking: four-language website with booking and a financial dashboard for guides, Lighthouse 93 to 100.<br/>• Casa Cheia: gift registry where the apartment fills up with each gift, using AI-generated scenes.",
+				technologies: ["Next.js", "TypeScript", "Node.js", "Fastify", "Prisma", "PostgreSQL", "Docker", "IA", "WhatsApp", "Mercado Pago"],
+			},
+			{
 				id: "1",
 				logo: "assets/img/logo_ridolfinvest.png",
 			companyUrl: "https://ridolfinvest.com.br/",
 				company: "RidolfInvest",
 				role: currentLanguage === "pt" ? "Desenvolvedor Full Stack Júnior" : "Junior Full Stack Developer",
 				startDate: "12/2024",
-				endDate: t("experience.present"),
-				duration: currentLanguage === "pt" ? "Atual" : "Current",
+				endDate: "04/2026",
+				duration: currentLanguage === "pt" ? "1 ano e 5 meses" : "1 yr 5 mos",
 				description:
 					currentLanguage === "pt"
 						? "Atuação full stack em aplicações internas (Front + Back + SQL), com foco em produtividade operacional, padronização e redução de etapas manuais.<br/>• Evolução de uma plataforma interna que começou com automação de certidões e se tornou uma central de ferramentas para áreas internas (incluindo autenticação, sessão e fluxos completos).<br/>• Implementação de automações e raspagens em sites e sistemas complexos, integrando banco/CRM e tratando inconsistências e cenários de “não achados”.<br/>• Desenvolvimento de ferramenta de formulários automatizados com login, 2FA e sessão por usuário, reduzindo o tempo do fluxo (~15 min → ~5 min).<br/>• Criação/evolução de robôs e integrações com TRFs/TJs, incluindo leitura de valores em imagem (OCR) e rotinas de manutenção (cookies/tokens)."
@@ -1856,6 +2060,8 @@ function renderCertificates() {
 		injectIcons(document);
 
 		applyTranslations();
+		updateWhatsAppLinks();
+		bindDocumentary();
 		setFooterYear();
 		initNavbar();
 		bindCvDownload();

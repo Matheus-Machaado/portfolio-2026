@@ -33,7 +33,6 @@
     $$("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
     $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf"); });
     if (persist) { try { localStorage.setItem("mm-lang", lang); } catch (e) {} }
-    splitWords();
     renderWork();
     renderCerts();
     if (current) renderProject(current, view);
@@ -134,23 +133,6 @@
     revealEls.forEach(function (el) { el.classList.add("is-in"); });
   }
 
-  /* ---------- Frase palavra a palavra ---------- */
-  var impact = $(".impact-text");
-  function splitWords() {
-    if (!impact) return;
-    var words = impact.textContent.trim().split(/\s+/);
-    impact.innerHTML = words.map(function (w) { return '<span class="wd">' + w + "</span>"; }).join(" ");
-    impact.classList.add("is-split");
-    updateImpact();
-  }
-  function updateImpact() {
-    if (!impact) return;
-    var r = impact.getBoundingClientRect(), vh = window.innerHeight;
-    var p = reduceMotion ? 1 : clamp((vh * .82 - r.top) / (r.height + vh * .32), 0, 1);
-    var wds = impact.children, on = Math.round(p * wds.length);
-    for (var i = 0; i < wds.length; i++) wds[i].classList.toggle("on", i < on);
-  }
-
   /* ---------- Contadores ---------- */
   var counters = $$("[data-count]");
   if ("IntersectionObserver" in window && !reduceMotion) {
@@ -200,61 +182,31 @@
     });
   }
 
-  /* ---------- Parallax do retrato do Sobre ---------- */
-  var para = $("[data-parallax]");
-  function updateParallax() {
-    if (!para || reduceMotion) return;
-    var r = para.parentElement.getBoundingClientRect(), vh = window.innerHeight;
-    if (r.bottom < 0 || r.top > vh) return;
-    var k = (r.top + r.height / 2 - vh / 2) / vh;
-    para.style.transform = "translate3d(0," + (-6 + k * 6).toFixed(2) + "%,0)";
-  }
-
   /* ---------- Loop de scroll ---------- */
   var ticking = false;
   function onScroll() {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(function () { ticking = false; onNavScroll(); updateImpact(); updateSteps(); updateParallax(); });
+    requestAnimationFrame(function () { ticking = false; onNavScroll(); updateSteps(); });
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
 
-  /* ---------- Projetos: lista ---------- */
-  var workList = $("#work-list"), preview = $("#work-preview"), previewImg = preview ? preview.querySelector("img") : null;
+  /* ---------- Projetos: cards ---------- */
+  var workList = $("#work-list");
   var arrowSvg = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>';
   function typeLabel(p) { return p.workType === "personal" ? t("own") : t("client"); }
   function renderWork() {
     if (!workList) return;
     workList.innerHTML = DATA.projects.map(function (p) {
-      return '<li class="work-item"><a href="#p-' + p.id + '" data-cover="' + p.coverImage + '">' +
-        '<span class="work-thumb"><img src="' + p.coverImage + '" alt="" loading="lazy" width="1200" height="900"></span>' +
-        '<span class="work-name">' + p.title + "</span>" +
-        '<span class="work-ctx"><b>' + field(p, "company") + "</b>" + field(p, "description") + "</span>" +
-        '<span class="work-type label">' + typeLabel(p) + "</span>" +
-        '<span class="work-arrow">' + arrowSvg + "</span></a></li>";
+      var techs = (p.technologies || []).slice(0, 4).map(function (x) { return "<li>" + (lang === "en" && x === "IA" ? "AI" : x) + "</li>"; }).join("");
+      return '<li><a class="wk" href="#p-' + p.id + '">' +
+        '<span class="wk-cover"><img src="' + p.coverImage + '" alt="" loading="lazy" width="1200" height="900"><span class="wk-type label">' + typeLabel(p) + "</span></span>" +
+        '<span class="wk-body"><span class="wk-name">' + p.title + "</span>" +
+        '<span class="wk-arrow">' + arrowSvg + "</span>" +
+        '<span class="wk-ctx"><b>' + field(p, "company") + "</b>" + field(p, "description") + "</span>" +
+        '<ul class="chips">' + techs + "</ul></span></a></li>";
     }).join("");
-  }
-  if (finePointer && preview && workList) {
-    var px = 0, py = 0, cx = 0, cy = 0, raf = null, on = false;
-    var loop = function () {
-      cx += (px - cx) * .16; cy += (py - cy) * .16;
-      preview.style.transform = "translate3d(" + (cx - 210) + "px," + (cy - 158) + "px,0) scale(" + (on ? 1 : .85) + ")";
-      raf = on || Math.abs(px - cx) > .5 ? requestAnimationFrame(loop) : null;
-    };
-    workList.addEventListener("mousemove", function (e) {
-      px = e.clientX + 40; py = e.clientY;
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-    workList.addEventListener("mouseover", function (e) {
-      var a = e.target.closest("a[data-cover]");
-      if (!a) return;
-      if (previewImg.getAttribute("src") !== a.dataset.cover) previewImg.src = a.dataset.cover;
-      if (!on) { cx = px = e.clientX + 40; cy = py = e.clientY; }
-      on = true; preview.classList.add("is-on");
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-    workList.addEventListener("mouseleave", function () { on = false; preview.classList.remove("is-on"); });
   }
 
   /* ---------- Detalhe do projeto ---------- */

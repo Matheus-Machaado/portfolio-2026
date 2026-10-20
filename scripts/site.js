@@ -57,7 +57,7 @@
   function codeField(canvas, o) {
     if (!canvas || !canvas.getContext) return null;
     var ctx = canvas.getContext("2d"), dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, items = [], dots = [], raf = 0, running = false;
-    var mx = -9999, my = -9999, sx = -9999, sy = -9999, t = 0, scrollV = 0, lastSy = window.scrollY;
+    var t = 0, scrollV = 0, lastSy = window.scrollY;
     function size() {
       var r = canvas.getBoundingClientRect(); W = r.width; H = r.height;
       canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -72,7 +72,6 @@
     function frame() {
       t += .016;
       var sy2 = window.scrollY; scrollV += ((sy2 - lastSy) - scrollV) * .15; lastSy = sy2;
-      sx += (mx - sx) * .12; sy += (my - sy) * .12;
       ctx.clearRect(0, 0, W, H);
       for (var d = 0; d < dots.length; d++) {
         var p = dots[d], tw = Math.sin(t * p.s * 60 + p.p) * .35 + .65;
@@ -84,29 +83,12 @@
         var it = items[i];
         it.y -= it.v + Math.abs(scrollV) * .04 * (1 + it.z);
         if (it.y < -20) items[i] = it = spawn(false);
-        var dx = it.x - sx, dy = it.y - sy, dist = Math.sqrt(dx * dx + dy * dy), near = Math.max(0, 1 - dist / o.radius);
-        var x = it.x + (near ? dx / (dist || 1) * near * 22 : 0), y = it.y + (near ? dy / (dist || 1) * near * 22 : 0);
-        ctx.font = (600 + Math.round(near * 200)) + " " + Math.round(it.sz + near * 3) + "px ui-monospace, Consolas, monospace";
-        if (near > .02) {
-          ctx.fillStyle = "rgba(255," + Math.round(86 + 90 * (1 - near)) + "," + Math.round(49 + 80 * (1 - near)) + "," + Math.min(.9, it.a + near * .8).toFixed(3) + ")";
-        } else ctx.fillStyle = "rgba(239,237,232," + it.a.toFixed(3) + ")";
-        ctx.fillText(it.txt, x, y);
-      }
-      if (sx > -999) {
-        var g = ctx.createRadialGradient(sx, sy, 0, sx, sy, o.radius * 1.2);
-        g.addColorStop(0, "rgba(255,86,49,.10)"); g.addColorStop(1, "rgba(255,86,49,0)");
-        ctx.fillStyle = g; ctx.fillRect(sx - o.radius * 1.2, sy - o.radius * 1.2, o.radius * 2.4, o.radius * 2.4);
+        ctx.font = "500 " + Math.round(it.sz) + "px \"JetBrains Mono\", ui-monospace, Consolas, monospace";
+        ctx.fillStyle = "rgba(239,237,232," + it.a.toFixed(3) + ")";
+        ctx.fillText(it.txt, it.x, it.y);
       }
       raf = running ? requestAnimationFrame(frame) : 0;
     }
-    function point(e) {
-      var r = canvas.getBoundingClientRect(), p = e.touches ? e.touches[0] : e;
-      mx = p.clientX - r.left; my = p.clientY - r.top;
-      if (sx < -999) { sx = mx; sy = my; }
-    }
-    (o.target || canvas).addEventListener("pointermove", point, { passive: true });
-    (o.target || canvas).addEventListener("touchmove", point, { passive: true });
-    (o.target || canvas).addEventListener("pointerleave", function () { mx = my = -9999; }, { passive: true });
     size(); window.addEventListener("resize", size);
     return {
       start: function () { if (running || reduceMotion) { if (reduceMotion) frame(); return; } running = true; raf = requestAnimationFrame(frame); },
@@ -115,60 +97,42 @@
     };
   }
 
-  /* ---------- Intro: terminal ---------- */
+  /* ---------- Intro: terminal (a mesma do portfólio antigo, nas cores novas) ---------- */
   var boot = $("#boot");
-  var bootField = codeField($("#boot-bg"), { density: 9000, max: 70, speed: 1.4, radius: 160, target: boot });
   function finishBoot(chosen) {
     if (!root.classList.contains("intro")) return;
     if (chosen) applyLang(chosen, true);
     try { sessionStorage.setItem("mm-intro", "1"); } catch (e) {}
+    document.removeEventListener("keydown", bootKeys);
     boot.classList.add("out");
     root.classList.remove("intro");
-    setTimeout(function () {
-      boot.hidden = true; boot.classList.remove("out");
-      if (bootField) bootField.stop();
-      heroField && heroField.start();
-    }, reduceMotion ? 0 : 750);
-    document.removeEventListener("keydown", bootKeys);
+    heroField && heroField.start();
+    setTimeout(function () { boot.hidden = true; boot.classList.remove("out"); }, reduceMotion ? 0 : 500);
   }
   function bootKeys(e) {
     var k = e.key.toLowerCase();
     if (k === "escape") finishBoot();
-    else if (k === "1" || k === "p") finishBoot("pt");
-    else if (k === "2" || k === "e") finishBoot("en");
-    else if (k === "enter" && !$("#boot-select").hidden) finishBoot(lang);
+    else if (!$("#boot-select").hidden && (k === "1" || k === "p")) finishBoot("pt");
+    else if (!$("#boot-select").hidden && (k === "2" || k === "e")) finishBoot("en");
   }
   if (root.classList.contains("intro") && boot) {
-    if (bootField) bootField.start();
-    var LINES = ["Initializing system...", "Loading Matheus Machado...", "Full Stack Developer detected", "Welcome to the portfolio"];
+    var LINES = ["> Initializing system...", "> Loading Matheus Machado...", "> Full Stack Developer detected", "> Welcome to the portfolio"];
     var linesEl = $("#boot-lines"), li = 0;
-    $$("[data-boot-lang]").forEach(function (b) {
-      if (b.dataset.bootLang === lang) b.classList.add("is-pref");
-      b.addEventListener("click", function () { finishBoot(b.dataset.bootLang); });
-    });
-    $("#boot-skip").addEventListener("click", function () { finishBoot(); });
+    $$("[data-boot-lang]").forEach(function (b) { b.addEventListener("click", function () { finishBoot(b.dataset.bootLang); }); });
     document.addEventListener("keydown", bootKeys);
-    var typeLine = function () {
-      if (li >= LINES.length) {
-        setTimeout(function () {
-          $$(".boot-line", linesEl).forEach(function (l) { l.classList.add("dim"); });
-          $("#boot-cur").hidden = true;
-          $("#boot-select").hidden = false;
-          var pref = $(".boot-langs .is-pref"); if (pref) pref.focus({ preventScroll: true });
-        }, 380);
+    (function addLine() {
+      if (li < LINES.length) {
+        var row = document.createElement("div"); row.className = "boot-line"; row.textContent = LINES[li++];
+        linesEl.appendChild(row);
+        setTimeout(addLine, 600);
         return;
       }
-      var row = document.createElement("div"); row.className = "boot-line";
-      row.innerHTML = '<span class="p">&gt;</span> <span class="tx"></span>';
-      linesEl.appendChild(row);
-      var tx = row.querySelector(".tx"), txt = LINES[li], c = 0;
-      (function ch() {
-        tx.textContent = txt.slice(0, ++c);
-        if (c < txt.length) setTimeout(ch, 22 + Math.random() * 18);
-        else { if (li === 2) row.insertAdjacentHTML("beforeend", ' <span class="ok">✓</span>'); li++; setTimeout(typeLine, 260); }
-      })();
-    };
-    setTimeout(typeLine, 350);
+      setTimeout(function () {
+        $$(".boot-line", linesEl).forEach(function (l) { l.classList.add("dim"); });
+        $("#boot-cur").hidden = true;
+        $("#boot-select").hidden = false;
+      }, 500);
+    })();
   } else if (boot) { boot.hidden = true; }
 
   /* ---------- Fundo vivo do hero ---------- */
@@ -436,44 +400,6 @@
     })();
   }
 
-  /* ---------- Cursor e botões magnéticos (computador) ---------- */
-  var cursor = $("#cursor");
-  if (cursor && finePointer && !reduceMotion) {
-    root.classList.add("has-cursor");
-    var cx = innerWidth / 2, cy = innerHeight / 2, tx2 = cx, ty2 = cy, label = cursor.querySelector(".cursor-label");
-    window.addEventListener("pointermove", function (e) { tx2 = e.clientX; ty2 = e.clientY; cursor.classList.add("on"); }, { passive: true });
-    document.addEventListener("pointerleave", function () { cursor.classList.remove("on"); });
-    (function follow() {
-      cx += (tx2 - cx) * .2; cy += (ty2 - cy) * .2;
-      cursor.style.transform = "translate3d(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px,0)";
-      requestAnimationFrame(follow);
-    })();
-    document.addEventListener("pointerover", function (e) {
-      var c = e.target.closest("[data-cursor]"), lnk = e.target.closest("a, button, [role=tab], input, select");
-      cursor.classList.toggle("big", !!c);
-      cursor.classList.toggle("link", !c && !!lnk);
-      label.textContent = c ? (c.dataset.cursor === "play" ? t("play") : c.dataset.cursor === "drag" ? t("drag") : t("seeProject")) : "";
-    });
-    $$(".pill, .wk-arrow, .film-cta-ic").forEach(function (b) {
-      b.addEventListener("pointermove", function (e) {
-        var r = b.getBoundingClientRect();
-        b.style.transform = "translate(" + ((e.clientX - r.left - r.width / 2) * .18).toFixed(1) + "px," + ((e.clientY - r.top - r.height / 2) * .25).toFixed(1) + "px)";
-      });
-      b.addEventListener("pointerleave", function () { b.style.transform = ""; });
-    });
-  }
-
-  /* ---------- Hero acompanha o mouse ---------- */
-  var heroName = $(".name"), heroPhoto = $(".photo"), heroCut = $(".cut");
-  if (finePointer && !reduceMotion && heroName) {
-    hero.addEventListener("pointermove", function (e) {
-      if (root.classList.contains("intro")) return;
-      var x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
-      heroName.style.translate = (x * -14).toFixed(1) + "px " + (y * -6).toFixed(1) + "px";
-      heroPhoto.style.translate = heroCut.style.translate = (x * 10).toFixed(1) + "px " + (y * 6).toFixed(1) + "px";
-    });
-  }
-
   /* ---------- Loop de scroll ---------- */
   var ticking = false;
   function onScroll() {
@@ -492,7 +418,7 @@
     if (!workList) return;
     workList.innerHTML = DATA.projects.map(function (p) {
       var n = (p.desktopImages || []).length + (p.mobileImages || []).length;
-      return '<li><a class="wk" href="#p-' + p.id + '" data-cursor="project">' +
+      return '<li><a class="wk" href="#p-' + p.id + '">' +
         '<span class="wk-cover"><img src="' + p.coverImage + '" alt="" loading="lazy" width="1200" height="900"><span class="wk-type label">' + typeLabel(p) + "</span></span>" +
         '<span class="wk-body"><span class="wk-name">' + p.title + "</span>" +
         '<span class="wk-arrow">' + arrowSvg + "</span>" +

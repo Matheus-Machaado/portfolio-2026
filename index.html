@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="assets/img/fav-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="preload" as="image" href="assets/img/hero/retrato-perfil.jpg" media="(min-width: 721px)">
 <link rel="preload" as="image" href="assets/img/hero/retrato-vertical.jpg" media="(max-width: 720px)">
 <link rel="stylesheet" href="styles/site.css">
@@ -46,30 +46,29 @@
 <body>
 <a class="skip" href="#conteudo" data-en="Skip to content">Pular para o conteúdo</a>
 <div class="boot" id="boot" role="dialog" aria-modal="true" aria-label="Intro">
-  <canvas class="boot-bg" id="boot-bg" aria-hidden="true"></canvas>
-  <pre class="boot-code boot-code--l" aria-hidden="true"><span class="k">const</span> developer = {
-  name: <span class="s">"Matheus Machado"</span>,
-  role: <span class="s">"Full Stack"</span>,
-  passion: <span class="s">"∞"</span>,
-};</pre>
-  <pre class="boot-code boot-code--r" aria-hidden="true"><span class="k">function</span> <span class="f">createSolution</span>(problem) {
-  <span class="k">return</span> <span class="f">build</span>(problem);
-}</pre>
-  <div class="boot-term">
-    <div class="boot-bar"><i></i><i></i><i></i><span>matheus@portfolio ~</span></div>
-    <div class="boot-body">
-      <div class="boot-lines" id="boot-lines" aria-live="polite"></div>
-      <div class="boot-cur" id="boot-cur"><span>&gt;</span><i></i></div>
-      <div class="boot-select" id="boot-select" hidden>
-        <p>&gt; Select your language / Selecione seu idioma:</p>
-        <div class="boot-langs">
-          <button type="button" data-boot-lang="pt"><b>PT</b><span>Português</span><kbd>1</kbd></button>
-          <button type="button" data-boot-lang="en"><b>EN</b><span>English</span><kbd>2</kbd></button>
+  <div class="boot-wrap">
+    <div class="boot-term">
+      <div class="boot-bar"><i></i><i></i><i></i><span>matheus@portfolio ~</span></div>
+      <div class="boot-body">
+        <div class="boot-lines" id="boot-lines" aria-live="polite"></div>
+        <div class="boot-cur" id="boot-cur"><span>&gt;</span><i></i></div>
+        <div class="boot-select" id="boot-select" hidden>
+          <p>&gt; Select your language / Selecione seu idioma:</p>
+          <div class="boot-langs">
+            <button type="button" data-boot-lang="pt"><b>BR</b><span>Português</span></button>
+            <button type="button" data-boot-lang="en"><b>US</b><span>English</span></button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <button type="button" class="boot-skip label" id="boot-skip">Pular · Skip <kbd>Esc</kbd></button>
+  <pre class="boot-code boot-code--l" aria-hidden="true">const developer = {
+  name: "Matheus Machado",
+  passion: "∞",
+};</pre>
+  <pre class="boot-code boot-code--r" aria-hidden="true">function createSolution() {
+  return innovation;
+}</pre>
 </div>
 <svg hidden aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
   <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3M13 14h3M8 17h3"/></symbol>
@@ -92,7 +91,6 @@
 </svg>
 
 <div class="progress" aria-hidden="true"><i id="progress"></i></div>
-<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
 <header class="nav" id="nav">
   <a class="brand" href="#inicio" aria-label="Matheus Machado, início">Matheus Machado</a>
   <nav aria-label="Principal">
@@ -222,7 +220,7 @@
     </div>
 
     <div class="wrap films">
-      <div class="film film-main" data-reveal data-play="doc" data-cursor="play">
+      <div class="film film-main" data-reveal data-play="doc">
         <div class="film-frame">
           <img src="assets/img/projetos/abdous/doc-frame-512.webp" width="1600" height="728" loading="lazy" alt="" aria-hidden="true">
           <div class="film-shade" aria-hidden="true"></div>
@@ -248,7 +246,7 @@
           <li><button type="button" data-play="doc" data-t="684"><time>11:24</time><span data-en="What changed the most">O que mais impactou</span></button></li>
         </ol>
       </div>
-      <div class="film film-side" data-reveal data-play="com" data-cursor="play">
+      <div class="film film-side" data-reveal data-play="com">
         <div class="film-frame">
           <img src="assets/img/projetos/abdous/comercial-poster.webp" width="720" height="1280" loading="lazy" alt="" aria-hidden="true">
           <video class="film-loop" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>

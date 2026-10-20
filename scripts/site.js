@@ -266,7 +266,7 @@
     var past = window.scrollY > hero.offsetHeight * .8;
     var r = contactSec.getBoundingClientRect();
     var atContact = r.top < window.innerHeight && r.bottom > 0;
-    fab.classList.toggle("is-on", past && !atContact && pd.hidden && menu.hidden);
+    fab.classList.toggle("is-on", past && !atContact && pd.hidden && menu.hidden && vp.hidden);
   }
 
   /* ---------- Loop de scroll ---------- */
@@ -436,16 +436,34 @@
     var src = (f.dataset.video || "").trim();
     if (!src) return;
     f.classList.add("is-playable"); f.tabIndex = 0; f.setAttribute("role", "button");
+    f.setAttribute("aria-label", f.dataset["title" + (lang === "en" ? "En" : "Pt")]);
     var open = function () {
+      var title = f.dataset["title" + (lang === "en" ? "En" : "Pt")];
+      vpFrame.classList.toggle("is-vertical", !!f.dataset.vertical);
       vpFrame.innerHTML = src.indexOf("yt:") === 0
-        ? '<iframe src="https://www.youtube-nocookie.com/embed/' + src.slice(3) + '?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen title="' + f.dataset["title" + (lang === "en" ? "En" : "Pt")] + '"></iframe>'
-        : '<video src="' + src + '" controls autoplay playsinline></video>';
-      vp.hidden = false; $("#vp-close").focus();
+        ? '<iframe src="https://www.youtube-nocookie.com/embed/' + src.slice(3) + '?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen title="' + title + '"></iframe>'
+        : '<video src="' + src + '" poster="' + (f.dataset.poster || "") + '" controls autoplay playsinline title="' + title + '"></video>';
+      vp.hidden = false; root.classList.add("lock"); updFab(); $("#vp-close").focus();
+      var loop = f.querySelector(".film-loop"); if (loop) loop.pause();
     };
     f.addEventListener("click", open);
     f.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
   });
-  function closeVp() { vp.hidden = true; vpFrame.innerHTML = ""; }
+  // Comercial roda sem som no quadro quando aparece na tela (só no computador, pra poupar dados no celular).
+  var loopVid = $(".film-loop");
+  if (loopVid && finePointer && !reduceMotion && "IntersectionObserver" in window) {
+    var loopSrc = $(".film-side").dataset.video;
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && vp.hidden) {
+          if (!loopVid.getAttribute("src")) loopVid.src = loopSrc;
+          var p = loopVid.play(); if (p && p.catch) p.catch(function () {});
+          loopVid.classList.add("is-on");
+        } else { loopVid.pause(); }
+      });
+    }, { threshold: .4 }).observe(loopVid);
+  }
+  function closeVp() { vp.hidden = true; vpFrame.innerHTML = ""; if (pd.hidden && certs.hidden) root.classList.remove("lock"); updFab(); }
   $("#vp-close").addEventListener("click", closeVp);
   vp.addEventListener("click", function (e) { if (e.target === vp) closeVp(); });
 

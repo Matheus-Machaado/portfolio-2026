@@ -210,13 +210,15 @@ html.intro.play .hero-copy, html.intro.play .hero-bar { animation: fadeUpTo .9s 
 .case-head .mega { color: var(--fg); }
 .case-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 32px; margin-top: clamp(36px, 4vw, 56px); }
 .case-intro .label { color: var(--muted); padding-top: .5em; }
-.films { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: 20px; margin-top: clamp(56px, 6vw, 96px); align-items: end; }
+.films { display: grid; grid-template-columns: minmax(0, 39fr) minmax(0, 10fr); gap: 20px; margin-top: clamp(56px, 6vw, 96px); align-items: start; }
 .film { margin: 0; display: grid; gap: 14px; }
 .film-frame { position: relative; overflow: hidden; border-radius: 6px; background: #000; }
-.film-main .film-frame { aspect-ratio: 16 / 9; }
-.film-side .film-frame { aspect-ratio: 9 / 14; }
+.film-main .film-frame { aspect-ratio: 1600 / 728; }
+.film-side .film-frame { aspect-ratio: 9 / 16; }
 .film-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-.film-side .film-frame img { object-position: 50% 0; opacity: .55; }
+.film-loop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s; }
+.film-loop.is-on { opacity: 1; }
+.film-len { position: absolute; right: 12px; bottom: 12px; background: #000a; color: #fff; padding: 6px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
 .film.is-playable { cursor: pointer; }
 .film.is-playable:hover .film-frame img { transform: scale(1.04); }
 .film-play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: clamp(64px, 7vw, 104px); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: var(--fg); color: var(--bg); transition: transform .4s var(--ease), background .3s; }
@@ -224,8 +226,6 @@ html.intro.play .hero-copy, html.intro.play .hero-bar { animation: fadeUpTo .9s 
 .film-play svg { width: 34%; fill: currentColor; margin-left: 6%; }
 .film.is-playable:hover .film-play { transform: scale(1.08); background: var(--accent); }
 .film:not(.is-playable) .film-play { background: color-mix(in srgb, var(--fg) 16%, transparent); color: var(--fg); }
-.film-soon { position: absolute; left: 14px; top: 14px; background: var(--bg); padding: 8px 12px; border-radius: 999px; color: var(--muted); }
-.film.is-playable .film-soon { display: none; }
 .film figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .film-title { font-weight: 800; font-size: clamp(18px, 1.6vw, 24px); letter-spacing: -.01em; }
 
@@ -512,7 +512,8 @@ html.intro.play .hero-copy, html.intro.play .hero-bar { animation: fadeUpTo .9s 
 .lb-next { right: max(20px, env(safe-area-inset-right, 0px)); top: 50%; translate: 0 -50%; }
 .lb-close { right: max(20px, env(safe-area-inset-right, 0px)); top: calc(20px + env(safe-area-inset-top, 0px)); }
 .lb-count { position: absolute; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; color: #fffa; margin: 0; }
-.vp-frame { width: min(1200px, 100%); aspect-ratio: 16 / 9; background: #000; border-radius: 8px; overflow: hidden; }
+.vp-frame { width: min(1200px, 100%); aspect-ratio: 16 / 9; max-height: calc(100svh - 140px); background: #000; border-radius: 8px; overflow: hidden; }
+.vp-frame.is-vertical { width: auto; height: min(86svh, 900px); aspect-ratio: 9 / 16; max-width: 100%; }
 .vp-frame video, .vp-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 .certs { position: fixed; inset: 0; z-index: 170; background: color-mix(in srgb, #000 80%, transparent); display: grid; place-items: center; padding: 40px; animation: fadeIn .3s ease-out both; }
 .certs-box { position: relative; width: min(1100px, 100%); max-height: calc(100svh - 80px); overflow-y: auto; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; padding: 32px; }
@@ -580,7 +581,6 @@ html.intro.play .hero-copy, html.intro.play .hero-bar { animation: fadeUpTo .9s 
   .case-intro { grid-template-columns: 1fr; gap: 12px; }
   .films { grid-template-columns: 1fr; }
   .film-side { display: grid; grid-template-columns: 110px minmax(0, 1fr); align-items: center; gap: 16px; }
-  .film-side .film-soon { display: none; }
   .film-side figcaption { display: grid; gap: 4px; }
   .numbers { grid-template-columns: 1fr 1fr; }
   .num { padding: 22px 12px 0 0; }

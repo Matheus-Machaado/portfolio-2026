@@ -35,6 +35,7 @@
     if (persist) { try { localStorage.setItem("mm-lang", lang); } catch (e) {} }
     renderWork();
     renderCerts();
+    if (typeof renderCode === "function") renderCode(false);
     if (current) renderProject(current, view);
   }
   $$("[data-set-lang]").forEach(function (b) { b.addEventListener("click", function () { applyLang(b.dataset.setLang, true); }); });
@@ -61,7 +62,7 @@
   if (root.classList.contains("intro")) {
     var start = function () {
       root.classList.add("play");
-      introTimer = setTimeout(endIntro, 3300);
+      introTimer = setTimeout(endIntro, 4700);
       ["keydown", "wheel", "touchstart"].forEach(function (ev) { window.addEventListener(ev, endIntro, { passive: true }); });
     };
     var started = false;
@@ -95,7 +96,7 @@
         navLinks.forEach(function (a) { a.classList.toggle("is-current", a.getAttribute("href") === "#" + e.target.id); });
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
-    ["sobre", "case", "servicos", "projetos", "trajetoria", "contato"].forEach(function (id) { var s = document.getElementById(id); if (s) secObs.observe(s); });
+    ["sobre", "especialidades", "case", "projetos", "servicos", "trajetoria", "contato"].forEach(function (id) { var s = document.getElementById(id); if (s) secObs.observe(s); });
   }
 
   /* ---------- Menu (celular) ---------- */
@@ -111,7 +112,7 @@
   $$("#menu a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
 
   /* ---------- Revelar no scroll ---------- */
-  var revealEls = $$("[data-reveal]");
+  var revealEls = $$("[data-reveal]"), revealSweep = function () {};
   if ("IntersectionObserver" in window && !reduceMotion) {
     // Títulos que entram com recorte ficam 100% recortados no início; o navegador não os
     // considera visíveis, então observamos o bloco pai deles.
@@ -120,7 +121,7 @@
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         (revealMap.get(e.target) || []).forEach(function (el) { el.classList.add("is-in"); });
-        rObs.unobserve(e.target);
+        rObs.unobserve(e.target); revealMap.delete(e.target);
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
     revealEls.forEach(function (el) {
@@ -129,6 +130,14 @@
       revealMap.get(target).push(el);
       rObs.observe(target);
     });
+    // Rolagem rápida pode pular o observer: o que já passou da tela aparece também.
+    revealSweep = function () {
+      if (!revealMap.size) return;
+      var vh = window.innerHeight;
+      revealMap.forEach(function (els, target) {
+        if (target.getBoundingClientRect().top < vh) { els.forEach(function (el) { el.classList.add("is-in"); }); rObs.unobserve(target); revealMap.delete(target); }
+      });
+    };
   } else {
     revealEls.forEach(function (el) { el.classList.add("is-in"); });
   }
@@ -182,12 +191,100 @@
     });
   }
 
+
+  /* ---------- Cartão de código do Sobre ---------- */
+  var codeBody = $("#code-body"), codeTyped = false;
+  var CODE = {
+    pt: [
+      [["c", "// matheus.ts"]],
+      [["k", "const "], ["f", "matheus"], ["p", " = {"]],
+      [["p", "  cargo: "], ["s", "\"Desenvolvedor Full Stack\""], ["p", ","]],
+      [["p", "  desde: "], ["n", "2022"], ["p", ","]],
+      [["p", "  formacao: ["], ["s", "\"FIAP\""], ["p", ", "], ["s", "\"MBA USP\""], ["p", "],"]],
+      [["p", "  front: ["], ["s", "\"React\""], ["p", ", "], ["s", "\"Next.js\""], ["p", ", "], ["s", "\"TS\""], ["p", "],"]],
+      [["p", "  back: ["], ["s", "\"Node.js\""], ["p", ", "], ["s", "\"Python\""], ["p", ", "], ["s", "\"SQL\""], ["p", "],"]],
+      [["p", "  tambem: ["], ["s", "\"IA\""], ["p", ", "], ["s", "\"pagamentos\""], ["p", ", "], ["s", "\"vídeo\""], ["p", "],"]],
+      [["p", "  emProducao: "], ["n", "4"], ["p", ","]],
+      [["p", "  trabalho: "], ["s", "\"100% remoto\""], ["p", ","]],
+      [["p", "};"]],
+      [],
+      [["k", "export default "], ["f", "matheus"], ["p", ";"]]
+    ],
+    en: [
+      [["c", "// matheus.ts"]],
+      [["k", "const "], ["f", "matheus"], ["p", " = {"]],
+      [["p", "  role: "], ["s", "\"Full Stack Developer\""], ["p", ","]],
+      [["p", "  since: "], ["n", "2022"], ["p", ","]],
+      [["p", "  education: ["], ["s", "\"FIAP\""], ["p", ", "], ["s", "\"MBA USP\""], ["p", "],"]],
+      [["p", "  front: ["], ["s", "\"React\""], ["p", ", "], ["s", "\"Next.js\""], ["p", ", "], ["s", "\"TS\""], ["p", "],"]],
+      [["p", "  back: ["], ["s", "\"Node.js\""], ["p", ", "], ["s", "\"Python\""], ["p", ", "], ["s", "\"SQL\""], ["p", "],"]],
+      [["p", "  also: ["], ["s", "\"AI\""], ["p", ", "], ["s", "\"payments\""], ["p", ", "], ["s", "\"video\""], ["p", "],"]],
+      [["p", "  inProduction: "], ["n", "4"], ["p", ","]],
+      [["p", "  works: "], ["s", "\"100% remote\""], ["p", ","]],
+      [["p", "};"]],
+      [],
+      [["k", "export default "], ["f", "matheus"], ["p", ";"]]
+    ]
+  };
+  function esc(x) { return x.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function renderCode(animate) {
+    if (!codeBody) return;
+    var lines = CODE[lang];
+    codeBody.innerHTML = lines.map(function (parts) {
+      return '<span class="ln">' + parts.map(function (pt) { return '<span class="' + pt[0] + '">' + esc(pt[1]) + "</span>"; }).join("") + "</span>";
+    }).join("");
+    if (!animate) return;
+    var lns = $$(".ln", codeBody);
+    lns.forEach(function (l) { l.style.visibility = "hidden"; });
+    lns.forEach(function (l, i) {
+      setTimeout(function () {
+        l.style.visibility = "";
+        lns.forEach(function (x) { x.classList.remove("typing"); });
+        l.classList.add("typing");
+        if (i === lns.length - 1) setTimeout(function () { l.classList.remove("typing"); }, 1400);
+      }, 120 + i * 85);
+    });
+  }
+  if (codeBody && "IntersectionObserver" in window && !reduceMotion) {
+    var codeObs = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting && !codeTyped) { codeTyped = true; renderCode(true); codeObs.disconnect(); }
+    }, { threshold: .35 });
+    codeObs.observe(codeBody);
+  }
+
+  /* ---------- Carrosséis (celular) ---------- */
+  $$(".rail-nav").forEach(function (nav) {
+    var rail = document.getElementById(nav.dataset.rail);
+    if (!rail) return;
+    var items = $$(":scope > li", rail), count = nav.querySelector(".rail-count"), dots = nav.querySelector(".rail-dots");
+    dots.innerHTML = items.map(function () { return "<i></i>"; }).join("");
+    var di = $$("i", dots);
+    function upd() {
+      var w = items[0] ? items[0].getBoundingClientRect().width + 12 : 1;
+      var i = clamp(Math.round(rail.scrollLeft / w), 0, items.length - 1);
+      count.textContent = String(i + 1).padStart(2, "0") + " / " + String(items.length).padStart(2, "0");
+      di.forEach(function (d, k) { d.classList.toggle("on", k === i); });
+    }
+    rail.addEventListener("scroll", function () { requestAnimationFrame(upd); }, { passive: true });
+    upd();
+  });
+
+  /* ---------- WhatsApp flutuante ---------- */
+  var fab = $("#fab"), contactSec = $("#contato");
+  function updFab() {
+    if (!fab) return;
+    var past = window.scrollY > hero.offsetHeight * .8;
+    var r = contactSec.getBoundingClientRect();
+    var atContact = r.top < window.innerHeight && r.bottom > 0;
+    fab.classList.toggle("is-on", past && !atContact && pd.hidden && menu.hidden);
+  }
+
   /* ---------- Loop de scroll ---------- */
   var ticking = false;
   function onScroll() {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(function () { ticking = false; onNavScroll(); updateSteps(); });
+    requestAnimationFrame(function () { ticking = false; onNavScroll(); updateSteps(); updFab(); revealSweep(); });
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);

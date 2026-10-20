@@ -65,6 +65,8 @@
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
 </svg>
 
+<div class="progress" aria-hidden="true"><i id="progress"></i></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
 <header class="nav" id="nav">
   <a class="brand" href="#inicio" aria-label="Matheus Machado, início">Matheus Machado</a>
   <nav aria-label="Principal">
@@ -193,29 +195,43 @@
     </div>
 
     <div class="wrap films">
-      <figure class="film film-main" data-reveal data-video="assets/video/documentario-abdous.mp4" data-poster="assets/img/projetos/abdous/doc-frame-512.webp" data-title-pt="Documentário Abdou's Barber" data-title-en="Abdou's Barber documentary">
+      <div class="film film-main" data-reveal data-play="doc" data-cursor="play">
         <div class="film-frame">
-          <img src="assets/img/projetos/abdous/doc-frame-512.webp" width="1600" height="728" loading="lazy" alt="Alexandre, dono da Abdou's Barber, em entrevista no documentário" data-en-alt="Alexandre, owner of Abdou's Barber, interviewed in the documentary">
-          <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="film-len label">15:22</span>
+          <img src="assets/img/projetos/abdous/doc-frame-512.webp" width="1600" height="728" loading="lazy" alt="" aria-hidden="true">
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-copy">
+            <span class="label film-kicker"><i class="rec" aria-hidden="true"></i><span data-en="Documentary · Abdou's Barber">Documentário · Abdou's Barber</span></span>
+            <h3 class="film-h" data-en="The before &lt;em&gt;and the after.&lt;/em&gt;">O antes <em>e o depois.</em></h3>
+            <p class="film-sub" data-en="The owner and real clients telling, on camera, what changed after the system.">O dono e clientes de verdade contando, na câmera, o que mudou depois do sistema.</p>
+          </div>
+          <button type="button" class="film-cta" data-play-btn="doc">
+            <span class="film-cta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>
+            <span class="film-cta-txt"><b data-en="Watch the documentary">Assistir o documentário</b><span class="label">15:22 · <span data-en="subtitles">legendas</span> · <span data-en="8 chapters">8 capítulos</span></span></span>
+          </button>
         </div>
-        <figcaption>
-          <span class="film-title" data-en="Watch the documentary">Assistir o documentário</span>
-          <span class="label soft-label" data-en="15 min, with subtitles">15 min, com legendas</span>
-        </figcaption>
-      </figure>
-      <figure class="film film-side" data-reveal data-video="assets/video/comercial-abdous.mp4" data-vertical="1" data-poster="assets/img/projetos/abdous/comercial-poster.webp" data-title-pt="Comercial Abdou's Barber" data-title-en="Abdou's Barber commercial">
+        <ol class="chapters" aria-label="Capítulos">
+          <li><button type="button" data-play="doc" data-t="0"><time>0:00</time><span data-en="The shop before the system">A barbearia antes do sistema</span></button></li>
+          <li><button type="button" data-play="doc" data-t="397"><time>6:37</time><span data-en="What was it like before?">Como era antes do sistema?</span></button></li>
+          <li><button type="button" data-play="doc" data-t="441"><time>7:21</time><span data-en="The real impact">O real impacto no dia a dia</span></button></li>
+          <li><button type="button" data-play="doc" data-t="500"><time>8:20</time><span data-en="Talking to clients today">O contato com o cliente hoje</span></button></li>
+          <li><button type="button" data-play="doc" data-t="536"><time>8:56</time><span data-en="The client's view">Na visão do cliente</span></button></li>
+          <li><button type="button" data-play="doc" data-t="579"><time>9:39</time><span data-en="Client area and waiting list">Área do cliente e fila de espera</span></button></li>
+          <li><button type="button" data-play="doc" data-t="628"><time>10:28</time><span data-en="Memberships and plans">Mensalidades e planos</span></button></li>
+          <li><button type="button" data-play="doc" data-t="684"><time>11:24</time><span data-en="What changed the most">O que mais impactou</span></button></li>
+        </ol>
+      </div>
+      <div class="film film-side" data-reveal data-play="com" data-cursor="play">
         <div class="film-frame">
-          <img src="assets/img/projetos/abdous/comercial-poster.webp" width="720" height="1280" loading="lazy" alt="Abertura do comercial da Abdou's Barber" data-en-alt="Opening of the Abdou's Barber commercial">
+          <img src="assets/img/projetos/abdous/comercial-poster.webp" width="720" height="1280" loading="lazy" alt="" aria-hidden="true">
           <video class="film-loop" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
-          <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-          <span class="film-len label">1:00</span>
+          <div class="film-shade" aria-hidden="true"></div>
+          <span class="label film-tag" data-en="Commercial">Comercial</span>
+          <button type="button" class="film-cta film-cta--sm" data-play-btn="com">
+            <span class="film-cta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>
+            <span class="film-cta-txt"><b data-en="Watch with sound">Assistir com som</b><span class="label">1:00</span></span>
+          </button>
         </div>
-        <figcaption>
-          <span class="film-title" data-en="Commercial">Comercial</span>
-          <span class="label soft-label" data-en="With sound when you click">Com som ao clicar</span>
-        </figcaption>
-      </figure>
+      </div>
     </div>
 
     <div class="wrap numbers">
@@ -276,72 +292,94 @@
     </div>
     <ul class="srv rail" id="srv-rail">
       <li class="sv" data-reveal>
-        <div class="sv-visual sv-visual--phone"><div class="mini-phone"><img src="assets/img/projetos/abdous/cel-dashboard.webp" width="585" height="1266" loading="lazy" alt="Painel do dono da Abdou's Barber no celular" data-en-alt="Abdou's Barber owner dashboard on a phone"></div></div>
+        <div class="sv-visual sv-visual--fan" aria-hidden="true">
+          <div class="mini-phone"><img src="assets/img/projetos/abdous/cel-financeiro.webp" width="585" height="1266" loading="lazy" alt=""></div>
+          <div class="mini-phone"><img src="assets/img/projetos/abdous/cel-rankings.webp" width="585" height="1266" loading="lazy" alt=""></div>
+          <div class="mini-phone"><img src="assets/img/projetos/abdous/cel-fila.webp" width="585" height="1266" loading="lazy" alt=""></div>
+        </div>
         <div class="sv-body">
           <svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>
           <h3 data-en="Custom management systems">Sistemas de gestão sob medida</h3>
           <p data-en="Schedule, clients, stock, tabs, register and finances in a single dashboard, on phone and desktop.">Agenda, clientes, estoque, comandas, caixa e financeiro num painel só, no celular e no computador.</p>
-          <p class="sv-seen label"><span data-en="Live at:">No ar em:</span> <a href="#p-abdous-barber">Abdou's Barber</a> <a href="#p-psy-trekking">Psy Trekking</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
-        <div class="sv-visual sv-visual--chat" aria-hidden="true">
-          <div class="chat">
-            <p class="in"><span data-en="hi, any slot tomorrow at 10?">oi, tem horário amanhã às 10?</span><time>21:14</time></p>
-            <p class="out"><span data-en="Yes! Alexandre is free at 10:00 for a haircut. Want me to book it?">Tem sim! O Alexandre está livre às 10:00 pra corte. Quer que eu reserve?</span><time>21:14</time></p>
-            <p class="in"><span data-en="go ahead">pode marcar</span><time>21:15</time></p>
-            <p class="out"><span data-en="Booked: Thu, 10:00 with Alexandre. Here's your Pix link to confirm ✓">Agendado: quinta, 10:00 com o Alexandre. Segue o link do Pix pra confirmar ✓</span><time>21:15</time></p>
+        <div class="sv-visual sv-visual--wa" aria-hidden="true">
+          <div class="wa">
+            <div class="wa-head">
+              <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="wa-av">A</span>
+              <span class="wa-who"><b>Abdou's Barber</b><small data-en="online">online</small></span>
+              <svg viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h8A1.5 1.5 0 0 1 15 8.5v7a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 15.5zM15 11l5-3v8l-5-3" fill="currentColor"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
+            </div>
+            <div class="wa-body">
+              <span class="wa-day" data-en="TODAY">HOJE</span>
+              <p class="wa-in"><span data-en="hi, any slot tomorrow at 10?">oi, tem horário amanhã às 10?</span><time>21:14</time></p>
+              <p class="wa-out"><span data-en="Yes! Alexandre is free at 10:00 for a haircut. Shall I book it?">Tem sim! O Alexandre está livre às 10:00 pra corte. Quer que eu reserve?</span><time>21:14 <i class="tk"></i></time></p>
+              <p class="wa-in"><span data-en="go ahead 🙏">pode marcar 🙏</span><time>21:15</time></p>
+              <p class="wa-out"><span data-en="Booked ✅ Thu, 10:00 with Alexandre. I'll remind you 1h before.">Agendado ✅ quinta, 10:00 com o Alexandre. Te lembro 1h antes.</span><time>21:15 <i class="tk"></i></time></p>
+              <p class="wa-typing"><i></i><i></i><i></i></p>
+            </div>
           </div>
         </div>
         <div class="sv-body">
           <svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>
           <h3 data-en="AI customer service on WhatsApp">Atendimento no WhatsApp com IA</h3>
           <p data-en="An assistant that replies instantly, knows each client, books, sells, sends payment links and announces open slots.">Um assistente que responde na hora, conhece cada cliente, agenda, vende, manda link de pagamento e avisa quando abre vaga.</p>
-          <p class="sv-seen label"><span data-en="Live at:">No ar em:</span> <a href="#p-abdous-barber">Abdou's Barber</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
-        <div class="sv-visual sv-visual--browser"><div class="mini-browser"><img src="assets/img/projetos/psy/desktop-home.webp" width="1349" height="633" loading="lazy" alt="Site da Psy Trekking" data-en-alt="Psy Trekking website"></div></div>
+        <div class="sv-visual sv-visual--browser" aria-hidden="true">
+          <div class="mini-browser"><img src="assets/img/projetos/psy/desktop-home.webp" width="1349" height="633" loading="lazy" alt=""></div>
+          <div class="mini-phone mini-phone--corner"><img src="assets/img/projetos/abdous/cel-landing.webp" width="585" height="1266" loading="lazy" alt=""></div>
+        </div>
         <div class="sv-body">
           <svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg>
           <h3 data-en="Websites and landing pages">Sites e landing pages</h3>
           <p data-en="Pages that tell your story and turn visitors into clients. Fast, multilingual and easy to find on Google.">Páginas que contam a sua história e transformam visita em cliente. Rápidas, em vários idiomas e fáceis de achar no Google.</p>
-          <p class="sv-seen label"><span data-en="Live at:">No ar em:</span> <a href="#p-psy-trekking">Psy Trekking</a> <a href="#p-abdous-barber">Abdou's Barber</a> <a href="#p-casa-cheia">Casa Cheia</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
-        <div class="sv-visual sv-visual--phone"><div class="mini-phone"><img src="assets/img/projetos/abdous/cel-plano.webp" width="585" height="1266" loading="lazy" alt="Plano de assinatura com débito automático" data-en-alt="Subscription plan with automatic billing"></div></div>
+        <div class="sv-visual sv-visual--pay" aria-hidden="true">
+          <div class="mini-phone"><img src="assets/img/projetos/abdous/cel-assinaturas.webp" width="585" height="1266" loading="lazy" alt=""></div>
+          <div class="pay-toast">
+            <span class="pay-ic"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><b data-en="Payment approved">Pagamento aprovado</b><small>Pix · R$ 129,99</small></span>
+          </div>
+          <div class="pay-toast pay-toast--b">
+            <span class="pay-ic pay-ic--card"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18" stroke="currentColor" stroke-width="2"/></svg></span>
+            <span><b data-en="Monthly plan renewed">Plano renovado</b><small data-en="Card · automatic">Cartão · automático</small></span>
+          </div>
+        </div>
         <div class="sv-body">
           <svg class="ic" aria-hidden="true"><use href="#i-card"/></svg>
           <h3 data-en="Payments, plans and stores">Pagamentos, planos e lojas</h3>
           <p data-en="Pix, cards, recurring subscriptions, automatic partner commission and stores with in-store pickup.">Pix, cartão, assinatura recorrente, comissão automática entre parceiros e loja com retirada no balcão.</p>
-          <p class="sv-seen label"><span data-en="Live at:">No ar em:</span> <a href="#p-abdous-barber">Abdou's Barber</a> <a href="#p-to-na-porta">Tô na Porta</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
-        <div class="sv-visual sv-visual--duo"><div class="mini-phone"><img src="assets/img/projetos/tonaporta/cel-cardapio.webp" width="585" height="1266" loading="lazy" alt="Cardápio no app do cliente do Tô na Porta" data-en-alt="Menu in the Tô na Porta client app"></div><div class="mini-phone"><img src="assets/img/projetos/tonaporta/cel-rota.webp" width="585" height="1266" loading="lazy" alt="Rota no app do entregador" data-en-alt="Route in the courier app"></div></div>
+        <div class="sv-visual sv-visual--duo" aria-hidden="true"><div class="mini-phone"><img src="assets/img/projetos/tonaporta/cel-cardapio.webp" width="585" height="1266" loading="lazy" alt=""></div><div class="mini-phone"><img src="assets/img/projetos/tonaporta/cel-rota.webp" width="585" height="1266" loading="lazy" alt=""></div></div>
         <div class="sv-body">
           <svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>
           <h3 data-en="Apps and marketplaces">Apps e marketplaces</h3>
           <p data-en="Multi-sided platforms, like client, store and courier, with real-time orders, maps and phone notifications.">Plataformas com vários lados, como cliente, loja e entregador, com pedido em tempo real, mapa e avisos no celular.</p>
-          <p class="sv-seen label"><span data-en="Live at:">No ar em:</span> <a href="#p-to-na-porta">Tô na Porta</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
         <div class="sv-visual sv-visual--term" aria-hidden="true">
           <div class="term">
-            <p><time>09:12:04</time><span data-en="Certificate TRF-3 · downloaded · OCR ok">Certidão TRF-3 · baixada · OCR ok</span><i class="ok"></i></p>
-            <p><time>09:12:31</time><span data-en="Form filled · login + 2FA · 14 fields">Formulário preenchido · login + 2FA · 14 campos</span><i class="ok"></i></p>
-            <p><time>09:13:02</time><span data-en="PDF read · 3 pages · data extracted">PDF lido · 3 páginas · dados extraídos</span><i class="ok"></i></p>
+            <p><time>09:12:04</time><span data-en="Certificate · downloaded · OCR ok">Certidão · baixada · OCR ok</span><i class="ok"></i></p>
+            <p><time>09:12:31</time><span data-en="Form filled · login + 2FA">Formulário preenchido · login + 2FA</span><i class="ok"></i></p>
+            <p><time>09:13:02</time><span data-en="PDF read · data extracted">PDF lido · dados extraídos</span><i class="ok"></i></p>
             <p><time>09:13:09</time><span data-en="Spreadsheet updated · 128 rows">Planilha atualizada · 128 linhas</span><i class="ok"></i></p>
-            <p><time>09:13:10</time><span data-en="Next check in 15 min">Próxima consulta em 15 min</span><i class="wait"></i></p>
+            <p><time>09:13:10</time><span data-en="Next run in 15 min">Próxima rodada em 15 min</span><i class="wait"></i></p>
           </div>
         </div>
         <div class="sv-body">
           <svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>
           <h3 data-en="Automations and bots">Automações e robôs</h3>
           <p data-en="What someone does by hand today, done on its own: website lookups, forms, documents, PDF reading and integrations.">O que hoje alguém faz na mão, feito sozinho: consultas em sites, formulários, documentos, leitura de PDF e integrações.</p>
-          <p class="sv-seen label"><span data-en="Built at:">Feito na:</span> <span class="plain">Ridolfinvest</span></p>
         </div>
       </li>
     </ul>
@@ -368,56 +406,159 @@
 
   <!-- TRAJETÓRIA -->
   <section class="path wrap" id="trajetoria" aria-labelledby="path-t">
-    <div class="sec-head">
-      <span class="label sec-label" data-en="(Experience)">(Trajetória)</span>
-      <h2 class="display" id="path-t" data-reveal data-en="Experience &lt;span class=&quot;soft&quot;&gt;and education&lt;/span&gt;">Trajetória <span class="soft">e formação</span></h2>
-    </div>
-    <ol class="jobs">
-      <li data-reveal>
-        <div class="job-mark"><img src="assets/img/projetos/quatro-sistemas.webp" width="604" height="454" loading="lazy" alt="Os quatro sistemas no ar"></div>
-        <div class="job-main">
-          <span class="label when" data-en="Apr 2026 to present">04/2026 até hoje</span>
-          <h3 data-en="Independent developer &lt;span class=&quot;soft&quot;&gt;· Custom systems&lt;/span&gt;">Desenvolvedor independente <span class="soft">· Sistemas sob medida</span></h3>
-          <p data-en="I run my own practice: custom systems for real businesses, from the first chat with the owner to the system going live, together with my squad. Abdou's Barber, Tô na Porta, Psy Trekking and Casa Cheia.">Toco o meu próprio trabalho: sistemas sob medida para negócios reais, do primeiro papo com o dono até o sistema no ar, junto com o meu squad. Abdou's Barber, Tô na Porta, Psy Trekking e Casa Cheia.</p>
-          <ul class="chips"><li>Next.js</li><li>Fastify</li><li>PostgreSQL</li><li>WhatsApp + IA</li><li>Mercado Pago</li><li>PagBank</li></ul>
-        </div>
-      </li>
-      <li data-reveal>
-        <div class="job-mark job-mark--logo"><img src="assets/img/logo_ridolfinvest.png" width="257" height="87" loading="lazy" alt="Ridolfinvest"></div>
-        <div class="job-main">
-          <span class="label when" data-en="Dec 2024 to Apr 2026">12/2024 a 04/2026</span>
-          <h3 data-en="Ridolfinvest &lt;span class=&quot;soft&quot;&gt;· Junior Full Stack Developer&lt;/span&gt;">Ridolfinvest <span class="soft">· Desenvolvedor Full Stack Júnior</span></h3>
-          <p data-en="Grew a certificate automation into the company's internal tools hub. Automated forms with login, 2FA and per-user sessions (from about 15 to 5 minutes). Bots and integrations with Brazilian courts, including OCR.">Evoluí uma automação de certidões até virar a central de ferramentas internas da empresa. Formulários automatizados com login, 2FA e sessão por usuário (de cerca de 15 para 5 minutos). Robôs e integrações com TRFs e TJs, com leitura por OCR.</p>
-          <ul class="chips"><li>Python</li><li>Node.js</li><li>SQL</li><li>Web Scraping</li><li>OCR</li></ul>
-        </div>
-      </li>
-      <li data-reveal>
-        <div class="job-mark job-mark--logo"><img src="assets/img/logo_ridolfinvest.png" width="257" height="87" loading="lazy" alt="Ridolfinvest"></div>
-        <div class="job-main">
-          <span class="label when" data-en="Mar 2024 to Dec 2024">03/2024 a 12/2024</span>
-          <h3 data-en="Ridolfinvest &lt;span class=&quot;soft&quot;&gt;· Development Intern&lt;/span&gt;">Ridolfinvest <span class="soft">· Estagiário de Desenvolvimento</span></h3>
-          <p data-en="Automations, data scraping and integrations with Python and SQL. Promoted to developer in nine months.">Automações, raspagem de dados e integrações com Python e SQL. Promovido a desenvolvedor em nove meses.</p>
-          <ul class="chips"><li>Python</li><li>SQL</li><li>Web Scraping</li></ul>
-        </div>
-      </li>
-      <li data-reveal>
-        <div class="job-mark job-mark--logo"><img src="assets/img/logo_totale.png" width="186" height="106" loading="lazy" alt="Totale Tecnologia"></div>
-        <div class="job-main">
-          <span class="label when" data-en="2022 to 2024">2022 a 2024</span>
-          <h3 data-en="Totale Tecnologia &lt;span class=&quot;soft&quot;&gt;· IT Apprentice&lt;/span&gt;">Totale Tecnologia <span class="soft">· Jovem Aprendiz de TI</span></h3>
-          <p data-en="Support, hardware maintenance and environment setup.">Suporte, manutenção de hardware e configuração de ambientes.</p>
-          <ul class="chips"><li data-en="Support">Suporte</li><li>Hardware</li><li data-en="Networks">Redes</li></ul>
-        </div>
-      </li>
-    </ol>
-
-    <div class="edu">
-      <span class="label sec-label" data-en="(Education)">(Formação)</span>
-      <ul class="edu-grid">
-        <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg><b>USP / ESALQ</b><span data-en="MBA in Software Engineering">MBA em Engenharia de Software</span><small class="label" data-en="Since Nov 2025 · in progress">Desde 11/2025 · em andamento</small></li>
-        <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg><b>FIAP</b><span data-en="Associate degree in Systems Analysis and Development">Tecnólogo em Análise e Desenvolvimento de Sistemas</span><small class="label">2022 a 2024</small></li>
-        <li data-reveal class="edu-certs"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b data-en="29 certificates">29 certificados</b><span data-en="React, JavaScript, Python, Figma, Git, Power BI and more">React, JavaScript, Python, Figma, Git, Power BI e outros</span><button class="pill ghost sm label" type="button" id="open-certs" data-en="See certificates">Ver certificados</button></li>
+    <div class="sec-head sec-head--row">
+      <div>
+        <span class="label sec-label" data-en="(Experience)">(Trajetória)</span>
+        <h2 class="display" id="path-t" data-reveal data-en="Experience">Trajetória</h2>
+      </div>
+      <ul class="path-stats" data-reveal>
+        <li><b data-count="4" data-suffix="+">4+</b><span data-en="years in tech">anos em tecnologia</span></li>
+        <li><b data-count="9">9</b><span data-en="months from intern to developer">meses de estágio a desenvolvedor</span></li>
+        <li><b data-count="4">4</b><span data-en="systems live today">sistemas no ar hoje</span></li>
       </ul>
+    </div>
+
+    <div class="tl" id="timeline">
+      <div class="tl-rail" aria-hidden="true"><i></i></div>
+      <ol class="tl-list">
+        <li class="job is-current" data-reveal>
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="job-when label"><span data-en="Apr 2026 · now">04/2026 · hoje</span><small class="dur" data-from="2026-04"></small></div>
+          <div class="job-card">
+            <div class="job-top">
+              <div class="job-mark job-mark--me" aria-hidden="true"><span>MM</span></div>
+              <div class="job-id">
+                <h3 data-en="Independent developer">Desenvolvedor independente</h3>
+                <p data-en="Custom systems for real businesses">Sistemas sob medida para negócios reais</p>
+              </div>
+              <span class="badge label"><i class="dot" aria-hidden="true"></i><span data-en="Current">Atual</span></span>
+            </div>
+            <p class="job-sum" data-en="From the first chat with the owner to the system going live, together with my squad.">Do primeiro papo com o dono até o sistema no ar, junto com o meu squad.</p>
+            <button type="button" class="job-more label" aria-expanded="false"><span data-en="Show details">Ver detalhes</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
+            <div class="job-detail"><div>
+              <ul class="job-bullets">
+                <li data-en="Abdou's Barber: complete management system, client area, plans with automatic billing and AI on WhatsApp.">Abdou's Barber: sistema de gestão completo, área do cliente, planos com cobrança automática e IA no WhatsApp.</li>
+                <li data-en="Tô na Porta: three-sided delivery app (client, store and courier) with Pix, card and split commission.">Tô na Porta: app de delivery com três lados (cliente, loja e entregador), Pix, cartão e comissão separada.</li>
+                <li data-en="Psy Trekking: four-language website with booking and a financial dashboard for the guides.">Psy Trekking: site em quatro idiomas com reserva e painel financeiro dos guias.</li>
+                <li data-en="Casa Cheia: gift registry with AI-generated scenes and a host dashboard.">Casa Cheia: lista de presentes com cenas geradas por IA e painel da anfitriã.</li>
+              </ul>
+              <ul class="chips"><li>Next.js</li><li>TypeScript</li><li>Fastify</li><li>PostgreSQL</li><li>Docker</li><li>WhatsApp</li><li>Mercado Pago</li><li>PagBank</li></ul>
+            </div></div>
+          </div>
+        </li>
+        <li class="job" data-reveal>
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="job-when label"><span>12/2024 · 04/2026</span><small class="dur" data-from="2024-12" data-to="2026-04"></small></div>
+          <div class="job-card">
+            <div class="job-top">
+              <a class="job-mark job-mark--logo" href="https://ridolfinvest.com.br/" target="_blank" rel="noopener" aria-label="Ridolfinvest"><img src="assets/img/logo_ridolfinvest.png" width="257" height="87" loading="lazy" alt=""></a>
+              <div class="job-id">
+                <h3>Ridolfinvest</h3>
+                <p data-en="Junior Full Stack Developer">Desenvolvedor Full Stack Júnior</p>
+              </div>
+              <span class="badge label badge--up" data-en="Promoted">Promovido</span>
+            </div>
+            <p class="job-sum" data-en="Grew a certificate automation into the company's internal tools hub.">Evoluí uma automação de certidões até virar a central de ferramentas internas da empresa.</p>
+            <button type="button" class="job-more label" aria-expanded="false"><span data-en="Show details">Ver detalhes</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
+            <div class="job-detail"><div>
+              <ul class="job-bullets">
+                <li data-en="Full stack work on internal applications (front, back and SQL), focused on productivity and fewer manual steps.">Atuação full stack em aplicações internas (front, back e SQL), com foco em produtividade e menos etapas manuais.</li>
+                <li data-en="An internal platform that started as certificate automation and became the tools hub for internal teams, with auth, sessions and end-to-end flows.">Plataforma interna que começou como automação de certidões e virou a central de ferramentas das áreas, com autenticação, sessão e fluxos completos.</li>
+                <li data-en="Automated forms with login, 2FA and per-user sessions: from about 15 to 5 minutes per flow.">Formulários automatizados com login, 2FA e sessão por usuário: de cerca de 15 para 5 minutos por fluxo.</li>
+                <li data-en="Bots and integrations with Brazilian courts (TRFs and TJs), including OCR value reading and cookie/token maintenance routines.">Robôs e integrações com TRFs e TJs, incluindo leitura de valores em imagem (OCR) e rotinas de manutenção de cookies e tokens.</li>
+              </ul>
+              <div class="metric"><b>15 → 5 min</b><span data-en="per automated form flow">por fluxo de formulário automatizado</span></div>
+              <ul class="chips"><li>React</li><li>JavaScript</li><li>Python</li><li>Flask</li><li>MySQL</li><li>Web Scraping</li><li>OCR</li></ul>
+            </div></div>
+          </div>
+        </li>
+        <li class="job" data-reveal>
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="job-when label"><span>03/2024 · 12/2024</span><small class="dur" data-from="2024-03" data-to="2024-12"></small></div>
+          <div class="job-card">
+            <div class="job-top">
+              <a class="job-mark job-mark--logo" href="https://ridolfinvest.com.br/" target="_blank" rel="noopener" aria-label="Ridolfinvest"><img src="assets/img/logo_ridolfinvest.png" width="257" height="87" loading="lazy" alt=""></a>
+              <div class="job-id">
+                <h3>Ridolfinvest</h3>
+                <p data-en="Development Intern">Estagiário de Desenvolvimento</p>
+              </div>
+            </div>
+            <p class="job-sum" data-en="Automations, data scraping and integrations with Python and SQL. Promoted to developer in nine months.">Automações, raspagem de dados e integrações com Python e SQL. Promovido a desenvolvedor em nove meses.</p>
+            <button type="button" class="job-more label" aria-expanded="false"><span data-en="Show details">Ver detalhes</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
+            <div class="job-detail"><div>
+              <ul class="job-bullets">
+                <li data-en="Learned databases and scraping hands-on and shipped real deliveries quickly.">Aprendi banco de dados e raspagem na prática e já apliquei em entregas reais.</li>
+                <li data-en="Operational automations and integration routines: imports, consolidation and data validation to reduce rework.">Automações operacionais e rotinas de integração: importação, consolidação e validação de dados para reduzir retrabalho.</li>
+                <li data-en="Support on internal tools (forms, certificates, team tools) with attention to logs, errors and consistency.">Apoio em ferramentas internas (formulários, certidões, apoio ao time) com atenção a logs, erros e consistência.</li>
+              </ul>
+              <ul class="chips"><li>Python</li><li>SQL</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Web Scraping</li></ul>
+            </div></div>
+          </div>
+        </li>
+        <li class="job" data-reveal>
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="job-when label"><span>2022 · 2024</span><small class="dur" data-from="2022-01" data-to="2024-01"></small></div>
+          <div class="job-card">
+            <div class="job-top">
+              <a class="job-mark job-mark--logo" href="https://totaletecnologia.com.br/" target="_blank" rel="noopener" aria-label="Totale Tecnologia"><img src="assets/img/logo_totale.png" width="186" height="106" loading="lazy" alt=""></a>
+              <div class="job-id">
+                <h3>Totale Tecnologia</h3>
+                <p data-en="IT Apprentice">Jovem Aprendiz de TI</p>
+              </div>
+            </div>
+            <p class="job-sum" data-en="My first job in IT: support, hardware maintenance and environment setup.">Primeira experiência em TI: suporte, manutenção de hardware e configuração de ambientes.</p>
+            <button type="button" class="job-more label" aria-expanded="false"><span data-en="Show details">Ver detalhes</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
+            <div class="job-detail"><div>
+              <ul class="job-bullets">
+                <li data-en="Hardware maintenance (diagnostics, component replacement) and workstation support.">Manutenção de hardware (diagnóstico, troca de componentes) e suporte a estações de trabalho.</li>
+                <li data-en="Software installation and setup, updates and standardized environments.">Instalação e configuração de softwares, atualizações e padronização de ambientes.</li>
+                <li data-en="User support, building communication and teamwork in a corporate setting.">Suporte a usuários, desenvolvendo comunicação e trabalho em equipe no ambiente corporativo.</li>
+              </ul>
+              <ul class="chips"><li>Windows</li><li>Hardware</li><li data-en="Networks">Redes</li><li>Helpdesk</li></ul>
+            </div></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="edu" id="formacao">
+      <div class="edu-head">
+        <h3 class="edu-title" data-en="Education">Formação</h3>
+        <div class="tabs label" role="tablist" aria-label="Formação">
+          <button type="button" role="tab" id="tab-acad" aria-controls="panel-acad" aria-selected="true" data-en="Academic">Acadêmica</button>
+          <button type="button" role="tab" id="tab-cert" aria-controls="panel-cert" aria-selected="false" data-en="Courses and certificates · 29">Cursos e certificados · 29</button>
+          <i class="tabs-ink" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="edu-panel" id="panel-acad" role="tabpanel" aria-labelledby="tab-acad">
+        <ul class="edu-grid">
+          <li data-reveal>
+            <div class="edu-top"><span class="edu-logo">USP</span><span class="badge label"><i class="dot" aria-hidden="true"></i><span data-en="In progress">Em andamento</span></span></div>
+            <b data-en="MBA in Software Engineering">MBA em Engenharia de Software</b>
+            <span class="label soft-label">USP / ESALQ · <span data-en="since Nov 2025">desde 11/2025</span></span>
+            <p data-en="Software engineering fundamentals and practice: architecture, quality, DevOps, agile methods and modern applications.">Fundamentos e práticas de Engenharia de Software: arquitetura, qualidade, DevOps, métodos ágeis e aplicações modernas.</p>
+            <div class="edu-prog" aria-hidden="true"><i style="--p:.3"></i></div>
+          </li>
+          <li data-reveal>
+            <div class="edu-top"><span class="edu-logo">FIAP</span><span class="badge label badge--done" data-en="Completed">Concluído</span></div>
+            <b data-en="Associate degree in Systems Analysis and Development">Tecnólogo em Análise e Desenvolvimento de Sistemas</b>
+            <span class="label soft-label">FIAP · 2022 a 2024</span>
+            <p data-en="Hands-on, market-oriented degree with projects in web, databases, REST APIs, ORM, BI, NoSQL, cloud and mobile.">Formação prática e voltada ao mercado, com projetos em web, banco de dados, APIs REST, ORM, BI, NoSQL, cloud e mobile.</p>
+            <div class="edu-prog" aria-hidden="true"><i style="--p:1"></i></div>
+          </li>
+        </ul>
+      </div>
+      <div class="edu-panel" id="panel-cert" role="tabpanel" aria-labelledby="tab-cert" hidden>
+        <div class="chips-filter label" id="cert-chips" role="group" aria-label="Filtrar">
+          <button type="button" data-cat="all" aria-pressed="true"><span data-en="All">Todos</span> <i>29</i></button>
+          <button type="button" data-cat="frontend" aria-pressed="false">Front-end <i>13</i></button>
+          <button type="button" data-cat="backend" aria-pressed="false">Back-end <i>7</i></button>
+          <button type="button" data-cat="design" aria-pressed="false">Design <i>4</i></button>
+          <button type="button" data-cat="others" aria-pressed="false"><span data-en="Others">Outros</span> <i>5</i></button>
+        </div>
+        <ul class="cert-grid" id="cert-grid"></ul>
+        <button type="button" class="pill ghost cert-more" id="cert-more"></button>
+      </div>
     </div>
   </section>
 
@@ -473,14 +614,14 @@
         <p class="sec-sub" data-reveal data-en="Not a list of logos I've heard of. Each one is running in a real system today.">Não é lista de logo que eu já vi. Cada uma está rodando num sistema real hoje.</p>
       </div>
       <ul class="integ-list">
-        <li data-reveal><img src="assets/img/tech/whatsapp.svg" alt="" loading="lazy"><div><b>WhatsApp</b><span data-en="AI assistant that books, sells, charges and answers 24/7; order updates at every step.">Assistente com IA que agenda, vende, cobra e responde 24h; avisos de pedido em cada etapa.</span></div><a class="label" href="#p-abdous-barber">Abdou's Barber</a></li>
-        <li data-reveal><img src="assets/img/tech/mercadopago.svg" alt="" loading="lazy"><div><b>Mercado Pago</b><span data-en="Pix and card checkout with the platform commission split automatically per order.">Checkout Pix e cartão com a comissão da plataforma separada automaticamente por pedido.</span></div><a class="label" href="#p-to-na-porta">Tô na Porta</a></li>
-        <li data-reveal><img src="assets/img/tech/pagbank.svg" alt="" loading="lazy"><div><b>PagBank</b><span data-en="Recurring subscriptions with saved card, automatic monthly charge and receipts.">Assinatura recorrente com cartão salvo, cobrança automática todo mês e recibo.</span></div><a class="label" href="#p-abdous-barber">Abdou's Barber</a></li>
-        <li data-reveal><img src="assets/img/tech/gemini.svg" alt="" loading="lazy"><div><b>Google Gemini</b><span data-en="Generative AI for customer service and for the scenes of a gift registry that fills up with each gift.">IA generativa no atendimento e nas cenas de uma lista de presentes que vai se enchendo a cada presente.</span></div><a class="label" href="#p-casa-cheia">Casa Cheia</a></li>
-        <li data-reveal><img src="assets/img/tech/googlemaps.svg" alt="" loading="lazy"><div><b>Google Maps</b><span data-en="Courier route, live position and delivery time for the client.">Rota do entregador, posição em tempo real e previsão de entrega pro cliente.</span></div><a class="label" href="#p-to-na-porta">Tô na Porta</a></li>
-        <li data-reveal><img src="assets/img/tech/resend.svg" alt="" loading="lazy"><div><b>Resend</b><span data-en="Transactional email: confirmations, reminders and access codes.">E-mail transacional: confirmações, lembretes e códigos de acesso.</span></div><a class="label" href="#p-casa-cheia">Casa Cheia</a></li>
-        <li data-reveal><img src="assets/img/tech/cloudflare.svg" alt="" loading="lazy"><div><b>Cloudflare + Hetzner</b><span data-en="Own server with Docker, DNS, tunnel and protection in front of every system.">Servidor próprio com Docker, DNS, túnel e proteção na frente de todos os sistemas.</span></div><span class="label plain" data-en="All projects">Todos os projetos</span></li>
-        <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg><div><b data-en="Courts, forms and OCR">Tribunais, formulários e OCR</b><span data-en="Bots that query TRFs and TJs, fill forms with 2FA and read certificates from PDF.">Robôs que consultam TRFs e TJs, preenchem formulários com 2FA e leem certidões em PDF.</span></div><span class="label plain">Ridolfinvest</span></li>
+        <li data-reveal><img src="assets/img/tech/whatsapp.svg" alt="" loading="lazy"><div><b>WhatsApp</b><span data-en="AI assistant that books, sells, charges and answers 24/7; order updates at every step.">Assistente com IA que agenda, vende, cobra e responde 24h; avisos de pedido em cada etapa.</span></div></li>
+        <li data-reveal><img src="assets/img/tech/mercadopago.svg" alt="" loading="lazy"><div><b>Mercado Pago</b><span data-en="Pix and card checkout with the platform commission split automatically per order.">Checkout Pix e cartão com a comissão da plataforma separada automaticamente por pedido.</span></div></li>
+        <li data-reveal><img src="assets/img/tech/pagbank.svg" alt="" loading="lazy"><div><b>PagBank</b><span data-en="Recurring subscriptions with saved card, automatic monthly charge and receipts.">Assinatura recorrente com cartão salvo, cobrança automática todo mês e recibo.</span></div></li>
+        <li data-reveal><img src="assets/img/tech/gemini.svg" alt="" loading="lazy"><div><b>Google Gemini</b><span data-en="Generative AI for customer service and for the scenes of a gift registry that fills up with each gift.">IA generativa no atendimento e nas cenas de uma lista de presentes que vai se enchendo a cada presente.</span></div></li>
+        <li data-reveal><img src="assets/img/tech/googlemaps.svg" alt="" loading="lazy"><div><b>Google Maps</b><span data-en="Courier route, live position and delivery time for the client.">Rota do entregador, posição em tempo real e previsão de entrega pro cliente.</span></div></li>
+        <li data-reveal><img src="assets/img/tech/resend.svg" alt="" loading="lazy"><div><b>Resend</b><span data-en="Transactional email: confirmations, reminders and access codes.">E-mail transacional: confirmações, lembretes e códigos de acesso.</span></div></li>
+        <li data-reveal><img src="assets/img/tech/cloudflare.svg" alt="" loading="lazy"><div><b>Cloudflare + Hetzner</b><span data-en="Own server with Docker, DNS, tunnel and protection in front of every system.">Servidor próprio com Docker, DNS, túnel e proteção na frente de todos os sistemas.</span></div></li>
+        <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg><div><b data-en="Courts, forms and OCR">Tribunais, formulários e OCR</b><span data-en="Bots that query TRFs and TJs, fill forms with 2FA and read certificates from PDF.">Robôs que consultam TRFs e TJs, preenchem formulários com 2FA e leem certidões em PDF.</span></div></li>
       </ul>
     </div>
   </section>
@@ -592,35 +733,13 @@
   <button class="lb-btn lb-close" type="button" id="lb-close" aria-label="Fechar"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
 </div>
 
-<!-- CERTIFICADOS -->
-<div class="certs" id="certs" role="dialog" aria-modal="true" aria-labelledby="certs-t" hidden>
-  <div class="certs-box">
-    <div class="certs-head">
-      <h2 id="certs-t" data-en="29 certified courses">29 cursos certificados</h2>
-      <button class="lb-btn" type="button" id="certs-close" aria-label="Fechar"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
-    </div>
-    <div class="chips label" id="cert-chips" role="group" aria-label="Filtrar">
-      <button type="button" data-cat="all" aria-pressed="true" data-en="All">Todos</button>
-      <button type="button" data-cat="frontend" aria-pressed="false">Front-end</button>
-      <button type="button" data-cat="backend" aria-pressed="false">Back-end</button>
-      <button type="button" data-cat="design" aria-pressed="false">Design</button>
-      <button type="button" data-cat="others" aria-pressed="false" data-en="Others">Outros</button>
-    </div>
-    <ul class="cert-grid" id="cert-grid"></ul>
-  </div>
-</div>
-
-<!-- VÍDEO -->
-<div class="lb" id="vp" role="dialog" aria-modal="true" aria-label="Vídeo" hidden>
-  <div class="vp-frame" id="vp-frame"></div>
-  <button class="lb-btn lb-close" type="button" id="vp-close" aria-label="Fechar"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
-</div>
 
 <div class="toast label" id="toast" role="status" aria-live="polite"></div>
 
 <a class="fab" id="fab" href="https://wa.me/5511910254958" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/img/tech/whatsapp.svg" alt="" width="26" height="26"></a>
 
 <script src="scripts/dados.js"></script>
+<script src="scripts/player.js"></script>
 <script src="scripts/site.js"></script>
 </body>
 </html>

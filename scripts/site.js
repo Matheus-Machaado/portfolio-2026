@@ -12,8 +12,8 @@
   var lang = root.getAttribute("data-lang") === "en" ? "en" : "pt";
 
   var T = {
-    pt: { client: "Cliente", own: "Projeto próprio", screen: "Tela", of: "de", copied: "E-mail copiado", copyFail: "Não deu pra copiar. O e-mail está selecionado.", noScreens: "Sem telas nesta resolução.", close: "Fechar", prev: "Anterior", next: "Próxima", desktop: "Desktop", phone: "Celular" },
-    en: { client: "Client", own: "Own product", screen: "Screen", of: "of", copied: "Email copied", copyFail: "Couldn't copy. The email is selected.", noScreens: "No screens at this size.", close: "Close", prev: "Previous", next: "Next", desktop: "Desktop", phone: "Phone" }
+    pt: { more: "Ver mais", less: "Ver menos", details: "Ver detalhes", hide: "Esconder detalhes", seeProject: "Ver projeto", showMore: "Mostrar mais {n}", showLess: "Mostrar menos", mo: "mês", mos: "meses", yr: "ano", yrs: "anos", and: "e", play: "Assistir", drag: "Arraste", client: "Cliente", own: "Projeto próprio", screen: "Tela", of: "de", copied: "E-mail copiado", copyFail: "Não deu pra copiar. O e-mail está selecionado.", noScreens: "Sem telas nesta resolução.", close: "Fechar", prev: "Anterior", next: "Próxima", desktop: "Desktop", phone: "Celular" },
+    en: { more: "Show more", less: "Show less", details: "Show details", hide: "Hide details", seeProject: "View project", showMore: "Show {n} more", showLess: "Show less", mo: "month", mos: "months", yr: "year", yrs: "years", and: "and", play: "Watch", drag: "Drag", client: "Client", own: "Own product", screen: "Screen", of: "of", copied: "Email copied", copyFail: "Couldn't copy. The email is selected.", noScreens: "No screens at this size.", close: "Close", prev: "Previous", next: "Next", desktop: "Desktop", phone: "Phone" }
   };
   var t = function (k) { return T[lang][k] || k; };
   var field = function (p, k) { return (lang === "en" && p[k + "_en"]) || p[k] || ""; };
@@ -33,8 +33,11 @@
     $$("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
     $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf"); });
     if (persist) { try { localStorage.setItem("mm-lang", lang); } catch (e) {} }
+    splitHeadings();
     renderWork();
     renderCerts();
+    renderDurations();
+    syncJobs();
     if (typeof renderCode === "function") renderCode(false);
     if (current) renderProject(current, view);
   }
@@ -106,6 +109,30 @@
   }
   menuBtn.addEventListener("click", function () { setMenu(menu.hidden); });
   $$("#menu a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
+
+  /* ---------- Títulos palavra a palavra ---------- */
+  function splitHeadings() {
+    $$(".display, .contact-title, .film-h").forEach(function (el) {
+      var i = 0;
+      (function walk(node) {
+        Array.prototype.slice.call(node.childNodes).forEach(function (c) {
+          if (c.nodeType === 3) {
+            var parts = c.textContent.split(/(\s+)/), frag = document.createDocumentFragment();
+            parts.forEach(function (p) {
+              if (!p) return;
+              if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
+              var w = document.createElement("span"); w.className = "w";
+              var inner = document.createElement("span"); inner.textContent = p; inner.style.setProperty("--wi", i++);
+              w.appendChild(inner); frag.appendChild(w);
+            });
+            node.replaceChild(frag, c);
+          } else if (c.nodeType === 1 && !c.classList.contains("w")) walk(c);
+        });
+      })(el);
+      el.classList.add("is-split");
+    });
+  }
+  splitHeadings();
 
   /* ---------- Revelar no scroll ---------- */
   var revealEls = $$("[data-reveal]"), revealSweep = function () {};
@@ -266,7 +293,80 @@
     var past = window.scrollY > hero.offsetHeight * .8;
     var r = contactSec.getBoundingClientRect();
     var atContact = r.top < window.innerHeight && r.bottom > 0;
-    fab.classList.toggle("is-on", past && !atContact && pd.hidden && menu.hidden && vp.hidden);
+    fab.classList.toggle("is-on", past && !atContact && pd.hidden && menu.hidden && !(window.MMPlayer && window.MMPlayer.isOpen()));
+  }
+
+  /* ---------- Barra de leitura ---------- */
+  var progress = $("#progress");
+  function updateProgress() {
+    if (!progress) return;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = "scaleX(" + (h > 0 ? window.scrollY / h : 0).toFixed(4) + ")";
+  }
+
+  /* ---------- Parallax nas capas ---------- */
+  function updateParallax() {
+    if (reduceMotion) return;
+    var vh = window.innerHeight;
+    $$(".wk-cover img, .film-main .film-frame > img").forEach(function (img) {
+      var r = img.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      var k = (r.top + r.height / 2 - vh / 2) / vh;
+      img.style.transform = "translate3d(0," + (k * -6).toFixed(2) + "%,0) scale(1.12)";
+    });
+  }
+
+  /* ---------- Faixa reage à rolagem ---------- */
+  var track = $(".track"), tickX = 0, lastSY = window.scrollY, vel = 0;
+  if (track && !reduceMotion) {
+    track.style.animation = "none";
+    (function loop() {
+      var sy = window.scrollY, d = sy - lastSY; lastSY = sy;
+      vel += (d - vel) * .1;
+      tickX -= .5 + Math.min(12, Math.abs(vel) * .35);
+      var half = track.scrollWidth / 2;
+      if (half && -tickX >= half) tickX += half;
+      track.style.transform = "translate3d(" + tickX.toFixed(2) + "px,0,0) skewX(" + clamp(-vel * .25, -8, 8).toFixed(2) + "deg)";
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ---------- Cursor e botões magnéticos (computador) ---------- */
+  var cursor = $("#cursor");
+  if (cursor && finePointer && !reduceMotion) {
+    root.classList.add("has-cursor");
+    var cx = innerWidth / 2, cy = innerHeight / 2, tx2 = cx, ty2 = cy, label = cursor.querySelector(".cursor-label");
+    window.addEventListener("pointermove", function (e) { tx2 = e.clientX; ty2 = e.clientY; cursor.classList.add("on"); }, { passive: true });
+    document.addEventListener("pointerleave", function () { cursor.classList.remove("on"); });
+    (function follow() {
+      cx += (tx2 - cx) * .2; cy += (ty2 - cy) * .2;
+      cursor.style.transform = "translate3d(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px,0)";
+      requestAnimationFrame(follow);
+    })();
+    document.addEventListener("pointerover", function (e) {
+      var c = e.target.closest("[data-cursor]"), lnk = e.target.closest("a, button, [role=tab], input, select");
+      cursor.classList.toggle("big", !!c);
+      cursor.classList.toggle("link", !c && !!lnk);
+      label.textContent = c ? (c.dataset.cursor === "play" ? t("play") : c.dataset.cursor === "drag" ? t("drag") : t("seeProject")) : "";
+    });
+    $$(".pill, .wk-arrow, .film-cta-ic").forEach(function (b) {
+      b.addEventListener("pointermove", function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.transform = "translate(" + ((e.clientX - r.left - r.width / 2) * .18).toFixed(1) + "px," + ((e.clientY - r.top - r.height / 2) * .25).toFixed(1) + "px)";
+      });
+      b.addEventListener("pointerleave", function () { b.style.transform = ""; });
+    });
+  }
+
+  /* ---------- Hero acompanha o mouse ---------- */
+  var heroName = $(".name"), heroPhoto = $(".photo"), heroCut = $(".cut");
+  if (finePointer && !reduceMotion && heroName) {
+    hero.addEventListener("pointermove", function (e) {
+      if (root.classList.contains("intro")) return;
+      var x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
+      heroName.style.translate = (x * -14).toFixed(1) + "px " + (y * -6).toFixed(1) + "px";
+      heroPhoto.style.translate = heroCut.style.translate = (x * 10).toFixed(1) + "px " + (y * 6).toFixed(1) + "px";
+    });
   }
 
   /* ---------- Loop de scroll ---------- */
@@ -274,7 +374,7 @@
   function onScroll() {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(function () { ticking = false; onNavScroll(); updateSteps(); updFab(); revealSweep(); });
+    requestAnimationFrame(function () { ticking = false; onNavScroll(); updateSteps(); updFab(); revealSweep(); updateTimeline(); updateProgress(); updateParallax(); });
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
@@ -286,14 +386,20 @@
   function renderWork() {
     if (!workList) return;
     workList.innerHTML = DATA.projects.map(function (p) {
-      var techs = (p.technologies || []).slice(0, 4).map(function (x) { return "<li>" + (lang === "en" && x === "IA" ? "AI" : x) + "</li>"; }).join("");
-      return '<li><a class="wk" href="#p-' + p.id + '">' +
+      var n = (p.desktopImages || []).length + (p.mobileImages || []).length;
+      return '<li><a class="wk" href="#p-' + p.id + '" data-cursor="project">' +
         '<span class="wk-cover"><img src="' + p.coverImage + '" alt="" loading="lazy" width="1200" height="900"><span class="wk-type label">' + typeLabel(p) + "</span></span>" +
         '<span class="wk-body"><span class="wk-name">' + p.title + "</span>" +
         '<span class="wk-arrow">' + arrowSvg + "</span>" +
         '<span class="wk-ctx"><b>' + field(p, "company") + "</b>" + field(p, "description") + "</span>" +
-        '<ul class="chips">' + techs + "</ul></span></a></li>";
+        '<span class="wk-foot label"><span>' + t("seeProject") + '</span><span>' + n + (lang === "en" ? " screens" : " telas") + "</span></span></span></a></li>";
     }).join("");
+    var items = $$(":scope > li", workList);
+    if (!("IntersectionObserver" in window) || reduceMotion) { items.forEach(function (li) { li.classList.add("is-in"); }); return; }
+    var wo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting || e.boundingClientRect.top < 0) { e.target.classList.add("is-in"); wo.unobserve(e.target); } });
+    }, { threshold: .15 });
+    items.forEach(function (li) { if (li.getBoundingClientRect().top < innerHeight) li.classList.add("is-in"); else wo.observe(li); });
   }
 
   /* ---------- Detalhe do projeto ---------- */
@@ -409,63 +515,134 @@
   lb.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
   lb.addEventListener("touchend", function (e) { if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) showLb(lbIdx + (dx < 0 ? 1 : -1)); tx = null; });
 
-  /* ---------- Certificados ---------- */
-  var certs = $("#certs"), certGrid = $("#cert-grid"), certCat = "all";
+  /* ---------- Certificados (embutidos na formação) ---------- */
+  var certGrid = $("#cert-grid"), certMore = $("#cert-more"), certCat = "all", certOpen = false;
+  var CERT_PAGE = window.innerWidth < 721 ? 4 : 8;
   function renderCerts() {
     if (!certGrid) return;
-    certGrid.innerHTML = DATA.certificates.filter(function (c) { return certCat === "all" || c.cat === certCat; }).map(function (c) {
-      return '<li><a href="' + c.pdf + '" target="_blank" rel="noopener"><img src="' + c.img + '" alt="" loading="lazy" width="836" height="563"><span>' + c.name + "</span></a></li>";
+    var list = DATA.certificates.filter(function (c) { return certCat === "all" || c.cat === certCat; });
+    var shown = certOpen ? list : list.slice(0, CERT_PAGE);
+    certGrid.innerHTML = shown.map(function (c, i) {
+      return '<li style="--i:' + (i % CERT_PAGE) + '"><a href="' + c.pdf + '" target="_blank" rel="noopener"><span class="cert-img"><img src="' + c.img + '" alt="" loading="lazy" width="836" height="563"></span><span class="cert-cat label">' + (c.cat === "others" ? (lang === "en" ? "Others" : "Outros") : c.cat === "frontend" ? "Front-end" : c.cat === "backend" ? "Back-end" : "Design") + '</span><span class="cert-name">' + c.name + '</span><span class="cert-open label">PDF ↗</span></a></li>';
     }).join("");
+    var rest = list.length - CERT_PAGE;
+    certMore.hidden = rest <= 0;
+    certMore.textContent = certOpen ? t("showLess") : t("showMore").replace("{n}", rest);
   }
   $$("#cert-chips button").forEach(function (b) {
     b.addEventListener("click", function () {
-      certCat = b.dataset.cat;
+      certCat = b.dataset.cat; certOpen = false;
       $$("#cert-chips button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
       renderCerts();
     });
   });
-  var certOpener = null;
-  $("#open-certs").addEventListener("click", function (e) { certOpener = e.currentTarget; certs.hidden = false; root.classList.add("lock"); $("#certs-close").focus(); });
-  function closeCerts() { certs.hidden = true; if (pd.hidden) root.classList.remove("lock"); if (certOpener) certOpener.focus(); }
-  $("#certs-close").addEventListener("click", closeCerts);
-  certs.addEventListener("click", function (e) { if (e.target === certs) closeCerts(); });
+  if (certMore) certMore.addEventListener("click", function () {
+    certOpen = !certOpen; renderCerts();
+    if (!certOpen) $("#formacao").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  });
 
-  /* ---------- Vídeos do case ---------- */
-  var vp = $("#vp"), vpFrame = $("#vp-frame");
-  $$(".film").forEach(function (f) {
-    var src = (f.dataset.video || "").trim();
-    if (!src) return;
-    f.classList.add("is-playable"); f.tabIndex = 0; f.setAttribute("role", "button");
-    f.setAttribute("aria-label", f.dataset["title" + (lang === "en" ? "En" : "Pt")]);
-    var open = function () {
-      var title = f.dataset["title" + (lang === "en" ? "En" : "Pt")];
-      vpFrame.classList.toggle("is-vertical", !!f.dataset.vertical);
-      vpFrame.innerHTML = src.indexOf("yt:") === 0
-        ? '<iframe src="https://www.youtube-nocookie.com/embed/' + src.slice(3) + '?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen title="' + title + '"></iframe>'
-        : '<video src="' + src + '" poster="' + (f.dataset.poster || "") + '" controls autoplay playsinline title="' + title + '"></video>';
-      vp.hidden = false; root.classList.add("lock"); updFab(); $("#vp-close").focus();
-      var loop = f.querySelector(".film-loop"); if (loop) loop.pause();
-    };
-    f.addEventListener("click", open);
-    f.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  /* ---------- Abas da formação ---------- */
+  var tabs = $$(".tabs [role=tab]"), ink = $(".tabs-ink");
+  function moveInk() {
+    var a = $(".tabs [aria-selected=true]");
+    if (!a || !ink) return;
+    ink.style.width = a.offsetWidth + "px"; ink.style.transform = "translateX(" + a.offsetLeft + "px)";
+  }
+  tabs.forEach(function (tb, i) {
+    tb.addEventListener("click", function () {
+      tabs.forEach(function (x) { var on = x === tb; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; $("#" + x.getAttribute("aria-controls")).hidden = !on; });
+      moveInk();
+    });
+    tb.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      var n = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); n.click();
+    });
+  });
+  window.addEventListener("resize", moveInk);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveInk);
+
+  /* ---------- Trajetória: detalhes + duração + linha ---------- */
+  function syncJobs() {
+    $$(".job-more").forEach(function (b) { b.querySelector("span").textContent = b.getAttribute("aria-expanded") === "true" ? t("hide") : t("details"); });
+  }
+  $$(".job-more").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var job = b.closest(".job"), open = b.getAttribute("aria-expanded") !== "true";
+      b.setAttribute("aria-expanded", String(open)); job.classList.toggle("is-open", open);
+      syncJobs();
+    });
+  });
+  function renderDurations() {
+    var now = new Date();
+    $$(".dur").forEach(function (d) {
+      var f = d.dataset.from.split("-"), to = d.dataset.to ? d.dataset.to.split("-") : [now.getFullYear(), now.getMonth() + 1];
+      var m = (+to[0] - +f[0]) * 12 + (+to[1] - +f[1]); if (m < 1) m = 1;
+      var y = Math.floor(m / 12), r = m % 12, out = [];
+      if (y) out.push(y + " " + (y > 1 ? t("yrs") : t("yr")));
+      if (r) out.push(r + " " + (r > 1 ? t("mos") : t("mo")));
+      d.textContent = out.join(" " + t("and") + " ");
+    });
+  }
+  var tlEl = $("#timeline"), tlFill = $(".tl-rail i");
+  function updateTimeline() {
+    if (!tlEl || !tlFill) return;
+    var r = tlEl.getBoundingClientRect(), vh = window.innerHeight;
+    var p = reduceMotion ? 1 : clamp((vh * .6 - r.top) / r.height, 0, 1);
+    tlFill.style.transform = "scaleY(" + p.toFixed(3) + ")";
+    $$(".job", tlEl).forEach(function (j) { j.classList.toggle("lit", j.getBoundingClientRect().top < vh * .6 || reduceMotion); });
+  }
+
+  /* ---------- Vídeos do case (player próprio) ---------- */
+  var VIDEOS = {
+    doc: {
+      key: "doc-v9", src: "assets/video/documentario-abdous.mp4", poster: "assets/img/projetos/abdous/doc-frame-512.webp",
+      kicker: { pt: "Documentário", en: "Documentary" }, title: { pt: "Abdou's Barber · o antes e o depois", en: "Abdou's Barber · the before and after" },
+      chapters: [
+        { t: 0, pt: "A barbearia antes do sistema", en: "The shop before the system" },
+        { t: 397, pt: "Como era antes do sistema?", en: "What was it like before?" },
+        { t: 441, pt: "O real impacto no dia a dia", en: "The real impact" },
+        { t: 500, pt: "O contato com o cliente hoje", en: "Talking to clients today" },
+        { t: 536, pt: "Na visão do cliente", en: "The client's view" },
+        { t: 579, pt: "Área do cliente e fila de espera", en: "Client area and waiting list" },
+        { t: 628, pt: "Mensalidades e planos", en: "Memberships and plans" },
+        { t: 684, pt: "O que mais impactou", en: "What changed the most" },
+        { t: 809, pt: "Créditos e bastidores", en: "Credits and behind the scenes" }
+      ]
+    },
+    com: { key: "com-60", src: "assets/video/comercial-abdous.mp4", poster: "assets/img/projetos/abdous/comercial-poster.webp", vertical: true, kicker: { pt: "Comercial", en: "Commercial" }, title: { pt: "Abdou's Barber", en: "Abdou's Barber" }, chapters: [] }
+  };
+  var loopVid = $(".film-loop");
+  function playVideo(id, start) {
+    var v = VIDEOS[id];
+    if (!v || !window.MMPlayer) return;
+    if (loopVid) loopVid.pause();
+    window.MMPlayer.open({
+      key: v.key, src: v.src, poster: v.poster, vertical: v.vertical, chapters: v.chapters, start: start,
+      kicker: v.kicker[lang], title: v.title[lang],
+      onOpen: function () { updFab(); }, onClose: function () { root.classList.remove("lock"); updFab(); }
+    });
+  }
+  $$("[data-play]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-t]");
+      if (b && b !== el && !el.contains(b)) return;
+      e.stopPropagation();
+      playVideo(el.dataset.play, b ? +b.dataset.t : (el.dataset.t ? +el.dataset.t : undefined));
+    });
   });
   // Comercial roda sem som no quadro quando aparece na tela (só no computador, pra poupar dados no celular).
-  var loopVid = $(".film-loop");
   if (loopVid && finePointer && !reduceMotion && "IntersectionObserver" in window) {
-    var loopSrc = $(".film-side").dataset.video;
     new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting && vp.hidden) {
-          if (!loopVid.getAttribute("src")) loopVid.src = loopSrc;
+        var busy = window.MMPlayer && window.MMPlayer.isOpen();
+        if (e.isIntersecting && !busy) {
+          if (!loopVid.getAttribute("src")) loopVid.src = VIDEOS.com.src;
           var p = loopVid.play(); if (p && p.catch) p.catch(function () {});
           loopVid.classList.add("is-on");
         } else { loopVid.pause(); }
       });
     }, { threshold: .4 }).observe(loopVid);
   }
-  function closeVp() { vp.hidden = true; vpFrame.innerHTML = ""; if (pd.hidden && certs.hidden) root.classList.remove("lock"); updFab(); }
-  $("#vp-close").addEventListener("click", closeVp);
-  vp.addEventListener("click", function (e) { if (e.target === vp) closeVp(); });
 
   /* ---------- Copiar e-mail ---------- */
   var toast = $("#toast"), toastT = null;
@@ -483,9 +660,8 @@
   /* ---------- Teclado ---------- */
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
-      if (!vp.hidden) return closeVp();
+      if (window.MMPlayer && window.MMPlayer.isOpen()) return;
       if (!lb.hidden) return closeLb();
-      if (!certs.hidden) return closeCerts();
       if (!pd.hidden) return $("#pd-close").click();
       if (!menu.hidden) return setMenu(false);
     }

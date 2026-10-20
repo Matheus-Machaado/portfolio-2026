@@ -126,9 +126,14 @@ window.MM_DATA = {
    "liveUrl": "https://casacheia.netlify.app",
    "coverImage": "assets/img/projetos/casacheia/capa.webp",
    "desktopImages": [
-    "assets/img/projetos/casacheia/capa.webp"
-   ],
-   "mobileImages": []
+  "assets/img/projetos/casacheia/desktop-inicio.webp",
+  "assets/img/projetos/casacheia/desktop-presentes.webp"
+ ],
+   "mobileImages": [
+  "assets/img/projetos/casacheia/cel-inicio.webp",
+  "assets/img/projetos/casacheia/cel-presentes.webp",
+  "assets/img/projetos/casacheia/cel-presentes-2.webp"
+ ]
   }
  ],
  "certificates": [

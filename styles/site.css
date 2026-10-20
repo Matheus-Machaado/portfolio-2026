@@ -1265,3 +1265,55 @@ html.intro .hero-bg { animation: none; }
   .about-body { order: 2; }
   .about-side .about-stats { order: 3; }
 }
+
+/* =========================================================
+   RODADA 11 · menu do celular, hero sem nome no celular, textos justificados
+   ========================================================= */
+.lang-circle { display: none; }
+.menu-btn { display: none; width: 44px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border-radius: 50%; }
+.menu-btn i { display: block; width: 22px; height: 2px; border-radius: 2px; background: var(--fg); }
+.menu-btn:focus-visible, .lang-circle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.menu {
+  position: fixed; inset: 0; z-index: 140; display: grid; place-items: center; padding: calc(70px + env(safe-area-inset-top, 0px)) 24px calc(32px + env(safe-area-inset-bottom, 0px));
+  background: #0c0b0ab8; -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2);
+  opacity: 0; transition: opacity .35s ease; overflow-y: auto;
+}
+.menu.is-open { opacity: 1; }
+.menu-x { position: absolute; top: calc(14px + env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 0; background: none; color: var(--fg); display: grid; place-items: center; cursor: pointer; }
+.menu-x svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.menu-in { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+.menu-brand { margin: 0 0 6px; font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: .04em; font-variation-settings: "wdth" 112; color: var(--accent); }
+.menu-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.menu-links li { overflow: visible; }
+.menu-links a { display: block; text-decoration: none; padding: 6px 18px; font-weight: 700; font-size: 20px; line-height: 1.3; text-transform: none; font-variation-settings: "wdth" 100; letter-spacing: -.01em; color: var(--fg); border-radius: 10px; transition: color .2s, background .2s; }
+.menu-links a:hover, .menu-links a:focus-visible { color: var(--accent); background: #ff563114; }
+.menu-in > * { opacity: 0; transform: translateY(12px); transition: opacity .4s ease, transform .5s var(--ease); }
+.menu.is-open .menu-in > * { opacity: 1; transform: none; }
+.menu.is-open .menu-in > :nth-child(2) { transition-delay: .05s; } .menu.is-open .menu-in > :nth-child(3) { transition-delay: .1s; }
+.menu.is-open .menu-in > :nth-child(4) { transition-delay: .15s; } .menu.is-open .menu-in > :nth-child(5) { transition-delay: .2s; }
+.menu.is-open .menu-links a { animation: none; }
+.menu-social { display: flex; gap: 18px; }
+.menu-social a { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; color: var(--fg); transition: color .2s, background .2s; }
+.menu-social a:hover { color: var(--accent); background: #ff563114; }
+.menu-social svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.menu-cta { margin-top: 4px; }
+@media (max-width: 1180px) {
+  .menu-btn { display: inline-flex; }
+}
+@media (max-width: 720px) {
+  .lang-circle { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: none; color: var(--fg); cursor: pointer; padding: 0; font-size: 12px; }
+  .nav-right { gap: 6px; }
+  .name { display: none; }
+  .stage { height: min(118vw, 500px); }
+  .photo { -webkit-mask-image: linear-gradient(to top, transparent 0, #000 22%); mask-image: linear-gradient(to top, transparent 0, #000 22%); }
+}
+
+/* Textos de descrição justificados (títulos não) */
+.about-text p, .sec-sub, .sv p, .wk-ctx, .job-story, .job-bullets li, .steps p, .integ-list span, .edu-grid p, .contact-row p, .film-sub, .pd-desc p, .cert-name {
+  text-align: justify; text-justify: inter-word; hyphens: auto; -webkit-hyphens: auto;
+}
+.about-text .lead { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.cert-name { text-align: left; hyphens: manual; }
+.menu { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.menu[hidden] { display: none; }
+.menu-in { margin: auto; }

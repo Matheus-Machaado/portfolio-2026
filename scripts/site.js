@@ -62,7 +62,7 @@
   if (root.classList.contains("intro")) {
     var start = function () {
       root.classList.add("play");
-      introTimer = setTimeout(endIntro, 4700);
+      introTimer = setTimeout(endIntro, 3300);
       ["keydown", "wheel", "touchstart"].forEach(function (ev) { window.addEventListener(ev, endIntro, { passive: true }); });
     };
     var started = false;
@@ -72,10 +72,6 @@
     $("#skip-intro").addEventListener("click", endIntro);
   }
 
-  /* ---------- Relógio ---------- */
-  var clock = $("#clock");
-  function tick() { try { clock.textContent = new Intl.DateTimeFormat("pt-BR", { hour: "2-digit", minute: "2-digit", timeZone: "America/Sao_Paulo" }).format(new Date()); } catch (e) {} }
-  tick(); setInterval(tick, 30000);
 
   /* ---------- Nav ---------- */
   var nav = $("#nav"), lastY = window.scrollY, hero = $(".hero");
@@ -199,13 +195,10 @@
       [["c", "// matheus.ts"]],
       [["k", "const "], ["f", "matheus"], ["p", " = {"]],
       [["p", "  cargo: "], ["s", "\"Desenvolvedor Full Stack\""], ["p", ","]],
-      [["p", "  desde: "], ["n", "2022"], ["p", ","]],
       [["p", "  formacao: ["], ["s", "\"FIAP\""], ["p", ", "], ["s", "\"MBA USP\""], ["p", "],"]],
-      [["p", "  front: ["], ["s", "\"React\""], ["p", ", "], ["s", "\"Next.js\""], ["p", ", "], ["s", "\"TS\""], ["p", "],"]],
-      [["p", "  back: ["], ["s", "\"Node.js\""], ["p", ", "], ["s", "\"Python\""], ["p", ", "], ["s", "\"SQL\""], ["p", "],"]],
-      [["p", "  tambem: ["], ["s", "\"IA\""], ["p", ", "], ["s", "\"pagamentos\""], ["p", ", "], ["s", "\"vídeo\""], ["p", "],"]],
-      [["p", "  emProducao: "], ["n", "4"], ["p", ","]],
-      [["p", "  trabalho: "], ["s", "\"100% remoto\""], ["p", ","]],
+      [["p", "  desde: "], ["n", "2022"], ["p", ","]],
+      [["p", "  sistemasNoAr: "], ["n", "4"], ["p", ","]],
+      [["p", "  foco: "], ["s", "\"resolver problema real\""], ["p", ","]],
       [["p", "};"]],
       [],
       [["k", "export default "], ["f", "matheus"], ["p", ";"]]
@@ -214,13 +207,10 @@
       [["c", "// matheus.ts"]],
       [["k", "const "], ["f", "matheus"], ["p", " = {"]],
       [["p", "  role: "], ["s", "\"Full Stack Developer\""], ["p", ","]],
-      [["p", "  since: "], ["n", "2022"], ["p", ","]],
       [["p", "  education: ["], ["s", "\"FIAP\""], ["p", ", "], ["s", "\"MBA USP\""], ["p", "],"]],
-      [["p", "  front: ["], ["s", "\"React\""], ["p", ", "], ["s", "\"Next.js\""], ["p", ", "], ["s", "\"TS\""], ["p", "],"]],
-      [["p", "  back: ["], ["s", "\"Node.js\""], ["p", ", "], ["s", "\"Python\""], ["p", ", "], ["s", "\"SQL\""], ["p", "],"]],
-      [["p", "  also: ["], ["s", "\"AI\""], ["p", ", "], ["s", "\"payments\""], ["p", ", "], ["s", "\"video\""], ["p", "],"]],
-      [["p", "  inProduction: "], ["n", "4"], ["p", ","]],
-      [["p", "  works: "], ["s", "\"100% remote\""], ["p", ","]],
+      [["p", "  since: "], ["n", "2022"], ["p", ","]],
+      [["p", "  systemsLive: "], ["n", "4"], ["p", ","]],
+      [["p", "  focus: "], ["s", "\"solving real problems\""], ["p", ","]],
       [["p", "};"]],
       [],
       [["k", "export default "], ["f", "matheus"], ["p", ";"]]

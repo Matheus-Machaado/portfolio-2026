@@ -1,677 +1,462 @@
 <!doctype html>
-<html lang="pt">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<title>Matheus Machado | Soluções sob medida</title>
-		<meta name="description" content="Matheus Machado, desenvolvedor full stack. Sistemas sob medida, feitos a partir do problema real do seu negócio: gestão, WhatsApp com IA, sites e pagamentos." />
-		<meta name="author" content="Matheus Machado" />
-
-		<link rel="canonical" href="https://matheus-machado-dev.com.br/" />
-
-		<meta property="og:title" content="Matheus Machado | Soluções sob medida" />
-		<meta property="og:description" content="Sistemas sob medida, feitos a partir do problema real do seu negócio." />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://matheus-machado-dev.com.br/" />
-		<meta property="og:image" content="https://matheus-machado-dev.com.br/assets/og/og-image.png" />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="Matheus Machado, soluções sob medida" />
-		<meta property="og:locale" content="pt_BR" />
-		<meta property="og:locale:alternate" content="en_US" />
-
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Matheus Machado | Soluções sob medida" />
-		<meta name="twitter:description" content="Sistemas sob medida, feitos a partir do problema real do seu negócio." />
-		<meta name="twitter:image" content="https://matheus-machado-dev.com.br/assets/og/og-image.png" />
-
-		<link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml" />
-		<link rel="apple-touch-icon" href="assets/img/fav-icon.png" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-		<link rel="stylesheet" href="styles/styles.css" />
-
-		<script>
-			(function () {
-				try {
-					var saved = localStorage.getItem("mm_portfolio_lang");
-					if (saved === "en" || saved === "pt") {
-						document.documentElement.lang = saved;
-						return;
-					}
-					var nav = (navigator.language || navigator.userLanguage || "pt").toLowerCase();
-					document.documentElement.lang = nav.indexOf("pt") === 0 ? "pt" : "en";
-				} catch (e) {}
-			})();
-		</script>
-	</head>
-
-	<body>
-		<canvas id="code-bg" class="code-bg" aria-hidden="true"></canvas>
-
-		<div id="intro-overlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Intro">
-			<div class="intro-container">
-				<div class="terminal-window">
-					<div class="terminal-header">
-						<div class="dot dot-red"></div>
-						<div class="dot dot-yellow"></div>
-						<div class="dot dot-green"></div>
-						<span class="terminal-title">matheus@portfolio ~</span>
-					</div>
-
-					<div class="terminal-body">
-						<div id="intro-lines" class="terminal-lines" aria-live="polite"></div>
-
-						<div id="intro-cursor" class="terminal-cursor-row">
-							<span class="terminal-prompt">&gt;</span>
-							<span class="terminal-cursor"></span>
-						</div>
-
-						<div id="intro-select" class="intro-select hidden">
-							<p class="intro-select-title text-muted">
-								&gt; Select your language / Selecione seu idioma:
-							</p>
-							<div class="intro-select-buttons">
-								<button id="intro-pt" class="btn-outline btn-outline-wide" type="button">
-									<span class="flag">🇧🇷</span>
-									<span>Português</span>
-								</button>
-								<button id="intro-en" class="btn-outline btn-outline-wide" type="button">
-									<span class="flag">🇺🇸</span>
-									<span>English</span>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<pre class="intro-code intro-code-left" aria-hidden="true">const developer = {
-	name: "Matheus Machado",
-	passion: "∞",
-};</pre>
-
-			<pre class="intro-code intro-code-right" aria-hidden="true">function createSolution() {
-	return innovation;
-}</pre>
-		</div>
-
-		<div id="site" class="site hidden">
-			<header class="navbar glass">
-				<div class="container nav-inner">
-					<a href="#home" class="logo" aria-label="Go to home">
-						<img src="assets/img/logo-mm.svg" alt="Matheus Machado" width="136" height="44" />
-					</a>
-
-					<nav class="nav-links" aria-label="Primary navigation">
-						<a class="nav-link" href="#home" data-i18n="nav.home"></a>
-						<a class="nav-link" href="#about" data-i18n="nav.about"></a>
-						<a class="nav-link" href="#case" data-i18n="nav.case"></a>
-						<a class="nav-link" href="#services" data-i18n="nav.services"></a>
-						<a class="nav-link" href="#projects" data-i18n="nav.projects"></a>
-						<a class="nav-link" href="#experience" data-i18n="nav.experience"></a>
-						<a class="nav-link" href="#contact" data-i18n="nav.contact"></a>
-					</nav>
-
-					<div class="nav-actions">
-						<button id="language-button" class="lang-button" type="button" aria-haspopup="dialog" aria-expanded="false">
-							PT
-						</button>
-
-						<button id="mobile-menu-button" class="mobile-menu-button" type="button" aria-label="Open menu">
-							<span class="icon" data-icon="menu" aria-hidden="true"></span>
-						</button>
-					</div>
-				</div>
-			</header>
-
-			<div id="language-backdrop" class="language-backdrop hidden" aria-hidden="true"></div>
-
-			<div id="language-modal" class="language-modal hidden" role="dialog" aria-label="Language selector">
-				<div class="language-modal-inner">
-					<button id="lang-en" class="language-option" type="button">
-						<span class="lang-code">EN</span>
-						<span class="lang-name" data-i18n="language.english"></span>
-					</button>
-
-					<button id="language-close" class="language-close" type="button" aria-label="Close">
-						<span class="icon-inline" data-icon="x" aria-hidden="true"></span>
-					</button>
-
-					<button id="lang-pt" class="language-option" type="button">
-						<span class="lang-code">PT</span>
-						<span class="lang-name" data-i18n="language.portuguese"></span>
-					</button>
-				</div>
-			</div>
-
-			<div id="mobile-menu" class="mobile-menu hidden" role="dialog" aria-modal="true" aria-label="Mobile menu">
-				<div class="mobile-menu-backdrop"></div>
-				<div class="mobile-menu-content">
-					<button id="mobile-menu-close" class="mobile-menu-close" type="button" aria-label="Close menu">
-						<span class="icon" data-icon="x" aria-hidden="true"></span>
-					</button>
-
-					<div class="mobile-logo" aria-hidden="true">
-						<img src="assets/img/logo-mm.svg" alt="Matheus Machado" width="136" height="44" />
-					</div>
-
-					<nav class="mobile-nav" aria-label="Mobile navigation">
-						<a class="mobile-nav-link" href="#home" data-i18n="nav.home"></a>
-						<a class="mobile-nav-link" href="#about" data-i18n="nav.about"></a>
-						<a class="mobile-nav-link" href="#case" data-i18n="nav.case"></a>
-						<a class="mobile-nav-link" href="#services" data-i18n="nav.services"></a>
-						<a class="mobile-nav-link" href="#projects" data-i18n="nav.projects"></a>
-						<a class="mobile-nav-link" href="#experience" data-i18n="nav.experience"></a>
-						<a class="mobile-nav-link" href="#contact" data-i18n="nav.contact"></a>
-					</nav>
-
-					<button id="mobile-lang-button" class="mobile-lang-button" type="button">PT</button>
-
-					<div class="mobile-social">
-						<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-							<span class="icon" data-icon="github" aria-hidden="true"></span>
-						</a>
-						<a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-							<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
-						</a>
-					</div>
-
-					<p class="mobile-repo text-muted">
-						<span data-i18n="mobile.repo.before"></span> <a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" class="text-primary" data-i18n="mobile.repo.link"></a> <span data-i18n="mobile.repo.after"></span>
-					</p>
-				</div>
-			</div>
-
-			<div class="fixed-social" aria-label="Social links">
-				<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-					<span class="icon" data-icon="github" aria-hidden="true"></span>
-				</a>
-				<a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-					<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
-				</a>
-				<div class="fixed-social-line" aria-hidden="true"></div>
-			</div>
-
-
-			<main>
-				<section id="home" class="hero section hero-section">
-					<div class="container">
-						<div class="hero-grid">
-							<div class="hero-content reveal from-left">
-								<p class="hero-greeting text-primary font-mono" data-i18n="hero.greeting"></p>
-
-								<h1 class="hero-title">
-									<span class="text-gradient glow-text" data-i18n="hero.name"></span>
-								</h1>
-
-								<h2 class="hero-typing font-mono text-muted">
-									<span id="hero-typing-text"></span>
-									<span class="hero-cursor">|</span>
-								</h2>
-
-								<p class="hero-subtitle" data-i18n="hero.subtitle"></p>
-								<p class="hero-support text-muted" data-i18n="hero.support"></p>
-
-								<div class="hero-cta">
-									<a href="https://wa.me/5511910254958" target="_blank" rel="noopener noreferrer" class="btn-primary cta-btn" data-wa-link>
-										<span class="icon-inline" data-icon="messageCircle" aria-hidden="true"></span>
-										<span data-i18n="hero.cta.contact"></span>
-									</a>
-
-									<a href="#case" class="btn-outline cta-btn">
-										<span class="icon-inline" data-icon="play" aria-hidden="true"></span>
-										<span data-i18n="hero.cta.case"></span>
-									</a>
-
-									<button id="download-cv" class="btn-ghost cta-btn" type="button">
-										<span class="icon-inline" data-icon="download" aria-hidden="true"></span>
-										<span data-i18n="hero.cta.cv"></span>
-									</button>
-								</div>
-
-								<dl class="hero-proof">
-									<div><dt class="font-mono" data-i18n="hero.proof1.label"></dt><dd class="text-gradient">4</dd></div>
-									<div><dt class="font-mono" data-i18n="hero.proof2.label"></dt><dd class="text-gradient">24h</dd></div>
-									<div><dt class="font-mono" data-i18n="hero.proof3.label"></dt><dd class="text-gradient">2022</dd></div>
-								</dl>
-							</div>
-
-							<div class="hero-photo reveal from-right" aria-label="Matheus Machado">
-								<div class="portrait">
-									<div class="portrait-glow" aria-hidden="true"></div>
-									<div class="portrait-ring" aria-hidden="true"></div>
-									<div class="portrait-disc" aria-hidden="true"></div>
-									<div class="portrait-clip">
-										<img src="assets/img/hero-perfil.webp" alt="Matheus Machado" class="portrait-img" width="760" height="895" fetchpriority="high" />
-									</div>
-									<div class="float-tag float-tag-1 font-mono">&lt;SobMedida /&gt;</div>
-									<div class="float-tag float-tag-2 font-mono">WhatsApp + IA</div>
-									<div class="float-tag float-tag-3 font-mono">Next.js</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="scroll-indicator" aria-hidden="true">
-							<div class="scroll-pill">
-								<div class="scroll-dot"></div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section id="about" class="section">
-					<div class="container">
-						<div class="section-head text-center reveal">
-							<span class="section-kicker text-primary font-mono">// <span data-i18n="about.subtitle"></span></span>
-							<h2 class="section-title">
-								<span class="text-gradient" data-i18n="about.title"></span>
-							</h2>
-						</div>
-
-						<div class="about-grid">
-							<div class="about-photo reveal from-left">
-								<div class="about-photo-frame">
-									<img src="assets/img/sobre-frente.webp" alt="Matheus Machado" width="760" height="1105" loading="lazy" />
-								</div>
-								<div class="about-photo-tag font-mono">
-									<span class="status-dot status-dot-pulse"></span>
-									<span data-i18n="about.available"></span>
-								</div>
-							</div>
-
-							<div class="about-content reveal from-right">
-								<p class="about-lead" data-i18n="about.lead"></p>
-								<p class="text-muted about-text" data-i18n="about.description"></p>
-
-								<div class="about-social">
-									<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" class="social-pill">
-										<span class="icon-inline" data-icon="github" aria-hidden="true"></span>
-										<span>GitHub</span>
-									</a>
-									<a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener noreferrer" class="social-pill">
-										<span class="icon-inline" data-icon="linkedin" aria-hidden="true"></span>
-										<span>LinkedIn</span>
-									</a>
-									<a href="https://wa.me/5511910254958" target="_blank" rel="noopener noreferrer" class="social-pill" data-wa-link>
-										<span class="icon-inline" data-icon="messageCircle" aria-hidden="true"></span>
-										<span>WhatsApp</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section id="case" class="section section-alt">
-					<div class="container">
-						<div class="section-head reveal">
-							<span class="section-kicker text-primary font-mono">// <span data-i18n="case.kicker"></span></span>
-							<h2 class="section-title">
-								<span class="text-gradient" data-i18n="case.title"></span>
-							</h2>
-							<p class="text-muted case-lead" data-i18n="case.lead"></p>
-						</div>
-
-						<div class="case-film reveal">
-							<button id="case-play" class="case-film-btn" type="button">
-								<img src="assets/img/projetos/abdous/landing-desktop.webp" alt="" class="case-film-poster" loading="lazy" />
-								<span class="case-film-shade" aria-hidden="true"></span>
-								<span class="case-film-play" aria-hidden="true"><span class="play-triangle"></span></span>
-								<span class="case-film-info">
-									<span class="case-film-kicker font-mono">// documentário</span>
-									<span class="case-film-title" data-i18n="case.watch"></span>
-									<span class="case-film-meta font-mono" data-i18n="case.watchMeta"></span>
-								</span>
-							</button>
-						</div>
-
-						<div class="case-stats">
-							<div class="case-stat card-dark reveal"><span class="case-stat-value text-gradient">6</span><span class="case-stat-label" data-i18n="case.stat1"></span></div>
-							<div class="case-stat card-dark reveal"><span class="case-stat-value text-gradient">411</span><span class="case-stat-label" data-i18n="case.stat2"></span></div>
-							<div class="case-stat card-dark reveal"><span class="case-stat-value text-gradient">24h</span><span class="case-stat-label" data-i18n="case.stat3"></span></div>
-							<div class="case-stat card-dark reveal"><span class="case-stat-value text-gradient">15+</span><span class="case-stat-label" data-i18n="case.stat4"></span></div>
-						</div>
-
-						<div class="case-body">
-							<div class="case-built reveal from-left">
-								<h3 class="case-built-title" data-i18n="case.built"></h3>
-								<ul class="case-list">
-									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c1"></span></li>
-									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c2"></span></li>
-									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c3"></span></li>
-									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c4"></span></li>
-									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c5"></span></li>
-									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c6"></span></li>
-									<li><span class="icon-inline" data-icon="check" aria-hidden="true"></span><span data-i18n="case.c7"></span></li>
-								</ul>
-								<div class="project-tech case-tech">
-									<span class="tech-pill">Next.js</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Fastify</span><span class="tech-pill">Prisma</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">IA</span>
-								</div>
-								<div class="case-links">
-									<a href="https://abdousbarber.com.br" target="_blank" rel="noopener noreferrer" class="btn-outline cta-btn">
-										<span class="icon-inline" data-icon="externalLink" aria-hidden="true"></span>
-										<span>abdousbarber.com.br</span>
-									</a>
-									<a href="projeto-detalhe.html?id=abdous-barber" class="case-more text-primary font-mono" data-i18n="case.more"></a>
-								</div>
-							</div>
-
-							<div class="case-phones reveal from-right" aria-label="Telas do sistema da Abdou's Barber">
-								<figure class="phone phone-1"><img src="assets/img/projetos/abdous/cel-dashboard.webp" alt="Dashboard do dono" loading="lazy" /></figure>
-								<figure class="phone phone-2"><img src="assets/img/projetos/abdous/cel-fila-cliente.webp" alt="Fila de espera do cliente" loading="lazy" /></figure>
-								<figure class="phone phone-3"><img src="assets/img/projetos/abdous/cel-agenda.webp" alt="Agenda do dia" loading="lazy" /></figure>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section id="services" class="section">
-					<div class="container">
-						<div class="section-head text-center reveal">
-							<span class="section-kicker text-primary font-mono">// <span data-i18n="services.kicker"></span></span>
-							<h2 class="section-title">
-								<span class="text-gradient" data-i18n="services.title"></span>
-							</h2>
-							<p class="text-muted services-lead" data-i18n="services.lead"></p>
-						</div>
-
-						<div class="services-grid">
-							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="calendar" aria-hidden="true"></span><h3 data-i18n="services.t1"></h3><p class="text-muted" data-i18n="services.p1"></p></article>
-							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="messageCircle" aria-hidden="true"></span><h3 data-i18n="services.t2"></h3><p class="text-muted" data-i18n="services.p2"></p></article>
-							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="monitor" aria-hidden="true"></span><h3 data-i18n="services.t3"></h3><p class="text-muted" data-i18n="services.p3"></p></article>
-							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="creditCard" aria-hidden="true"></span><h3 data-i18n="services.t4"></h3><p class="text-muted" data-i18n="services.p4"></p></article>
-							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="smartphone" aria-hidden="true"></span><h3 data-i18n="services.t5"></h3><p class="text-muted" data-i18n="services.p5"></p></article>
-							<article class="service-card card-dark reveal"><span class="service-icon" data-icon="cpu" aria-hidden="true"></span><h3 data-i18n="services.t6"></h3><p class="text-muted" data-i18n="services.p6"></p></article>
-						</div>
-
-						<div class="process">
-							<h3 class="process-title font-mono text-primary">// <span data-i18n="process.title"></span></h3>
-							<ol class="process-steps">
-								<li class="reveal"><span class="process-n font-mono">01</span><h4 data-i18n="process.t1"></h4><p class="text-muted" data-i18n="process.p1"></p></li>
-								<li class="reveal"><span class="process-n font-mono">02</span><h4 data-i18n="process.t2"></h4><p class="text-muted" data-i18n="process.p2"></p></li>
-								<li class="reveal"><span class="process-n font-mono">03</span><h4 data-i18n="process.t3"></h4><p class="text-muted" data-i18n="process.p3"></p></li>
-								<li class="reveal"><span class="process-n font-mono">04</span><h4 data-i18n="process.t4"></h4><p class="text-muted" data-i18n="process.p4"></p></li>
-							</ol>
-						</div>
-					</div>
-				</section>
-
-				<section id="projects" class="section">
-					<div class="container">
-						<div class="section-head reveal">
-							<span class="section-kicker text-primary font-mono">// <span data-i18n="projects.subtitle"></span></span>
-							<h2 class="section-title">
-								<span class="text-gradient" data-i18n="projects.title"></span>
-							</h2>
-							<p class="text-muted projects-desc" data-i18n="projects.lead"></p>
-						</div>
-
-						<div class="projects-wrap">
-							<div class="projects-nav">
-								<button id="projects-prev" class="icon-btn" type="button" aria-label="Previous projects">
-									<span class="icon" data-icon="chevronLeft" aria-hidden="true"></span>
-								</button>
-								<button id="projects-next" class="icon-btn" type="button" aria-label="Next projects">
-									<span class="icon" data-icon="chevronRight" aria-hidden="true"></span>
-								</button>
-							</div>
-
-							<div id="projects-grid" class="projects-grid"></div>
-
-							<div class="projects-progress">
-								<div class="projects-progress-track">
-									<div id="projects-progress-bar" class="projects-progress-bar"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section id="experience" class="section">
-					<div class="container">
-						<div class="section-head reveal">
-							<span class="section-kicker text-primary font-mono">// <span data-i18n="experience.subtitle"></span></span>
-							<h2 class="section-title">
-								<span class="text-gradient" data-i18n="experience.title"></span>
-							</h2>
-							<p id="experience-lead" class="text-muted"></p>
-						</div>
-
-						<div class="timeline">
-							<div class="timeline-line" aria-hidden="true"></div>
-							<div id="experience-timeline" class="timeline-items"></div>
-						</div>
-					</div>
-				</section>
-
-				<section id="education" class="section">
-					<div class="container">
-						<div class="section-head reveal">
-							<span class="section-kicker text-primary font-mono">// <span data-i18n="education.subtitle"></span></span>
-							<h2 class="section-title">
-								<span class="text-gradient" data-i18n="education.title"></span>
-							</h2>
-							<p id="education-lead" class="text-muted"></p>
-						</div>
-
-						<div class="edu-tabs">
-							<button id="tab-academic" class="edu-tab active" type="button" data-i18n="education.academic"></button>
-							<button id="tab-courses" class="edu-tab" type="button" data-i18n="education.courses"></button>
-							<div id="edu-tab-indicator" class="edu-tab-indicator" aria-hidden="true"></div>
-						</div>
-
-						<div id="education-academic" class="edu-panel">
-							<div class="edu-cards">
-								<div class="card-dark edu-card reveal">
-									<div class="edu-card-top">
-										<div class="edu-card-left">
-											<h3 class="edu-inst" data-i18n="education.fiap.name"></h3>
-											<p class="edu-degree text-primary font-mono" data-i18n="education.fiap.degree"></p>
-											<p class="text-muted small" data-i18n="education.fiap.description"></p>
-										</div>
-										<div class="edu-card-right">
-											<p class="font-mono small text-muted" data-i18n="education.fiap.period"></p>
-											<span class="status-badge status-complete">
-												<span class="status-dot"></span>
-												<span data-i18n="education.fiap.status"></span>
-											</span>
-										</div>
-									</div>
-								</div>
-
-								<div class="card-dark edu-card reveal">
-									<div class="edu-card-top">
-										<div class="edu-card-left">
-											<h3 class="edu-inst" data-i18n="education.usp.name"></h3>
-											<p class="edu-degree text-primary font-mono" data-i18n="education.usp.degree"></p>
-											<p class="text-muted small" data-i18n="education.usp.description"></p>
-										</div>
-										<div class="edu-card-right">
-											<p class="font-mono small text-muted" data-i18n="education.usp.period"></p>
-											<span class="status-badge status-progress">
-												<span class="status-dot status-dot-pulse"></span>
-												<span data-i18n="education.usp.status"></span>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div id="education-courses" class="edu-panel hidden">
-							<div class="edu-filters">
-								<button class="filter-btn active" type="button" data-filter="all" data-i18n="education.filter.all"></button>
-								<button class="filter-btn" type="button" data-filter="frontend" data-i18n="education.filter.frontend"></button>
-								<button class="filter-btn" type="button" data-filter="backend" data-i18n="education.filter.backend"></button>
-								<button class="filter-btn" type="button" data-filter="design" data-i18n="education.filter.design"></button>
-								<button class="filter-btn" type="button" data-filter="sql" data-i18n="education.filter.sql"></button>
-								<button class="filter-btn" type="button" data-filter="others" data-i18n="education.filter.others"></button>
-							</div>
-
-							<div id="certificates-grid" class="cert-grid"></div>
-							<nav id="cert-pagination" class="cert-pagination hidden" aria-label="Certificates pagination"></nav>
-						</div>
-					</div>
-				</section>
-
-				<section id="skills" class="section section-alt">
-					<div class="container">
-						<div class="section-head text-center reveal">
-							<span class="section-kicker text-primary font-mono">// <span data-i18n="skills.subtitle"></span></span>
-							<h2 class="section-title">
-								<span class="text-gradient" data-i18n="skills.title"></span>
-							</h2>
-						</div>
-
-						<div class="skills-grid">
-							<div class="skill-card reveal">
-								<h3 class="skill-title text-primary" data-i18n="skills.frontend"></h3>
-								<div class="skill-tags">
-									<span class="skill-tag">React</span>
-									<span class="skill-tag">Next.js</span>
-									<span class="skill-tag">TypeScript</span>
-									<span class="skill-tag">JavaScript</span>
-									<span class="skill-tag">Astro</span>
-									<span class="skill-tag">Tailwind CSS</span>
-									<span class="skill-tag">HTML5</span>
-									<span class="skill-tag">CSS3</span>
-								</div>
-							</div>
-
-							<div class="skill-card reveal">
-								<h3 class="skill-title text-primary" data-i18n="skills.backend"></h3>
-								<div class="skill-tags">
-									<span class="skill-tag">Node.js</span>
-									<span class="skill-tag">Fastify</span>
-									<span class="skill-tag">Python</span>
-									<span class="skill-tag">Prisma</span>
-									<span class="skill-tag">PostgreSQL</span>
-									<span class="skill-tag">SQL</span>
-									<span class="skill-tag">WebSocket</span>
-									<span class="skill-tag">APIs REST</span>
-								</div>
-							</div>
-
-							<div class="skill-card reveal">
-								<h3 class="skill-title text-primary" data-i18n="skills.integrations"></h3>
-								<div class="skill-tags">
-									<span class="skill-tag">WhatsApp</span>
-									<span class="skill-tag">IA generativa</span>
-									<span class="skill-tag">Mercado Pago</span>
-									<span class="skill-tag">PagBank</span>
-									<span class="skill-tag">Web Scraping</span>
-									<span class="skill-tag">OCR</span>
-								</div>
-							</div>
-
-							<div class="skill-card reveal">
-								<h3 class="skill-title text-primary" data-i18n="skills.infra"></h3>
-								<div class="skill-tags">
-									<span class="skill-tag">Docker</span>
-									<span class="skill-tag">Coolify</span>
-									<span class="skill-tag">VPS</span>
-									<span class="skill-tag">Netlify</span>
-									<span class="skill-tag">Git</span>
-									<span class="skill-tag">Figma</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="skills-code reveal">
-							<p class="font-mono small">
-								const stack = [ <span class="text-primary">Next.js</span>, <span class="text-primary">Node</span>, <span class="text-primary">Python</span>, <span class="text-primary">PostgreSQL</span>, <span class="text-primary">IA</span> ];
-							</p>
-						</div>
-					</div>
-				</section>
-
-				<section id="contact" class="section section-contact">
-					<div class="container">
-						<div class="contact-box reveal">
-							<span class="section-kicker text-primary font-mono">// <span data-i18n="contact.subtitle"></span></span>
-							<h2 class="section-title contact-title">
-								<span class="text-gradient" data-i18n="contact.title"></span>
-							</h2>
-
-<p class="contact-lead text-muted" data-i18n="contact.lead"></p>
-
-							<div class="contact-actions">
-								<a href="https://wa.me/5511910254958" target="_blank" rel="noopener noreferrer" class="btn-primary contact-cta" data-wa-link>
-									<span class="icon-inline" data-icon="messageCircle" aria-hidden="true"></span>
-									<span data-i18n="contact.cta"></span>
-								</a>
-								<button id="contact-copy-email" type="button" class="btn-outline contact-cta">
-									<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
-									<span data-i18n="contact.copyEmail"></span>
-								</button>
-							</div>
-
-							<div class="contact-social">
-								<button id="contact-email-btn" type="button" aria-label="Email" class="contact-social-btn">
-									<span class="icon" data-icon="mail" aria-hidden="true"></span>
-								</button>
-								<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="contact-social-btn">
-									<span class="icon" data-icon="github" aria-hidden="true"></span>
-								</a>
-								<a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="contact-social-btn">
-									<span class="icon" data-icon="linkedin" aria-hidden="true"></span>
-								</a>
-								<a href="https://wa.me/5511910254958?text=Ol%C3%A1%2C%20Matheus%2C%20vim%20pelo%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20seu%20servi%C3%A7o." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="contact-social-btn">
-									<span class="icon" data-icon="messageCircle" aria-hidden="true"></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</section>
-			</main>
-
-			<footer class="footer">
-				<div class="container">
-					<div class="footer-row">
-						<p class="text-muted small font-mono">
-							© <span id="footer-year"></span> • Matheus Machado • <span data-i18n="footer.rights"></span>
-						</p>
-
-						<div class="footer-repo">
-							<p id="footer-repo-label" class="text-muted small" data-i18n="footer.repository"></p>
-							<a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener noreferrer" class="text-primary footer-repo-link font-mono small">GitHub</a>
-						</div>
-					</div>
-				</div>
-			</footer>
-
-			<div id="cert-modal-backdrop" class="cert-modal-backdrop hidden" aria-hidden="true"></div>
-
-			<div id="cert-modal" class="cert-modal hidden" role="dialog" aria-modal="true" aria-label="Certificate preview">
-				<div class="cert-modal-header">
-					<p id="cert-modal-title" class="cert-modal-title"></p>
-					<button id="cert-modal-close" class="cert-modal-close" type="button" aria-label="Close">
-						<span class="icon-inline" data-icon="x" aria-hidden="true"></span>
-					</button>
-				</div>
-
-				<div class="cert-modal-body">
-					<img id="cert-modal-image" src="" alt="" />
-				</div>
-
-				<div class="cert-modal-footer">
-					<a id="cert-modal-download" href="#" class="btn-primary cert-modal-download" download>
-						<span class="icon-inline" data-icon="download" aria-hidden="true"></span>
-						<span data-i18n="education.download"></span>
-					</a>
-				</div>
-			</div>
-
-			<div id="copy-toast" class="copy-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
-				<span class="icon-inline" data-icon="mail" aria-hidden="true"></span>
-				<span id="copy-toast-text"></span>
-			</div>
-
-		</div>
-		<script src="scripts/script.js"></script>
-	</body>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matheus Machado | Sistemas sob medida</title>
+<meta name="description" content="Matheus Machado, desenvolvedor full stack em São Paulo. Sistemas sob medida, feitos a partir do problema real do seu negócio: gestão, WhatsApp com IA, sites e pagamentos.">
+<meta name="author" content="Matheus Machado">
+<meta name="theme-color" content="#0c0b0a">
+<link rel="canonical" href="https://matheus-machado-dev.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://matheus-machado-dev.com.br/">
+<meta property="og:title" content="Matheus Machado | Sistemas sob medida">
+<meta property="og:description" content="Sistemas sob medida, feitos a partir do problema real do seu negócio.">
+<meta property="og:image" content="https://matheus-machado-dev.com.br/assets/og/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/fav-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/fav-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&display=swap">
+<link rel="preload" as="image" href="assets/img/hero/retrato-perfil.jpg" media="(min-width: 721px)">
+<link rel="preload" as="image" href="assets/img/hero/retrato-vertical.jpg" media="(max-width: 720px)">
+<link rel="stylesheet" href="styles/site.css">
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add("js");
+    try {
+      var lang = localStorage.getItem("mm-lang");
+      if (!lang) lang = (navigator.language || "pt").toLowerCase().indexOf("pt") === 0 ? "pt" : "en";
+      d.setAttribute("data-lang", lang === "en" ? "en" : "pt");
+    } catch (e) {}
+    try {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var seen = sessionStorage.getItem("mm-intro");
+      if (!reduce && !seen && location.hash.indexOf("#p-") !== 0) d.classList.add("intro");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<a class="skip" href="#conteudo" data-en="Skip to content">Pular para o conteúdo</a>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#inicio" aria-label="Matheus Machado, início">Matheus Machado</a>
+  <nav aria-label="Principal">
+    <ul class="links label">
+      <li><a href="#sobre" data-en="About">Sobre</a></li>
+      <li><a href="#case" data-en="Case">Case</a></li>
+      <li><a href="#servicos" data-en="Services">Serviços</a></li>
+      <li><a href="#projetos" data-en="Work">Projetos</a></li>
+      <li><a href="#trajetoria" data-en="Experience">Trajetória</a></li>
+      <li><a href="#contato" data-en="Contact">Contato</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right">
+    <div class="lang label" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="pill sm label nav-cta" href="https://wa.me/5511910254958" target="_blank" rel="noopener" data-en="Let's talk">Vamos conversar</a>
+    <button class="menu-btn label" type="button" id="menu-btn" aria-expanded="false" aria-controls="menu" data-en="Menu">Menu</button>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <ul class="menu-links">
+    <li><a href="#sobre" data-en="About">Sobre</a></li>
+    <li><a href="#case" data-en="Case">Case</a></li>
+    <li><a href="#servicos" data-en="Services">Serviços</a></li>
+    <li><a href="#processo" data-en="Process">Processo</a></li>
+    <li><a href="#projetos" data-en="Work">Projetos</a></li>
+    <li><a href="#trajetoria" data-en="Experience">Trajetória</a></li>
+    <li><a href="#contato" data-en="Contact">Contato</a></li>
+  </ul>
+  <div class="menu-foot">
+    <a class="pill solid" href="https://wa.me/5511910254958" target="_blank" rel="noopener"><span data-en="Message me on WhatsApp">Falar no WhatsApp</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+    <div class="lang label" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</div>
+
+<main id="conteudo">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio" aria-label="Início">
+    <div class="stage">
+      <picture>
+        <source media="(max-width: 720px)" srcset="assets/img/hero/retrato-vertical.jpg">
+        <img class="photo" src="assets/img/hero/retrato-perfil.jpg" width="2048" height="1144" alt="Retrato de perfil de Matheus Machado" data-en-alt="Profile portrait of Matheus Machado" fetchpriority="high">
+      </picture>
+      <p class="name" aria-hidden="true"><span class="w">Matheus</span> <span class="w">Machado</span></p>
+      <img class="cut" src="assets/img/hero/retrato-perfil-recorte.webp" width="2048" height="1144" alt="" aria-hidden="true">
+    </div>
+
+    <div class="meta label">
+      <div><span><i class="dot" aria-hidden="true"></i><span data-en="Open to new projects">Aceitando novos projetos</span></span><small data-en="In tech since 2022">Em tecnologia desde 2022</small></div>
+      <div><span id="clock">--:--</span><small>São Paulo (BRT)</small></div>
+    </div>
+
+    <div class="hero-copy">
+      <h1 class="statement" data-en="&lt;span class=&quot;slash&quot; aria-hidden=&quot;true&quot;&gt;/&lt;/span&gt;Custom-built systems, &lt;span class=&quot;soft&quot;&gt;designed around the real problem your business has.&lt;/span&gt;"><span class="slash" aria-hidden="true">/</span>Sistemas sob medida, <span class="soft">feitos a partir do problema real do seu negócio.</span></h1>
+      <div class="notes">
+        <div class="note">
+          <span class="label tag"><i aria-hidden="true"></i><span data-en="(What)">(O quê)</span></span>
+          <p data-en="Management, AI customer service on WhatsApp, websites and payments.">Gestão, atendimento no WhatsApp com IA, sites e pagamentos.</p>
+        </div>
+        <div class="note">
+          <span class="label tag"><i aria-hidden="true"></i><span data-en="(How)">(Como)</span></span>
+          <p data-en="I learn the operation, design the solution and ship it.">Eu entendo a operação, desenho a solução e coloco no ar.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="pill solid" href="https://wa.me/5511910254958" target="_blank" rel="noopener"><span data-en="Message me on WhatsApp">Falar no WhatsApp</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+        <a class="pill ghost" href="#case"><span data-en="See the case">Ver o case</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 5.5V12H5.5"/></svg></a>
+        <a class="textlink cv-link" href="assets/curriculos/curriculo.pdf" target="_blank" rel="noopener" data-en="Résumé">Currículo</a>
+      </div>
+    </div>
+
+    <div class="hero-bar label">
+      <ul class="live-list">
+        <li data-en="Systems live:">Sistemas no ar:</li>
+        <li><a href="#p-abdous-barber">Abdou's Barber</a></li>
+        <li><a href="#p-to-na-porta">Tô na Porta</a></li>
+        <li><a href="#p-psy-trekking">Psy Trekking</a></li>
+        <li><a href="#p-casa-cheia">Casa Cheia</a></li>
+      </ul>
+      <div class="facts">
+        <span><b>24h</b> <span data-en="AI on WhatsApp">de IA no WhatsApp</span></span>
+        <span data-en="MBA in Software Eng., &lt;b&gt;USP&lt;/b&gt;">MBA Eng. de Software, <b>USP</b></span>
+      </div>
+    </div>
+
+    <button class="skip-intro label" type="button" id="skip-intro" data-en="Skip intro">Pular intro</button>
+  </section>
+
+  <!-- FAIXA DE SERVIÇOS -->
+  <div class="ticker" aria-hidden="true">
+    <div class="track">
+      <ul>
+        <li data-en="Management systems">Sistemas de gestão</li>
+        <li data-en="AI on WhatsApp">WhatsApp com IA</li>
+        <li data-en="Websites">Sites e landing pages</li>
+        <li data-en="Payments and plans">Pagamentos e planos</li>
+        <li data-en="Apps and marketplaces">Apps e marketplaces</li>
+        <li data-en="Automations and bots">Automações e robôs</li>
+      </ul>
+      <ul>
+        <li data-en="Management systems">Sistemas de gestão</li>
+        <li data-en="AI on WhatsApp">WhatsApp com IA</li>
+        <li data-en="Websites">Sites e landing pages</li>
+        <li data-en="Payments and plans">Pagamentos e planos</li>
+        <li data-en="Apps and marketplaces">Apps e marketplaces</li>
+        <li data-en="Automations and bots">Automações e robôs</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FRASE DE IMPACTO -->
+  <section class="impact wrap" id="impacto" aria-label="Posicionamento">
+    <span class="label sec-label" data-en="(Positioning)">(Posicionamento)</span>
+    <p class="impact-text" data-words data-en="I'm a developer. But code is not what I sell: I sell your business running smoothly.">Sou dev. Mas não é código que eu vendo: é o seu negócio funcionando.</p>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="about wrap" id="sobre" aria-labelledby="sobre-t">
+    <div class="about-head">
+      <span class="label sec-label" data-en="(About me)">(Sobre mim)</span>
+      <h2 class="display" id="sobre-t" data-reveal data-en="A developer, &lt;span class=&quot;soft&quot;&gt;and more&lt;/span&gt;">Dev, <span class="soft">mas não só isso</span></h2>
+    </div>
+    <figure class="about-photo" data-reveal>
+      <img src="assets/img/hero/retrato-contorno.jpg" width="1650" height="2048" loading="lazy" alt="Matheus Machado de perfil, com luz de recorte" data-en-alt="Matheus Machado in profile, rim-lit" data-parallax>
+      <figcaption class="label"><i class="dot" aria-hidden="true"></i><span data-en="Open to new projects">Aceitando novos projetos</span></figcaption>
+    </figure>
+    <div class="about-text">
+      <p class="lead" data-reveal data-en="Before writing a line, I go to the operation, watch the rush up close and understand what is really holding the business back. Then I build exactly that: bookings clients make on their own, messages answered in the middle of the night, a register that closes without a paper notebook.">Antes de escrever uma linha, eu vou até a operação, vejo a correria de perto e entendo o que realmente trava o negócio. Depois construo exatamente isso: agenda que o cliente marca sozinho, mensagem respondida de madrugada, caixa que fecha sem caderninho.</p>
+      <p data-reveal data-en="I started in IT in 2022 as an apprentice at Totale Tecnologia. In 2024 I joined Ridolfinvest as an intern and nine months later I was a Full Stack Developer, handling front end, back end, databases, bots and integrations.">Comecei na TI em 2022 como Jovem Aprendiz na Totale Tecnologia. Em 2024 entrei na Ridolfinvest como estagiário e em nove meses virei Desenvolvedor Full Stack, cuidando de front, back, banco de dados, robôs e integrações.</p>
+      <p data-reveal data-en="Today I'm doing an MBA in Software Engineering at the University of São Paulo and, together with my squad, I build systems for real businesses. From the first chat with the owner to the system going live.">Hoje faço MBA em Engenharia de Software na USP e, junto com o meu squad, construo sistemas para negócios reais. Do primeiro papo com o dono até o sistema no ar.</p>
+    </div>
+  </section>
+
+  <!-- CASE -->
+  <section class="case" id="case" aria-labelledby="case-t">
+    <div class="wrap case-head">
+      <span class="label sec-label" data-en="(Featured case)">(Case em destaque)</span>
+      <h2 class="display mega" id="case-t" data-reveal>Abdou's Barber</h2>
+      <div class="case-intro">
+        <p class="label" data-en="Subscription barbershop · Guarulhos">Barbearia de assinatura · Guarulhos</p>
+        <p class="statement sm" data-reveal data-en="A subscription barbershop near São Paulo was losing clients at the door and on WhatsApp. &lt;span class=&quot;soft&quot;&gt;In six months I built the whole system and filmed the before and after in a documentary with the owner and real clients.&lt;/span&gt;">Uma barbearia de assinatura em Guarulhos perdia cliente na porta e no WhatsApp. <span class="soft">Em seis meses construí o sistema inteiro e gravei o antes e o depois num documentário com o dono e clientes de verdade.</span></p>
+      </div>
+    </div>
+
+    <div class="wrap films">
+      <figure class="film film-main" data-reveal data-video="" data-title-pt="Documentário Abdou's Barber" data-title-en="Abdou's Barber documentary">
+        <div class="film-frame">
+          <img src="assets/img/projetos/abdous/poster-filme.webp" width="1600" height="900" loading="lazy" alt="Site da Abdou's Barber, quadro de capa do documentário" data-en-alt="Abdou's Barber website, documentary cover frame">
+          <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="film-soon label" data-en="Video coming soon">Vídeo em breve</span>
+        </div>
+        <figcaption>
+          <span class="film-title" data-en="Watch the documentary">Assistir o documentário</span>
+          <span class="label soft-label" data-en="16 min, Portuguese with subtitles">16 min, com legendas</span>
+        </figcaption>
+      </figure>
+      <figure class="film film-side" data-reveal data-video="" data-title-pt="Comercial Abdou's Barber" data-title-en="Abdou's Barber commercial">
+        <div class="film-frame">
+          <img src="assets/img/projetos/abdous/cel-landing.webp" width="585" height="1266" loading="lazy" alt="Tela inicial do site da Abdou's Barber no celular" data-en-alt="Abdou's Barber website home on a phone">
+          <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="film-soon label" data-en="Video coming soon">Vídeo em breve</span>
+        </div>
+        <figcaption>
+          <span class="film-title" data-en="Commercial">Comercial</span>
+          <span class="label soft-label" data-en="Abdou's Barber">Abdou's Barber</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap numbers">
+      <div class="num" data-reveal><b data-count="6">6</b><span data-en="months from first chat to complete system">meses do primeiro papo ao sistema completo</span></div>
+      <div class="num" data-reveal><b data-count="411">411</b><span data-en="commits in the project">commits no projeto</span></div>
+      <div class="num" data-reveal><b data-count="24" data-suffix="h">24h</b><span data-en="of AI service on WhatsApp">de atendimento no WhatsApp com IA</span></div>
+      <div class="num" data-reveal><b data-count="15" data-suffix="+">15+</b><span data-en="screens across owner and client apps">telas entre painel do dono e área do cliente</span></div>
+    </div>
+
+    <div class="wrap built">
+      <div class="built-phone" aria-hidden="true">
+        <div class="phone">
+          <img class="is-on" src="assets/img/projetos/abdous/cel-landing.webp" width="585" height="1266" alt="" loading="lazy">
+          <img src="assets/img/projetos/abdous/cel-inicio.webp" width="585" height="1266" alt="" loading="lazy">
+          <img src="assets/img/projetos/abdous/cel-agenda.webp" width="585" height="1266" alt="" loading="lazy">
+          <img src="assets/img/projetos/abdous/cel-fila-cliente.webp" width="585" height="1266" alt="" loading="lazy">
+          <img src="assets/img/projetos/abdous/cel-plano.webp" width="585" height="1266" alt="" loading="lazy">
+          <img src="assets/img/projetos/abdous/cel-catalogo.webp" width="585" height="1266" alt="" loading="lazy">
+          <img src="assets/img/projetos/abdous/cel-mapa.webp" width="585" height="1266" alt="" loading="lazy">
+        </div>
+      </div>
+      <div class="built-list">
+        <h3 class="label sec-label" data-en="(What I built)">(O que eu construí)</h3>
+        <ol>
+          <li class="is-on" data-screen="0"><span data-en="Website with the brand story, plans and portfolio">Site com a história da marca, planos e trabalhos</span></li>
+          <li data-screen="1"><span data-en="Client area with login, dependents and history">Área do cliente com login, dependentes e histórico</span></li>
+          <li data-screen="2"><span data-en="Per-barber schedule with an automatic waiting list">Agenda por profissional com fila de espera automática</span></li>
+          <li data-screen="3"><span data-en="AI WhatsApp bot that books, sells and charges">Bot de WhatsApp com IA que agenda, vende e cobra</span></li>
+          <li data-screen="4"><span data-en="Subscription plans with automatic billing">Planos de assinatura com cobrança automática</span></li>
+          <li data-screen="5"><span data-en="Online store with in-store pickup">Loja online com retirada no balcão</span></li>
+          <li data-screen="6"><span data-en="Tabs, register, finances, rankings and heat map">Comandas, caixa, financeiro, rankings e mapa de calor</span></li>
+        </ol>
+        <p class="stack label">Next.js · TypeScript · Node.js · Fastify · Prisma · PostgreSQL · Docker · <span data-en="AI">IA</span> · WhatsApp</p>
+        <div class="actions">
+          <a class="pill solid" href="#p-abdous-barber"><span data-en="See every screen">Ver todas as telas</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+          <a class="pill ghost" href="https://abdousbarber.com.br" target="_blank" rel="noopener"><span data-en="Live site">Site no ar</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="services wrap" id="servicos" aria-labelledby="serv-t">
+    <div class="sec-head">
+      <span class="label sec-label" data-en="(Services)">(Serviços)</span>
+      <h2 class="display" id="serv-t" data-reveal data-en="What I build">O que eu construo</h2>
+      <p class="sec-sub" data-reveal data-en="Every project combines the pieces the business needs. Sometimes one, usually several working together.">Cada projeto junta as peças que o negócio precisa. Às vezes é uma, quase sempre são várias conversando entre si.</p>
+    </div>
+    <ul class="srv">
+      <li data-reveal><h3 data-en="Custom management systems">Sistemas de gestão sob medida</h3><p data-en="Schedule, clients, stock, tabs, register and finances in a single dashboard, on phone and desktop.">Agenda, clientes, estoque, comandas, caixa e financeiro num painel só, no celular e no computador.</p></li>
+      <li data-reveal><h3 data-en="AI customer service on WhatsApp">Atendimento no WhatsApp com IA</h3><p data-en="An assistant that replies instantly, knows each client, books, sells, sends payment links and announces open slots.">Um assistente que responde na hora, conhece cada cliente, agenda, vende, manda link de pagamento e avisa quando abre vaga.</p></li>
+      <li data-reveal><h3 data-en="Websites and landing pages">Sites e landing pages</h3><p data-en="Pages that tell your story and turn visitors into clients. Fast, multilingual and easy to find on Google.">Páginas que contam a sua história e transformam visita em cliente. Rápidas, em vários idiomas e fáceis de achar no Google.</p></li>
+      <li data-reveal><h3 data-en="Payments, plans and stores">Pagamentos, planos e lojas</h3><p data-en="Pix, cards, recurring subscriptions, automatic partner commission and stores with in-store pickup.">Pix, cartão, assinatura recorrente, comissão automática entre parceiros e loja com retirada no balcão.</p></li>
+      <li data-reveal><h3 data-en="Apps and marketplaces">Apps e marketplaces</h3><p data-en="Multi-sided platforms, like client, store and courier, with real-time orders, maps and phone notifications.">Plataformas com vários lados, como cliente, loja e entregador, com pedido em tempo real, mapa e avisos no celular.</p></li>
+      <li data-reveal><h3 data-en="Automations and bots">Automações e robôs</h3><p data-en="What someone does by hand today, done on its own: website lookups, forms, documents, PDF reading and integrations.">O que hoje alguém faz na mão, feito sozinho: consultas em sites, formulários, documentos, leitura de PDF e integrações.</p></li>
+    </ul>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="process wrap" id="processo" aria-labelledby="proc-t">
+    <div class="sec-head">
+      <span class="label sec-label" data-en="(Process)">(Processo)</span>
+      <h2 class="display" id="proc-t" data-reveal data-en="How I work">Como eu trabalho</h2>
+    </div>
+    <div class="steps">
+      <div class="steps-line" aria-hidden="true"><i></i></div>
+      <ol>
+        <li><b>01</b><h3 data-en="I come to you">Vou até você</h3><p data-en="Before any quote I want to see the operation: the counter, the WhatsApp, the spreadsheet.">Antes de qualquer orçamento eu quero ver a operação: o balcão, o WhatsApp, a planilha.</p></li>
+        <li><b>02</b><h3 data-en="I design the solution">Desenho a solução</h3><p data-en="I show you screens and the flow before coding. You approve what makes sense for your business.">Te mostro telas e fluxo antes de programar. Você aprova o que faz sentido pro seu negócio.</p></li>
+        <li><b>03</b><h3 data-en="I build it to measure">Construo sob medida</h3><p data-en="A system built on your rules: your plans, your way of charging, your hours.">Sistema feito com as suas regras: seus planos, seu jeito de cobrar, seus horários.</p></li>
+        <li><b>04</b><h3 data-en="I launch it and stay close">Coloco no ar e fico junto</h3><p data-en="I publish it, train the team and keep following up. A good system evolves with the operation.">Publico, treino a equipe e sigo acompanhando. Sistema bom evolui junto com a operação.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="work wrap" id="projetos" aria-labelledby="work-t">
+    <div class="sec-head">
+      <span class="label sec-label" data-en="(Work)">(Projetos)</span>
+      <h2 class="display" id="work-t" data-reveal data-en="Systems live, &lt;span class=&quot;soft&quot;&gt;with real clients&lt;/span&gt;">Sistemas no ar, <span class="soft">com clientes reais</span></h2>
+      <p class="sec-sub" data-reveal data-en="Each one was born from a real problem. Click to see the screens and details.">Cada um nasceu de um problema de verdade. Clique para ver as telas e os detalhes.</p>
+    </div>
+    <ul class="work-list" id="work-list"></ul>
+    <div class="work-preview" id="work-preview" aria-hidden="true"><img alt=""></div>
+  </section>
+
+  <!-- TRAJETÓRIA -->
+  <section class="path wrap" id="trajetoria" aria-labelledby="path-t">
+    <div class="sec-head">
+      <span class="label sec-label" data-en="(Experience)">(Trajetória)</span>
+      <h2 class="display" id="path-t" data-reveal data-en="Experience &lt;span class=&quot;soft&quot;&gt;and education&lt;/span&gt;">Trajetória <span class="soft">e formação</span></h2>
+    </div>
+    <ol class="jobs">
+      <li data-reveal>
+        <span class="label when" data-en="Apr 2026 to present">04/2026 até hoje</span>
+        <div><h3 data-en="Self-employed &lt;span class=&quot;soft&quot;&gt;· Custom Solutions Developer&lt;/span&gt;">Autônomo <span class="soft">· Desenvolvedor de Soluções Sob Medida</span></h3>
+        <p data-en="Custom systems for real businesses, from the first chat with the owner to the system going live, together with my squad. Abdou's Barber, Tô na Porta, Psy Trekking and Casa Cheia.">Sistemas sob medida para negócios reais, do primeiro papo com o dono até o sistema no ar, junto com o meu squad. Abdou's Barber, Tô na Porta, Psy Trekking e Casa Cheia.</p></div>
+      </li>
+      <li data-reveal>
+        <span class="label when" data-en="Dec 2024 to Apr 2026">12/2024 a 04/2026</span>
+        <div><h3 data-en="Ridolfinvest &lt;span class=&quot;soft&quot;&gt;· Junior Full Stack Developer&lt;/span&gt;">Ridolfinvest <span class="soft">· Desenvolvedor Full Stack Júnior</span></h3>
+        <p data-en="Grew a certificate automation into the company's internal tools hub. Automated forms with login, 2FA and per-user sessions (from about 15 to 5 minutes). Bots and integrations with Brazilian courts, including OCR.">Evoluí uma automação de certidões até virar a central de ferramentas internas da empresa. Formulários automatizados com login, 2FA e sessão por usuário (de cerca de 15 para 5 minutos). Robôs e integrações com TRFs e TJs, com leitura por OCR.</p></div>
+      </li>
+      <li data-reveal>
+        <span class="label when" data-en="Mar 2024 to Dec 2024">03/2024 a 12/2024</span>
+        <div><h3 data-en="Ridolfinvest &lt;span class=&quot;soft&quot;&gt;· Development Intern&lt;/span&gt;">Ridolfinvest <span class="soft">· Estagiário de Desenvolvimento</span></h3>
+        <p data-en="Automations, data scraping and integrations with Python and SQL. Promoted to developer in nine months.">Automações, raspagem de dados e integrações com Python e SQL. Promovido a desenvolvedor em nove meses.</p></div>
+      </li>
+      <li data-reveal>
+        <span class="label when" data-en="2022 to 2024">2022 a 2024</span>
+        <div><h3 data-en="Totale Tecnologia &lt;span class=&quot;soft&quot;&gt;· IT Apprentice&lt;/span&gt;">Totale Tecnologia <span class="soft">· Jovem Aprendiz de TI</span></h3>
+        <p data-en="Support, hardware maintenance and environment setup.">Suporte, manutenção de hardware e configuração de ambientes.</p></div>
+      </li>
+    </ol>
+
+    <div class="edu">
+      <span class="label sec-label" data-en="(Education)">(Formação)</span>
+      <ul>
+        <li data-reveal><b>USP/ESALQ</b><span data-en="MBA in Software Engineering, since Nov 2025, in progress">MBA em Engenharia de Software, desde 11/2025, em andamento</span></li>
+        <li data-reveal><b>FIAP</b><span data-en="Associate degree in Systems Analysis and Development, 2022 to 2024">Tecnólogo em Análise e Desenvolvimento de Sistemas, 2022 a 2024</span></li>
+        <li data-reveal><b>29</b><span data-en="certified courses (React, JavaScript, Python, Figma, Git, Power BI)">cursos certificados (React, JavaScript, Python, Figma, Git, Power BI)</span><button class="pill ghost sm label" type="button" id="open-certs" data-en="See certificates">Ver certificados</button></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TECNOLOGIAS -->
+  <section class="tech wrap" id="tecnologias" aria-labelledby="tech-t">
+    <div class="sec-head">
+      <span class="label sec-label" data-en="(Technologies)">(Tecnologias)</span>
+      <h2 class="visually-hidden" id="tech-t" data-en="Technologies">Tecnologias</h2>
+    </div>
+    <dl class="tech-list">
+      <div data-reveal><dt class="label">Front-end</dt><dd>React · Next.js · TypeScript · JavaScript · Astro · SolidJS · Tailwind CSS · HTML · CSS</dd></div>
+      <div data-reveal><dt class="label" data-en="Back-end &amp; data">Back-end e dados</dt><dd>Node.js · Fastify · Python · Prisma · PostgreSQL · SQL · WebSocket · <span data-en="REST APIs">APIs REST</span></dd></div>
+      <div data-reveal><dt class="label" data-en="Integrations &amp; AI">Integrações e IA</dt><dd>WhatsApp · <span data-en="Generative AI">IA generativa</span> · Mercado Pago · PagBank · Web Scraping · OCR</dd></div>
+      <div data-reveal><dt class="label" data-en="Infra &amp; tools">Infra e ferramentas</dt><dd>Docker · Coolify · VPS · Netlify · Git · Figma</dd></div>
+    </dl>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contact wrap" id="contato" aria-labelledby="contact-t">
+    <span class="label sec-label" data-en="(Contact)">(Contato)</span>
+    <h2 class="contact-title" id="contact-t" data-reveal data-en="Tell me what's &lt;em&gt;holding&lt;/em&gt; your business back.">Me conta o que tá <em>travando</em> o seu negócio.</h2>
+    <div class="contact-row">
+      <p data-reveal data-en="I answer personally. The first conversation is about understanding the problem, with no strings attached.">Quem responde sou eu. A primeira conversa é pra entender o problema, sem compromisso.</p>
+      <div class="actions" data-reveal>
+        <a class="pill solid lg" href="https://wa.me/5511910254958" target="_blank" rel="noopener"><span data-en="Message me on WhatsApp">Chamar no WhatsApp</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+        <button class="pill ghost lg" type="button" id="copy-email"><span data-en="Copy email">Copiar e-mail</span></button>
+      </div>
+    </div>
+    <ul class="contact-links label">
+      <li><span class="email-text">matheus.machaado.dev@gmail.com</span></li>
+      <li><a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener">GitHub ↗</a></li>
+      <li><a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+      <li><a class="cv-link" href="assets/curriculos/curriculo.pdf" target="_blank" rel="noopener" data-en="Résumé ↗">Currículo ↗</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="wordmark" aria-hidden="true">Matheus Machado</p>
+  <div class="foot-row wrap label">
+    <span data-en="© 2026 Matheus Machado. Custom-built systems.">© 2026 Matheus Machado. Sistemas sob medida.</span>
+    <a href="#inicio" data-en="Back to top ↑">Voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<!-- DETALHE DO PROJETO -->
+<div class="pd" id="pd" role="dialog" aria-modal="true" aria-labelledby="pd-title" hidden>
+  <aside class="pd-side">
+    <button class="pd-back label" type="button" id="pd-close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M12 8H4M7.5 4.5 4 8l3.5 3.5"/></svg><span data-en="Back">Voltar</span></button>
+    <div class="pd-side-scroll">
+      <p class="label pd-company" id="pd-company"></p>
+      <h2 class="pd-title" id="pd-title"></h2>
+      <p class="pd-type label" id="pd-type"></p>
+      <div class="pd-desc" id="pd-desc"></div>
+      <div class="pd-stack">
+        <p class="label soft-label" data-en="Stack &amp; tools">Stack e ferramentas</p>
+        <ul id="pd-tags"></ul>
+      </div>
+    </div>
+    <div class="pd-side-foot">
+      <a class="pill solid" id="pd-live" href="#" target="_blank" rel="noopener"><span data-en="Visit the live site">Ver o site no ar</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+    </div>
+  </aside>
+  <div class="pd-main" id="pd-main">
+    <div class="pd-bar">
+      <div class="seg label" role="tablist" aria-label="Resolução" id="pd-seg">
+        <button type="button" role="tab" data-view="desktop" aria-selected="true"><span>Desktop</span><i id="pd-n-desktop"></i></button>
+        <button type="button" role="tab" data-view="mobile" aria-selected="false"><span data-en="Phone">Celular</span><i id="pd-n-mobile"></i></button>
+      </div>
+      <span class="label soft-label pd-hint" data-en="Click a screen to enlarge">Clique numa tela para ampliar</span>
+    </div>
+    <div class="pd-gallery" id="pd-gallery"></div>
+    <a class="pd-next" id="pd-next" href="#">
+      <span class="label soft-label" data-en="Next project">Próximo projeto</span>
+      <b id="pd-next-name"></b>
+    </a>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada" hidden>
+  <img id="lb-img" alt="">
+  <p class="lb-count label" id="lb-count"></p>
+  <button class="lb-btn lb-prev" type="button" id="lb-prev" aria-label="Anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+  <button class="lb-btn lb-next" type="button" id="lb-next" aria-label="Próxima"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+  <button class="lb-btn lb-close" type="button" id="lb-close" aria-label="Fechar"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+</div>
+
+<!-- CERTIFICADOS -->
+<div class="certs" id="certs" role="dialog" aria-modal="true" aria-labelledby="certs-t" hidden>
+  <div class="certs-box">
+    <div class="certs-head">
+      <h2 id="certs-t" data-en="29 certified courses">29 cursos certificados</h2>
+      <button class="lb-btn" type="button" id="certs-close" aria-label="Fechar"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+    </div>
+    <div class="chips label" id="cert-chips" role="group" aria-label="Filtrar">
+      <button type="button" data-cat="all" aria-pressed="true" data-en="All">Todos</button>
+      <button type="button" data-cat="frontend" aria-pressed="false">Front-end</button>
+      <button type="button" data-cat="backend" aria-pressed="false">Back-end</button>
+      <button type="button" data-cat="design" aria-pressed="false">Design</button>
+      <button type="button" data-cat="others" aria-pressed="false" data-en="Others">Outros</button>
+    </div>
+    <ul class="cert-grid" id="cert-grid"></ul>
+  </div>
+</div>
+
+<!-- VÍDEO -->
+<div class="lb" id="vp" role="dialog" aria-modal="true" aria-label="Vídeo" hidden>
+  <div class="vp-frame" id="vp-frame"></div>
+  <button class="lb-btn lb-close" type="button" id="vp-close" aria-label="Fechar"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+</div>
+
+<div class="toast label" id="toast" role="status" aria-live="polite"></div>
+
+<script src="scripts/dados.js"></script>
+<script src="scripts/site.js"></script>
+</body>
 </html>

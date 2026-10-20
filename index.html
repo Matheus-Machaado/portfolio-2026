@@ -45,6 +45,32 @@
 </head>
 <body>
 <a class="skip" href="#conteudo" data-en="Skip to content">Pular para o conteúdo</a>
+<div class="boot" id="boot" role="dialog" aria-modal="true" aria-label="Intro">
+  <canvas class="boot-bg" id="boot-bg" aria-hidden="true"></canvas>
+  <pre class="boot-code boot-code--l" aria-hidden="true"><span class="k">const</span> developer = {
+  name: <span class="s">"Matheus Machado"</span>,
+  role: <span class="s">"Full Stack"</span>,
+  passion: <span class="s">"∞"</span>,
+};</pre>
+  <pre class="boot-code boot-code--r" aria-hidden="true"><span class="k">function</span> <span class="f">createSolution</span>(problem) {
+  <span class="k">return</span> <span class="f">build</span>(problem);
+}</pre>
+  <div class="boot-term">
+    <div class="boot-bar"><i></i><i></i><i></i><span>matheus@portfolio ~</span></div>
+    <div class="boot-body">
+      <div class="boot-lines" id="boot-lines" aria-live="polite"></div>
+      <div class="boot-cur" id="boot-cur"><span>&gt;</span><i></i></div>
+      <div class="boot-select" id="boot-select" hidden>
+        <p>&gt; Select your language / Selecione seu idioma:</p>
+        <div class="boot-langs">
+          <button type="button" data-boot-lang="pt"><b>PT</b><span>Português</span><kbd>1</kbd></button>
+          <button type="button" data-boot-lang="en"><b>EN</b><span>English</span><kbd>2</kbd></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="boot-skip label" id="boot-skip">Pular · Skip <kbd>Esc</kbd></button>
+</div>
 <svg hidden aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
   <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3M13 14h3M8 17h3"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></symbol>
@@ -111,6 +137,7 @@
 
   <!-- HERO -->
   <section class="hero" id="inicio" aria-label="Início">
+    <canvas class="hero-bg" id="hero-bg" aria-hidden="true"></canvas>
     <div class="stage">
       <picture>
         <source media="(max-width: 720px)" srcset="assets/img/hero/retrato-vertical.jpg">
@@ -143,7 +170,6 @@
       </ul>
     </div>
 
-    <button class="skip-intro label" type="button" id="skip-intro" data-en="Skip intro">Pular intro</button>
   </section>
 
   <!-- FAIXA -->
@@ -176,11 +202,12 @@
       </div>
     </div>
 
-    <figure class="code" data-reveal aria-label="Resumo do perfil em formato de código">
-      <div class="code-bar"><i></i><i></i><i></i><span class="code-tab">matheus.ts</span></div>
-      <pre class="code-body" id="code-body"></pre>
-      <figcaption class="code-foot label"><span><i class="dot" aria-hidden="true"></i><span data-en="Open to new projects">Aceitando novos projetos</span></span><span>TypeScript · UTF-8</span></figcaption>
-    </figure>
+    <ul class="about-stats" aria-label="Destaques">
+      <li data-reveal><b data-count="2022" data-nocomma="1">2022</b><span data-en="my first job in IT, as an apprentice">meu primeiro emprego em TI, como Jovem Aprendiz</span></li>
+      <li data-reveal><b><span data-count="9">9</span> <small data-en="months">meses</small></b><span data-en="from intern to full stack developer">de estagiário a desenvolvedor full stack</span></li>
+      <li data-reveal><b>USP</b><span data-en="MBA in Software Engineering, in progress, after graduating at FIAP">MBA em Engenharia de Software, em andamento, depois da graduação na FIAP</span></li>
+      <li data-reveal><b data-count="4">4</b><span data-en="systems live, with clients using them every day">sistemas no ar, com clientes usando todo dia</span></li>
+    </ul>
   </section>
 
   <!-- CASE -->
@@ -206,11 +233,12 @@
           </div>
           <button type="button" class="film-cta" data-play-btn="doc">
             <span class="film-cta-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>
-            <span class="film-cta-txt"><b data-en="Watch the documentary">Assistir o documentário</b><span class="label">15:22 · <span data-en="subtitles">legendas</span> · <span data-en="8 chapters">8 capítulos</span></span></span>
+            <span class="film-cta-txt"><b data-en="Watch the documentary">Assistir o documentário</b><span class="label">15:22 · <span data-en="subtitles">legendas</span> · <span data-en="9 chapters">9 capítulos</span></span></span>
           </button>
         </div>
         <ol class="chapters" aria-label="Capítulos">
-          <li><button type="button" data-play="doc" data-t="0"><time>0:00</time><span data-en="The shop before the system">A barbearia antes do sistema</span></button></li>
+          <li><button type="button" data-play="doc" data-t="0"><time>0:00</time><span data-en="A day at the shop">Um dia na barbearia</span></button></li>
+          <li><button type="button" data-play="doc" data-t="155"><time>2:35</time><span data-en="The talk with the owner">A conversa com o dono</span></button></li>
           <li><button type="button" data-play="doc" data-t="397"><time>6:37</time><span data-en="What was it like before?">Como era antes do sistema?</span></button></li>
           <li><button type="button" data-play="doc" data-t="441"><time>7:21</time><span data-en="The real impact">O real impacto no dia a dia</span></button></li>
           <li><button type="button" data-play="doc" data-t="500"><time>8:20</time><span data-en="Talking to clients today">O contato com o cliente hoje</span></button></li>
@@ -433,15 +461,17 @@
               </div>
               <span class="badge label"><i class="dot" aria-hidden="true"></i><span data-en="Current">Atual</span></span>
             </div>
-            <p class="job-sum" data-en="From the first chat with the owner to the system going live, together with my squad.">Do primeiro papo com o dono até o sistema no ar, junto com o meu squad.</p>
+            <p class="job-story" data-en="In April 2026 I started running my own practice. Instead of tasks inside a company, I now take a business problem from end to end: I listen to the owner, design the screens, build the system and stay close after launch. Today there are four systems live, built together with my squad.">Em abril de 2026 passei a tocar o meu próprio trabalho. Em vez de tarefas dentro de uma empresa, agora pego o problema de um negócio de ponta a ponta: escuto o dono, desenho as telas, construo o sistema e fico junto depois que entra no ar. Hoje são quatro sistemas no ar, feitos junto com o meu squad.</p>
             <button type="button" class="job-more label" aria-expanded="false"><span data-en="Show details">Ver detalhes</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
             <div class="job-detail"><div>
+              <p class="job-h label" data-en="Main deliveries">Principais entregas</p>
               <ul class="job-bullets">
                 <li data-en="Abdou's Barber: complete management system, client area, plans with automatic billing and AI on WhatsApp.">Abdou's Barber: sistema de gestão completo, área do cliente, planos com cobrança automática e IA no WhatsApp.</li>
                 <li data-en="Tô na Porta: three-sided delivery app (client, store and courier) with Pix, card and split commission.">Tô na Porta: app de delivery com três lados (cliente, loja e entregador), Pix, cartão e comissão separada.</li>
                 <li data-en="Psy Trekking: four-language website with booking and a financial dashboard for the guides.">Psy Trekking: site em quatro idiomas com reserva e painel financeiro dos guias.</li>
                 <li data-en="Casa Cheia: gift registry with AI-generated scenes and a host dashboard.">Casa Cheia: lista de presentes com cenas geradas por IA e painel da anfitriã.</li>
               </ul>
+              <p class="job-h label" data-en="Technologies used">Tecnologias usadas</p>
               <ul class="chips"><li>Next.js</li><li>TypeScript</li><li>Fastify</li><li>PostgreSQL</li><li>Docker</li><li>WhatsApp</li><li>Mercado Pago</li><li>PagBank</li></ul>
             </div></div>
           </div>
@@ -458,9 +488,10 @@
               </div>
               <span class="badge label badge--up" data-en="Promoted">Promovido</span>
             </div>
-            <p class="job-sum" data-en="Grew a certificate automation into the company's internal tools hub.">Evoluí uma automação de certidões até virar a central de ferramentas internas da empresa.</p>
+            <p class="job-story" data-en="Promoted in December 2024, I started owning things end to end: front, back, database and integrations. I took a small certificate automation and kept growing it until it became the internal tools hub that several teams in the company use every day, with login, sessions and complete flows.">Promovido em dezembro de 2024, passei a responder de ponta a ponta: front, back, banco de dados e integrações. Peguei uma automação pequena de certidões e fui evoluindo até ela virar a central de ferramentas que várias áreas da empresa usam todo dia, com login, sessão e fluxos completos.</p>
             <button type="button" class="job-more label" aria-expanded="false"><span data-en="Show details">Ver detalhes</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
             <div class="job-detail"><div>
+              <p class="job-h label" data-en="Main deliveries">Principais entregas</p>
               <ul class="job-bullets">
                 <li data-en="Full stack work on internal applications (front, back and SQL), focused on productivity and fewer manual steps.">Atuação full stack em aplicações internas (front, back e SQL), com foco em produtividade e menos etapas manuais.</li>
                 <li data-en="An internal platform that started as certificate automation and became the tools hub for internal teams, with auth, sessions and end-to-end flows.">Plataforma interna que começou como automação de certidões e virou a central de ferramentas das áreas, com autenticação, sessão e fluxos completos.</li>
@@ -468,6 +499,7 @@
                 <li data-en="Bots and integrations with Brazilian courts (TRFs and TJs), including OCR value reading and cookie/token maintenance routines.">Robôs e integrações com TRFs e TJs, incluindo leitura de valores em imagem (OCR) e rotinas de manutenção de cookies e tokens.</li>
               </ul>
               <div class="metric"><b>15 → 5 min</b><span data-en="per automated form flow">por fluxo de formulário automatizado</span></div>
+              <p class="job-h label" data-en="Technologies used">Tecnologias usadas</p>
               <ul class="chips"><li>React</li><li>JavaScript</li><li>Python</li><li>Flask</li><li>MySQL</li><li>Web Scraping</li><li>OCR</li></ul>
             </div></div>
           </div>
@@ -483,14 +515,16 @@
                 <p data-en="Development Intern">Estagiário de Desenvolvimento</p>
               </div>
             </div>
-            <p class="job-sum" data-en="Automations, data scraping and integrations with Python and SQL. Promoted to developer in nine months.">Automações, raspagem de dados e integrações com Python e SQL. Promovido a desenvolvedor em nove meses.</p>
+            <p class="job-story" data-en="I joined as an intern focused on Python and SQL. I learned databases and scraping in practice, on real deliveries from the first weeks, automating work the team used to do by hand. Nine months later I was promoted to developer.">Entrei como estagiário com foco em Python e SQL. Aprendi banco de dados e raspagem na prática, em entregas reais desde as primeiras semanas, automatizando o que o time fazia na mão. Nove meses depois fui promovido a desenvolvedor.</p>
             <button type="button" class="job-more label" aria-expanded="false"><span data-en="Show details">Ver detalhes</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
             <div class="job-detail"><div>
+              <p class="job-h label" data-en="Main deliveries">Principais entregas</p>
               <ul class="job-bullets">
                 <li data-en="Learned databases and scraping hands-on and shipped real deliveries quickly.">Aprendi banco de dados e raspagem na prática e já apliquei em entregas reais.</li>
                 <li data-en="Operational automations and integration routines: imports, consolidation and data validation to reduce rework.">Automações operacionais e rotinas de integração: importação, consolidação e validação de dados para reduzir retrabalho.</li>
                 <li data-en="Support on internal tools (forms, certificates, team tools) with attention to logs, errors and consistency.">Apoio em ferramentas internas (formulários, certidões, apoio ao time) com atenção a logs, erros e consistência.</li>
               </ul>
+              <p class="job-h label" data-en="Technologies used">Tecnologias usadas</p>
               <ul class="chips"><li>Python</li><li>SQL</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Web Scraping</li></ul>
             </div></div>
           </div>
@@ -506,14 +540,16 @@
                 <p data-en="IT Apprentice">Jovem Aprendiz de TI</p>
               </div>
             </div>
-            <p class="job-sum" data-en="My first job in IT: support, hardware maintenance and environment setup.">Primeira experiência em TI: suporte, manutenção de hardware e configuração de ambientes.</p>
+            <p class="job-story" data-en="My first contact with the corporate world. I took care of support, hardware maintenance and environment setup, and learned in practice the value of being proactive, working as a team and always being willing to learn.">Meu primeiro contato com o mundo corporativo. Cuidei de suporte, manutenção de hardware e configuração de ambientes, e aprendi na prática o valor de ser proativo, colaborar com o time e estar sempre disposto a aprender.</p>
             <button type="button" class="job-more label" aria-expanded="false"><span data-en="Show details">Ver detalhes</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
             <div class="job-detail"><div>
+              <p class="job-h label" data-en="Main deliveries">Principais entregas</p>
               <ul class="job-bullets">
                 <li data-en="Hardware maintenance (diagnostics, component replacement) and workstation support.">Manutenção de hardware (diagnóstico, troca de componentes) e suporte a estações de trabalho.</li>
                 <li data-en="Software installation and setup, updates and standardized environments.">Instalação e configuração de softwares, atualizações e padronização de ambientes.</li>
                 <li data-en="User support, building communication and teamwork in a corporate setting.">Suporte a usuários, desenvolvendo comunicação e trabalho em equipe no ambiente corporativo.</li>
               </ul>
+              <p class="job-h label" data-en="Technologies used">Tecnologias usadas</p>
               <ul class="chips"><li>Windows</li><li>Hardware</li><li data-en="Networks">Redes</li><li>Helpdesk</li></ul>
             </div></div>
           </div>

@@ -1159,3 +1159,74 @@ html.has-cursor .cursor.big .cursor-label { opacity: 1; transform: none; }
   .badge { margin-left: 62px; }
   .tabs button { font-size: 10.5px; letter-spacing: .02em; }
 }
+
+/* =========================================================
+   RODADA 9 · intro do terminal, fundo vivo, sobre, história
+   ========================================================= */
+.boot { display: none; }
+html.intro .boot, .boot.out {
+  display: grid; place-items: center; position: fixed; inset: 0; z-index: 300; background: var(--bg); overflow: hidden;
+  padding: calc(24px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.boot.out { animation: bootOut .75s cubic-bezier(.7, 0, .2, 1) forwards; }
+@keyframes bootOut { to { clip-path: inset(0 0 100% 0); } }
+.boot-bg, .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+.boot::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 50%, transparent 0%, var(--bg) 100%); pointer-events: none; }
+.boot-code { position: absolute; z-index: 1; margin: 0; font: 500 14px/1.7 ui-monospace, "SF Mono", Consolas, monospace; color: #6f6a62; opacity: 0; animation: fieldIn 1.2s ease-out .6s forwards; }
+.boot-code--l { left: 6vw; top: 14vh; }
+.boot-code--r { right: 6vw; bottom: 14vh; text-align: left; }
+.boot-term { position: relative; z-index: 2; width: min(620px, 100%); border-radius: 14px; overflow: hidden; background: #100f0e; border: 1px solid var(--line); box-shadow: 0 60px 140px -30px #000, 0 0 0 1px #ffffff08 inset, 0 0 80px -30px #ff563140; animation: termIn .7s var(--ease) both; }
+@keyframes termIn { from { opacity: 0; transform: translateY(20px) scale(.97); } }
+.boot-bar { display: flex; align-items: center; gap: 7px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--bg-2); }
+.boot-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+.boot-bar i:nth-child(2) { background: #febc2e; } .boot-bar i:nth-child(3) { background: #28c840; }
+.boot-bar span { margin-left: 10px; font: 500 12.5px ui-monospace, Consolas, monospace; color: var(--muted); }
+.boot-body { padding: 22px 22px 24px; min-height: 236px; font: 500 15px/1.75 ui-monospace, "SF Mono", Consolas, monospace; color: var(--fg); }
+.boot-line { transition: color .4s; }
+.boot-line .p, .boot-cur span { color: var(--accent); }
+.boot-line .ok { color: var(--live); }
+.boot-line.dim { color: #6f6a62; }
+.boot-cur { display: flex; align-items: center; gap: 8px; }
+.boot-cur i { width: 9px; height: 18px; background: var(--accent); animation: blink 1s steps(1) infinite; }
+.boot-select { margin-top: 14px; animation: fadeUp .5s var(--ease) both; }
+.boot-select p { margin: 0 0 14px; color: var(--muted); }
+.boot-langs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.boot-langs button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg-2); font-family: var(--font); transition: border-color .25s, background .25s, transform .3s var(--ease); }
+.boot-langs button:hover, .boot-langs button:focus-visible { border-color: var(--accent); background: #ff563114; transform: translateY(-2px); }
+.boot-langs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.boot-langs b { font-weight: 900; font-variation-settings: "wdth" 70; font-size: 22px; color: var(--accent); }
+.boot-langs span { flex: 1; font-weight: 700; font-size: 15px; }
+kbd { font: 600 11px ui-monospace, Consolas, monospace; color: var(--muted); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; }
+.boot-skip { position: absolute; z-index: 3; right: max(20px, env(safe-area-inset-right, 0px)); top: calc(20px + env(safe-area-inset-top, 0px)); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; color: var(--muted); cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.boot-skip:hover { color: var(--fg); border-color: var(--dim); }
+
+/* Fundo vivo do hero */
+.hero-bg { z-index: 0; opacity: 0; animation: fieldIn 2s ease-out .4s forwards; }
+@keyframes fieldIn { to { opacity: 1; } }
+html.intro .hero-bg { animation: none; }
+.hero .stage { position: relative; }
+
+/* Sobre: marcos */
+.about-stats { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); min-width: 0; }
+.about-stats li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 24px; align-items: center; padding: 26px 0; border-bottom: 1px solid var(--line); }
+.about-stats b { font-weight: 900; font-variation-settings: "wdth" 62; font-size: clamp(64px, 7vw, 116px); line-height: .82; letter-spacing: -.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.about-stats b small { font-size: .45em; color: var(--muted); font-variation-settings: "wdth" 80; }
+.about-stats li > span { color: var(--muted); font-size: 16px; line-height: 1.4; }
+.about-stats li:hover b { color: var(--accent); transition: color .3s; }
+
+/* Trajetória contada */
+.job-story { margin: 0; color: #cfcac2; font-size: 16.5px; line-height: 1.6; max-width: 72ch; }
+.job-h { margin: 6px 0 -2px; color: var(--muted); }
+.job-bullets { border-top: 0; padding-top: 0; }
+.job-detail > div { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 0; }
+.job.is-open .job-detail > div { padding-top: 14px; }
+
+@media (max-width: 720px) {
+  .boot-code { display: none; }
+  .boot-body { padding: 18px 16px 20px; font-size: 13px; min-height: 210px; }
+  .boot-langs { grid-template-columns: 1fr; }
+  .boot-langs kbd { display: none; }
+  .about-stats li { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; }
+  .about-stats b { font-size: 18vw; }
+  .job-story { font-size: 15px; }
+}

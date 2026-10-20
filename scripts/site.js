@@ -52,29 +52,134 @@
     });
   });
 
-  /* ---------- Intro ---------- */
-  var introTimer = null;
-  function endIntro() {
-    if (!root.classList.contains("intro")) return;
-    clearTimeout(introTimer);
-    root.classList.add("intro-done");
-    root.classList.remove("intro", "play");
-    try { sessionStorage.setItem("mm-intro", "1"); } catch (e) {}
-    ["keydown", "wheel", "touchstart"].forEach(function (ev) { window.removeEventListener(ev, endIntro); });
-  }
-  if (root.classList.contains("intro")) {
-    var start = function () {
-      root.classList.add("play");
-      introTimer = setTimeout(endIntro, 3300);
-      ["keydown", "wheel", "touchstart"].forEach(function (ev) { window.addEventListener(ev, endIntro, { passive: true }); });
+  /* ---------- Campo de código (fundo da intro e do hero) ---------- */
+  var TOKENS = ["const", "function", "() =>", "return", "async", "await", "</>", "{ }", "[ ]", "import", "export", "if", "===", "=>", "200 OK", "deploy", "npm run build", "SELECT *", "git push", "useState", "fetch()", "<div>", "pix.create()", "agenda.marcar()", "whatsapp.send()", "Prisma", "Next.js", "Node", "SQL", "API"];
+  function codeField(canvas, o) {
+    if (!canvas || !canvas.getContext) return null;
+    var ctx = canvas.getContext("2d"), dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, items = [], dots = [], raf = 0, running = false;
+    var mx = -9999, my = -9999, sx = -9999, sy = -9999, t = 0, scrollV = 0, lastSy = window.scrollY;
+    function size() {
+      var r = canvas.getBoundingClientRect(); W = r.width; H = r.height;
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(o.max, W * H / o.density));
+      items = []; for (var i = 0; i < n; i++) items.push(spawn(true));
+      dots = []; for (var k = 0; k < Math.round(n * 2.2); k++) dots.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.3 + .3, p: Math.random() * 6.3, s: Math.random() * .02 + .01 });
+    }
+    function spawn(any) {
+      var z = Math.random();
+      return { txt: TOKENS[(Math.random() * TOKENS.length) | 0], x: Math.random() * W, y: any ? Math.random() * H : H + 20, z: z, v: (.15 + z * .45) * o.speed, sz: 10 + z * 7, a: .05 + z * .12 };
+    }
+    function frame() {
+      t += .016;
+      var sy2 = window.scrollY; scrollV += ((sy2 - lastSy) - scrollV) * .15; lastSy = sy2;
+      sx += (mx - sx) * .12; sy += (my - sy) * .12;
+      ctx.clearRect(0, 0, W, H);
+      for (var d = 0; d < dots.length; d++) {
+        var p = dots[d], tw = Math.sin(t * p.s * 60 + p.p) * .35 + .65;
+        ctx.fillStyle = "rgba(239,237,232," + (.12 * tw).toFixed(3) + ")";
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+      }
+      ctx.textBaseline = "middle";
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        it.y -= it.v + Math.abs(scrollV) * .04 * (1 + it.z);
+        if (it.y < -20) items[i] = it = spawn(false);
+        var dx = it.x - sx, dy = it.y - sy, dist = Math.sqrt(dx * dx + dy * dy), near = Math.max(0, 1 - dist / o.radius);
+        var x = it.x + (near ? dx / (dist || 1) * near * 22 : 0), y = it.y + (near ? dy / (dist || 1) * near * 22 : 0);
+        ctx.font = (600 + Math.round(near * 200)) + " " + Math.round(it.sz + near * 3) + "px ui-monospace, Consolas, monospace";
+        if (near > .02) {
+          ctx.fillStyle = "rgba(255," + Math.round(86 + 90 * (1 - near)) + "," + Math.round(49 + 80 * (1 - near)) + "," + Math.min(.9, it.a + near * .8).toFixed(3) + ")";
+        } else ctx.fillStyle = "rgba(239,237,232," + it.a.toFixed(3) + ")";
+        ctx.fillText(it.txt, x, y);
+      }
+      if (sx > -999) {
+        var g = ctx.createRadialGradient(sx, sy, 0, sx, sy, o.radius * 1.2);
+        g.addColorStop(0, "rgba(255,86,49,.10)"); g.addColorStop(1, "rgba(255,86,49,0)");
+        ctx.fillStyle = g; ctx.fillRect(sx - o.radius * 1.2, sy - o.radius * 1.2, o.radius * 2.4, o.radius * 2.4);
+      }
+      raf = running ? requestAnimationFrame(frame) : 0;
+    }
+    function point(e) {
+      var r = canvas.getBoundingClientRect(), p = e.touches ? e.touches[0] : e;
+      mx = p.clientX - r.left; my = p.clientY - r.top;
+      if (sx < -999) { sx = mx; sy = my; }
+    }
+    (o.target || canvas).addEventListener("pointermove", point, { passive: true });
+    (o.target || canvas).addEventListener("touchmove", point, { passive: true });
+    (o.target || canvas).addEventListener("pointerleave", function () { mx = my = -9999; }, { passive: true });
+    size(); window.addEventListener("resize", size);
+    return {
+      start: function () { if (running || reduceMotion) { if (reduceMotion) frame(); return; } running = true; raf = requestAnimationFrame(frame); },
+      stop: function () { running = false; cancelAnimationFrame(raf); },
+      size: size
     };
-    var started = false;
-    var go = function () { if (!started) { started = true; requestAnimationFrame(start); } };
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
-    setTimeout(go, 700);
-    $("#skip-intro").addEventListener("click", endIntro);
   }
 
+  /* ---------- Intro: terminal ---------- */
+  var boot = $("#boot");
+  var bootField = codeField($("#boot-bg"), { density: 9000, max: 70, speed: 1.4, radius: 160, target: boot });
+  function finishBoot(chosen) {
+    if (!root.classList.contains("intro")) return;
+    if (chosen) applyLang(chosen, true);
+    try { sessionStorage.setItem("mm-intro", "1"); } catch (e) {}
+    boot.classList.add("out");
+    root.classList.remove("intro");
+    setTimeout(function () {
+      boot.hidden = true; boot.classList.remove("out");
+      if (bootField) bootField.stop();
+      heroField && heroField.start();
+    }, reduceMotion ? 0 : 750);
+    document.removeEventListener("keydown", bootKeys);
+  }
+  function bootKeys(e) {
+    var k = e.key.toLowerCase();
+    if (k === "escape") finishBoot();
+    else if (k === "1" || k === "p") finishBoot("pt");
+    else if (k === "2" || k === "e") finishBoot("en");
+    else if (k === "enter" && !$("#boot-select").hidden) finishBoot(lang);
+  }
+  if (root.classList.contains("intro") && boot) {
+    if (bootField) bootField.start();
+    var LINES = ["Initializing system...", "Loading Matheus Machado...", "Full Stack Developer detected", "Welcome to the portfolio"];
+    var linesEl = $("#boot-lines"), li = 0;
+    $$("[data-boot-lang]").forEach(function (b) {
+      if (b.dataset.bootLang === lang) b.classList.add("is-pref");
+      b.addEventListener("click", function () { finishBoot(b.dataset.bootLang); });
+    });
+    $("#boot-skip").addEventListener("click", function () { finishBoot(); });
+    document.addEventListener("keydown", bootKeys);
+    var typeLine = function () {
+      if (li >= LINES.length) {
+        setTimeout(function () {
+          $$(".boot-line", linesEl).forEach(function (l) { l.classList.add("dim"); });
+          $("#boot-cur").hidden = true;
+          $("#boot-select").hidden = false;
+          var pref = $(".boot-langs .is-pref"); if (pref) pref.focus({ preventScroll: true });
+        }, 380);
+        return;
+      }
+      var row = document.createElement("div"); row.className = "boot-line";
+      row.innerHTML = '<span class="p">&gt;</span> <span class="tx"></span>';
+      linesEl.appendChild(row);
+      var tx = row.querySelector(".tx"), txt = LINES[li], c = 0;
+      (function ch() {
+        tx.textContent = txt.slice(0, ++c);
+        if (c < txt.length) setTimeout(ch, 22 + Math.random() * 18);
+        else { if (li === 2) row.insertAdjacentHTML("beforeend", ' <span class="ok">✓</span>'); li++; setTimeout(typeLine, 260); }
+      })();
+    };
+    setTimeout(typeLine, 350);
+  } else if (boot) { boot.hidden = true; }
+
+  /* ---------- Fundo vivo do hero ---------- */
+  var heroField = codeField($("#hero-bg"), { density: 12000, max: 80, speed: 1, radius: 200, target: $(".hero") });
+  if (heroField) {
+    if (!root.classList.contains("intro")) heroField.start();
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) {
+      if (root.classList.contains("intro")) return;
+      es[0].isIntersecting ? heroField.start() : heroField.stop();
+    }).observe($(".hero"));
+  }
 
   /* ---------- Nav ---------- */
   var nav = $("#nav"), lastY = window.scrollY, hero = $(".hero");
@@ -181,7 +286,7 @@
         })(t0);
       });
     }, { threshold: .4 });
-    counters.forEach(function (c) { c.textContent = "0" + (c.dataset.suffix || ""); cObs.observe(c); });
+    counters.forEach(function (c) { if (+c.dataset.count > 1000) return; c.textContent = "0" + (c.dataset.suffix || ""); cObs.observe(c); });
   }
 
   /* ---------- Case: lista + celular ---------- */
@@ -598,7 +703,8 @@
       key: "doc-v9", src: "assets/video/documentario-abdous.mp4", poster: "assets/img/projetos/abdous/doc-frame-512.webp",
       kicker: { pt: "Documentário", en: "Documentary" }, title: { pt: "Abdou's Barber · o antes e o depois", en: "Abdou's Barber · the before and after" },
       chapters: [
-        { t: 0, pt: "A barbearia antes do sistema", en: "The shop before the system" },
+        { t: 0, pt: "Um dia na barbearia", en: "A day at the shop" },
+        { t: 155, pt: "A conversa com o dono", en: "The talk with the owner" },
         { t: 397, pt: "Como era antes do sistema?", en: "What was it like before?" },
         { t: 441, pt: "O real impacto no dia a dia", en: "The real impact" },
         { t: 500, pt: "O contato com o cliente hoje", en: "Talking to clients today" },

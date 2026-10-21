@@ -1327,3 +1327,6 @@ html.intro .hero-bg { animation: none; }
 .pl-qmenu button:hover, .pl-qmenu button:focus-visible { background: #ffffff14; }
 .pl-qmenu button.on { color: var(--accent); }
 @media (max-width: 720px) { .pl-row .pl-q .pl-speed { padding: 0 8px; } }
+/* Player: o quadro inteiro sempre cabe na tela (com as duas barras do formato cinema) */
+.pl-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.pl.vertical .pl-video { width: 100%; height: 100%; }

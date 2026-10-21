@@ -1445,3 +1445,15 @@ html.menu-open .dock { transform: translateY(110%); }
 .menu { box-shadow: none; }
 @media (max-width: 720px) { html.lock .dock { visibility: hidden; opacity: 0; } }
 @media (max-width: 720px) { .hero-actions { display: none; } .hero-copy { padding-bottom: 6px; } }
+
+/* =========================================================
+   RODADA 14 · nada transparente fixo nas bordas da tela
+   O Safari (iPhone e Mac) usa o elemento fixo mais de cima encostado
+   na borda pra pintar a barra de status e a da URL. A textura e a barra
+   de leitura eram camadas fixas transparentes de ponta a ponta: o Safari
+   via "sem cor" e mostrava o conteúdo passando. Agora a textura acompanha
+   a página (não é fixa) e a barra de leitura fica embaixo do cabeçalho.
+   ========================================================= */
+body { position: relative; }
+body::after { position: absolute; inset: 0; z-index: 1; }
+.progress { top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); z-index: 99; }

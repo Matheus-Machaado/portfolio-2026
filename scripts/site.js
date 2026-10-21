@@ -31,7 +31,7 @@
     i18nNodes.forEach(function (el) { el.innerHTML = lang === "en" ? el.dataset.en : el.dataset.pt; });
     altNodes.forEach(function (el) { el.setAttribute("alt", lang === "en" ? el.dataset.enAlt : el.dataset.ptAlt); });
     $$("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
-    var lc = document.getElementById("lang-circle"); if (lc) lc.textContent = lang.toUpperCase();
+
     $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf"); });
     if (persist) { try { localStorage.setItem("mm-lang", lang); } catch (e) {} }
     splitHeadings();
@@ -152,9 +152,6 @@
     var y = window.scrollY;
     nav.classList.toggle("is-solid", y > 30);
     var pastHero = y > hero.offsetHeight * .6;
-    if (!menu.hidden) { nav.classList.remove("is-hidden"); }
-    else if (pastHero && y > lastY + 4) nav.classList.add("is-hidden");
-    else if (y < lastY - 4 || !pastHero) nav.classList.remove("is-hidden");
     lastY = y;
   }
   var navLinks = $$(".links a");
@@ -174,21 +171,22 @@
   function setMenu(open) {
     clearTimeout(menuT);
     menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? (lang === "en" ? "Close menu" : "Fechar menu") : (lang === "en" ? "Open menu" : "Abrir menu"));
+    root.classList.toggle("menu-open", open);
+    updFab();
     if (open) {
       menu.hidden = false; root.classList.add("lock");
       requestAnimationFrame(function () { menu.classList.add("is-open"); });
-      setTimeout(function () { $("#menu-x").focus({ preventScroll: true }); }, 60);
+
     } else {
       menu.classList.remove("is-open"); root.classList.remove("lock");
       menuT = setTimeout(function () { menu.hidden = true; }, reduceMotion ? 0 : 350);
     }
   }
   menuBtn.addEventListener("click", function () { setMenu(menu.hidden); });
-  $("#menu-x").addEventListener("click", function () { setMenu(false); menuBtn.focus({ preventScroll: true }); });
   menu.addEventListener("click", function (e) { if (e.target === menu) setMenu(false); });
-  var langCircle = $("#lang-circle");
-  if (langCircle) langCircle.addEventListener("click", function () { applyLang(lang === "pt" ? "en" : "pt", true); });
-  $$("#menu .menu-links a, #menu .menu-cta").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
+
+  $$("#menu .menu-links a, #menu .menu-cta, #fab a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
 
   /* ---------- Títulos palavra a palavra ---------- */
   function splitHeadings() {
@@ -370,7 +368,7 @@
   var fab = $("#fab"), contactSec = $("#contato");
   function updFab() {
     if (!fab) return;
-    var past = window.scrollY > hero.offsetHeight * .8;
+    var ha = $(".hero-actions"), past = ha ? ha.getBoundingClientRect().bottom < 0 : window.scrollY > hero.offsetHeight * .8;
     var r = contactSec.getBoundingClientRect();
     var atContact = r.top < window.innerHeight && r.bottom > 0;
     fab.classList.toggle("is-on", past && !atContact && pd.hidden && menu.hidden && !(window.MMPlayer && window.MMPlayer.isOpen()));

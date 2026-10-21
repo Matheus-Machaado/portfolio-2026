@@ -109,34 +109,36 @@
       <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
     </div>
     <a class="pill sm label nav-cta" href="https://wa.me/5511910254958" target="_blank" rel="noopener" data-en="Let's talk">Vamos conversar</a>
-    <button class="lang-circle label" type="button" id="lang-circle" aria-label="Trocar idioma / Change language">PT</button>
-    <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><i></i><i></i><i></i></button>
+    <a class="m-cta" href="https://wa.me/5511910254958" target="_blank" rel="noopener" data-en="Let's talk">Conversar</a>
+    <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><i></i><i></i></button>
   </div>
 </header>
 
 <div class="menu" id="menu" hidden>
-  <button class="menu-x" type="button" id="menu-x" aria-label="Fechar menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <nav class="menu-in" aria-label="Menu">
-    <p class="menu-brand">Matheus Machado</p>
-    <ul class="menu-links">
-      <li><a href="#inicio" data-en="Home">Início</a></li>
-      <li><a href="#sobre" data-en="About">Sobre</a></li>
-      <li><a href="#case" data-en="Case">Case</a></li>
-      <li><a href="#projetos" data-en="Work">Projetos</a></li>
-      <li><a href="#servicos" data-en="Services">Serviços</a></li>
-      <li><a href="#trajetoria" data-en="Experience">Trajetória</a></li>
-      <li><a href="#contato" data-en="Contact">Contato</a></li>
-    </ul>
-    <div class="lang label" role="group" aria-label="Idioma / Language">
-      <button type="button" data-set-lang="pt" aria-pressed="true">PT</button>
-      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    <ol class="menu-links">
+      <li><a href="#inicio"><span class="n">01</span><span data-en="Home">Início</span></a></li>
+      <li><a href="#sobre"><span class="n">02</span><span data-en="About">Sobre</span></a></li>
+      <li><a href="#case"><span class="n">03</span><span data-en="Case">Case</span></a></li>
+      <li><a href="#projetos"><span class="n">04</span><span data-en="Work">Projetos</span></a></li>
+      <li><a href="#servicos"><span class="n">05</span><span data-en="Services">Serviços</span></a></li>
+      <li><a href="#trajetoria"><span class="n">06</span><span data-en="Experience">Trajetória</span></a></li>
+      <li><a href="#contato"><span class="n">07</span><span data-en="Contact">Contato</span></a></li>
+    </ol>
+    <div class="menu-foot">
+      <a class="pill solid menu-cta" href="https://wa.me/5511910254958" target="_blank" rel="noopener"><span data-en="Message me on WhatsApp">Falar no WhatsApp</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+      <a class="pill ghost menu-cta cv-link" href="assets/curriculos/curriculo.pdf" target="_blank" rel="noopener"><span data-en="Download résumé">Baixar currículo</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v8M4.5 7.5 8 11l3.5-3.5M3 13h10"/></svg></a>
+      <div class="menu-row">
+        <div class="lang label" role="group" aria-label="Idioma / Language">
+          <button type="button" data-set-lang="pt" aria-pressed="true">PT</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <div class="menu-social">
+          <a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+          <a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+        </div>
+      </div>
     </div>
-    <div class="menu-social">
-      <a href="https://github.com/Matheus-Machaado" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
-      <a href="https://www.linkedin.com/in/matheus-machado12" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
-      <a href="https://wa.me/5511910254958" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg></a>
-    </div>
-    <a class="pill solid menu-cta" href="https://wa.me/5511910254958" target="_blank" rel="noopener"><span data-en="Message me on WhatsApp">Falar no WhatsApp</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
   </nav>
 </div>
 
@@ -783,7 +785,10 @@
 
 <div class="toast label" id="toast" role="status" aria-live="polite"></div>
 
-<a class="fab" id="fab" href="https://wa.me/5511910254958" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/img/tech/whatsapp.svg" alt="" width="26" height="26"></a>
+<div class="dock" id="fab">
+  <a class="dock-main" href="https://wa.me/5511910254958" target="_blank" rel="noopener"><img src="assets/img/tech/whatsapp.svg" alt="" width="18" height="18"><span data-en="Message me">Falar no WhatsApp</span></a>
+  <a class="dock-alt" href="#projetos" data-en="See projects">Ver projetos</a>
+</div>
 
 <script src="scripts/dados.js"></script>
 <script src="scripts/vendor/hls.light.min.js" defer></script>

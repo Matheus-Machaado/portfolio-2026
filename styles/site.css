@@ -1420,3 +1420,28 @@ html.menu-open .dock { transform: translateY(110%); }
 .menu-foot { justify-items: stretch; }
 .menu-foot > .pill { display: flex; width: auto; }
 .menu-foot { grid-template-columns: minmax(0, 1fr); justify-content: stretch; }
+
+/* =========================================================
+   RODADA 13 · bordas sólidas no Safari do iPhone (como o Abdou's)
+   O Safari pinta a barra de status e a barra de endereço com a cor
+   dos elementos fixos encostados nas bordas: eles precisam ter fundo
+   desde o início e não podem se esconder atrás das barras.
+   ========================================================= */
+.nav::before { content: none; }
+@media (max-width: 1180px) {
+  .nav, .nav.is-solid {
+    background: #0c0b0ae6; -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
+    border-bottom: 1px solid #efede814;
+  }
+  html.menu-open .nav { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; }
+  .hero { padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); }
+}
+@media (max-width: 720px) {
+  .dock { transform: none !important; box-shadow: none; background: #0c0b0aeb; transition: opacity .3s; }
+  .dock.is-hidden { visibility: hidden; opacity: 0; }
+  html.menu-open .dock { visibility: hidden; }
+  .footer { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
+}
+.menu { box-shadow: none; }
+@media (max-width: 720px) { html.lock .dock { visibility: hidden; opacity: 0; } }
+@media (max-width: 720px) { .hero-actions { display: none; } .hero-copy { padding-bottom: 6px; } }

@@ -180,7 +180,7 @@
 
     } else {
       menu.classList.remove("is-open"); root.classList.remove("lock");
-      menuT = setTimeout(function () { menu.hidden = true; }, reduceMotion ? 0 : 350);
+      menuT = setTimeout(function () { menu.hidden = true; updFab(); }, reduceMotion ? 0 : 350);
     }
   }
   menuBtn.addEventListener("click", function () { setMenu(menu.hidden); });
@@ -368,10 +368,9 @@
   var fab = $("#fab"), contactSec = $("#contato");
   function updFab() {
     if (!fab) return;
-    var ha = $(".hero-actions"), past = ha ? ha.getBoundingClientRect().bottom < 0 : window.scrollY > hero.offsetHeight * .8;
-    var r = contactSec.getBoundingClientRect();
-    var atContact = r.top < window.innerHeight && r.bottom > 0;
-    fab.classList.toggle("is-on", past && !atContact && pd.hidden && menu.hidden && !(window.MMPlayer && window.MMPlayer.isOpen()));
+    // Barra fixa sempre presente (como no Abdou's); some só com menu, detalhe do projeto ou vídeo abertos.
+    fab.classList.add("is-on");
+    fab.classList.toggle("is-hidden", !pd.hidden || !menu.hidden || !!(window.MMPlayer && window.MMPlayer.isOpen()));
   }
 
   /* ---------- Barra de leitura ---------- */

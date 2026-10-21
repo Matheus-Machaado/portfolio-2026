@@ -637,7 +637,7 @@
   /* ---------- Vídeos do case (player próprio) ---------- */
   var VIDEOS = {
     doc: {
-      key: "doc-v9", src: "assets/video/documentario-abdous.mp4", poster: "assets/img/projetos/abdous/doc-frame-512.webp",
+      key: "doc-v9", src: "https://matheus-machado-media.netlify.app/doc/master.m3u8", poster: "assets/img/projetos/abdous/doc-frame-512.webp",
       kicker: { pt: "Documentário", en: "Documentary" }, title: { pt: "Abdou's Barber · o antes e o depois", en: "Abdou's Barber · the before and after" },
       chapters: [
         { t: 0, pt: "Um dia na barbearia", en: "A day at the shop" },
@@ -652,7 +652,7 @@
         { t: 809, pt: "Créditos e bastidores", en: "Credits and behind the scenes" }
       ]
     },
-    com: { key: "com-60", src: "assets/video/comercial-abdous.mp4", poster: "assets/img/projetos/abdous/comercial-poster.webp", vertical: true, kicker: { pt: "Comercial", en: "Commercial" }, title: { pt: "Abdou's Barber", en: "Abdou's Barber" }, chapters: [] }
+    com: { key: "com-60", src: "https://matheus-machado-media.netlify.app/comercial/comercial-1080.mp4", poster: "assets/img/projetos/abdous/comercial-poster.webp", vertical: true, kicker: { pt: "Comercial", en: "Commercial" }, title: { pt: "Abdou's Barber", en: "Abdou's Barber" }, chapters: [] }
   };
   var loopVid = $(".film-loop");
   function playVideo(id, start) {
@@ -679,7 +679,7 @@
       entries.forEach(function (e) {
         var busy = window.MMPlayer && window.MMPlayer.isOpen();
         if (e.isIntersecting && !busy) {
-          if (!loopVid.getAttribute("src")) loopVid.src = VIDEOS.com.src;
+          if (!loopVid.getAttribute("src")) loopVid.src = "https://matheus-machado-media.netlify.app/comercial/comercial-720-loop.mp4";
           var p = loopVid.play(); if (p && p.catch) p.catch(function () {});
           loopVid.classList.add("is-on");
         } else { loopVid.pause(); }

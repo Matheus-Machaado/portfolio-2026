@@ -1317,3 +1317,13 @@ html.intro .hero-bg { animation: none; }
 .menu { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .menu[hidden] { display: none; }
 .menu-in { margin: auto; }
+
+/* Player: qualidade */
+.pl-q { position: relative; }
+.pl-q[hidden] { display: none; }
+.pl-qmenu { position: absolute; right: 0; bottom: 52px; list-style: none; margin: 0; padding: 6px; min-width: 150px; border-radius: 12px; background: #121110f2; border: 1px solid #ffffff1f; display: grid; gap: 2px; z-index: 6; }
+.pl-qmenu[hidden] { display: none; }
+.pl-qmenu button { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 600; color: #fff; }
+.pl-qmenu button:hover, .pl-qmenu button:focus-visible { background: #ffffff14; }
+.pl-qmenu button.on { color: var(--accent); }
+@media (max-width: 720px) { .pl-row .pl-q .pl-speed { padding: 0 8px; } }

@@ -5,3 +5,7 @@ https://www.matheus-machado-dev.com.br/* https://matheus-machado-dev.com.br/:spl
 
 # Pretty URL para detalhes de projeto
 /projeto/:id /projeto-detalhe.html?id=:id 200
+
+# Arquivos internos do repositório não são servidos
+/.studio-policy.yaml /404.html 404!
+/.gitignore /404.html 404!

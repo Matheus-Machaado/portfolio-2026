@@ -1457,3 +1457,4 @@ html.menu-open .dock { transform: translateY(110%); }
 body { position: relative; }
 body::after { position: absolute; inset: 0; z-index: 1; }
 .progress { top: calc(var(--nav-h) + env(safe-area-inset-top, 0px)); z-index: 99; }
+.about-text strong { color: var(--fg); font-weight: 700; }

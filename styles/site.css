@@ -1460,28 +1460,24 @@ body::after { position: absolute; inset: 0; z-index: 1; }
 .about-text strong { color: var(--fg); font-weight: 700; }
 
 /* =========================================================
-   RODADA 15 · Origem: o robô de 2018, logo depois do Sobre
+   RODADA 15 · Primeiro projeto (robô de 2018), entre Processo e Trajetória
    ========================================================= */
-.about { padding-bottom: clamp(56px, 6vw, 88px); }
-.memory {
-  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(32px, 6vw, 100px); align-items: center;
-  padding-bottom: clamp(110px, 13vw, 190px);
-}
-.memory-frame { margin: 0; padding: 12px 12px 0; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2); max-width: 460px; width: 100%; justify-self: end; }
+.memory { padding-block: clamp(90px, 10vw, 150px) clamp(110px, 12vw, 180px); border-top: 1px solid var(--line); }
+.memory-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(32px, 6vw, 100px); align-items: center; }
+.memory-frame { margin: 0; padding: 12px 12px 0; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2); max-width: 460px; width: 100%; }
 .memory-photo { overflow: hidden; border-radius: 8px; aspect-ratio: 825 / 1024; background: #0c0b0a; }
 .memory-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.88) contrast(1.04); transform: scale(1.04); transition: transform 1.6s var(--ease), filter .6s; }
 .memory-frame.is-in .memory-photo img { transform: none; }
 .memory-frame:hover .memory-photo img { filter: none; }
 .memory-frame figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 4px 14px; color: var(--muted); }
-.memory-frame figcaption > span:first-child { display: inline-flex; align-items: center; }
 .memory-text { display: grid; gap: 18px; max-width: 62ch; min-width: 0; }
-.memory-text .sec-label { margin-bottom: 0; }
-.memory-title { margin: 0; text-wrap: balance; font-size: clamp(30px, 3.2vw, 48px); line-height: 1.04; font-weight: 800; letter-spacing: -.02em; color: var(--fg); }
+.memory-title { margin: 0; text-wrap: balance; font-size: clamp(26px, 2.6vw, 40px); line-height: 1.08; font-weight: 800; letter-spacing: -.02em; color: var(--fg); }
 .memory-text p { margin: 0; color: var(--muted); font-size: 17px; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.memory-text .chips { margin: 4px 0 0; }
 .memory-note { color: var(--muted); opacity: .7; font-size: 13px; }
 @media (max-width: 720px) {
-  .about { padding-bottom: 40px; }
-  .memory { grid-template-columns: 1fr; row-gap: 28px; padding-bottom: 80px; }
-  .memory-frame { max-width: none; justify-self: stretch; }
+  .memory { padding-block: 72px 80px; }
+  .memory-grid { grid-template-columns: 1fr; row-gap: 28px; }
+  .memory-frame { max-width: none; }
   .memory-text p { font-size: 16px; }
 }

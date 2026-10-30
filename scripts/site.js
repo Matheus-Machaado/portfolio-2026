@@ -32,7 +32,7 @@
     altNodes.forEach(function (el) { el.setAttribute("alt", lang === "en" ? el.dataset.enAlt : el.dataset.ptAlt); });
     $$("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
 
-    $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf") + "?v=20261030a"; });
+    $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf") + "?v=20261030b"; });
     if (persist) { try { localStorage.setItem("mm-lang", lang); } catch (e) {} }
     splitHeadings();
     renderWork();
@@ -475,6 +475,7 @@
       }).join("") + "</section>";
     }
     if (c.result) h += '<section class="pc-sec pc-result" id="pc-resultado"><p class="label soft-label">' + (en ? "(Result)" : "(Resultado)") + '</p><div class="pc-text pc-big">' + paras(L(c, "result")) + "</div></section>";
+    if (c.note) h += '<p class="pc-note">' + L(c, "note") + "</p>";
     box.innerHTML = h; box.hidden = false;
     meta.innerHTML = (c.meta || []).map(function (x) { return "<div><dt class=\"label soft-label\">" + L(x, "k") + "</dt><dd>" + L(x, "v") + "</dd></div>"; }).join("");
     meta.hidden = !(c.meta && c.meta.length);

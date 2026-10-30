@@ -85,26 +85,357 @@ window.MM_DATA = {
    "company": "Agência de trekking, Chapada Diamantina",
    "company_en": "Trekking agency, Chapada Diamantina",
    "workType": "freelance",
-   "description": "Site em quatro idiomas com roteiros e reserva, mais painel financeiro dos guias. Lighthouse de 93 a 100.",
-   "description_en": "Four-language website with routes and booking, plus a financial dashboard for the guides. Lighthouse 93 to 100.",
-   "fullDescription": "Site da Psy Trekking, agência de trilhas guiadas na Chapada Diamantina, em português, inglês, francês e espanhol.\n\nCada roteiro tem o dia a dia por etapa, saídas agendadas e reserva pela plataforma ou pelo WhatsApp. Os guias têm um painel com receita, comissão, custos, sazonalidade, ranking de roteiros e a fila de leads que chegam pelo WhatsApp.\n\nEm produção, o Lighthouse no celular ficou entre 93 e 100, com 100 em acessibilidade, boas práticas e SEO.",
-   "fullDescription_en": "Website for Psy Trekking, a guided trekking agency in Chapada Diamantina, in Portuguese, English, French and Spanish.\n\nEach route has a day-by-day plan, scheduled departures and booking through the platform or WhatsApp. Guides get a dashboard with revenue, commission, costs, seasonality, route rankings and the queue of leads coming from WhatsApp.\n\nIn production, the mobile Lighthouse score landed between 93 and 100, with 100 in accessibility, best practices and SEO.",
+   "description": "Site em quatro idiomas com mapa interativo da Chapada e reserva, mais um painel com leads, custos, tarefas e atendimento no WhatsApp com IA.",
+   "description_en": "Four-language website with an interactive map of Chapada and booking, plus a dashboard for leads, costs, tasks and AI customer service on WhatsApp.",
+   "fullDescription": "Site e painel de gestão da Psy Trekking, agência de trilhas guiadas na Chapada Diamantina.",
+   "fullDescription_en": "Website and management dashboard for Psy Trekking, a guided trekking agency in Chapada Diamantina.",
    "technologies": [
     "Next.js",
     "TypeScript",
     "Fastify",
+    "Prisma",
     "PostgreSQL",
-    "Docker",
-    "i18n"
+    "Mercado Pago",
+    "WhatsApp",
+    "IA",
+    "i18n",
+    "Docker"
    ],
    "liveUrl": "https://psy-trekking.com",
    "coverImage": "assets/img/projetos/psy/capa.webp",
    "desktopImages": [
-    "assets/img/projetos/psy/desktop-home.webp",
-    "assets/img/projetos/psy/foto-rio.webp",
-    "assets/img/projetos/psy/foto-mirante.webp"
+    "assets/img/projetos/psy/v2/d-home-hero.webp",
+    "assets/img/projetos/psy/v2/d-mapa-lugar.webp",
+    "assets/img/projetos/psy/v2/d-mapa-roteiro.webp",
+    "assets/img/projetos/psy/v2/d-roteiros-lista.webp",
+    "assets/img/projetos/psy/v2/d-roteiro-topo.webp",
+    "assets/img/projetos/psy/v2/d-roteiro-dia-a-dia.webp",
+    "assets/img/projetos/psy/v2/d-reserva-card.webp",
+    "assets/img/projetos/psy/v2/d-proximas-saidas.webp",
+    "assets/img/projetos/psy/v2/d-galeria.webp",
+    "assets/img/projetos/psy/v2/d-galeria-post.webp",
+    "assets/img/projetos/psy/v2/d-idioma-fr.webp",
+    "assets/img/projetos/psy/v2/d-idioma-en.webp",
+    "assets/img/projetos/psy/v2/d-painel-login.webp",
+    "assets/img/projetos/psy/v2/d-painel-inicio.webp",
+    "assets/img/projetos/psy/v2/d-painel-leads.webp",
+    "assets/img/projetos/psy/v2/d-painel-lead-aberto.webp",
+    "assets/img/projetos/psy/v2/d-painel-roteiro-dia-a-dia.webp",
+    "assets/img/projetos/psy/v2/d-painel-roteiro-mapa.webp",
+    "assets/img/projetos/psy/v2/d-painel-roteiro-custos.webp",
+    "assets/img/projetos/psy/v2/d-painel-roteiro-idiomas.webp",
+    "assets/img/projetos/psy/v2/d-painel-tarefas.webp",
+    "assets/img/projetos/psy/v2/d-painel-custos.webp"
    ],
-   "mobileImages": []
+   "mobileImages": [
+    "assets/img/projetos/psy/v2/m-home-hero.webp",
+    "assets/img/projetos/psy/v2/m-mapa-lugar.webp",
+    "assets/img/projetos/psy/v2/m-menu-idiomas.webp",
+    "assets/img/projetos/psy/v2/m-roteiro-topo.webp",
+    "assets/img/projetos/psy/v2/m-roteiro-dia-a-dia.webp",
+    "assets/img/projetos/psy/v2/m-reserva-card.webp",
+    "assets/img/projetos/psy/v2/m-reserva-barra.webp",
+    "assets/img/projetos/psy/v2/m-galeria.webp",
+    "assets/img/projetos/psy/v2/m-painel-inicio.webp",
+    "assets/img/projetos/psy/v2/m-painel-lead.webp",
+    "assets/img/projetos/psy/v2/m-painel-tarefas.webp"
+   ],
+   "defaultView": "desktop",
+   "tabletImages": [
+    "assets/img/projetos/psy/v2/t-home-hero.webp",
+    "assets/img/projetos/psy/v2/t-mapa-lugar.webp",
+    "assets/img/projetos/psy/v2/t-roteiro-topo.webp",
+    "assets/img/projetos/psy/v2/t-roteiro-dia-a-dia.webp"
+   ],
+   "case": {
+    "lead": "Site e painel de gestão da Psy Trekking, agência de trilhas guiadas na Chapada Diamantina. Quem visita explora a região num mapa interativo e reserva em quatro idiomas. A equipe cuida dos leads, dos custos e das saídas num painel próprio.",
+    "lead_en": "Website and management dashboard for Psy Trekking, a guided trekking agency in Chapada Diamantina. Visitors explore the region on an interactive map and book in four languages. The team handles leads, costs and departures in its own dashboard.",
+    "meta": [
+     {
+      "k": "Ano",
+      "k_en": "Year",
+      "v": "2026"
+     },
+     {
+      "k": "Prazo",
+      "k_en": "Timeline",
+      "v": "7 semanas",
+      "v_en": "7 weeks"
+     },
+     {
+      "k": "Papel",
+      "k_en": "Role",
+      "v": "Desenvolvimento completo",
+      "v_en": "End-to-end development"
+     },
+     {
+      "k": "Plataforma",
+      "k_en": "Platform",
+      "v": "Site e painel instalável",
+      "v_en": "Website and installable dashboard"
+     }
+    ],
+    "cover": {
+     "src": "assets/img/projetos/psy/v2/d-home-hero.webp",
+     "kind": "desktop"
+    },
+    "highlights": [
+     {
+      "n": "4",
+      "l": "idiomas no site inteiro: português, inglês, francês e espanhol",
+      "l_en": "languages across the site: Portuguese, English, French and Spanish"
+     },
+     {
+      "n": "43",
+      "l": "lugares no mapa interativo da Chapada",
+      "l_en": "places on the interactive map of Chapada"
+     },
+     {
+      "n": "10",
+      "l": "abas no editor de roteiros, do dia a dia às versões salvas",
+      "l_en": "tabs in the route editor, from daily plans to saved versions"
+     },
+     {
+      "n": "100",
+      "l": "no Lighthouse em acessibilidade, boas práticas e SEO",
+      "l_en": "Lighthouse score for accessibility, best practices and SEO"
+     }
+    ],
+    "challengeTitle": "Vender a Chapada para o mundo, sem perder ninguém no WhatsApp.",
+    "challengeTitle_en": "Selling Chapada to the world without losing anyone on WhatsApp.",
+    "challenge": "A Psy Trekking leva gente de vários países para as trilhas da Chapada Diamantina, e a conversa com o cliente acontece quase toda pelo WhatsApp. O site precisava mostrar a região e explicar cada roteiro em quatro idiomas, com detalhe suficiente para a pessoa decidir.\n\nDo outro lado, a equipe precisava saber quem está interessado, quanto custa cada saída e quanto sobra no fim, sem depender de planilha e sem ter que traduzir tudo à mão a cada mudança.",
+    "challenge_en": "Psy Trekking takes people from many countries to the trails of Chapada Diamantina, and most customer conversations happen on WhatsApp. The website had to show the region and explain each route in four languages, with enough detail for people to decide.\n\nOn the other side, the team needed to know who is interested, what each departure costs and what is left at the end, without spreadsheets and without translating everything by hand after each change.",
+    "modulesTitle": "Um site que vende a viagem e um painel que toca a agência.",
+    "modulesTitle_en": "A website that sells the trip and a dashboard that runs the agency.",
+    "modules": [
+     {
+      "t": "Mapa interativo da Chapada",
+      "t_en": "Interactive map of Chapada",
+      "d": "O mapa foi feito do zero, com o relevo da região, os lugares e os caminhos de cada roteiro. Ao tocar num lugar, a pessoa vê as fotos dele e quais roteiros passam ali.",
+      "d_en": "The map was built from scratch, with the region's terrain, its places and the path of each route. Tapping a place shows its photos and which routes go through it.",
+      "items": [
+       "43 lugares, com trechos de trilha e de carro",
+       "Zoom com pinça e botões no celular e no computador",
+       "Link direto para um lugar e uma foto específica"
+      ],
+      "items_en": [
+       "43 places, with hiking and driving sections",
+       "Pinch and button zoom on phone and desktop",
+       "Direct link to a specific place and photo"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/d-mapa-lugar.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Roteiros com o dia a dia completo",
+      "t_en": "Routes with a full daily plan",
+      "d": "Cada roteiro tem a ficha com dias, distância, nível, saída e tamanho do grupo, e o dia a dia aberto por etapas, com avisos, dicas e fotos. Também mostra o que está incluso e o que levar.",
+      "d_en": "Each route has a summary with days, distance, level, departure and group size, plus a day-by-day plan by stage, with warnings, tips and photos. It also lists what is included and what to bring.",
+      "items": [
+       "Dia a dia em acordeão, por dia e por etapa",
+       "Compartilhar por WhatsApp com prévia gerada para cada roteiro",
+       "Dados estruturados para os buscadores entenderem a viagem"
+      ],
+      "items_en": [
+       "Accordion daily plan, by day and by stage",
+       "WhatsApp sharing with a preview image generated for each route",
+       "Structured data so search engines understand the trip"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/d-roteiro-dia-a-dia.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Reserva pelo site ou pelo WhatsApp",
+      "t_en": "Booking on the site or on WhatsApp",
+      "d": "A pessoa escolhe uma saída em grupo ou uma data própria, informa quantas pessoas vão e vê o total na hora, já com o desconto do grupo. Depois decide entre pagar pelo site ou continuar no WhatsApp.",
+      "d_en": "Visitors pick a group departure or their own date, say how many people are going and see the total right away, with the group discount applied. Then they choose to pay on the site or continue on WhatsApp.",
+      "items": [
+       "Pix e cartão pelo Mercado Pago, com a divisão do valor feita no pagamento",
+       "Vagas seguras por 40 minutos enquanto a pessoa paga",
+       "Link pessoal com a situação da reserva e o recibo",
+       "Barra de reserva fixa no celular, com o total sempre à vista"
+      ],
+      "items_en": [
+       "Pix and card via Mercado Pago, with the split handled at payment",
+       "Spots held for 40 minutes while the person pays",
+       "Personal link with booking status and receipt",
+       "Fixed booking bar on mobile, with the total always in view"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/m-reserva-card.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/psy/v2/m-reserva-barra.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Quatro idiomas, com tradução automática",
+      "t_en": "Four languages, with automatic translation",
+      "d": "O site inteiro existe em português, inglês, francês e espanhol. Quando a equipe altera um roteiro, a IA traduz só o trecho que mudou e o painel avisa se alguma tradução ficou desatualizada.",
+      "d_en": "The whole site exists in Portuguese, English, French and Spanish. When the team edits a route, AI translates only what changed and the dashboard flags any outdated translation.",
+      "items": [
+       "Endereço próprio por idioma, com metadados para os buscadores",
+       "Ao trocar de idioma, a pessoa volta ao mesmo ponto da página",
+       "Tradução minuto e meio depois do último salvamento"
+      ],
+      "items_en": [
+       "A dedicated URL per language, with metadata for search engines",
+       "Switching language returns to the same spot on the page",
+       "Translation runs a minute and a half after the last save"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/d-idioma-fr.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Galeria no estilo de rede social",
+      "t_en": "A social-style gallery",
+      "d": "A agência publica as fotos das trilhas num feed próprio, com curtidas sem precisar de conta e comentários moderados pela equipe. Cada publicação pode apontar o lugar no mapa e o roteiro.",
+      "d_en": "The agency posts trail photos in its own feed, with likes that need no account and comments moderated by the team. Each post can point to a place on the map and a route.",
+      "items": [
+       "Publicações com até 10 fotos",
+       "Link de cada publicação com prévia no WhatsApp"
+      ],
+      "items_en": [
+       "Posts with up to 10 photos",
+       "Each post link previews on WhatsApp"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/d-galeria.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Funil de leads ligado ao WhatsApp",
+      "t_en": "Lead funnel tied to WhatsApp",
+      "d": "Cada clique para o WhatsApp gera um código que liga a conversa ao lead. No painel, a equipe acompanha o funil, vê o que a pessoa pediu, a sobra estimada daquela venda e gera o link de pagamento.",
+      "d_en": "Each click to WhatsApp creates a code that ties the conversation to the lead. In the dashboard, the team follows the funnel, sees what was requested and the estimated margin of that sale, and creates the payment link.",
+      "items": [
+       "Etapas: novo, em conversa, proposta, convertido e não converteu",
+       "Tela inicial com leads em aberto, vendas do mês e o que sobra para a agência",
+       "Número do WhatsApp conectado por QR, com resposta direto pelo painel"
+      ],
+      "items_en": [
+       "Stages: new, in conversation, proposal, converted and lost",
+       "Home screen with open leads, monthly sales and what is left for the agency",
+       "WhatsApp number connected by QR, with replies from the dashboard"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/d-painel-leads.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Atendimento com IA e travas de segurança",
+      "t_en": "AI customer service with guardrails",
+      "d": "Um bot responde no WhatsApp com os dados reais dos roteiros. Antes de enviar, o sistema confere a resposta e corrige valor, data, vaga ou link que não existem. A equipe assume a conversa quando quiser.",
+      "d_en": "A bot answers on WhatsApp using the real route data. Before sending, the system checks the reply and fixes any price, date, spot or link that doesn't exist. The team can take over at any time.",
+      "items": [
+       "Simulador para testar o bot sem falar com cliente",
+       "Transcrição de áudio e leitura de imagens e PDFs",
+       "Mais de um provedor de IA, com troca automática se um falhar"
+      ],
+      "items_en": [
+       "Simulator to test the bot without talking to customers",
+       "Audio transcription and reading of images and PDFs",
+       "More than one AI provider, with automatic fallback"
+      ]
+     },
+     {
+      "t": "Editor de roteiros com prévia ao vivo",
+      "t_en": "Route editor with live preview",
+      "d": "A equipe cria e altera os roteiros sem depender de ninguém. O editor tem 10 abas e mostra, ao lado, como o cliente vai ver. O caminho do mapa é montado a partir das etapas escritas.",
+      "d_en": "The team creates and edits routes on its own. The editor has 10 tabs and shows, alongside, what the customer will see. The map path is built from the written stages.",
+      "items": [
+       "Dia a dia editável por dia, etapa e bloco",
+       "Saídas com capacidade e vagas, e descontos por tamanho de grupo",
+       "Rascunho, publicado e arquivado, com versões para restaurar"
+      ],
+      "items_en": [
+       "Daily plan editable by day, stage and block",
+       "Departures with capacity and spots, and group-size discounts",
+       "Draft, published and archived states, with versions to restore"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/d-painel-roteiro-dia-a-dia.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Custos e margem por tamanho de grupo",
+      "t_en": "Costs and margin by group size",
+      "d": "A equipe cadastra os custos uma vez e liga cada um aos roteiros. O sistema mostra quanto sobra para cada tamanho de grupo, a partir de quantas pessoas o roteiro dá lucro e avisa quando um desconto come a margem.",
+      "d_en": "The team records each cost once and links it to routes. The system shows what is left for each group size, how many people a route needs to turn a profit, and warns when a discount eats the margin.",
+      "items": [
+       "Custo por grupo, por pessoa, por dia ou a cada tantas pessoas",
+       "Tabela de 1 pessoa ao grupo cheio, com o líquido por pessoa"
+      ],
+      "items_en": [
+       "Cost per group, per person, per day or per N people",
+       "Table from 1 person to a full group, with net per person"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/d-painel-roteiro-custos.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Tarefas da equipe e painel no celular",
+      "t_en": "Team tasks and the dashboard on mobile",
+      "d": "As tarefas ficam num quadro de arrastar, com checklist, prazo, responsável e ligação com roteiro ou lead. O painel pode ser instalado no celular, e cada pessoa acessa só o que seu perfil permite.",
+      "d_en": "Tasks live on a drag-and-drop board, with checklists, deadlines, owners and links to routes or leads. The dashboard can be installed on a phone, and each person sees only what their profile allows.",
+      "items": [
+       "16 permissões e perfis de acesso editáveis",
+       "Login com rosto ou digital e aviso de aparelho novo",
+       "Histórico de quem alterou o quê",
+       "10 passeios guiados para aprender a usar"
+      ],
+      "items_en": [
+       "16 permissions and editable access profiles",
+       "Face or fingerprint login and new-device checks",
+       "History of who changed what",
+       "10 guided tours to learn the system"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/psy/v2/m-painel-inicio.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/psy/v2/m-painel-tarefas.webp",
+        "kind": "mobile"
+       }
+      ]
+     }
+    ],
+    "result": "No ar desde outubro de 2026, com Lighthouse no celular entre 93 e 100 nas páginas medidas e nota máxima em acessibilidade, boas práticas e SEO. Hoje a agência vende em quatro idiomas e toca leads, custos e saídas num lugar só.",
+    "result_en": "Live since October 2026, with mobile Lighthouse scores between 93 and 100 on the measured pages and top marks for accessibility, best practices and SEO. The agency now sells in four languages and runs leads, costs and departures in one place.",
+    "note": "As telas do painel e do card de reserva usam dados de demonstração.",
+    "note_en": "Dashboard and booking card screens use demo data."
+   }
   },
   {
    "id": "casa-cheia",
@@ -358,7 +689,9 @@ window.MM_DATA = {
      }
     ],
     "result": "Do primeiro commit ao ar em três dias, sem custo de hospedagem. A Lina divulgou um link só, os convidados escolheram sem repetir presente e ela acompanhou cada reserva pelo painel.",
-    "result_en": "From first commit to live in three days, with no hosting costs. Lina shared a single link, guests picked gifts without doubling up and she followed every reservation from the dashboard."
+    "result_en": "From first commit to live in three days, with no hosting costs. Lina shared a single link, guests picked gifts without doubling up and she followed every reservation from the dashboard.",
+    "note": "As telas do painel usam dados de demonstração.",
+    "note_en": "Dashboard screens use demo data."
    }
   }
  ],

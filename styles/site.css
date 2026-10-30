@@ -1517,14 +1517,14 @@ body::after { position: absolute; inset: 0; z-index: 1; }
 .pc-big p { color: var(--fg); font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; font-weight: 600; }
 .pc-mod { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 64px); align-items: center; padding: clamp(48px, 6vw, 80px) 0; border-bottom: 1px solid var(--line); }
 .pc-mod:first-of-type { margin-top: clamp(30px, 4vw, 50px); border-top: 1px solid var(--line); }
-.pc-mod:not(.is-desktop):not(.is-tablet):nth-of-type(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-.pc-mod:not(.is-desktop):not(.is-tablet):nth-of-type(even) .pc-mod-text { order: 2; }
-.pc-mod.is-desktop, .pc-mod.is-tablet { grid-template-columns: minmax(0, 1fr); align-items: start; }
-.pc-mod.is-desktop .pc-mod-text, .pc-mod.is-tablet .pc-mod-text { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-areas: "n ul" "h ul" "p ul"; column-gap: clamp(32px, 4vw, 64px); }
-.pc-mod.is-desktop .pc-mod-n, .pc-mod.is-tablet .pc-mod-n { grid-area: n; }
-.pc-mod.is-desktop h4, .pc-mod.is-tablet h4 { grid-area: h; }
-.pc-mod.is-desktop .pc-mod-text > p, .pc-mod.is-tablet .pc-mod-text > p { grid-area: p; }
-.pc-mod.is-desktop ul, .pc-mod.is-tablet ul { grid-area: ul; align-self: end; margin: 0; }
+.pc-mod:not(.is-desktop):not(.is-tablet):not(.is-none):nth-of-type(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.pc-mod:not(.is-desktop):not(.is-tablet):not(.is-none):nth-of-type(even) .pc-mod-text { order: 2; }
+.pc-mod.is-desktop, .pc-mod.is-tablet, .pc-mod.is-none { grid-template-columns: minmax(0, 1fr); align-items: start; }
+.pc-mod.is-desktop .pc-mod-text, .pc-mod.is-tablet .pc-mod-text, .pc-mod.is-none .pc-mod-text { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-areas: "n ul" "h ul" "p ul"; column-gap: clamp(32px, 4vw, 64px); }
+.pc-mod.is-desktop .pc-mod-n, .pc-mod.is-tablet .pc-mod-n, .pc-mod.is-none .pc-mod-n { grid-area: n; }
+.pc-mod.is-desktop h4, .pc-mod.is-tablet h4, .pc-mod.is-none h4 { grid-area: h; }
+.pc-mod.is-desktop .pc-mod-text > p, .pc-mod.is-tablet .pc-mod-text > p, .pc-mod.is-none .pc-mod-text > p { grid-area: p; }
+.pc-mod.is-desktop ul, .pc-mod.is-tablet ul, .pc-mod.is-none ul { grid-area: ul; align-self: end; margin: 0; }
 .pc-mod.is-none { grid-template-columns: minmax(0, 1fr); }
 .pc-mod-text { display: grid; gap: 14px; align-content: start; min-width: 0; }
 .pc-mod-n { color: var(--accent); }
@@ -1540,10 +1540,10 @@ body::after { position: absolute; inset: 0; z-index: 1; }
 .pd-gallery.is-tablet { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px 24px; }
 @media (max-width: 1100px) {
   .pc-mod { grid-template-columns: minmax(0, 1fr); }
-  .pc-mod:not(.is-desktop):not(.is-tablet):nth-of-type(even) { grid-template-columns: minmax(0, 1fr); }
-  .pc-mod:not(.is-desktop):not(.is-tablet):nth-of-type(even) .pc-mod-text { order: 0; }
-  .pc-mod.is-desktop .pc-mod-text, .pc-mod.is-tablet .pc-mod-text { grid-template-columns: minmax(0, 1fr); grid-template-areas: "n" "h" "p" "ul"; }
-  .pc-mod.is-desktop ul, .pc-mod.is-tablet ul { margin-top: 4px; }
+  .pc-mod:not(.is-desktop):not(.is-tablet):not(.is-none):nth-of-type(even) { grid-template-columns: minmax(0, 1fr); }
+  .pc-mod:not(.is-desktop):not(.is-tablet):not(.is-none):nth-of-type(even) .pc-mod-text { order: 0; }
+  .pc-mod.is-desktop .pc-mod-text, .pc-mod.is-tablet .pc-mod-text, .pc-mod.is-none .pc-mod-text { grid-template-columns: minmax(0, 1fr); grid-template-areas: "n" "h" "p" "ul"; }
+  .pc-mod.is-desktop ul, .pc-mod.is-tablet ul, .pc-mod.is-none ul { margin-top: 4px; }
   .pc-nums { grid-template-columns: 1fr 1fr; }
   .pc-nums li:nth-child(3) { padding-left: 0; border-left: 0; }
   .pc-nums li:nth-child(n+3) { margin-top: 22px; border-top: 1px solid var(--line); }
@@ -1565,3 +1565,5 @@ body::after { position: absolute; inset: 0; z-index: 1; }
 .pc-mod.is-mobile .pc-mod-media { grid-template-columns: minmax(0, 260px); }
 .pc-mod.is-mobile.is-multi .pc-mod-media { grid-template-columns: repeat(2, minmax(0, 240px)); gap: clamp(14px, 2vw, 26px); }
 @media (max-width: 720px) { .pc-mod.is-mobile .pc-mod-media { grid-template-columns: minmax(0, 240px); } .pc-mod.is-mobile.is-multi .pc-mod-media { grid-template-columns: 1fr 1fr; gap: 12px; } }
+
+.pc-note { margin: 28px 0 0; color: var(--muted); opacity: .7; font-size: 13px; }

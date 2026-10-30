@@ -32,7 +32,7 @@
     altNodes.forEach(function (el) { el.setAttribute("alt", lang === "en" ? el.dataset.enAlt : el.dataset.ptAlt); });
     $$("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
 
-    $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf") + "?v=20261030d"; });
+    $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf") + "?v=20261030e"; });
     if (persist) { try { localStorage.setItem("mm-lang", lang); } catch (e) {} }
     splitHeadings();
     renderWork();
@@ -540,7 +540,7 @@
       pd.hidden = false; pd.classList.remove("is-out");
       if (!reduceMotion) { pd.classList.add("is-in"); setTimeout(function () { pd.classList.remove("is-in"); }, 800); }
       root.classList.add("lock");
-      if (root.classList.contains("intro")) endIntro();
+      if (root.classList.contains("intro")) finishBoot();
       requestAnimationFrame(moveSeg);
       $("#pd-close").focus({ preventScroll: true });
     }

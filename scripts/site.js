@@ -32,7 +32,7 @@
     altNodes.forEach(function (el) { el.setAttribute("alt", lang === "en" ? el.dataset.enAlt : el.dataset.ptAlt); });
     $$("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
 
-    $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf") + "?v=20261030c"; });
+    $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf") + "?v=20261030d"; });
     if (persist) { try { localStorage.setItem("mm-lang", lang); } catch (e) {} }
     splitHeadings();
     renderWork();

@@ -7,10 +7,10 @@ window.MM_DATA = {
    "company": "Barbearia de assinatura, Guarulhos",
    "company_en": "Subscription barbershop, Guarulhos",
    "workType": "freelance",
-   "description": "Sistema completo de gestão: agenda online, fila de espera, planos, loja, financeiro e WhatsApp com IA 24h.",
-   "description_en": "Complete management system: online booking, waiting list, plans, store, finances and 24/7 AI on WhatsApp.",
-   "fullDescription": "A Abdou's Barber perdia cliente na porta e no WhatsApp: agenda no papelzinho, fila de dois, três cortes e mensagem sem resposta por mais de uma semana. Em seis meses construí o sistema inteiro, do site à gestão.\n\nO cliente tem login próprio, agenda com o profissional que quiser, entra na fila de espera quando o dia está cheio e é avisado na hora que vaga um horário. Um assistente com IA responde no WhatsApp a qualquer hora: agenda, vende produto e manda link de pagamento.\n\nPara o dono: dashboard do dia, agenda por profissional, comandas, caixa, financeiro, planos de assinatura com cobrança automática, loja com retirada no balcão, rankings e mapa de calor. Segundo o Alexandre, dono da barbearia, vieram mais clientes e mais assinantes. O antes e o depois está num documentário de 15 minutos.",
-   "fullDescription_en": "Abdou's Barber was losing clients at the door and on WhatsApp: bookings on scraps of paper, lines of two or three haircuts and messages unanswered for over a week. In six months I built the whole system, from the website to the back office.\n\nClients have their own login, book with the barber they want, join a waiting list when the day is full and get notified the moment a slot opens. An AI assistant answers WhatsApp at any hour: it books, sells products and sends payment links.\n\nFor the owner: a daily dashboard, per-barber schedule, tabs, register, finances, subscription plans with automatic billing, an online store with in-store pickup, rankings and a heat map. According to Alexandre, the owner, the shop gained more clients and more subscribers. The before and after is in a 15-minute documentary.",
+   "description": "Sistema completo de uma barbearia de assinatura: site, agenda online, planos com cobrança recorrente, loja, financeiro e atendimento com IA no WhatsApp.",
+   "description_en": "Complete system for a subscription barbershop: website, online booking, plans with recurring billing, store, finances and AI customer service on WhatsApp.",
+   "fullDescription": "Sistema completo da Abdou's Barber, barbearia de assinatura em Guarulhos, do site à gestão.",
+   "fullDescription_en": "Complete system for Abdou's Barber, a subscription barbershop in Guarulhos, from the website to the back office.",
    "technologies": [
     "Next.js",
     "TypeScript",
@@ -18,33 +18,439 @@ window.MM_DATA = {
     "Fastify",
     "Prisma",
     "PostgreSQL",
+    "Redis",
     "Docker",
-    "IA",
-    "WhatsApp"
+    "PagBank",
+    "WhatsApp",
+    "IA"
    ],
    "liveUrl": "https://abdousbarber.com.br",
    "coverImage": "assets/img/projetos/abdous/capa.webp",
    "desktopImages": [
-    "assets/img/projetos/abdous/landing-desktop.webp"
+    "assets/img/projetos/abdous/v2/d-landing-hero.webp",
+    "assets/img/projetos/abdous/v2/d-landing-clube.webp",
+    "assets/img/projetos/abdous/v2/d-landing-servicos.webp",
+    "assets/img/projetos/abdous/v2/d-landing-trabalhos.webp",
+    "assets/img/projetos/abdous/v2/d-landing-app.webp",
+    "assets/img/projetos/abdous/v2/d-minha-conta.webp",
+    "assets/img/projetos/abdous/v2/d-agendar.webp",
+    "assets/img/projetos/abdous/v2/d-plano.webp",
+    "assets/img/projetos/abdous/v2/d-dashboard.webp",
+    "assets/img/projetos/abdous/v2/d-agenda.webp",
+    "assets/img/projetos/abdous/v2/d-fila.webp",
+    "assets/img/projetos/abdous/v2/d-comandas.webp",
+    "assets/img/projetos/abdous/v2/d-comanda-detalhe.webp",
+    "assets/img/projetos/abdous/v2/d-caixa.webp",
+    "assets/img/projetos/abdous/v2/d-cliente-ficha.webp",
+    "assets/img/projetos/abdous/v2/d-planos.webp",
+    "assets/img/projetos/abdous/v2/d-assinaturas.webp",
+    "assets/img/projetos/abdous/v2/d-financeiro.webp",
+    "assets/img/projetos/abdous/v2/d-dre.webp",
+    "assets/img/projetos/abdous/v2/d-livro-caixa.webp",
+    "assets/img/projetos/abdous/v2/d-por-profissional.webp",
+    "assets/img/projetos/abdous/v2/d-mapa-de-calor.webp",
+    "assets/img/projetos/abdous/v2/d-rankings.webp",
+    "assets/img/projetos/abdous/v2/d-campanhas.webp",
+    "assets/img/projetos/abdous/v2/d-bot-studio.webp",
+    "assets/img/projetos/abdous/v2/d-desempenho-bot.webp",
+    "assets/img/projetos/abdous/v2/d-treinamento-ia.webp",
+    "assets/img/projetos/abdous/v2/d-landing-page-gestao.webp",
+    "assets/img/projetos/abdous/v2/d-como-usar.webp"
    ],
    "mobileImages": [
-    "assets/img/projetos/abdous/cel-dashboard.webp",
-    "assets/img/projetos/abdous/cel-agenda.webp",
-    "assets/img/projetos/abdous/cel-fila.webp",
-    "assets/img/projetos/abdous/cel-financeiro.webp",
-    "assets/img/projetos/abdous/cel-assinaturas.webp",
-    "assets/img/projetos/abdous/cel-rankings.webp",
-    "assets/img/projetos/abdous/cel-mapa.webp",
-    "assets/img/projetos/abdous/cel-cliente.webp",
-    "assets/img/projetos/abdous/cel-inicio.webp",
-    "assets/img/projetos/abdous/cel-agendar.webp",
-    "assets/img/projetos/abdous/cel-fila-cliente.webp",
-    "assets/img/projetos/abdous/cel-catalogo.webp",
-    "assets/img/projetos/abdous/cel-plano.webp",
-    "assets/img/projetos/abdous/cel-landing.webp",
-    "assets/img/projetos/abdous/cel-clube.webp"
+    "assets/img/projetos/abdous/v2/m-landing-hero.webp",
+    "assets/img/projetos/abdous/v2/m-minha-conta.webp",
+    "assets/img/projetos/abdous/v2/m-agendar-servicos.webp",
+    "assets/img/projetos/abdous/v2/m-agendar-profissional.webp",
+    "assets/img/projetos/abdous/v2/m-agendar-dia.webp",
+    "assets/img/projetos/abdous/v2/m-agendar-horario.webp",
+    "assets/img/projetos/abdous/v2/m-agendar-lotado.webp",
+    "assets/img/projetos/abdous/v2/m-agendar-revisar.webp",
+    "assets/img/projetos/abdous/v2/m-agendamentos.webp",
+    "assets/img/projetos/abdous/v2/m-plano.webp",
+    "assets/img/projetos/abdous/v2/m-plano-saldo.webp",
+    "assets/img/projetos/abdous/v2/m-plano-familia.webp",
+    "assets/img/projetos/abdous/v2/m-pagamento.webp",
+    "assets/img/projetos/abdous/v2/m-catalogo.webp",
+    "assets/img/projetos/abdous/v2/m-produto.webp",
+    "assets/img/projetos/abdous/v2/m-carrinho.webp",
+    "assets/img/projetos/abdous/v2/m-painel-dashboard.webp",
+    "assets/img/projetos/abdous/v2/m-painel-agenda.webp",
+    "assets/img/projetos/abdous/v2/m-painel-fila.webp",
+    "assets/img/projetos/abdous/v2/m-painel-financeiro.webp",
+    "assets/img/projetos/abdous/v2/m-painel-comandas.webp"
    ],
-   "defaultView": "mobile"
+   "defaultView": "desktop",
+   "tabletImages": [
+    "assets/img/projetos/abdous/v2/t-landing-hero.webp",
+    "assets/img/projetos/abdous/v2/t-agenda.webp",
+    "assets/img/projetos/abdous/v2/t-dashboard.webp"
+   ],
+   "case": {
+    "lead": "Sistema completo da Abdou's Barber, barbearia de assinatura em Guarulhos. O cliente agenda, paga, acompanha o plano e tira dúvida pelo celular, e o dono acompanha agenda, caixa, financeiro e marketing num lugar só.",
+    "lead_en": "Complete system for Abdou's Barber, a subscription barbershop in Guarulhos. Customers book, pay, follow their plan and get answers on their phone, while the owner runs schedule, register, finances and marketing in one place.",
+    "meta": [
+     {
+      "k": "Ano",
+      "k_en": "Year",
+      "v": "2026"
+     },
+     {
+      "k": "Prazo",
+      "k_en": "Timeline",
+      "v": "6 meses",
+      "v_en": "6 months"
+     },
+     {
+      "k": "Papel",
+      "k_en": "Role",
+      "v": "Produto e desenvolvimento completo",
+      "v_en": "Product and end-to-end development"
+     },
+     {
+      "k": "Plataforma",
+      "k_en": "Platform",
+      "v": "Site, área do cliente e painel",
+      "v_en": "Website, customer area and dashboard"
+     }
+    ],
+    "cover": {
+     "src": "assets/img/projetos/abdous/v2/d-landing-hero.webp",
+     "kind": "desktop"
+    },
+    "highlights": [
+     {
+      "n": "87",
+      "l": "telas entre site, área do cliente e painel",
+      "l_en": "screens across website, customer area and dashboard"
+     },
+     {
+      "n": "417",
+      "l": "rotas de API",
+      "l_en": "API endpoints"
+     },
+     {
+      "n": "86",
+      "l": "tabelas no banco de dados",
+      "l_en": "database tables"
+     },
+     {
+      "n": "31",
+      "l": "rotinas automáticas no servidor",
+      "l_en": "automated server jobs"
+     }
+    ],
+    "challengeTitle": "Tirar a barbearia do papel e do WhatsApp do dono.",
+    "challengeTitle_en": "Getting the barbershop off paper and off the owner's WhatsApp.",
+    "challenge": "O atendimento da Abdou's dependia todo do Alexandre, o dono. Agendamento, dúvida e confirmação passavam pelo WhatsApp dele, no meio dos cortes, e muita mensagem ficava sem resposta. O cliente precisava ir até a barbearia ou mandar mensagem para saber se tinha horário.\n\nA agenda era controlada na mão e os planos de assinatura ficavam anotados no papel, sem controle de quem pagou, do que entrava e do que saía. O projeto começou pela agenda e cresceu com um objetivo: atender o negócio inteiro e automatizar tudo o que fosse possível.",
+    "challenge_en": "Service at Abdou's depended entirely on Alexandre, the owner. Bookings, questions and confirmations went through his WhatsApp, between haircuts, and many messages went unanswered. Customers had to go to the shop or send a message to find out if there was a slot.\n\nThe schedule was kept by hand and subscription plans were written on paper, with no control over who had paid or what came in and went out. The project started with the schedule and grew with one goal: to cover the whole business and automate everything possible.",
+    "modulesTitle": "Do primeiro clique do cliente ao fechamento do mês.",
+    "modulesTitle_en": "From the customer's first click to the end-of-month close.",
+    "modules": [
+     {
+      "t": "Agendamento pelo celular",
+      "t_en": "Booking from the phone",
+      "d": "O cliente escolhe os serviços, o profissional, o dia e o horário. Enquanto ele confirma, o horário fica reservado com uma contagem regressiva, para ninguém pegar a vaga no meio do caminho.",
+      "d_en": "Customers pick services, barber, day and time. While they confirm, the slot is held with a countdown, so nobody takes it halfway through.",
+      "items": [
+       "Vários serviços num mesmo horário, com o que está incluso no plano marcado",
+       "Remarcar e cancelar pelo app, com política de multa configurável",
+       "Convite para adicionar à agenda do celular, com lembrete",
+       "Quem está em dívida fica impedido de agendar até pagar"
+      ],
+      "items_en": [
+       "Several services in one slot, with what the plan includes marked",
+       "Reschedule and cancel in the app, with a configurable fee policy",
+       "Calendar invite with reminder",
+       "Customers with outstanding debt can't book until they pay"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/m-agendar-servicos.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/abdous/v2/m-agendar-horario.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Fila de espera automática",
+      "t_en": "Automatic waiting list",
+      "d": "Quando o dia está cheio, o cliente entra na fila. Se alguém cancelar, o sistema oferece a vaga para o primeiro da fila daquele dia e segura o horário por um tempo, sem o dono precisar fazer nada.",
+      "d_en": "When the day is full, customers join the queue. If someone cancels, the system offers the slot to the first person in line for that day and holds it for a while, with nothing for the owner to do.",
+      "items": [
+       "Entrada na fila na própria tela de agendamento",
+       "Aviso pelo WhatsApp quando abre vaga",
+       "No painel, o dono vê a fila por dia e pode encaixar na mão"
+      ],
+      "items_en": [
+       "Join the queue right on the booking screen",
+       "WhatsApp notice when a slot opens",
+       "In the dashboard, the owner sees the queue by day and can fit people in manually"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/m-agendar-lotado.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/abdous/v2/m-painel-fila.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Planos de assinatura com cobrança recorrente",
+      "t_en": "Subscription plans with recurring billing",
+      "d": "O cliente assina, acompanha o saldo do mês e gerencia o próprio plano. A cobrança pode ser feita sozinha no cartão salvo, e o dono enxerga assinantes, faturas e inadimplência.",
+      "d_en": "Customers subscribe, follow their monthly balance and manage their own plan. Billing can run automatically on a saved card, and the owner sees subscribers, invoices and overdue accounts.",
+      "items": [
+       "Benefícios por serviço e por profissional, com limite de uso no mês",
+       "Plano familiar com dependentes, como filho menor",
+       "Trocar, pausar e cancelar pelo próprio app",
+       "Limite de vagas de assinantes e rateio da assinatura entre os barbeiros pelos minutos atendidos"
+      ],
+      "items_en": [
+       "Benefits per service and per barber, with monthly limits",
+       "Family plan with dependents, such as a child",
+       "Change, pause and cancel in the app",
+       "Subscriber caps and revenue sharing among barbers by minutes worked"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/m-plano-saldo.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/abdous/v2/m-plano-familia.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Loja online e pagamentos",
+      "t_en": "Online store and payments",
+      "d": "Os produtos da barbearia foram para o site: o cliente escolhe, paga e retira no balcão. O mesmo checkout atende agendamento, plano, multa e produto, com PIX, cartão ou pagamento na barbearia.",
+      "d_en": "The shop's products moved online: customers choose, pay and pick up at the counter. The same checkout handles bookings, plans, fees and products, with PIX, card or payment at the shop.",
+      "items": [
+       "Integração com o PagBank, com o cartão cifrado no navegador",
+       "Cartão salvo e forma de pagamento principal",
+       "Estornos e avisos de pagamento à prova de repetição"
+      ],
+      "items_en": [
+       "PagBank integration, with the card encrypted in the browser",
+       "Saved card and primary payment method",
+       "Refunds and duplicate-safe payment notices"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/m-carrinho.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/abdous/v2/m-pagamento.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Agenda do dono, por profissional",
+      "t_en": "The owner's schedule, by barber",
+      "d": "O painel mostra o dia em colunas, uma por profissional, com a situação de cada atendimento por cor. Dá para ajustar duração, bloquear horário e compartilhar a agenda por um link, sem expor os clientes.",
+      "d_en": "The dashboard shows the day in columns, one per barber, with each appointment's status by color. You can adjust duration, block times and share the schedule through a link, without exposing customers.",
+      "items": [
+       "Selo de risco de falta calculado pelo histórico do cliente",
+       "Falta e cancelamento tratados de forma automática, com multa configurável",
+       "Agendamentos recorrentes e atendimento em domicílio com taxa por distância",
+       "Tela inicial com ocupação, faturamento, ticket médio e o que precisa de atenção"
+      ],
+      "items_en": [
+       "No-show risk badge based on the customer's history",
+       "No-shows and cancellations handled automatically, with a configurable fee",
+       "Recurring appointments and home service with a distance fee",
+       "Home screen with occupancy, revenue, average ticket and what needs attention"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/d-agenda.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Comandas e caixa do dia",
+      "t_en": "Tabs and daily register",
+      "d": "Cada atendimento pode virar uma comanda com serviços e produtos. Na hora de fechar, a equipe cobra no balcão, por link no WhatsApp ou online, e tudo cai no caixa do dia separado por forma de pagamento.",
+      "d_en": "Each appointment can become a tab with services and products. When closing it, staff charge at the counter, by WhatsApp link or online, and everything lands in the daily register by payment method.",
+      "items": [
+       "Desconto com motivo registrado",
+       "Vender plano no balcão",
+       "Fiado e crédito da casa",
+       "Ficha do cliente com histórico, plano, gastos e multas"
+      ],
+      "items_en": [
+       "Discounts with a recorded reason",
+       "Sell plans at the counter",
+       "Store tabs and house credit",
+       "Customer file with history, plan, spending and fees"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/d-comanda-detalhe.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Financeiro completo",
+      "t_en": "Complete finances",
+      "d": "São 11 telas financeiras: livro caixa, despesas e contas a pagar, demonstrativo de resultado, fechamento mensal e comissões por profissional. O dono vê o que entra, o que sai e o lucro real do período.",
+      "d_en": "There are 11 finance screens: cash book, expenses and bills, income statement, monthly closing and commissions per barber. The owner sees what comes in, what goes out and the real profit for the period.",
+      "items": [
+       "Separação entre pessoal e profissional",
+       "Clientes em débito, com cobrança em lote pelo WhatsApp",
+       "Comprovantes enviados no WhatsApp lidos pela IA",
+       "Exportação para CSV"
+      ],
+      "items_en": [
+       "Personal and business expenses kept apart",
+       "Customers in debt, with bulk WhatsApp reminders",
+       "Receipts sent on WhatsApp read by AI",
+       "CSV export"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/d-dre.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Relatórios e marketing",
+      "t_en": "Reports and marketing",
+      "d": "O dono descobre os horários mais movimentados no mapa de calor, vê os rankings de serviços e profissionais e encontra os clientes que sumiram. Daí parte para campanhas e automações.",
+      "d_en": "The owner finds the busiest hours on the heat map, sees rankings of services and barbers and spots customers who disappeared. From there, campaigns and automations take over.",
+      "items": [
+       "Campanhas de WhatsApp por segmento, com prévia e envio de teste",
+       "Automações de aniversário, clientes sumidos, pós-atendimento e carrinho abandonado",
+       "Fidelidade, vale-presente e pesquisa de satisfação"
+      ],
+      "items_en": [
+       "WhatsApp campaigns by segment, with preview and test send",
+       "Automations for birthdays, lapsed customers, post-visit follow-up and abandoned checkout",
+       "Loyalty, gift cards and satisfaction surveys"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/d-mapa-de-calor.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Atendimento com IA no WhatsApp",
+      "t_en": "AI customer service on WhatsApp",
+      "d": "A assistente responde na hora, a qualquer horário, e faz de verdade o que promete: agenda, cancela, remarca, vende e manda o link de pagamento. O dono ajusta o jeito de falar, treina e testa tudo antes no Bot Studio.",
+      "d_en": "The assistant answers right away, at any hour, and actually does what it promises: books, cancels, reschedules, sells and sends the payment link. The owner tunes its tone, trains it and tests everything first in the Bot Studio.",
+      "items": [
+       "Travas que impedem a IA de inventar horário ou pagamento, com registro de cada correção",
+       "Entende áudio e imagem, inclusive comprovante",
+       "Mais de um provedor de IA, com troca automática e medição de custo",
+       "Tela de desempenho com autonomia, erros corrigidos e tempo de resposta",
+       "Relatório semanal para o dono pelo WhatsApp"
+      ],
+      "items_en": [
+       "Guardrails that stop the AI from inventing slots or payments, with each correction logged",
+       "Understands audio and images, including receipts",
+       "More than one AI provider, with automatic fallback and cost tracking",
+       "Performance screen with autonomy, fixed errors and response time",
+       "Weekly report to the owner on WhatsApp"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/d-bot-studio.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Site da barbearia",
+      "t_en": "The barbershop's website",
+      "d": "A barbearia ganhou um site com a própria identidade, com planos, serviços, trabalhos e avaliações. O dono escolhe o que aparece em cada bloco, sem mexer em código, e pode voltar para uma versão anterior.",
+      "d_en": "The shop got a website with its own identity, showing plans, services, work and reviews. The owner picks what appears in each block, with no code, and can return to a previous version.",
+      "items": [
+       "Abertura animada na primeira visita",
+       "Avaliações do Google sincronizadas todo dia",
+       "Publicações do Instagram no próprio site"
+      ],
+      "items_en": [
+       "Animated intro on the first visit",
+       "Google reviews synced daily",
+       "Instagram posts on the site itself"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/d-landing-clube.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "O painel inteiro no celular",
+      "t_en": "The whole dashboard on the phone",
+      "d": "O dono toca a barbearia do celular. A tela inicial muda para atalhos e pendências, a agenda vira colunas com rolagem lateral e o menu fica sempre à mão.",
+      "d_en": "The owner runs the shop from a phone. The home screen becomes shortcuts and pending items, the schedule turns into sideways-scrolling columns and the menu stays within reach.",
+      "items": [
+       "Barra inferior com avisos atualizados sozinhos",
+       "Notificações em tempo real",
+       "Busca rápida no computador com Ctrl+K",
+       "25 passeios guiados para aprender a usar"
+      ],
+      "items_en": [
+       "Bottom bar with auto-updating badges",
+       "Real-time notifications",
+       "Quick search on desktop with Ctrl+K",
+       "25 guided tours to learn the system"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/abdous/v2/m-painel-dashboard.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/abdous/v2/m-painel-agenda.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Segurança e plataforma",
+      "t_en": "Security and platform",
+      "d": "Um sistema que guarda dados de clientes e dinheiro precisa de cuidado. O acesso é protegido em várias camadas, e a base foi feita para atender mais de uma barbearia, com módulos liberados por plano.",
+      "d_en": "A system that holds customer data and money needs care. Access is protected in layers, and the foundation was built to serve more than one barbershop, with modules unlocked by plan.",
+      "items": [
+       "Login com rosto ou digital e código em aparelho novo",
+       "Sessões renovadas com detecção de reuso e checagem de senha vazada",
+       "4 papéis e 17 permissões configuráveis",
+       "Exportação e exclusão de dados do cliente, conforme a LGPD",
+       "Credenciais cifradas no banco e limite de tentativas nas rotas"
+      ],
+      "items_en": [
+       "Face or fingerprint login and codes on new devices",
+       "Session rotation with reuse detection and leaked-password checks",
+       "4 roles and 17 configurable permissions",
+       "Customer data export and deletion, in line with LGPD",
+       "Encrypted credentials and rate limiting"
+      ]
+     }
+    ],
+    "result": "No ar e em uso na barbearia. Segundo o Alexandre, a organização trouxe mais clientes e mais assinantes. O antes e o depois está contado num documentário de 15 minutos, aqui no portfólio.",
+    "result_en": "Live and in use at the shop. According to Alexandre, the organization brought in more customers and more subscribers. The before and after is told in a 15-minute documentary, here on the portfolio.",
+    "note": "As telas do painel e da área do cliente usam dados de demonstração.",
+    "note_en": "Dashboard and customer area screens use demo data."
+   }
   },
   {
    "id": "to-na-porta",

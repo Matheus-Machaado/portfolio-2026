@@ -43,7 +43,8 @@ window.MM_DATA = {
     "assets/img/projetos/abdous/cel-plano.webp",
     "assets/img/projetos/abdous/cel-landing.webp",
     "assets/img/projetos/abdous/cel-clube.webp"
-   ]
+   ],
+   "defaultView": "mobile"
   },
   {
    "id": "to-na-porta",
@@ -111,10 +112,10 @@ window.MM_DATA = {
    "company": "Lista de presentes de chá de casa nova",
    "company_en": "Housewarming gift registry",
    "workType": "freelance",
-   "description": "O apartamento da anfitriã vai se enchendo de móveis a cada presente reservado, com cenas geradas por IA.",
-   "description_en": "The host's apartment fills up with furniture each time a gift is reserved, using AI-generated scenes.",
-   "fullDescription": "Uma lista de presentes diferente: em vez de uma tabela de itens, o convidado vê o apartamento da anfitriã ganhando móveis a cada presente reservado, numa sequência de cenas geradas por IA.\n\nO convidado escolhe o presente, reserva com o nome e vai direto para a compra. A anfitriã tem um painel para cadastrar produtos, ver as reservas e configurar o evento, e os convidados recebem lembrete por e-mail.",
-   "fullDescription_en": "A different kind of gift registry: instead of a list of items, guests watch the host's apartment gain furniture with each reserved gift, through a sequence of AI-generated scenes.\n\nGuests pick a gift, reserve it with their name and go straight to the purchase. The host gets a dashboard to add products, see reservations and set up the event, and guests receive email reminders.",
+   "description": "Lista de presentes do chá de casa nova da Lina: o convidado reserva sem repetir presente e a anfitriã acompanha tudo num painel.",
+   "description_en": "Housewarming gift registry: guests reserve without doubling up and the host follows everything in her own dashboard.",
+   "fullDescription": "Lista de presentes do chá de casa nova da Lina, com um site para os convidados e um painel para a anfitriã.",
+   "fullDescription_en": "Housewarming gift registry with a site for guests and a dashboard for the host.",
    "technologies": [
     "Astro",
     "SolidJS",
@@ -126,14 +127,239 @@ window.MM_DATA = {
    "liveUrl": "https://casacheia.netlify.app",
    "coverImage": "assets/img/projetos/casacheia/capa.webp",
    "desktopImages": [
-  "assets/img/projetos/casacheia/desktop-inicio.webp",
-  "assets/img/projetos/casacheia/desktop-presentes.webp"
- ],
+    "assets/img/projetos/casacheia/v2/d-home.webp",
+    "assets/img/projetos/casacheia/v2/d-como-funciona.webp",
+    "assets/img/projetos/casacheia/v2/d-presentes.webp",
+    "assets/img/projetos/casacheia/v2/d-presentes-reserva.webp",
+    "assets/img/projetos/casacheia/v2/d-admin-reservas.webp",
+    "assets/img/projetos/casacheia/v2/d-admin-produtos.webp",
+    "assets/img/projetos/casacheia/v2/d-admin-config.webp",
+    "assets/img/projetos/casacheia/v2/d-admin-login.webp"
+   ],
    "mobileImages": [
-  "assets/img/projetos/casacheia/cel-inicio.webp",
-  "assets/img/projetos/casacheia/cel-presentes.webp",
-  "assets/img/projetos/casacheia/cel-presentes-2.webp"
- ]
+    "assets/img/projetos/casacheia/v2/m-home.webp",
+    "assets/img/projetos/casacheia/v2/m-como-funciona.webp",
+    "assets/img/projetos/casacheia/v2/m-presentes.webp",
+    "assets/img/projetos/casacheia/v2/m-presentes-reserva.webp",
+    "assets/img/projetos/casacheia/v2/m-admin-reservas.webp",
+    "assets/img/projetos/casacheia/v2/m-admin-produtos.webp",
+    "assets/img/projetos/casacheia/v2/m-admin-config.webp",
+    "assets/img/projetos/casacheia/v2/m-admin-login.webp"
+   ],
+   "defaultView": "desktop",
+   "tabletImages": [
+    "assets/img/projetos/casacheia/v2/t-home.webp",
+    "assets/img/projetos/casacheia/v2/t-presentes.webp"
+   ],
+   "case": {
+    "lead": "Lista de presentes do chá de casa nova da Lina. O convidado escolhe o presente, reserva com o nome e já vai para a compra. A anfitriã acompanha tudo num painel próprio e agradece cada um pelo WhatsApp.",
+    "lead_en": "Gift registry for Lina's housewarming party. Guests pick a gift, reserve it with their name and go straight to the purchase. The host follows everything in her own dashboard and thanks each guest on WhatsApp.",
+    "meta": [
+     {
+      "k": "Ano",
+      "k_en": "Year",
+      "v": "2026"
+     },
+     {
+      "k": "Prazo",
+      "k_en": "Timeline",
+      "v": "3 dias",
+      "v_en": "3 days"
+     },
+     {
+      "k": "Papel",
+      "k_en": "Role",
+      "v": "Desenvolvimento completo",
+      "v_en": "End-to-end development"
+     },
+     {
+      "k": "Plataforma",
+      "k_en": "Platform",
+      "v": "Site responsivo e painel",
+      "v_en": "Responsive site and dashboard"
+     }
+    ],
+    "cover": {
+     "src": "assets/img/projetos/casacheia/v2/d-home.webp",
+     "kind": "desktop"
+    },
+    "highlights": [
+     {
+      "n": "60",
+      "l": "presentes na lista, organizados em 7 cômodos",
+      "l_en": "gifts on the list, across 7 rooms"
+     },
+     {
+      "n": "56%",
+      "l": "da lista reservada pelos convidados",
+      "l_en": "of the list reserved by guests"
+     },
+     {
+      "n": "3",
+      "l": "mensagens prontas para o WhatsApp da anfitriã",
+      "l_en": "ready-made WhatsApp messages for the host"
+     },
+     {
+      "n": "R$ 0",
+      "l": "de hospedagem por mês",
+      "l_en": "monthly hosting cost"
+     }
+    ],
+    "challengeTitle": "Uma lista de presentes que não parecesse planilha.",
+    "challengeTitle_en": "A gift registry that didn't feel like a spreadsheet.",
+    "challenge": "A Lina ia fazer o chá de casa nova e não queria mandar a lista de uma loja nem uma planilha compartilhada. Ela precisava que os convidados escolhessem sem repetir presente e queria saber quem ia levar o quê, para lembrar e agradecer cada um.\n\nO prazo era curto e a conta tinha que fechar: o site precisava estar no ar em poucos dias, sem custo de servidor.",
+    "challenge_en": "Lina was throwing a housewarming party and didn't want to send a store registry or a shared spreadsheet. Guests had to pick gifts without doubling up, and she wanted to know who was bringing what, so she could remind and thank each one.\n\nTime was short and the budget was zero: the site had to be live in a few days, with no server costs.",
+    "modulesTitle": "Um site para os convidados e um painel para a anfitriã.",
+    "modulesTitle_en": "A site for the guests and a dashboard for the host.",
+    "modules": [
+     {
+      "t": "A capa que acompanha a lista",
+      "t_en": "A cover that follows the list",
+      "d": "A home mostra a Lina no apartamento vazio, com um medidor de quanto da lista já foi reservado. Quando a lista chega a 100%, a foto troca para o apartamento mobiliado. As duas cenas foram geradas com IA a partir de uma foto real dela, mantendo o rosto e o ambiente.",
+      "d_en": "The home page shows Lina in her empty apartment, with a meter of how much of the list is already reserved. When the list reaches 100%, the photo switches to the furnished apartment. Both scenes were generated with AI from a real photo of her, keeping her face and the room.",
+      "items": [
+       "Medidor de progresso atualizado a cada 30 segundos",
+       "Data, hora e endereço do chá, com link para o mapa",
+       "Seção \"Como funciona\" em dois passos"
+      ],
+      "items_en": [
+       "Progress meter refreshed every 30 seconds",
+       "Party date, time and address, with a map link",
+       "Two-step \"How it works\" section"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/casacheia/v2/cena-vazia.webp",
+        "kind": "photo"
+       },
+       {
+        "src": "assets/img/projetos/casacheia/v2/cena-cheia.webp",
+        "kind": "photo"
+       }
+      ]
+     },
+     {
+      "t": "Lista com busca, filtros e estoque",
+      "t_en": "A list with search, filters and stock",
+      "d": "O convidado encontra o presente pelo nome, filtra por cômodo e ordena por preço. Cada item mostra quantas unidades ainda faltam, e o que acabou fica marcado como esgotado na hora.",
+      "d_en": "Guests find a gift by name, filter by room and sort by price. Each item shows how many units are still needed, and sold-out items are marked right away.",
+      "items": [
+       "Busca por texto e filtro por cômodo",
+       "Ordenação por preço e por ordem alfabética",
+       "Contador por item, como \"2 de 3\", e selo de esgotado"
+      ],
+      "items_en": [
+       "Text search and room filter",
+       "Sort by price or alphabetically",
+       "Per-item counter, like \"2 of 3\", and sold-out badge"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/casacheia/v2/d-presentes.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Reserva em poucos toques",
+      "t_en": "Reserving in a few taps",
+      "d": "Ao tocar no presente, o convidado escolhe a quantidade, coloca o nome e, se quiser, o telefone para receber lembrete. Ao confirmar, a reserva é gravada e ele vai direto para a página do produto na loja.",
+      "d_en": "Tapping a gift opens a form for quantity, name and an optional phone number for reminders. On confirm, the reservation is saved and the guest goes straight to the product page.",
+      "items": [
+       "O servidor confere o estoque e recusa se o item acabou nesse meio tempo",
+       "Proteção contra robôs e limite de reservas por minuto",
+       "Telefone com máscara e validação no próprio campo"
+      ],
+      "items_en": [
+       "The server checks stock and refuses if the item ran out meanwhile",
+       "Bot protection and a per-minute reservation limit",
+       "Masked phone field with inline validation"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/casacheia/v2/m-presentes.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/casacheia/v2/m-presentes-reserva.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Painel de reservas com WhatsApp",
+      "t_en": "Reservations dashboard with WhatsApp",
+      "d": "A anfitriã vê quem reservou o quê, quanto da lista já foi e pode cancelar ou restaurar uma reserva, com o estoque ajustado. Para cada convidado, o painel abre o WhatsApp com a mensagem pronta, com o nome dele e o presente.",
+      "d_en": "The host sees who reserved what and how much of the list is done, and can cancel or restore a reservation with stock adjusted. For each guest, the dashboard opens WhatsApp with a ready message including their name and gift.",
+      "items": [
+       "Três mensagens: lembrete, agradecimento pela lista completa e agradecimento depois do chá",
+       "Envio em sequência, um convidado por vez, com prévia e opção de pular",
+       "Histórico de mensagens por reserva e e-mail para a anfitriã a cada reserva nova"
+      ],
+      "items_en": [
+       "Three messages: reminder, thank you for the full list and thank you after the party",
+       "Sequential sending, one guest at a time, with preview and skip",
+       "Message history per reservation and an email to the host for each new one"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/casacheia/v2/d-admin-reservas.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Produtos e evento sem mexer em código",
+      "t_en": "Products and event, no code needed",
+      "d": "Tudo o que aparece no site é editável pelo painel: presentes, fotos, cômodos, dados do chá e os textos das mensagens. As alterações ficam em rascunho até a anfitriã publicar.",
+      "d_en": "Everything on the site is editable from the dashboard: gifts, photos, rooms, party details and message texts. Changes stay as a draft until the host publishes them.",
+      "items": [
+       "Editor de presentes com upload de imagem",
+       "Endereço preenchido sozinho pelo CEP",
+       "Modelos de mensagem com variáveis como nome, presente, data e hora",
+       "Aviso ao fechar a página com alterações não publicadas"
+      ],
+      "items_en": [
+       "Gift editor with image upload",
+       "Address auto-filled from the postal code",
+       "Message templates with variables such as name, gift, date and time",
+       "Warning when closing the page with unpublished changes"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/casacheia/v2/d-admin-config.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Acesso da anfitriã",
+      "t_en": "Host access",
+      "d": "O painel tem login próprio, com a identidade visual do site, recuperação de senha e regras de senha forte. As rotas do painel exigem token válido e toda entrada de dados é validada no servidor.",
+      "d_en": "The dashboard has its own branded login, password recovery and strong password rules. Dashboard routes require a valid token and all input is validated on the server.",
+      "items": [
+       "Cabeçalhos de segurança e painel fora dos buscadores",
+       "Mensagens e confirmações com a cara do site, sem janelas do navegador"
+      ],
+      "items_en": [
+       "Security headers and dashboard hidden from search engines",
+       "Branded dialogs and confirmations, no browser pop-ups"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/casacheia/v2/m-admin-login.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/casacheia/v2/m-admin-reservas.webp",
+        "kind": "mobile"
+       }
+      ]
+     }
+    ],
+    "result": "Do primeiro commit ao ar em três dias, sem custo de hospedagem. A Lina divulgou um link só, os convidados escolheram sem repetir presente e ela acompanhou cada reserva pelo painel.",
+    "result_en": "From first commit to live in three days, with no hosting costs. Lina shared a single link, guests picked gifts without doubling up and she followed every reservation from the dashboard."
+   }
   }
  ],
  "certificates": [

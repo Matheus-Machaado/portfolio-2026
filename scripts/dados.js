@@ -52,32 +52,421 @@ window.MM_DATA = {
    "company": "Delivery em Lençóis, Chapada Diamantina",
    "company_en": "Food delivery in Lençóis, Chapada Diamantina",
    "workType": "personal",
-   "description": "Delivery com três lados: cliente, loja com tela de cozinha e entregador com rota. Pix e cartão com comissão automática.",
-   "description_en": "Three-sided delivery: client, store with kitchen screen and courier with routing. Pix and card with automatic commission.",
-   "fullDescription": "Lençóis recebe turista do mundo inteiro e não tinha um app de delivery. Criei um do zero, começando pela hamburgueria A Boa Leal.\n\nSão três lados conversando em tempo real: o app do cliente, o painel da loja com tela de cozinha, estoque e caixa, e o app do entregador com rota no mapa. Pagamento por Pix e cartão pelo Mercado Pago, com a comissão da plataforma separada automaticamente, avisos de cada etapa pelo WhatsApp e notificação no celular.\n\nA marca, as cores e o mascote também foram criados aqui.",
-   "fullDescription_en": "Lençóis welcomes tourists from all over the world and had no delivery app. I built one from scratch, starting with the burger shop A Boa Leal.\n\nThree sides talk in real time: the client app, the store dashboard with kitchen screen, stock and register, and the courier app with a route on the map. Pix and card payments via Mercado Pago with the platform commission split automatically, WhatsApp updates at every step and phone notifications.\n\nThe brand, colors and mascot were created here too.",
+   "description": "App de delivery feito para Lençóis, na Bahia, com cliente, loja, cozinha, salão com mesas e entregador em tempo real, além de app para Android e iPhone.",
+   "description_en": "Delivery app built for Lençóis, Bahia, with customer, store, kitchen, table service and courier in real time, plus Android and iPhone apps.",
+   "fullDescription": "App de delivery feito para Lençóis, na Chapada Diamantina, do pedido do cliente à entrega na porta.",
+   "fullDescription_en": "Delivery app built for Lençóis, in Chapada Diamantina, from the customer's order to the doorstep.",
    "technologies": [
     "Next.js",
     "TypeScript",
     "Fastify",
     "Prisma",
     "PostgreSQL",
-    "Mercado Pago",
     "WebSocket",
+    "Mercado Pago",
+    "Capacitor",
+    "OpenStreetMap",
     "WhatsApp"
    ],
    "liveUrl": "https://tonaporta.app",
    "coverImage": "assets/img/projetos/tonaporta/capa.webp",
    "desktopImages": [
-    "assets/img/projetos/tonaporta/desktop-inicio.webp",
-    "assets/img/projetos/tonaporta/desktop-loja.webp",
-    "assets/img/projetos/tonaporta/mascote.webp"
+    "assets/img/projetos/tonaporta/v2/d-vitrine.webp",
+    "assets/img/projetos/tonaporta/v2/d-loja-cliente.webp",
+    "assets/img/projetos/tonaporta/v2/d-loja-fila-pedidos.webp",
+    "assets/img/projetos/tonaporta/v2/d-loja-entrega-mapa.webp",
+    "assets/img/projetos/tonaporta/v2/d-loja-cozinha.webp",
+    "assets/img/projetos/tonaporta/v2/d-salao-mesas.webp",
+    "assets/img/projetos/tonaporta/v2/d-salao-comanda.webp",
+    "assets/img/projetos/tonaporta/v2/d-cardapio-editor.webp",
+    "assets/img/projetos/tonaporta/v2/d-gestao-turno.webp",
+    "assets/img/projetos/tonaporta/v2/d-gestao-estoque.webp",
+    "assets/img/projetos/tonaporta/v2/d-gestao-ficha.webp",
+    "assets/img/projetos/tonaporta/v2/d-gestao-caixa.webp",
+    "assets/img/projetos/tonaporta/v2/d-gestao-banco.webp",
+    "assets/img/projetos/tonaporta/v2/d-config-zonas.webp",
+    "assets/img/projetos/tonaporta/v2/d-cupons.webp",
+    "assets/img/projetos/tonaporta/v2/d-entregadores.webp",
+    "assets/img/projetos/tonaporta/v2/d-avaliacoes.webp",
+    "assets/img/projetos/tonaporta/v2/d-disputa.webp",
+    "assets/img/projetos/tonaporta/v2/d-admin-atendimento.webp"
    ],
    "mobileImages": [
-    "assets/img/projetos/tonaporta/cel-inicio.webp",
-    "assets/img/projetos/tonaporta/cel-cardapio.webp",
-    "assets/img/projetos/tonaporta/cel-rota.webp"
-   ]
+    "assets/img/projetos/tonaporta/v2/m-vitrine.webp",
+    "assets/img/projetos/tonaporta/v2/m-inicio-pedido-ativo.webp",
+    "assets/img/projetos/tonaporta/v2/m-busca.webp",
+    "assets/img/projetos/tonaporta/v2/m-loja-cardapio.webp",
+    "assets/img/projetos/tonaporta/v2/m-loja-lista.webp",
+    "assets/img/projetos/tonaporta/v2/m-item-complementos.webp",
+    "assets/img/projetos/tonaporta/v2/m-sacola-pagamento.webp",
+    "assets/img/projetos/tonaporta/v2/m-dividir-conta.webp",
+    "assets/img/projetos/tonaporta/v2/m-endereco-mapa.webp",
+    "assets/img/projetos/tonaporta/v2/m-endereco-aprendido.webp",
+    "assets/img/projetos/tonaporta/v2/m-acompanhamento.webp",
+    "assets/img/projetos/tonaporta/v2/m-acompanhamento-codigo.webp",
+    "assets/img/projetos/tonaporta/v2/m-pedidos.webp",
+    "assets/img/projetos/tonaporta/v2/m-mesa-cardapio.webp",
+    "assets/img/projetos/tonaporta/v2/m-mesa-conta.webp",
+    "assets/img/projetos/tonaporta/v2/m-entregador-alerta.webp",
+    "assets/img/projetos/tonaporta/v2/m-entregador-lista.webp",
+    "assets/img/projetos/tonaporta/v2/m-entregador-rota.webp",
+    "assets/img/projetos/tonaporta/v2/m-entregador-historico.webp",
+    "assets/img/projetos/tonaporta/v2/m-loja-fila-pedidos.webp",
+    "assets/img/projetos/tonaporta/v2/m-salao-comanda.webp"
+   ],
+   "defaultView": "mobile",
+   "tabletImages": [
+    "assets/img/projetos/tonaporta/v2/t-vitrine.webp",
+    "assets/img/projetos/tonaporta/v2/t-loja-fila-pedidos.webp",
+    "assets/img/projetos/tonaporta/v2/t-salao-mesas.webp"
+   ],
+   "case": {
+    "lead": "App de delivery feito para Lençóis, na Chapada Diamantina. Liga cliente, loja, cozinha e entregador em tempo real, do pedido até a porta, e também atende as mesas do salão pelo QR code.",
+    "lead_en": "Delivery app built for Lençóis, in Chapada Diamantina. It connects customer, store, kitchen and courier in real time, from the order to the door, and also serves dine-in tables through QR codes.",
+    "meta": [
+     {
+      "k": "Ano",
+      "k_en": "Year",
+      "v": "2026"
+     },
+     {
+      "k": "Prazo",
+      "k_en": "Timeline",
+      "v": "3 semanas até aqui",
+      "v_en": "3 weeks so far"
+     },
+     {
+      "k": "Papel",
+      "k_en": "Role",
+      "v": "Produto e desenvolvimento completo",
+      "v_en": "Product and end-to-end development"
+     },
+     {
+      "k": "Plataforma",
+      "k_en": "Platform",
+      "v": "Web, Android e iPhone",
+      "v_en": "Web, Android and iPhone"
+     }
+    ],
+    "cover": {
+     "src": "assets/img/projetos/tonaporta/v2/d-vitrine.webp",
+     "kind": "desktop"
+    },
+    "highlights": [
+     {
+      "n": "48",
+      "l": "telas entre cliente, loja, entregador e suporte",
+      "l_en": "screens across customer, store, courier and support"
+     },
+     {
+      "n": "304",
+      "l": "rotas de API, mais um canal em tempo real",
+      "l_en": "API endpoints, plus a real-time channel"
+     },
+     {
+      "n": "62",
+      "l": "tabelas no banco de dados",
+      "l_en": "database tables"
+     },
+     {
+      "n": "1.100+",
+      "l": "checagens automáticas ponta a ponta",
+      "l_en": "automated end-to-end checks"
+     }
+    ],
+    "challengeTitle": "Delivery de verdade numa cidade que não aparece direito no mapa.",
+    "challengeTitle_en": "Real delivery in a town that barely shows up on the map.",
+    "challenge": "Lençóis é uma cidade turística no meio da Chapada Diamantina, com ruas de pedra, pousadas sem número e gente de fora que não conhece o endereço de onde está. Um app de delivery comum não resolve: o mapa precisa funcionar ali, a pessoa precisa conseguir marcar a porta certa e o entregador precisa de rota mesmo com sinal fraco.\n\nDo lado da loja, o desafio era não ser só mais uma tela. O sistema tinha que cuidar do pedido, da cozinha, das mesas, do estoque e do caixa, sem obrigar ninguém a ter outro programa.",
+    "challenge_en": "Lençóis is a tourist town in the middle of Chapada Diamantina, with stone streets, guesthouses with no street number and visitors who don't know the address of where they're staying. A standard delivery app doesn't work: the map has to work there, people have to be able to mark the right door and couriers need a route even on a weak signal.\n\nOn the store side, the challenge was not being just another screen. The system had to handle orders, kitchen, tables, stock and register, without anyone needing another program.",
+    "modulesTitle": "Um sistema para cada pessoa envolvida no pedido.",
+    "modulesTitle_en": "One system for everyone involved in the order.",
+    "modules": [
+     {
+      "t": "Vitrine e busca que perdoa erro",
+      "t_en": "Storefront and a forgiving search",
+      "d": "O cliente vê categorias, destaques e lojas, com o pedido em andamento sempre à vista. A busca entende falta de acento, plural, sinônimo e erro de digitação, e sugere o mais parecido quando não acha nada.",
+      "d_en": "Customers see categories, highlights and stores, with any order in progress always in view. Search handles missing accents, plurals, synonyms and typos, and suggests the closest match when nothing turns up.",
+      "items": [
+       "Tempo estimado até o endereço do cliente em cada loja",
+       "\"Peça de novo\" com um toque",
+       "Lembrete na hora em que o cliente costuma pedir"
+      ],
+      "items_en": [
+       "Estimated time to the customer's address for each store",
+       "One-tap \"Order again\"",
+       "Reminder around the time the customer usually orders"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-vitrine.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-busca.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Pedido do jeito do cliente",
+      "t_en": "The order the way the customer wants it",
+      "d": "Cada item pode perder ingredientes e ganhar adicionais, com o total recalculado na hora. Na sacola, o cliente escolhe entrega ou retirada, agora ou agendado, e como vai pagar.",
+      "d_en": "Each item can drop ingredients and gain add-ons, with the total recalculated instantly. In the cart, the customer chooses delivery or pickup, now or later, and how to pay.",
+      "items": [
+       "PIX, cartão, dinheiro com troco ou maquininha na entrega",
+       "Cupom, gorjeta para o entregador e crédito na loja abatido sozinho",
+       "Link de prato com prévia para mandar no WhatsApp"
+      ],
+      "items_en": [
+       "PIX, card, cash with change or card machine on delivery",
+       "Coupon, courier tip and store credit applied automatically",
+       "Dish link with a preview to share on WhatsApp"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-item-complementos.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-sacola-pagamento.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Conta dividida, cada um paga a sua",
+      "t_en": "Split the bill, each pays their own",
+      "d": "A mesa de amigos pode dividir em partes iguais, por item ou por valor. Cada pessoa recebe um link e paga a sua parte, sem precisar ter conta no app. O pedido só vai para a loja quando todos pagam.",
+      "d_en": "Friends can split equally, by item or by amount. Each person gets a link and pays their share, with no app account needed. The order only reaches the store once everyone has paid.",
+      "items": [
+       "Se o prazo vence, quem já pagou recebe o dinheiro de volta sozinho",
+       "Cada item marcado para quem pediu, com a entrega e a gorjeta rachadas"
+      ],
+      "items_en": [
+       "If time runs out, whoever paid is refunded automatically",
+       "Each item assigned to whoever ordered it, with delivery and tip shared"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-dividir-conta.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Endereço no mapa, até para pousada",
+      "t_en": "Address on the map, even for guesthouses",
+      "d": "O cliente arrasta o mapa até a porta ou procura a pousada pelo nome. O sistema confere se a rua digitada bate com o pino e barra o que está fora da área de entrega.",
+      "d_en": "Customers drag the map to their door or search for the guesthouse by name. The system checks that the typed street matches the pin and blocks anything outside the delivery area.",
+      "items": [
+       "Lugares aprendidos: um local vira endereço depois de 3 entregas de 2 clientes diferentes",
+       "Ruas novas aprendidas pela trilha de GPS dos entregadores",
+       "Zonas de entrega desenhadas pela loja, com taxa e pedido mínimo"
+      ],
+      "items_en": [
+       "Learned places: a spot becomes an address after 3 deliveries from 2 different customers",
+       "New streets learned from couriers' GPS trails",
+       "Delivery zones drawn by the store, with fee and minimum order"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-endereco-mapa.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-endereco-aprendido.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Acompanhamento ao vivo",
+      "t_en": "Live order tracking",
+      "d": "Depois de pedir, o cliente vê cada etapa em tempo real e a moto andando pelas ruas no mapa. A entrega só fecha com um código de 4 dígitos que ele passa para o entregador.",
+      "d_en": "After ordering, customers see each stage in real time and the motorbike moving along the streets. Delivery only closes with a 4-digit code they give the courier.",
+      "items": [
+       "Previsão de chegada atualizada durante o caminho",
+       "Conversa com a loja dentro do pedido",
+       "Avaliação da loja e do entregador, e gorjeta até 48 horas depois"
+      ],
+      "items_en": [
+       "Arrival estimate updated along the way",
+       "Chat with the store inside the order",
+       "Store and courier ratings, and tipping up to 48 hours later"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-acompanhamento.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-acompanhamento-codigo.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Fila de pedidos e tela da cozinha",
+      "t_en": "Order queue and kitchen screen",
+      "d": "A loja acompanha o turno em quatro colunas, do pedido novo à entrega. A cozinha tem uma tela própria, que fica acesa, e o painel imprime a comanda em impressora térmica.",
+      "d_en": "The store follows the shift in four columns, from new order to delivery. The kitchen has its own always-on screen, and the dashboard prints tickets on a thermal printer.",
+      "items": [
+       "Lançar pedido que veio pelo WhatsApp ou pelo balcão",
+       "Ver a entrega ao vivo no mapa",
+       "Se o painel fica sem sinal no horário, a loja pausa sozinha",
+       "Tempo de preparo aprendido com os pedidos da própria loja"
+      ],
+      "items_en": [
+       "Enter orders that came by WhatsApp or at the counter",
+       "Watch the delivery live on the map",
+       "If the dashboard loses signal during hours, the store pauses itself",
+       "Preparation time learned from the store's own orders"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/d-loja-fila-pedidos.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Salão com mesas e QR code",
+      "t_en": "Dine-in with tables and QR codes",
+      "d": "O mesmo sistema atende quem está na mesa. O cliente lê o QR, vê o cardápio, pede, chama a equipe e paga por PIX sem instalar nada. A loja acompanha tudo num mapa das mesas.",
+      "d_en": "The same system serves dine-in customers. They scan the QR, browse the menu, order, call the staff and pay by PIX with nothing to install. The store follows everything on a table map.",
+      "items": [
+       "Comanda por rodadas, com taxa de serviço",
+       "Divisão por partes iguais, por item ou por valor",
+       "Folha de QR codes pronta para imprimir"
+      ],
+      "items_en": [
+       "Tabs by rounds, with service charge",
+       "Split equally, by item or by amount",
+       "Printable QR code sheet"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/d-salao-comanda.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "Estoque, custo de cada prato e caixa",
+      "t_en": "Stock, dish costs and register",
+      "d": "A ficha técnica liga cada item do cardápio aos insumos. O estoque baixa a cada venda e, quando um insumo acaba, os pratos que dependem dele saem do cardápio sozinhos. A loja também vê o custo e a margem de cada prato.",
+      "d_en": "The recipe sheet links each menu item to its ingredients. Stock goes down with each sale and, when an ingredient runs out, dishes that depend on it leave the menu automatically. The store also sees each dish's cost and margin.",
+      "items": [
+       "Lista do que comprar, com duração em turnos",
+       "Caixa por canal e extrato venda a venda",
+       "Importação do extrato de qualquer banco, em CSV ou planilha, com sugestão de classificação dos gastos",
+       "Troco que faltou na porta vira PIX ou crédito para o cliente"
+      ],
+      "items_en": [
+       "Shopping list, with how many shifts stock will last",
+       "Register by channel and sale-by-sale statement",
+       "Bank statement import from any bank, in CSV or spreadsheet, with suggested expense categories",
+       "Change missing at the door becomes PIX or credit for the customer"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/d-gestao-ficha.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "App do entregador com rota no aparelho",
+      "t_en": "Courier app with on-device routing",
+      "d": "O entregador recebe um alerta que toma a tela, com o valor da corrida, e aceita com um toque. A rota é calculada no próprio celular, sobre o mapa de ruas da cidade, sem depender de serviço de mapa pago.",
+      "d_en": "Couriers get a full-screen alert with the ride's value and accept in one tap. The route is calculated on the phone itself, over the town's street map, with no paid map service.",
+      "items": [
+       "GPS enviado a cada 5 segundos ou 25 metros, e em segundo plano no app",
+       "Saída com 2 pedidos e ganho por entrega",
+       "Entregador fixo da loja ou candidatura para entrar numa loja",
+       "Se o cliente não atende, ligação, mensagem e provas ficam registradas"
+      ],
+      "items_en": [
+       "GPS sent every 5 seconds or 25 meters, and in the background on the app",
+       "Trips with 2 orders and earnings per delivery",
+       "Store's own couriers, or couriers applying to join a store",
+       "If the customer doesn't answer, calls, messages and proof are logged"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-entregador-alerta.webp",
+        "kind": "mobile"
+       },
+       {
+        "src": "assets/img/projetos/tonaporta/v2/m-entregador-rota.webp",
+        "kind": "mobile"
+       }
+      ]
+     },
+     {
+      "t": "Pagamento com a divisão no próprio Mercado Pago",
+      "t_en": "Payments split inside Mercado Pago",
+      "d": "Cada loja conecta a sua conta do Mercado Pago e a comissão da plataforma sai no próprio pagamento, sem repasse manual. A parte mais sensível do sistema foi feita com cuidado redobrado.",
+      "d_en": "Each store connects its own Mercado Pago account and the platform's commission comes out of the payment itself, with no manual transfers. The most sensitive part of the system got extra care.",
+      "items": [
+       "Credenciais de cada loja cifradas no banco",
+       "Aviso de pagamento validado por assinatura, com a situação sempre confirmada no Mercado Pago",
+       "PIX pago depois de expirar é devolvido sozinho",
+       "Prazos automáticos: loja que não aceita a tempo tem o pedido cancelado e o cliente não fica no prejuízo"
+      ],
+      "items_en": [
+       "Each store's credentials encrypted in the database",
+       "Payment notices validated by signature, with status always confirmed at Mercado Pago",
+       "PIX paid after expiry is refunded automatically",
+       "Automatic deadlines: if a store doesn't accept in time, the order is cancelled and the customer isn't left out of pocket"
+      ]
+     },
+     {
+      "t": "Disputas e suporte",
+      "t_en": "Disputes and support",
+      "d": "Quando algo dá errado, o cliente abre uma disputa com motivo, valor e foto. A loja tem 24 horas para devolver ou contestar, e o suporte decide com as provas lado a lado: código, GPS, conversas e fotos.",
+      "d_en": "When something goes wrong, the customer opens a dispute with a reason, amount and photo. The store has 24 hours to refund or contest, and support decides with the evidence side by side: code, GPS, chats and photos.",
+      "items": [
+       "A decisão é executada na hora, com estorno ou crédito",
+       "Termos com versão e vigência, e aceite registrado de cliente, loja e entregador",
+       "Conversas de suporte com resposta automática para as dúvidas comuns"
+      ],
+      "items_en": [
+       "The decision is carried out immediately, with refund or credit",
+       "Versioned terms with effective dates and recorded acceptance from customer, store and courier",
+       "Support chats with automatic replies to common questions"
+      ],
+      "shots": [
+       {
+        "src": "assets/img/projetos/tonaporta/v2/d-disputa.webp",
+        "kind": "desktop"
+       }
+      ]
+     },
+     {
+      "t": "App para Android e iPhone",
+      "t_en": "Android and iPhone apps",
+      "d": "O sistema também roda como app nativo, com GPS em segundo plano para o entregador e avisos no celular. O cliente ainda pode usar pelo navegador ou instalar o site.",
+      "d_en": "The system also runs as a native app, with background GPS for couriers and phone notifications. Customers can still use the browser or install the site.",
+      "items": [
+       "APK assinado para Android e iPhone pelo TestFlight, com build automático",
+       "Avisos no Android e no iPhone integrados direto com o Google e a Apple",
+       "Login com rosto ou digital e aparelhos confiáveis",
+       "Passeios guiados para cliente, loja e entregador"
+      ],
+      "items_en": [
+       "Signed Android APK and iPhone via TestFlight, with automated builds",
+       "Android and iPhone notifications integrated directly with Google and Apple",
+       "Face or fingerprint login and trusted devices",
+       "Guided tours for customer, store and courier"
+      ]
+     }
+    ],
+    "result": "No ar em tonaporta.app, com a hamburgueria A Boa Leal como primeira loja. É um projeto próprio e segue em evolução: do pedido à entrega, cada passo roda na mesma plataforma.",
+    "result_en": "Live at tonaporta.app, with the burger shop A Boa Leal as its first store. It is my own project and still evolving: from order to delivery, every step runs on the same platform.",
+    "note": "A loja e o cardápio são reais. Pedidos, clientes, valores e notas nas telas são dados de demonstração.",
+    "note_en": "The store and menu are real. Orders, customers, amounts and ratings on these screens are demo data."
+   }
   },
   {
    "id": "psy-trekking",

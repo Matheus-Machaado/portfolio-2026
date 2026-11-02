@@ -1604,3 +1604,15 @@ body::after { position: absolute; inset: 0; z-index: 1; }
   .pd-share .sh-opts { width: 100%; }
   .pd-share .sh-btn { flex: 1 1 calc(50% - 5px); justify-content: center; padding: 14px 12px; }
 }
+
+/* Compartilhar direto do card da lista */
+.work-grid > li { position: relative; }
+.work-grid > li:hover .wk { border-color: var(--dim); transform: translateY(-4px); }
+.work-grid > li:hover .wk-cover img { transform: scale(1.16); }
+.wk-sh { position: absolute; z-index: 3; top: 16px; right: 16px; transition: transform .5s var(--ease), opacity .6s var(--ease) .5s; }
+.work-grid > li:hover .wk-sh { transform: translateY(-4px); }
+html.js .work-grid > li:not(.is-in) .wk-sh { opacity: 0; }
+.wk-sh-btn { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; padding: 0; cursor: pointer; background: var(--bg); color: var(--fg); border: 1px solid var(--line); transition: background .2s, color .2s, border-color .2s; }
+.wk-sh-btn:hover, .wk-sh-btn[aria-expanded="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.wk-sh-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sh-menu.is-down { bottom: auto; top: calc(100% + 8px); }

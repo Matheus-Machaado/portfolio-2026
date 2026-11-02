@@ -9,3 +9,4 @@ https://www.matheus-machado-dev.com.br/* https://matheus-machado-dev.com.br/:spl
 # Arquivos internos do repositório não são servidos
 /.studio-policy.yaml /404.html 404!
 /.gitignore /404.html 404!
+/netlify/* /404.html 404!

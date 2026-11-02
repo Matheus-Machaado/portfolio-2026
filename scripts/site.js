@@ -12,8 +12,8 @@
   var lang = root.getAttribute("data-lang") === "en" ? "en" : "pt";
 
   var T = {
-    pt: { more: "Ver mais", less: "Ver menos", details: "Ver detalhes", hide: "Esconder detalhes", seeProject: "Ver projeto", showMore: "Mostrar mais {n}", showLess: "Mostrar menos", mo: "mês", mos: "meses", yr: "ano", yrs: "anos", and: "e", play: "Assistir", drag: "Arraste", client: "Cliente", own: "Projeto próprio", screen: "Tela", of: "de", copied: "E-mail copiado", copyFail: "Não deu pra copiar. O e-mail está selecionado.", noScreens: "Sem telas nesta resolução.", close: "Fechar", prev: "Anterior", next: "Próxima", desktop: "Desktop", phone: "Celular", linkCopied: "Link copiado", linkFail: "Não deu pra copiar o link." },
-    en: { more: "Show more", less: "Show less", details: "Show details", hide: "Hide details", seeProject: "View project", showMore: "Show {n} more", showLess: "Show less", mo: "month", mos: "months", yr: "year", yrs: "years", and: "and", play: "Watch", drag: "Drag", client: "Client", own: "Own product", screen: "Screen", of: "of", copied: "Email copied", copyFail: "Couldn't copy. The email is selected.", noScreens: "No screens at this size.", close: "Close", prev: "Previous", next: "Next", desktop: "Desktop", phone: "Phone", linkCopied: "Link copied", linkFail: "Couldn't copy the link." }
+    pt: { more: "Ver mais", less: "Ver menos", details: "Ver detalhes", hide: "Esconder detalhes", seeProject: "Ver projeto", showMore: "Mostrar mais {n}", showLess: "Mostrar menos", mo: "mês", mos: "meses", yr: "ano", yrs: "anos", and: "e", play: "Assistir", drag: "Arraste", client: "Cliente", own: "Projeto próprio", screen: "Tela", of: "de", copied: "E-mail copiado", copyFail: "Não deu pra copiar. O e-mail está selecionado.", noScreens: "Sem telas nesta resolução.", close: "Fechar", prev: "Anterior", next: "Próxima", desktop: "Desktop", phone: "Celular", linkCopied: "Link copiado", share: "Compartilhar", linkFail: "Não deu pra copiar o link." },
+    en: { more: "Show more", less: "Show less", details: "Show details", hide: "Hide details", seeProject: "View project", showMore: "Show {n} more", showLess: "Show less", mo: "month", mos: "months", yr: "year", yrs: "years", and: "and", play: "Watch", drag: "Drag", client: "Client", own: "Own product", screen: "Screen", of: "of", copied: "Email copied", copyFail: "Couldn't copy. The email is selected.", noScreens: "No screens at this size.", close: "Close", prev: "Previous", next: "Next", desktop: "Desktop", phone: "Phone", linkCopied: "Link copied", share: "Share", linkFail: "Couldn't copy the link." }
   };
   var t = function (k) { return T[lang][k] || k; };
   var field = function (p, k) { return (lang === "en" && p[k + "_en"]) || p[k] || ""; };
@@ -422,8 +422,11 @@
   var workList = $("#work-list");
   var arrowSvg = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>';
   function typeLabel(p) { return p.workType === "personal" ? t("own") : t("client"); }
+  var shareSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>';
   function renderWork() {
     if (!workList) return;
+    // o menu de compartilhar pode estar dentro de um card: tira antes de refazer a lista
+    if (shMenu && workList.contains(shMenu)) { closeShare(); pdShare.appendChild(shMenu); }
     workList.innerHTML = DATA.projects.map(function (p) {
       var n = (p.desktopImages || []).length + (p.mobileImages || []).length;
       return '<li><a class="wk" href="#p-' + p.id + '">' +
@@ -431,7 +434,8 @@
         '<span class="wk-body"><span class="wk-name">' + p.title + "</span>" +
         '<span class="wk-arrow">' + arrowSvg + "</span>" +
         '<span class="wk-ctx"><b>' + field(p, "company") + "</b>" + field(p, "description") + "</span>" +
-        '<span class="wk-foot label"><span>' + t("seeProject") + '</span><span>' + n + (lang === "en" ? " screens" : " telas") + "</span></span></span></a></li>";
+        '<span class="wk-foot label"><span>' + t("seeProject") + '</span><span>' + n + (lang === "en" ? " screens" : " telas") + "</span></span></span></a>" +
+        '<div class="sh wk-sh" data-pid="' + p.id + '"><button type="button" class="wk-sh-btn" aria-expanded="false" aria-label="' + t("share") + " " + p.title + '">' + shareSvg + "</button></div></li>";
     }).join("");
     var items = $$(":scope > li", workList);
     if (!("IntersectionObserver" in window) || reduceMotion) { items.forEach(function (li) { li.classList.add("is-in"); }); return; }
@@ -515,7 +519,7 @@
     $("#pd-type").textContent = typeLabel(p);
     $("#pd-desc").innerHTML = paras(p.case ? (L(p.case, "lead") || field(p, "description")) : (field(p, "fullDescription") || field(p, "description")));
     renderCase(p);
-    updShare();
+    shareLinks($(".pd-share"), p);
     $("#pd-tags").innerHTML = (p.technologies || []).map(function (x) { return "<li>" + (lang === "en" && x === "IA" ? "AI" : x) + "</li>"; }).join("");
     var live = $("#pd-live");
     live.hidden = !p.liveUrl; if (p.liveUrl) live.href = p.liveUrl;
@@ -536,6 +540,7 @@
     var wasOpen = !pd.hidden;
     if (!wasOpen) lastFocus = document.activeElement;
     renderProject(p);
+    countEvent("projeto", p.id);
     pdMain.scrollTop = 0; $(".pd-side-scroll").scrollTop = 0; pd.scrollTop = 0;
     if (!wasOpen) {
       pd.hidden = false; pd.classList.remove("is-out");
@@ -579,22 +584,27 @@
   window.addEventListener("resize", moveSeg);
 
   /* ---------- Compartilhar projeto ---------- */
-  // O link é /projeto/<id>: página com a prévia do projeto (print + nome) que o WhatsApp e o LinkedIn
-  // mostram; quem abre cai em /#p-<id>. Gerada por marca-matheus/v3-noite/og-projetos/gerar.py.
-  // No celular o botão abre direto o compartilhar do sistema; no computador, um menu.
-  var shWrap = $("#pd-share"), shBtn = $("#pd-share-btn"), shMenu = $("#pd-share-menu");
+  // O link é /projeto/<id>/ (ou /en/projeto/<id>/): página com a prévia do projeto (print + nome) que o
+  // WhatsApp e o LinkedIn mostram; quem abre cai em /#p-<id>. Gerada por marca-matheus/v3-noite/og-projetos/gerar.py.
+  // O ?via= diz ao contador de visitas por qual canal a pessoa chegou.
+  // No celular o botão abre direto o compartilhar do sistema; no computador, um menu. O menu é um só:
+  // ele muda de lugar entre o botão do detalhe e o botão de cada card.
+  var pdShare = $("#pd-share"), shBtn = $("#pd-share-btn"), shMenu = $("#sh-menu");
   var canShare = typeof navigator.share === "function";
-  var shareUrl = function () { return "https://matheus-machado-dev.com.br/projeto/" + current.id + "/"; };
-  var shareText = function () { return current.title + (lang === "en" ? ": a project by Matheus Machado, full stack developer." : ": um projeto de Matheus Machado, desenvolvedor full stack."); };
-  function updShare() {
-    $$('[data-sh="wa"]').forEach(function (a) { a.href = "https://wa.me/?text=" + encodeURIComponent("*" + current.title + "*" + shareText().slice(current.title.length) + "\n" + shareUrl()); });
-    $$('[data-sh="li"]').forEach(function (a) { a.href = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(shareUrl()); });
-    $$('[data-sh="more"]').forEach(function (b) { b.hidden = !canShare; });
+  var shProj = null, shOwner = null;
+  var VIA = { wa: "whatsapp", li: "linkedin", link: "link", app: "nativo" };
+  function shareUrl(p, via) { return "https://matheus-machado-dev.com.br" + (lang === "en" ? "/en" : "") + "/projeto/" + p.id + "/?via=" + via; }
+  function shareText(p) { return lang === "en" ? ": a project by Matheus Machado, full stack developer." : ": um projeto de Matheus Machado, desenvolvedor full stack."; }
+  function shareLinks(box, p) {
+    $$('[data-sh="wa"]', box).forEach(function (a) { a.href = "https://wa.me/?text=" + encodeURIComponent("*" + p.title + "*" + shareText(p) + "\n" + shareUrl(p, "wa")); });
+    $$('[data-sh="li"]', box).forEach(function (a) { a.href = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(shareUrl(p, "li")); });
+    $$('[data-sh="more"]', box).forEach(function (b) { b.hidden = !canShare; });
   }
-  function setShare(open) { shMenu.hidden = !open; shBtn.setAttribute("aria-expanded", String(open)); }
-  function nativeShare() { return navigator.share({ title: current.title, text: shareText(), url: shareUrl() }); }
-  function copyLink() {
-    var url = shareUrl();
+  function nativeShare(p) {
+    return navigator.share({ title: p.title, text: p.title + shareText(p), url: shareUrl(p, "app") }).then(function () { countEvent("compartilhou", p.id, "nativo"); });
+  }
+  function copyLink(p) {
+    var url = shareUrl(p, "link");
     var fallback = function () {
       var ta = document.createElement("textarea"); ta.value = url; ta.style.position = "fixed"; ta.style.opacity = "0";
       document.body.appendChild(ta); ta.select();
@@ -603,21 +613,79 @@
     };
     try { navigator.clipboard.writeText(url).then(function () { showToast(t("linkCopied")); }, fallback); } catch (e) { fallback(); }
   }
-  shBtn.addEventListener("click", function () {
+  function closeShare() {
+    if (shOwner) shOwner.setAttribute("aria-expanded", "false");
+    shMenu.hidden = true; shOwner = null;
+  }
+  function showShare(p, wrap, btn) {
+    closeShare();
+    shProj = p; shOwner = btn;
+    wrap.appendChild(shMenu);
+    shMenu.classList.toggle("is-down", wrap !== pdShare);
+    shareLinks(shMenu, p);
+    shMenu.hidden = false; btn.setAttribute("aria-expanded", "true");
+  }
+  function openShare(p, wrap, btn) {
     if (canShare && window.matchMedia("(pointer: coarse)").matches) {
-      nativeShare().catch(function (e) { if (!e || e.name !== "AbortError") setShare(true); });
+      nativeShare(p).catch(function (e) { if (!e || e.name !== "AbortError") showShare(p, wrap, btn); });
       return;
     }
-    setShare(shMenu.hidden);
+    if (!shMenu.hidden && shOwner === btn) return closeShare();
+    showShare(p, wrap, btn);
+  }
+  shBtn.addEventListener("click", function () { if (current) openShare(current, pdShare, shBtn); });
+  workList.addEventListener("click", function (e) {
+    var b = e.target.closest(".wk-sh-btn");
+    if (b) openShare(byId(b.parentNode.dataset.pid), b.parentNode, b);
   });
-  document.addEventListener("pointerdown", function (e) { if (!shMenu.hidden && !shWrap.contains(e.target)) setShare(false); });
-  pd.addEventListener("click", function (e) {
+  document.addEventListener("pointerdown", function (e) { if (!shMenu.hidden && !shMenu.parentNode.contains(e.target)) closeShare(); });
+  document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-sh]");
-    if (!b || !current) return;
-    if (b.dataset.sh === "copy") copyLink();
-    else if (b.dataset.sh === "more") nativeShare().catch(function () {});
-    setShare(false);
+    if (!b) return;
+    var p = shMenu.contains(b) ? shProj : current;
+    if (!p) return;
+    var k = b.dataset.sh;
+    if (k === "copy") copyLink(p);
+    if (k === "more") nativeShare(p).catch(function () {});
+    else countEvent("compartilhou", p.id, VIA[k === "copy" ? "link" : k]);
+    closeShare();
   });
+
+  /* ---------- Contador de visitas ---------- */
+  // Visitas, projetos abertos e compartilhamentos vão para netlify/functions/visita (sem cookie, sem IP,
+  // sem nada que identifique a pessoa). Painel em /visitas/. Fora do domínio de produção não manda nada.
+  var LIVE = location.hostname === "matheus-machado-dev.com.br";
+  function countEvent(e, p, m) {
+    if (!LIVE) return;
+    var body = JSON.stringify({ e: e, p: p || "-", m: m || "-", l: lang });
+    try { if (navigator.sendBeacon && navigator.sendBeacon("/api/visita", new Blob([body], { type: "application/json" }))) return; } catch (x) {}
+    try { fetch("/api/visita", { method: "POST", body: body, keepalive: true }); } catch (x) {}
+  }
+  function origin(via) {
+    if (via === "wa") return "whatsapp";
+    if (via === "li") return "linkedin";
+    var h = ""; try { h = new URL(document.referrer).hostname.replace(/^www\./, ""); } catch (x) {}
+    if (!h || h === location.hostname) return "direto";
+    if (/(^|\.)google\./.test(h)) return "google";
+    if (/bing\.|duckduckgo\.|yahoo\.|ecosia\.|brave\./.test(h)) return "busca";
+    if (/linkedin\.com$|lnkd\.in$/.test(h)) return "linkedin";
+    if (/whatsapp\.|wa\.me$/.test(h)) return "whatsapp";
+    if (/instagram\.com$/.test(h)) return "instagram";
+    if (/github\.com$/.test(h)) return "github";
+    return "outro";
+  }
+  function trackArrival() {
+    var q = new URLSearchParams(location.search), via = q.get("via");
+    try { if (!sessionStorage.getItem("mm-v")) { sessionStorage.setItem("mm-v", "1"); countEvent("visita", "-", origin(via)); } } catch (x) {}
+    var id = location.hash.indexOf("#p-") === 0 ? location.hash.slice(3) : "";
+    if (via && VIA[via] && byId(id)) countEvent("chegou", id, VIA[via]);
+    // tira o ?via e o ?lang do endereço, para quem copiar a barra não levar junto
+    if (q.has("via") || q.has("lang")) {
+      q.delete("via"); q.delete("lang");
+      var rest = q.toString();
+      history.replaceState(history.state, "", location.pathname + (rest ? "?" + rest : "") + location.hash);
+    }
+  }
 
   /* ---------- Lightbox ---------- */
   var lb = $("#lb"), lbImg = $("#lb-img"), lbIdx = 0, lbList = [];
@@ -800,7 +868,7 @@
     if (e.key === "Escape") {
       if (window.MMPlayer && window.MMPlayer.isOpen()) return;
       if (!lb.hidden) return closeLb();
-      if (!shMenu.hidden) { setShare(false); return shBtn.focus(); }
+      if (!shMenu.hidden) { var o = shOwner; closeShare(); return o.focus(); }
       if (!pd.hidden) return $("#pd-close").click();
       if (!menu.hidden) return setMenu(false);
     }
@@ -811,4 +879,5 @@
   applyLang(lang, false);
   onScroll();
   route();
+  trackArrival();
 })();

@@ -912,15 +912,15 @@ window.MM_DATA = {
     "assets/img/projetos/psy/v2/d-idioma-fr.webp",
     "assets/img/projetos/psy/v2/d-idioma-en.webp",
     "assets/img/projetos/psy/v2/d-painel-login.webp",
-    "assets/img/projetos/psy/v2/d-painel-inicio.webp",
-    "assets/img/projetos/psy/v2/d-painel-leads.webp",
-    "assets/img/projetos/psy/v2/d-painel-lead-aberto.webp",
-    "assets/img/projetos/psy/v2/d-painel-roteiro-dia-a-dia.webp",
-    "assets/img/projetos/psy/v2/d-painel-roteiro-mapa.webp",
-    "assets/img/projetos/psy/v2/d-painel-roteiro-custos.webp",
-    "assets/img/projetos/psy/v2/d-painel-roteiro-idiomas.webp",
-    "assets/img/projetos/psy/v2/d-painel-tarefas.webp",
-    "assets/img/projetos/psy/v2/d-painel-custos.webp"
+    "assets/img/projetos/psy/v2/d-painel-inicio.webp?v=2",
+    "assets/img/projetos/psy/v2/d-painel-leads.webp?v=2",
+    "assets/img/projetos/psy/v2/d-painel-lead-aberto.webp?v=2",
+    "assets/img/projetos/psy/v2/d-painel-roteiro-dia-a-dia.webp?v=2",
+    "assets/img/projetos/psy/v2/d-painel-roteiro-mapa.webp?v=2",
+    "assets/img/projetos/psy/v2/d-painel-roteiro-custos.webp?v=2",
+    "assets/img/projetos/psy/v2/d-painel-roteiro-idiomas.webp?v=2",
+    "assets/img/projetos/psy/v2/d-painel-tarefas.webp?v=2",
+    "assets/img/projetos/psy/v2/d-painel-custos.webp?v=2"
    ],
    "mobileImages": [
     "assets/img/projetos/psy/v2/m-home-hero.webp",
@@ -931,9 +931,9 @@ window.MM_DATA = {
     "assets/img/projetos/psy/v2/m-reserva-card.webp",
     "assets/img/projetos/psy/v2/m-reserva-barra.webp",
     "assets/img/projetos/psy/v2/m-galeria.webp",
-    "assets/img/projetos/psy/v2/m-painel-inicio.webp",
-    "assets/img/projetos/psy/v2/m-painel-lead.webp",
-    "assets/img/projetos/psy/v2/m-painel-tarefas.webp"
+    "assets/img/projetos/psy/v2/m-painel-inicio.webp?v=2",
+    "assets/img/projetos/psy/v2/m-painel-lead.webp?v=2",
+    "assets/img/projetos/psy/v2/m-painel-tarefas.webp?v=2"
    ],
    "defaultView": "desktop",
    "tabletImages": [
@@ -1134,7 +1134,7 @@ window.MM_DATA = {
       ],
       "shots": [
        {
-        "src": "assets/img/projetos/psy/v2/d-painel-leads.webp",
+        "src": "assets/img/projetos/psy/v2/d-painel-leads.webp?v=2",
         "kind": "desktop"
        }
       ]
@@ -1172,7 +1172,7 @@ window.MM_DATA = {
       ],
       "shots": [
        {
-        "src": "assets/img/projetos/psy/v2/d-painel-roteiro-dia-a-dia.webp",
+        "src": "assets/img/projetos/psy/v2/d-painel-roteiro-dia-a-dia.webp?v=2",
         "kind": "desktop"
        }
       ]
@@ -1192,7 +1192,7 @@ window.MM_DATA = {
       ],
       "shots": [
        {
-        "src": "assets/img/projetos/psy/v2/d-painel-roteiro-custos.webp",
+        "src": "assets/img/projetos/psy/v2/d-painel-roteiro-custos.webp?v=2",
         "kind": "desktop"
        }
       ]
@@ -1216,11 +1216,11 @@ window.MM_DATA = {
       ],
       "shots": [
        {
-        "src": "assets/img/projetos/psy/v2/m-painel-inicio.webp",
+        "src": "assets/img/projetos/psy/v2/m-painel-inicio.webp?v=2",
         "kind": "mobile"
        },
        {
-        "src": "assets/img/projetos/psy/v2/m-painel-tarefas.webp",
+        "src": "assets/img/projetos/psy/v2/m-painel-tarefas.webp?v=2",
         "kind": "mobile"
        }
       ]

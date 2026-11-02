@@ -584,7 +584,7 @@
   // No celular o botão abre direto o compartilhar do sistema; no computador, um menu.
   var shWrap = $("#pd-share"), shBtn = $("#pd-share-btn"), shMenu = $("#pd-share-menu");
   var canShare = typeof navigator.share === "function";
-  var shareUrl = function () { return "https://matheus-machado-dev.com.br/projeto/" + current.id; };
+  var shareUrl = function () { return "https://matheus-machado-dev.com.br/projeto/" + current.id + "/"; };
   var shareText = function () { return current.title + (lang === "en" ? ": a project by Matheus Machado, full stack developer." : ": um projeto de Matheus Machado, desenvolvedor full stack."); };
   function updShare() {
     $$('[data-sh="wa"]').forEach(function (a) { a.href = "https://wa.me/?text=" + encodeURIComponent("*" + current.title + "*" + shareText().slice(current.title.length) + "\n" + shareUrl()); });

@@ -1567,3 +1567,40 @@ body::after { position: absolute; inset: 0; z-index: 1; }
 @media (max-width: 720px) { .pc-mod.is-mobile .pc-mod-media { grid-template-columns: minmax(0, 240px); } .pc-mod.is-mobile.is-multi .pc-mod-media { grid-template-columns: 1fr 1fr; gap: 12px; } }
 
 .pc-note { margin: 28px 0 0; color: var(--muted); opacity: .7; font-size: 13px; }
+
+/* =========================================================
+   RODADA 17 · Compartilhar projeto
+   ========================================================= */
+.pd-side-foot { display: flex; gap: 10px; }
+.pd-side-foot .pill { width: auto; }
+.pd-side-foot #pd-live { flex: 1; }
+#pd-live[hidden] + .sh { flex: 1; }
+#pd-live[hidden] + .sh .pill { width: 100%; }
+.sh { position: relative; }
+.sh-open { color: var(--fg); border-color: var(--line); }
+.sh-open svg, .sh-btn svg { width: 17px; height: 17px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.pill.sh-open:hover svg { transform: translateY(-2px); }
+.sh-open[aria-expanded="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.sh-btn svg.sh-fill { fill: currentColor; stroke: none; }
+
+.sh-menu { position: absolute; z-index: 5; right: 0; bottom: calc(100% + 10px); width: 250px; padding: 6px; background: var(--bg-3); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 30px 70px -20px #000; animation: shIn .25s var(--ease) both; }
+@keyframes shIn { from { opacity: 0; transform: translateY(8px); } }
+.sh-menu .sh-opts { display: grid; gap: 2px; }
+.sh-menu .sh-btn { justify-content: flex-start; width: 100%; border-color: transparent; border-radius: 11px; padding: 13px 14px; }
+.sh-menu .sh-btn:hover { background: var(--bg-2); border-color: transparent; color: var(--fg); }
+.sh-menu .sh-btn:hover svg { color: var(--accent); }
+
+.sh-opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.sh-btn { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: var(--fg); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 12px 18px; font: inherit; font-size: 15px; font-weight: 700; line-height: 1; transition: background .2s, color .2s, border-color .2s; }
+.sh-btn:hover { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.sh-btn:active { transform: scale(.97); }
+
+.pd-share { display: flex; align-items: center; justify-content: space-between; gap: 18px 32px; flex-wrap: wrap; margin: 40px 40px 0; padding: 28px 32px; border: 1px solid var(--line); border-radius: 18px; background: var(--bg-2); }
+.pd-share p { margin: 0; max-width: 34ch; font-size: 19px; line-height: 1.35; font-weight: 700; }
+@media (max-width: 720px) {
+  .pd-side-foot .pill { padding-inline: 18px; }
+  .pd-share { margin: 24px var(--gxr) 0 var(--gx); padding: 22px 20px; }
+  .pd-share p { font-size: 17px; }
+  .pd-share .sh-opts { width: 100%; }
+  .pd-share .sh-btn { flex: 1 1 calc(50% - 5px); justify-content: center; padding: 14px 12px; }
+}

@@ -12,8 +12,8 @@
   var lang = root.getAttribute("data-lang") === "en" ? "en" : "pt";
 
   var T = {
-    pt: { more: "Ver mais", less: "Ver menos", details: "Ver detalhes", hide: "Esconder detalhes", seeProject: "Ver projeto", showMore: "Mostrar mais {n}", showLess: "Mostrar menos", mo: "mês", mos: "meses", yr: "ano", yrs: "anos", and: "e", play: "Assistir", drag: "Arraste", client: "Cliente", own: "Projeto próprio", screen: "Tela", of: "de", copied: "E-mail copiado", copyFail: "Não deu pra copiar. O e-mail está selecionado.", noScreens: "Sem telas nesta resolução.", close: "Fechar", prev: "Anterior", next: "Próxima", desktop: "Desktop", phone: "Celular" },
-    en: { more: "Show more", less: "Show less", details: "Show details", hide: "Hide details", seeProject: "View project", showMore: "Show {n} more", showLess: "Show less", mo: "month", mos: "months", yr: "year", yrs: "years", and: "and", play: "Watch", drag: "Drag", client: "Client", own: "Own product", screen: "Screen", of: "of", copied: "Email copied", copyFail: "Couldn't copy. The email is selected.", noScreens: "No screens at this size.", close: "Close", prev: "Previous", next: "Next", desktop: "Desktop", phone: "Phone" }
+    pt: { more: "Ver mais", less: "Ver menos", details: "Ver detalhes", hide: "Esconder detalhes", seeProject: "Ver projeto", showMore: "Mostrar mais {n}", showLess: "Mostrar menos", mo: "mês", mos: "meses", yr: "ano", yrs: "anos", and: "e", play: "Assistir", drag: "Arraste", client: "Cliente", own: "Projeto próprio", screen: "Tela", of: "de", copied: "E-mail copiado", copyFail: "Não deu pra copiar. O e-mail está selecionado.", noScreens: "Sem telas nesta resolução.", close: "Fechar", prev: "Anterior", next: "Próxima", desktop: "Desktop", phone: "Celular", linkCopied: "Link copiado", linkFail: "Não deu pra copiar o link." },
+    en: { more: "Show more", less: "Show less", details: "Show details", hide: "Hide details", seeProject: "View project", showMore: "Show {n} more", showLess: "Show less", mo: "month", mos: "months", yr: "year", yrs: "years", and: "and", play: "Watch", drag: "Drag", client: "Client", own: "Own product", screen: "Screen", of: "of", copied: "Email copied", copyFail: "Couldn't copy. The email is selected.", noScreens: "No screens at this size.", close: "Close", prev: "Previous", next: "Next", desktop: "Desktop", phone: "Phone", linkCopied: "Link copied", linkFail: "Couldn't copy the link." }
   };
   var t = function (k) { return T[lang][k] || k; };
   var field = function (p, k) { return (lang === "en" && p[k + "_en"]) || p[k] || ""; };
@@ -515,6 +515,7 @@
     $("#pd-type").textContent = typeLabel(p);
     $("#pd-desc").innerHTML = paras(p.case ? (L(p.case, "lead") || field(p, "description")) : (field(p, "fullDescription") || field(p, "description")));
     renderCase(p);
+    updShare();
     $("#pd-tags").innerHTML = (p.technologies || []).map(function (x) { return "<li>" + (lang === "en" && x === "IA" ? "AI" : x) + "</li>"; }).join("");
     var live = $("#pd-live");
     live.hidden = !p.liveUrl; if (p.liveUrl) live.href = p.liveUrl;
@@ -542,6 +543,8 @@
       root.classList.add("lock");
       if (root.classList.contains("intro")) finishBoot();
       requestAnimationFrame(moveSeg);
+      // a fonte pode chegar depois da primeira medida e mudar a largura das abas
+      if (document.fonts) document.fonts.ready.then(moveSeg);
       $("#pd-close").focus({ preventScroll: true });
     }
   }
@@ -574,6 +577,47 @@
   });
   $$("button", seg).forEach(function (b) { b.addEventListener("click", function () { setView(b.dataset.view); }); });
   window.addEventListener("resize", moveSeg);
+
+  /* ---------- Compartilhar projeto ---------- */
+  // O link é /projeto/<id>: página com a prévia do projeto (print + nome) que o WhatsApp e o LinkedIn
+  // mostram; quem abre cai em /#p-<id>. Gerada por marca-matheus/v3-noite/og-projetos/gerar.py.
+  // No celular o botão abre direto o compartilhar do sistema; no computador, um menu.
+  var shWrap = $("#pd-share"), shBtn = $("#pd-share-btn"), shMenu = $("#pd-share-menu");
+  var canShare = typeof navigator.share === "function";
+  var shareUrl = function () { return "https://matheus-machado-dev.com.br/projeto/" + current.id; };
+  var shareText = function () { return current.title + (lang === "en" ? ": a project by Matheus Machado, full stack developer." : ": um projeto de Matheus Machado, desenvolvedor full stack."); };
+  function updShare() {
+    $$('[data-sh="wa"]').forEach(function (a) { a.href = "https://wa.me/?text=" + encodeURIComponent("*" + current.title + "*" + shareText().slice(current.title.length) + "\n" + shareUrl()); });
+    $$('[data-sh="li"]').forEach(function (a) { a.href = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(shareUrl()); });
+    $$('[data-sh="more"]').forEach(function (b) { b.hidden = !canShare; });
+  }
+  function setShare(open) { shMenu.hidden = !open; shBtn.setAttribute("aria-expanded", String(open)); }
+  function nativeShare() { return navigator.share({ title: current.title, text: shareText(), url: shareUrl() }); }
+  function copyLink() {
+    var url = shareUrl();
+    var fallback = function () {
+      var ta = document.createElement("textarea"); ta.value = url; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+      ta.remove(); showToast(t(ok ? "linkCopied" : "linkFail"));
+    };
+    try { navigator.clipboard.writeText(url).then(function () { showToast(t("linkCopied")); }, fallback); } catch (e) { fallback(); }
+  }
+  shBtn.addEventListener("click", function () {
+    if (canShare && window.matchMedia("(pointer: coarse)").matches) {
+      nativeShare().catch(function (e) { if (!e || e.name !== "AbortError") setShare(true); });
+      return;
+    }
+    setShare(shMenu.hidden);
+  });
+  document.addEventListener("pointerdown", function (e) { if (!shMenu.hidden && !shWrap.contains(e.target)) setShare(false); });
+  pd.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-sh]");
+    if (!b || !current) return;
+    if (b.dataset.sh === "copy") copyLink();
+    else if (b.dataset.sh === "more") nativeShare().catch(function () {});
+    setShare(false);
+  });
 
   /* ---------- Lightbox ---------- */
   var lb = $("#lb"), lbImg = $("#lb-img"), lbIdx = 0, lbList = [];
@@ -756,6 +800,7 @@
     if (e.key === "Escape") {
       if (window.MMPlayer && window.MMPlayer.isOpen()) return;
       if (!lb.hidden) return closeLb();
+      if (!shMenu.hidden) { setShare(false); return shBtn.focus(); }
       if (!pd.hidden) return $("#pd-close").click();
       if (!menu.hidden) return setMenu(false);
     }

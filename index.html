@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="preload" as="image" href="assets/img/hero/retrato-perfil.jpg" media="(min-width: 721px)">
 <link rel="preload" as="image" href="assets/img/hero/retrato-vertical.jpg" media="(max-width: 720px)">
-<link rel="stylesheet" href="styles/site.css?v=20261102d">
+<link rel="stylesheet" href="styles/site.css?v=20261103a">
 <script>
   (function () {
     var d = document.documentElement;
@@ -346,6 +346,7 @@
           <svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>
           <h3 data-en="Custom management systems">Sistemas de gestão sob medida</h3>
           <p data-en="Schedule, clients, stock, tabs, register and finances in a single dashboard, on phone and desktop.">Agenda, clientes, estoque, comandas, caixa e financeiro num painel só, no celular e no computador.</p>
+          <p class="sv-seen"><span class="label" data-en="Live at">No ar em</span><a class="sv-chip" href="#p-abdous-barber">Abdou's Barber</a><a class="sv-chip" href="#p-to-na-porta">Tô na Porta</a><a class="sv-chip" href="#p-psy-trekking">Psy Trekking</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
@@ -372,6 +373,8 @@
           <svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>
           <h3 data-en="AI customer service on WhatsApp">Atendimento no WhatsApp com IA</h3>
           <p data-en="An assistant that replies instantly, knows each client, books, sells, sends payment links and announces open slots.">Um assistente que responde na hora, conhece cada cliente, agenda, vende, manda link de pagamento e avisa quando abre vaga.</p>
+          <a class="sv-demo" href="#atendimento-ia"><span class="sv-demo-dot"></span><span data-en="Watch a live conversation">Ver uma conversa ao vivo</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5"/></svg></a>
+          <p class="sv-seen"><span class="label" data-en="Live at">No ar em</span><a class="sv-chip" href="#p-abdous-barber">Abdou's Barber</a><a class="sv-chip" href="#p-psy-trekking">Psy Trekking</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
@@ -383,6 +386,7 @@
           <svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg>
           <h3 data-en="Websites and landing pages">Sites e landing pages</h3>
           <p data-en="Pages that tell your story and turn visitors into clients. Fast, multilingual and easy to find on Google.">Páginas que contam a sua história e transformam visita em cliente. Rápidas, em vários idiomas e fáceis de achar no Google.</p>
+          <p class="sv-seen"><span class="label" data-en="Live at">No ar em</span><a class="sv-chip" href="#p-abdous-barber">Abdou's Barber</a><a class="sv-chip" href="#p-psy-trekking">Psy Trekking</a><a class="sv-chip" href="#p-casa-cheia">Casa Cheia</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
@@ -401,6 +405,7 @@
           <svg class="ic" aria-hidden="true"><use href="#i-card"/></svg>
           <h3 data-en="Payments, plans and stores">Pagamentos, planos e lojas</h3>
           <p data-en="Pix, cards, recurring subscriptions, automatic partner commission and stores with in-store pickup.">Pix, cartão, assinatura recorrente, comissão automática entre parceiros e loja com retirada no balcão.</p>
+          <p class="sv-seen"><span class="label" data-en="Live at">No ar em</span><a class="sv-chip" href="#p-abdous-barber">Abdou's Barber</a><a class="sv-chip" href="#p-to-na-porta">Tô na Porta</a><a class="sv-chip" href="#p-psy-trekking">Psy Trekking</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
@@ -409,6 +414,7 @@
           <svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>
           <h3 data-en="Apps and marketplaces">Apps e marketplaces</h3>
           <p data-en="Multi-sided platforms, like client, store and courier, with real-time orders, maps and phone notifications.">Plataformas com vários lados, como cliente, loja e entregador, com pedido em tempo real, mapa e avisos no celular.</p>
+          <p class="sv-seen"><span class="label" data-en="Live at">No ar em</span><a class="sv-chip" href="#p-to-na-porta">Tô na Porta</a></p>
         </div>
       </li>
       <li class="sv" data-reveal>
@@ -425,10 +431,86 @@
           <svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>
           <h3 data-en="Automations and bots">Automações e robôs</h3>
           <p data-en="What someone does by hand today, done on its own: website lookups, forms, documents, PDF reading and integrations.">O que hoje alguém faz na mão, feito sozinho: consultas em sites, formulários, documentos, leitura de PDF e integrações.</p>
+          <p class="sv-seen"><span class="label" data-en="Built at">Feito na</span><a class="sv-chip" href="#trajetoria">Ridolfinvest</a></p>
         </div>
       </li>
     </ul>
     <div class="rail-nav" data-rail="srv-rail" aria-hidden="true"><span class="rail-count label"></span><span class="rail-dots"></span></div>
+  </section>
+
+  <!-- ATENDIMENTO COM IA: conversa de exemplo rodando sozinha (scripts/bot-demo.js) -->
+  <section class="bot wrap" id="atendimento-ia" aria-labelledby="bot-t">
+    <div class="sec-head bot-head">
+      <span class="label sec-label" data-en="(AI customer service)">(Atendimento com IA)</span>
+      <h2 class="display" id="bot-t" data-reveal data-en="It answers at 11:47 pm.">Ele responde às 23h47.</h2>
+      <p class="sec-sub" data-reveal data-en="Not a menu bot that asks you to type 1. It's an AI that understands text and voice notes, checks the real schedule, sells and sends the payment link. This conversation uses the real rules and prices of the Abdou's Barber assistant.">Não é robô de menu, daqueles de "digite 1". É uma IA que entende texto e áudio, confere a agenda de verdade, vende e manda o link de pagamento. Esta conversa usa as regras e os preços reais do assistente da Abdou's Barber.</p>
+    </div>
+
+    <div class="bot-stage" data-reveal>
+      <aside class="bot-col bot-steps-col" aria-hidden="true">
+        <div class="bot-col-head"><span class="label" data-en="What the AI did">O que a IA fez</span><span class="bot-live"><i></i><span data-en="Live">Ao vivo</span></span></div>
+        <ol class="bot-steps">
+          <li data-step="ouvir"><i class="st"></i><div><b data-en="Understood the message">Entendeu a mensagem</b><small></small></div></li>
+          <li data-step="agenda"><i class="st"></i><div><b data-en="Checked the schedule">Conferiu a agenda</b><small></small></div></li>
+          <li data-step="reserva"><i class="st"></i><div><b data-en="Booked the slot">Reservou o horário</b><small></small></div></li>
+          <li data-step="plano"><i class="st"></i><div><b data-en="Offered the plan">Ofereceu o plano</b><small></small></div></li>
+          <li data-step="cobranca"><i class="st"></i><div><b data-en="Sent the payment link">Mandou o link de pagamento</b><small></small></div></li>
+          <li data-step="lembrete"><i class="st"></i><div><b data-en="Scheduled the reminder">Marcou o lembrete</b><small></small></div></li>
+        </ol>
+        <p class="bot-done"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-en="Solved with no one from the team">Resolvido sem ninguém da equipe</span></p>
+      </aside>
+
+      <div class="bot-chat" aria-hidden="true">
+        <div class="bc-head">
+          <span class="bc-av">G</span>
+          <span class="bc-who"><b>Gabriel</b><small class="bc-status">online</small></span>
+          <span class="bc-tag" data-en="AI answering">IA atendendo</span>
+        </div>
+        <div class="bc-body"><div class="bc-list"></div></div>
+        <div class="bc-foot"><span data-en="The team can take over at any time">A equipe pode assumir a qualquer momento</span><span class="bc-take" data-en="Take over">Assumir</span></div>
+      </div>
+
+      <aside class="bot-col bot-sys-col" aria-hidden="true">
+        <div class="bot-col-head"><span class="label" data-en="In the system">No sistema</span></div>
+        <div class="bot-agenda">
+          <p class="ba-title"><b data-en="Tomorrow">Amanhã</b><span>Alexandre</span></p>
+          <ul class="ba-slots">
+            <li class="busy" data-slot="0900"><time>09:00</time><span data-en="Booked">Ocupado</span></li>
+            <li data-slot="0930"><time>09:30</time><span data-en="Free">Livre</span></li>
+            <li class="busy" data-slot="1000"><time>10:00</time><span data-en="Booked">Ocupado</span></li>
+            <li data-slot="1030"><time>10:30</time><span data-en="Free">Livre</span></li>
+            <li class="busy" data-slot="1100"><time>11:00</time><span data-en="Booked">Ocupado</span></li>
+          </ul>
+        </div>
+        <div class="bot-kpis">
+          <div data-kpi="plano"><span class="label" data-en="New plan">Plano novo</span><b>-</b></div>
+          <div data-kpi="caixa"><span class="label" data-en="Received">Recebido</span><b>-</b></div>
+        </div>
+      </aside>
+
+      <ol class="visually-hidden">
+        <li data-en="Client, 11:47 pm: hi, any slot tomorrow at 10?">Cliente, 23h47: boa noite, tem horário amanhã às 10?</li>
+        <li data-en="AI: Evening, Gabriel! Alexandre is booked at 10:00. I have 9:30 or 10:30, which works better?">IA: Boa noite, Gabriel! Às 10:00 o Alexandre já está ocupado. Tenho 9:30 ou 10:30, qual fica melhor?</li>
+        <li data-en="Client, voice note: 10:30 works. And how much is the haircut plan?">Cliente, em áudio: pode ser dez e meia. E quanto fica o plano de corte?</li>
+        <li data-en="AI: Booked: tomorrow, 10:30, haircut with Alexandre. The Unlimited Haircut plan is R$ 84.99 a month. Want to subscribe?">IA: Reservado: amanhã, 10:30, corte com o Alexandre. O Corte Ilimitado sai R$ 84,99 por mês, com cortes ilimitados. Quer assinar?</li>
+        <li data-en="Client: yes please">Cliente: quero sim</li>
+        <li data-en="AI sends the payment link. Payment approved, plan active.">IA manda o link de pagamento. Pagamento aprovado, plano ativo.</li>
+        <li data-en="AI: Payment approved, your plan is active! See you tomorrow at 10:30.">IA: Pagamento aprovado, plano ativo! Te espero amanhã às 10:30.</li>
+      </ol>
+    </div>
+    <div class="bot-ctrl"><button class="bot-replay" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 3v3h3"/></svg><span data-en="Play again">Ver de novo</span></button></div>
+
+    <ul class="bot-points">
+      <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><b data-en="Text, voice and photos">Texto, áudio e foto</b><span data-en="It understands voice notes and images, including payment receipts.">Entende áudio e imagem, inclusive comprovante de pagamento.</span></li>
+      <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><b data-en="Does what it says">Faz o que promete</b><span data-en="Books, reschedules, cancels, sells and charges inside the system. It doesn't just answer.">Agenda, remarca, cancela, vende e cobra dentro do sistema, não só responde.</span></li>
+      <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg><b data-en="Doesn't make things up">Não inventa</b><span data-en="Safety checks confirm time, price and payment before each message goes out.">Travas conferem horário, preço e pagamento antes de cada mensagem sair.</span></li>
+      <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg><b data-en="You stay in charge">Você no controle</b><span data-en="See every conversation, track how the assistant performs and take over whenever you want.">Vê todas as conversas, acompanha o desempenho e assume quando quiser.</span></li>
+    </ul>
+
+    <div class="bot-foot" data-reveal>
+      <p class="sv-seen"><span class="label" data-en="Live at">No ar em</span><a class="sv-chip" href="#p-abdous-barber">Abdou's Barber</a><a class="sv-chip" href="#p-psy-trekking">Psy Trekking</a></p>
+      <a class="pill solid" href="https://wa.me/5511910254958?text=Oi%20Matheus%2C%20vi%20o%20atendimento%20com%20IA%20no%20seu%20site%20e%20quero%20um%20no%20meu%20WhatsApp." target="_blank" rel="noopener"><span data-en="I want one on my WhatsApp">Quero um no meu WhatsApp</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+    </div>
   </section>
 
   <!-- PROCESSO -->
@@ -841,9 +923,10 @@
   <a class="dock-alt" href="#projetos" data-en="See projects">Ver projetos</a>
 </div>
 
-<script src="scripts/dados.js?v=20261102d"></script>
+<script src="scripts/dados.js?v=20261103a"></script>
 <script src="scripts/vendor/hls.light.min.js" defer></script>
 <script src="scripts/player.js?v=20261101a"></script>
-<script src="scripts/site.js?v=20261102d"></script>
+<script src="scripts/site.js?v=20261103a"></script>
+<script src="scripts/bot-demo.js?v=20261103a"></script>
 </body>
 </html>

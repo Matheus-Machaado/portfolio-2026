@@ -1807,3 +1807,28 @@ html.js .work-grid > li:not(.is-in) .wk-sh { opacity: 0; }
 @media (max-width: 380px) {
   .bot-steps { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   RODADA 19 · Diploma na formação (ver e baixar)
+   ========================================================= */
+.edu-doc { display: grid; grid-template-columns: 172px minmax(0, 1fr); gap: 14px 18px; align-items: center; margin-top: 14px; padding-top: 18px; border-top: 1px solid var(--line); }
+.edu-doc-thumb { position: relative; display: block; padding: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; cursor: zoom-in; aspect-ratio: 900 / 623; }
+.edu-doc-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.edu-doc-thumb:hover img { transform: scale(1.06); }
+.edu-doc-info { display: grid; gap: 4px; align-content: center; }
+.edu-grid .edu-doc-info b { font-size: 17px; }
+.edu-doc-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.edu-doc-actions .pill { gap: 8px; }
+.edu-doc-actions .pill svg { width: 14px; height: 14px; }
+.edu-doc-actions a.pill:hover svg { transform: translateY(2px); }
+.edu-grid .edu-doc-note { grid-column: 1 / -1; margin: 0; font-size: 13px; line-height: 1.5; color: var(--muted); text-align: left; hyphens: manual; }
+/* Card sem documento não estica até a altura do que tem diploma */
+.edu-grid { align-items: start; }
+.edu-doc-note a { color: var(--fg); }
+.edu-doc-note b { font-size: inherit; font-weight: 600; letter-spacing: 0; font-variant-numeric: tabular-nums; color: var(--fg); }
+.lb-dl { right: calc(max(20px, env(safe-area-inset-right, 0px)) + 62px); top: calc(20px + env(safe-area-inset-top, 0px)); }
+.lb-dl[hidden] { display: none; }
+@media (max-width: 560px) {
+  .edu-doc { grid-template-columns: 1fr; }
+  .edu-doc-actions .pill { flex: 1; }
+}

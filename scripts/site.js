@@ -12,8 +12,8 @@
   var lang = root.getAttribute("data-lang") === "en" ? "en" : "pt";
 
   var T = {
-    pt: { more: "Ver mais", less: "Ver menos", details: "Ver detalhes", hide: "Esconder detalhes", seeProject: "Ver projeto", showMore: "Mostrar mais {n}", showLess: "Mostrar menos", mo: "mês", mos: "meses", yr: "ano", yrs: "anos", and: "e", play: "Assistir", drag: "Arraste", client: "Cliente", own: "Projeto próprio", screen: "Tela", of: "de", copied: "E-mail copiado", copyFail: "Não deu pra copiar. O e-mail está selecionado.", noScreens: "Sem telas nesta resolução.", close: "Fechar", prev: "Anterior", next: "Próxima", desktop: "Desktop", phone: "Celular", linkCopied: "Link copiado", share: "Compartilhar", linkFail: "Não deu pra copiar o link." },
-    en: { more: "Show more", less: "Show less", details: "Show details", hide: "Hide details", seeProject: "View project", showMore: "Show {n} more", showLess: "Show less", mo: "month", mos: "months", yr: "year", yrs: "years", and: "and", play: "Watch", drag: "Drag", client: "Client", own: "Own product", screen: "Screen", of: "of", copied: "Email copied", copyFail: "Couldn't copy. The email is selected.", noScreens: "No screens at this size.", close: "Close", prev: "Previous", next: "Next", desktop: "Desktop", phone: "Phone", linkCopied: "Link copied", share: "Share", linkFail: "Couldn't copy the link." }
+    pt: { more: "Ver mais", less: "Ver menos", details: "Ver detalhes", hide: "Esconder detalhes", seeProject: "Ver projeto", showMore: "Mostrar mais {n}", showLess: "Mostrar menos", mo: "mês", mos: "meses", yr: "ano", yrs: "anos", and: "e", play: "Assistir", drag: "Arraste", client: "Cliente", own: "Projeto próprio", screen: "Tela", of: "de", copied: "E-mail copiado", copyFail: "Não deu pra copiar. O e-mail está selecionado.", noScreens: "Sem telas nesta resolução.", close: "Fechar", prev: "Anterior", next: "Próxima", desktop: "Desktop", phone: "Celular", linkCopied: "Link copiado", share: "Compartilhar", linkFail: "Não deu pra copiar o link.", downloadPdf: "Baixar PDF" },
+    en: { more: "Show more", less: "Show less", details: "Show details", hide: "Hide details", seeProject: "View project", showMore: "Show {n} more", showLess: "Show less", mo: "month", mos: "months", yr: "year", yrs: "years", and: "and", play: "Watch", drag: "Drag", client: "Client", own: "Own product", screen: "Screen", of: "of", copied: "Email copied", copyFail: "Couldn't copy. The email is selected.", noScreens: "No screens at this size.", close: "Close", prev: "Previous", next: "Next", desktop: "Desktop", phone: "Phone", linkCopied: "Link copied", share: "Share", linkFail: "Couldn't copy the link.", downloadPdf: "Download PDF" }
   };
   var t = function (k) { return T[lang][k] || k; };
   var field = function (p, k) { return (lang === "en" && p[k + "_en"]) || p[k] || ""; };
@@ -23,6 +23,8 @@
   i18nNodes.forEach(function (el) { el.dataset.pt = el.innerHTML; });
   var altNodes = $$("[data-en-alt]");
   altNodes.forEach(function (el) { el.dataset.ptAlt = el.getAttribute("alt"); });
+  var labelNodes = $$("[data-en-label]");
+  labelNodes.forEach(function (el) { el.dataset.ptLabel = el.getAttribute("aria-label"); });
 
   function applyLang(next, persist) {
     lang = next === "en" ? "en" : "pt";
@@ -30,6 +32,7 @@
     root.setAttribute("data-lang", lang);
     i18nNodes.forEach(function (el) { el.innerHTML = lang === "en" ? el.dataset.en : el.dataset.pt; });
     altNodes.forEach(function (el) { el.setAttribute("alt", lang === "en" ? el.dataset.enAlt : el.dataset.ptAlt); });
+    labelNodes.forEach(function (el) { el.setAttribute("aria-label", lang === "en" ? el.dataset.enLabel : el.dataset.ptLabel); });
     $$("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
 
     $$(".cv-link").forEach(function (a) { a.href = "assets/curriculos/" + (lang === "en" ? "curriculo_english.pdf" : "curriculo.pdf") + "?v=20261101a"; });
@@ -688,14 +691,31 @@
   }
 
   /* ---------- Lightbox ---------- */
-  var lb = $("#lb"), lbImg = $("#lb-img"), lbIdx = 0, lbList = [];
+  var lb = $("#lb"), lbImg = $("#lb-img"), lbDl = $("#lb-dl"), lbIdx = 0, lbList = [], lbDoc = null, lbOpener = null;
   function showLb(i) {
     lbIdx = (i + lbList.length) % lbList.length;
     lbImg.src = lbList[lbIdx];
-    lbImg.alt = current.title + ", " + t("screen").toLowerCase() + " " + (lbIdx + 1);
-    $("#lb-count").textContent = (lbIdx + 1) + " " + t("of") + " " + lbList.length;
+    lbImg.alt = lbDoc ? lbDoc.name[lang] + ", " + lbDoc.sides[lang][lbIdx] : current.title + ", " + t("screen").toLowerCase() + " " + (lbIdx + 1);
+    $("#lb-count").textContent = lbDoc ? lbDoc.sides[lang][lbIdx] : (lbIdx + 1) + " " + t("of") + " " + lbList.length;
   }
-  function openLb(list, i) { lbList = list; lb.hidden = false; showLb(i); $("#lb-close").focus(); }
+  // doc: diploma aberto da formação (mostra o botão de baixar e trava a rolagem da página)
+  function openLb(list, i, doc) {
+    lbList = list; lbDoc = doc || null; lbOpener = document.activeElement;
+    lbDl.hidden = !lbDoc;
+    if (lbDoc) { lbDl.href = lbDoc.pdf; lbDl.setAttribute("download", lbDoc.file); lbDl.setAttribute("aria-label", t("downloadPdf")); root.classList.add("lock"); }
+    lb.hidden = false; showLb(i); $("#lb-close").focus();
+  }
+  var DOCS = {
+    fiap: {
+      pdf: "assets/diplomas/fiap.pdf", file: "Diploma FIAP - Matheus Machado.pdf",
+      pages: ["assets/diplomas/fiap-frente.webp", "assets/diplomas/fiap-verso.webp"],
+      name: { pt: "Diploma da FIAP", en: "FIAP diploma" },
+      sides: { pt: ["Frente", "Verso"], en: ["Front", "Back"] }
+    }
+  };
+  $$("[data-doc]").forEach(function (b) {
+    b.addEventListener("click", function () { var d = DOCS[b.dataset.doc]; if (d) openLb(d.pages, 0, d); });
+  });
   gallery.addEventListener("click", function (e) {
     var b = e.target.closest("button[data-i]");
     if (b) openLb(images(current, view), +b.dataset.i);
@@ -711,7 +731,10 @@
     var el = document.getElementById(a.dataset.go);
     if (el) el.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
   });
-  function closeLb() { lb.hidden = true; }
+  function closeLb() {
+    lb.hidden = true;
+    if (lbDoc) { if (pd.hidden && menu.hidden) root.classList.remove("lock"); lbDoc = null; if (lbOpener && lbOpener.focus) lbOpener.focus({ preventScroll: true }); }
+  }
   $("#lb-prev").addEventListener("click", function () { showLb(lbIdx - 1); });
   $("#lb-next").addEventListener("click", function () { showLb(lbIdx + 1); });
   $("#lb-close").addEventListener("click", closeLb);

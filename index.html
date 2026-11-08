@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="preload" as="image" href="assets/img/hero/retrato-perfil.jpg" media="(min-width: 721px)">
 <link rel="preload" as="image" href="assets/img/hero/retrato-vertical.jpg" media="(max-width: 720px)">
-<link rel="stylesheet" href="styles/site.css?v=20261105a">
+<link rel="stylesheet" href="styles/site.css?v=20261108a">
 <script>
   (function () {
     var d = document.documentElement;
@@ -39,7 +39,8 @@
     try {
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       var seen = sessionStorage.getItem("mm-intro");
-      if (!reduce && !seen && location.hash.indexOf("#p-") !== 0) d.classList.add("intro");
+      // Quem chega por um link com âncora (projeto, seção do Jarvis) vai direto ao conteúdo, sem a intro.
+      if (!reduce && !seen && !location.hash) d.classList.add("intro");
     } catch (e) {}
   })();
 </script>
@@ -554,6 +555,48 @@
         <small class="memory-note" data-reveal data-en="Photo recreated from pictures and videos of the time.">Foto recriada a partir de fotos e vídeos da época.</small>
       </div>
     </div>
+    <div class="memory-videos" id="jarvis">
+      <div class="mv-head" data-reveal>
+        <span class="label" data-en="(Videos from back then)">(Vídeos da época)</span>
+        <h3 class="memory-title" data-en="Jarvis working, on video.">O Jarvis funcionando, em vídeo.</h3>
+        <p data-en="Recorded at home back then, with no editing: me talking to him and asking for music. Press play to hear the conversation.">Gravados em casa na época, sem montagem: eu conversando com ele e pedindo música. Aperte o play para ouvir a conversa.</p>
+      </div>
+      <div class="mv-list" data-reveal>
+        <figure class="mv" data-mv="conversa">
+          <div class="mv-stage">
+            <video src="assets/video/jarvis/conversa.mp4?v=1" poster="assets/video/jarvis/conversa.webp?v=1" width="540" height="958" preload="none" playsinline></video>
+            <p class="mv-cap" aria-hidden="true"></p>
+            <button type="button" class="mv-hit" aria-label="Assistir: Conversa com o Jarvis"><span class="mv-ic"></span></button>
+            <span class="mv-bar" aria-hidden="true"><i></i></span>
+          </div>
+          <figcaption class="label"><span class="mv-name" data-en="Talking to Jarvis">Conversa com o Jarvis</span><span>0:12</span></figcaption>
+          <ol class="visually-hidden">
+            <li data-en="Matheus: Jarvis.">Matheus: Jarvis.</li>
+            <li data-en="Jarvis: Need anything?">Jarvis: Precisa de algo?</li>
+            <li data-en="Matheus: Do you think I'm cool?">Matheus: Você me acha legal?</li>
+            <li data-en="Jarvis: Can I be honest?">Jarvis: Posso ser sincero?</li>
+            <li data-en="Matheus: Yes.">Matheus: Sim.</li>
+            <li data-en="Jarvis: You like being in charge, but you're cool.">Jarvis: Você gosta de mandar, mas é legal.</li>
+          </ol>
+        </figure>
+        <figure class="mv" data-mv="musica">
+          <div class="mv-stage">
+            <video src="assets/video/jarvis/musica.mp4?v=1" poster="assets/video/jarvis/musica.webp?v=1" width="540" height="958" preload="none" playsinline></video>
+            <p class="mv-cap" aria-hidden="true"></p>
+            <button type="button" class="mv-hit" aria-label="Assistir: Pedindo música"><span class="mv-ic"></span></button>
+            <span class="mv-bar" aria-hidden="true"><i></i></span>
+          </div>
+          <figcaption class="label"><span class="mv-name" data-en="Asking for music">Pedindo música</span><span>0:14</span></figcaption>
+          <ol class="visually-hidden">
+            <li data-en="Matheus: Jarvis?">Matheus: Jarvis?</li>
+            <li data-en="Jarvis: Yes?">Jarvis: Sim?</li>
+            <li data-en="Matheus: Keep going.">Matheus: Continue.</li>
+            <li data-en="Music starts playing.">A música começa a tocar.</li>
+            <li data-en="Matheus: Louder. Louder!">Matheus: Mais alto. Mais alto!</li>
+          </ol>
+        </figure>
+      </div>
+    </div>
   </section>
 
   <!-- TRAJETÓRIA -->
@@ -936,10 +979,11 @@
   <a class="dock-alt" href="#projetos" data-en="See projects">Ver projetos</a>
 </div>
 
-<script src="scripts/dados.js?v=20261105a"></script>
+<script src="scripts/dados.js?v=20261108a"></script>
 <script src="scripts/vendor/hls.light.min.js" defer></script>
 <script src="scripts/player.js?v=20261101a"></script>
-<script src="scripts/site.js?v=20261105a"></script>
-<script src="scripts/bot-demo.js?v=20261105a"></script>
+<script src="scripts/site.js?v=20261108a"></script>
+<script src="scripts/bot-demo.js?v=20261108a"></script>
+<script src="scripts/jarvis-videos.js?v=20261108a"></script>
 </body>
 </html>
